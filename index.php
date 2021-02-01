@@ -191,20 +191,35 @@
                                         try {
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
-                                            $sql = "SELECT mName, scName FROM subcategory sc INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id" ;
-                                            $st = $dbConn->prepare($sql);
-                                            $st->execute();
-
-                                            foreach ($st->fetchAll() as $row) {
-                                            //     echo "<script> console.log(hello) </script>";
-                                            // }
+                                            $mainCat_sql = "SELECT mName FROM maincategory" ;
+                                            $st1 = $dbConn->prepare($mainCat_sql);
+                                            $st1->execute();
+                                            $mainCat = array();
+                                            $i = 0;
+                                            foreach ($st1->fetchAll() as $row1) {
+                                                array_push($mainCat, $row1['mName']);
+                                                // echo $mainCat[0];
+                                                while ($i < count($mainCat)) {
                                     ?>
-                                        <li><span class="main-categoryName"><?php echo $row['mName'] ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                            <ul class="sub-category">
-                                                <a href="shop-grid.php?large_category=<?php echo $row['mName']; ?>&small_category=<?php echo $row['scName'] ?>">
-                                                    <li><span class="sub-categoryName"><?php echo $row['scName'] ?></span></li>
-                                                </a>
-                                            </ul>
+                                        <li><span class="main-categoryName"><?php echo $mainCat[$i]; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                            <?php 
+                                                $subCat_sql = "SELECT * FROM subcategory" ;
+                                                $st2 = $dbConn->prepare($subCat_sql);
+                                                // $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
+                                                $st2->execute();
+                                                foreach ($st2->fetchAll() as $row2) {
+                                                    // if()
+                                            ?>
+                                                <ul class="sub-category">
+                                                    <a href="shop-grid.php?large_category=<?php echo $mainCat[$i]; ?>&small_category=<?php echo $row2['scName']; ?>">
+                                                        <li><span class="sub-categoryName"><?php echo $row2['scName']; ?></span></li>
+                                                    </a>
+                                                </ul>
+                                            <?php 
+                                                }
+                                                $i++;
+                                                }
+                                            ?>
                                         </li>
                                     <?php 
                                             } 
