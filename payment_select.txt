@@ -1,0 +1,8 @@
+<h5 class="modal-title">支払い方法を選択してください！</h5>
+                        <p>ご希望の決済方法を選択して下さい。別画面にて決済画面を開きます。</p>
+
+
+
+
+
+https://meicom.jp/mpne/guide/convini-p.html
