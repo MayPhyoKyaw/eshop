@@ -191,15 +191,17 @@
                                         try {
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
-                                            $sql = "SELECT mName, scName FROM subcategory sc INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id" ;
-                                            $st = $dbConn->prepare($sql);
-                                            $st->execute();
+                                            $category_sql = "SELECT mName, scName FROM subcategory sc INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id" ;
+                                            $st1 = $dbConn->prepare($category_sql);
+                                            $st1->execute();
 
-                                            foreach ($st->fetchAll() as $row) {
+                                            foreach ($st1->fetchAll() as $row) {
                                     ?>
                                         <li><span class="main-categoryName"><?php echo $row['mName'] ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                             <ul class="sub-category">
-                                                <li><span class="sub-categoryName"><?php echo $row['scName'] ?></span></li>
+                                                <a href="shop-grid.php?large_category=<?php echo $row['mName']; ?>&small_category=<?php echo $row['scName'] ?>">
+                                                    <li><span class="sub-categoryName"><?php echo $row['scName'] ?></span></li>
+                                                </a>
                                             </ul>
                                         </li>
                                     <?php 
@@ -328,13 +330,30 @@
                         <div class="single-widget category">
                             <h3 class="title">Categories</h3>
                             <ul class="categor-list">
-                                <li class="selected side-sub-category" id="AAA"><a href="#">AAA</a></li>
-                                <li class="side-sub-category" id="BBB"><a href="#">BBB</a></li>
+                                <?php 
+                                        try {
+                                            $st2 = $dbConn->prepare($category_sql);
+                                            $st2->execute();
+
+                                            foreach ($st2->fetchAll() as $row) {
+                                ?>
+                                    <li class="selected side-sub-category" id="<?php echo $row['scName'] ?>">
+                                        <a href="shop-grid.php?large_category=<?php echo $row['mName']; ?>&small_category=<?php echo $row['scName'] ?>">
+                                            <?php echo $row['scName'] ?>
+                                        </a>
+                                    </li>
+                                <?php 
+                                        } 
+                                    }catch (PDOException $e) {
+                                        echo "There is some problem in connection: " . $e->getMessage();
+                                    }
+                                ?>
+                                <!-- <li class="side-sub-category" id="BBB"><a href="#">BBB</a></li>
                                 <li class="side-sub-category" id="CCC"><a href="#">CCC</a></li>
                                 <li class="side-sub-category" id="DDD"><a href="#">DDD</a></li>
                                 <li class="side-sub-category" id="EEE"><a href="#">EEE</a></li>
                                 <li class="side-sub-category" id="FFF"><a href="#">FFF</a></li>
-                                <li class="side-sub-category" id="GGG"><a href="#">GGG</a></li>
+                                <li class="side-sub-category" id="GGG"><a href="#">GGG</a></li> -->
                             </ul>
                         </div>
                         <!--/ End Single Widget -->
@@ -410,16 +429,14 @@
                     <div class="row product-wrapper">
                         <?php 
                             try {
-                                $mainCat = $_GET['large_category'];
-                                // echo $mainCat;
-                                $database = new Connection();
-                                $dbConn = $database->openConnection();
-                                $sql = "SELECT item_id, itemName, sName, cName, mName, scName FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id WHERE sc.scName = 'Tshirt'" ;
-                                $st = $dbConn->prepare($sql);
-                                // $st->bindValue( ":mainCat", $mainCat, PDO::PARAM_STR);
-                                $st->execute();
+                                $subCat = $_GET['small_category'];
 
-                                foreach ($st->fetchAll() as $row) {
+                                $item_sql = "SELECT item_id, itemName, sName, cName, mName, scName FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id WHERE sc.scName = :subCat" ;
+                                $st3 = $dbConn->prepare($item_sql);
+                                $st3->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
+                                $st3->execute();
+
+                                foreach ($st3->fetchAll() as $row) {
                         ?>
                             <div class="col-lg-4 col-md-6 col-12 product-item">
                                 <div class="single-product">
