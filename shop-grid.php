@@ -275,7 +275,7 @@
                                                     </ul>
                                                 </li>
 
-                                                <li><a href="sale-shop-grid.html">Sales<span class="new">New</span></a>
+                                                <li><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
                                                 </li>
                                                 <li><a href="contact.html">Contact Us</a></li>
                                             </ul>

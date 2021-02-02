@@ -19,6 +19,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.css">
+
     <!-- Magnific Popup -->
     <link rel="stylesheet" href="css/magnific-popup.min.css">
     <!-- Font Awesome -->
@@ -46,7 +47,6 @@
     <!-- customize design css -->
     <link rel="stylesheet" href="css/design.css">
 
-
 </head>
 
 <body class="js">
@@ -61,7 +61,6 @@
         </div>
     </div>
     <!-- End Preloader -->
-
 
     <!-- Header -->
     <header class="header shop">
@@ -168,17 +167,14 @@
                                         </div>
                                         <a href="checkout.html" class="btn animate">Checkout</a>
                                     </div>
-                                </div>
-                            </div> -->
+                                </div> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
         <!-- Header Inner -->
-        <?php 
-            include_once 'db_connection.php';
-        ?>
         <div class="header-inner">
             <div class="container">
                 <div class="cat-nav-head">
@@ -187,47 +183,12 @@
                             <div id="all_Category" class="all-category">
                                 <h3 class="cat-heading" id="toggle"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                                 <ul id="main_Category" class="main-category" style="display: none;">
-                                    <?php 
-                                        try {
-                                            $database = new Connection();
-                                            $dbConn = $database->openConnection();
-                                            $mainCat_sql = "SELECT mName FROM maincategory" ;
-                                            $st1 = $dbConn->prepare($mainCat_sql);
-                                            $st1->execute();
-                                            $mainCat = array();
-                                            $i = 0;
-                                            foreach ($st1->fetchAll() as $row1) {
-                                                array_push($mainCat, $row1['mName']);
-                                                // echo $mainCat[0];
-                                                while ($i < count($mainCat)) {
-                                    ?>
-                                        <li><span class="main-categoryName"><?php echo $mainCat[$i]; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                            <?php 
-                                                $subCat_sql = "SELECT * FROM subcategory" ;
-                                                $st2 = $dbConn->prepare($subCat_sql);
-                                                // $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
-                                                $st2->execute();
-                                                foreach ($st2->fetchAll() as $row2) {
-                                                    // if()
-                                            ?>
-                                                <ul class="sub-category">
-                                                    <a href="shop-grid.php?large_category=<?php echo $mainCat[$i]; ?>&small_category=<?php echo $row2['scName']; ?>">
-                                                        <li><span class="sub-categoryName"><?php echo $row2['scName']; ?></span></li>
-                                                    </a>
-                                                </ul>
-                                            <?php 
-                                                }
-                                                $i++;
-                                                }
-                                            ?>
-                                        </li>
-                                    <?php 
-                                            } 
-                                        }catch (PDOException $e) {
-                                            echo "There is some problem in connection: " . $e->getMessage();
-                                        }
-                                    ?>
-                                    <!-- <li><span class="main-categoryName">ジャケット <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                    <li><span class="main-categoryName">トップス <i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                        <ul class="sub-category">
+                                            <li><span class="sub-categoryName">AAA</span></li>
+                                        </ul>
+                                    </li>
+                                    <li><span class="main-categoryName">ジャケット <i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                         <ul class="sub-category">
                                             <li><span class="sub-categoryName">BBB</span></li>
                                         </ul>
@@ -271,7 +232,7 @@
                                         <ul class="sub-category">
                                             <li><span class="sub-categoryName">AAA</span></li>
                                         </ul>
-                                    </li> -->
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -282,9 +243,9 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="index.html">Home</a></li>
+                                                <li><a href="index.html">Home</a></li>
                                                 <li><a href="about.html">About Us</a></li>
-                                                <li><a href="cart.html">My Cart</a></li>
+                                                <li class="active"><a href="cart.html">My Cart<span class="new">New</span></a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
                                                         <li><a href="cart.html">My Cart</a></li>
@@ -292,7 +253,7 @@
                                                     </ul>
                                                 </li>
 
-                                                <li><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
+                                                <li><a href="sale-shop-grid.html">Sales<span class="new">New</span></a>
                                                 </li>
                                                 <li><a href="contact.html">Contact Us</a></li>
                                             </ul>
@@ -310,205 +271,232 @@
     </header>
     <!--/ End Header -->
 
-    <!-- Slider Area -->
-    <section class="hero-slider owl-carousel owl-theme" id="owl-demo">
-        <!-- Single Slider -->
-        <div class="single-slider">
-            <div class="container">
-                <div class="row no-gutters">
-                    <div class="col-lg-9 offset-lg-3 col-12">
-                        <div class="text-inner">
-                            <!-- <img src="./images/Mandalay-Banner1-1400x670.webp"> -->
-                            <div class="row">
-                                <div class="col-lg-7 col-12">
-                                    <div class="hero-text">
-                                        <h1><span>UP TO 50% OFF </span>Shirt For Man</h1>
-                                        <p>Maboriosam in a nesciung eget magnae <br> dapibus disting tloctio in the find it pereri <br> odiy maboriosm.</p>
-                                        <div class="button">
-                                            <a href="#" class="btn">Shop Now!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item"><img src="./images/Mandalay-Banner1-1400x670.webp" alt=""></div>
-        <div class="item"><img src="./images/Mandalay-Banner1-1400x670.webp" alt=""></div>
-        <div class="item"><img src="./images/Mandalay-Banner1-1400x670.webp" alt=""></div>
-        <!--/ End Slider Area -->
-    </section>
-
-    <!-- Start Most Popular -->
-    <div class="product-area most-popular section">
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="section-title">
-                        <h2>Hot Item</h2>
+                    <div class="bread-inner">
+                        <ul class="bread-list">
+                            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="blog-single.html">Cart</a></li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="nav-main">
-                        <!-- Tab Nav -->
-                        <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#man" role="tab">Men</a></li>
-                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#women" role="tab">Women</a></li>
-                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#kids" role="tab">Kids</a></li>
-                        </ul> -->
-                        <!--/ End Tab Nav -->
+                    <div class="row">
+                        <div class="col-lg-7 col-md-5 col-121" style="float: left;">
+                            <h3 class="shopping-cart-header"><i class="fa fa-shopping-cart" aria-hidden="true"></i> ショッピングカート</h3>
+                        </div>
+                        <div class="col-lg-5 col-md-7 col-12 cart-info" style="float: right; text-align: right;">
+                            <h3 id="shopping_item_count"></h3>
+                        </div>
                     </div>
-                    <div class="owl-carousel popular-slider">
-                        <!-- Start Single Product -->
-                        <div class="single-product">
-                            <div class="product-img">
-                                <a href="product-details.html">
-                                    <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                    <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-                                    <span class="out-of-stock">Hot</span>
-                                </a>
-                                <div class="button-head">
-                                    <div class="product-action">
-                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                        <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                        <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-                                    </div>
-                                    <div class="product-action-2">
-                                        <a title="Add to cart" href="cart.html">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="product-details.html">Black Sunglass For Women</a></h3>
-                                <div class="product-price">
-                                    <span class="old">$60.00</span>
-                                    <span>$50.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="single-product">
-                            <div class="product-img">
-                                <a href="product-details.html">
-                                    <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                    <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-                                    <span class="price-dec">30% Off</span>
-                                </a>
-                                <div class="button-head">
-                                    <div class="product-action">
-                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                        <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                        <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-                                    </div>
-                                    <div class="product-action-2">
-                                        <a title="Add to cart" href="cart.html">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="product-details.html">Women Hot Collection</a></h3>
-                                <div class="product-price">
-                                    <span>$50.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="single-product">
-                            <div class="product-img">
-                                <a href="product-details.html">
-                                    <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                    <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-                                    <span class="new">New</span>
-                                </a>
-                                <div class="button-head">
-                                    <div class="product-action">
-                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                        <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                        <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-                                    </div>
-                                    <div class="product-action-2">
-                                        <a title="Add to cart" href="cart.html">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="product-details.html">Awesome Pink Show</a></h3>
-                                <div class="product-price">
-                                    <span>$50.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
-                        <div class="single-product">
-                            <div class="product-img">
-                                <a href="product-details.html">
-                                    <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                    <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-                                </a>
-                                <div class="button-head">
-                                    <div class="product-action">
-                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                        <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                        <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
-                                    </div>
-                                    <div class="product-action-2">
-                                        <a title="Add to cart" href="cart.html">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="product-details.html">Awesome Bags Collection</a></h3>
-                                <div class="product-price">
-                                    <span>$50.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Single Product -->
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Most Popular Area -->
+    <!-- End Breadcrumbs -->
 
-    <section class="cown-down">
-        <div class="section-inner ">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6 col-12 padding-right">
-                        <div class="image">
-                            <img src="https://via.placeholder.com/750x590" alt="#">
+    <!-- Shopping Cart -->
+    <div class="shopping-cart section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Shopping Summery -->
+                    <table class="table shopping-summery" id="cart-table">
+                        <thead>
+                            <tr class="main-hading">
+                                <th>商品</th>
+                                <th>商品名</th>
+                                <th class="text-center">色</th>
+                                <th class="text-center">単価</th>
+                                <th class="text-center">数量</th>
+                                <th class="text-center">小計</th>
+                                <th class="text-center"><i class="ti-trash remove-icon"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
+                                <td class="product-des" data-title="Description">
+                                    <p class="product-name">>Women Dress <span class="small-size">S</span></p>
+                                    <p class="product-des">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+                                </td>
+                                <td class="color" data-title="Color"><span>Red </span></td>
+                                <td class="price" data-title="Price"><span>￥110.00</span></td>
+                                <td class="qty" data-title="Qty">
+                                    <!-- Input Order -->
+                                    <div class="input-group">
+                                        <div class="button minus">
+                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+												<i class="ti-minus"></i>
+											</button>
+                                        </div>
+                                        <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="5" value="1">
+                                        <div class="button plus">
+                                            <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[1]">
+												<i class="ti-plus"></i>
+											</button>
+                                        </div>
+                                    </div>
+                                    <!--/ End Input Order -->
+                                </td>
+                                <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
+                                <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
+                                <td class="product-des" data-title="Description">
+                                    <p class="product-name">Women Dress <span class="medium-size">M</span></p>
+                                    <p class="product-des">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+                                </td>
+                                <td class="color" data-title="Color"><span>Red</span></td>
+                                <td class="price" data-title="Price"><span>￥120.00</span></td>
+                                <td class="qty" data-title="Qty">
+                                    <!-- Input Order -->
+                                    <div class="input-group">
+                                        <div class="button minus">
+                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[2]">
+												<i class="ti-minus"></i>
+											</button>
+                                        </div>
+                                        <input type="text" name="quant[2]" class="input-number" data-min="1" data-max="5" value="1">
+                                        <div class="button plus">
+                                            <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[2]">
+												<i class="ti-plus"></i>
+											</button>
+                                        </div>
+                                    </div>
+                                    <!--/ End Input Order -->
+                                </td>
+                                <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
+                                <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
+                                <td class="product-des" data-title="Description">
+                                    <p class="product-name">Women Dress <span class="large-size">L</span></p>
+                                    <p class="product-des">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+                                </td>
+                                <td class="color" data-title="Color"><span>Red </span></td>
+                                <td class="price" data-title="Price"><span>￥160.00</span></td>
+                                <td class="qty" data-title="Qty">
+                                    <!-- Input Order -->
+                                    <div class="input-group">
+                                        <div class="button minus">
+                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[3]">
+												<i class="ti-minus"></i>
+											</button>
+                                        </div>
+                                        <input type="text" name="quant[3]" class="input-number" data-min="1" data-max="5" value="1">
+                                        <div class="button plus">
+                                            <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[3]">
+												<i class="ti-plus"></i>
+											</button>
+                                        </div>
+                                    </div>
+                                    <!--/ End Input Order -->
+                                </td>
+                                <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
+                                <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
+                                <td class="product-des" data-title="Description">
+                                    <p class="product-name">Women Dress <span class="xlarge-size">XL</span></p>
+                                    <p class="product-des">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
+                                </td>
+                                <td class="color" data-title="Color"><span>Red </span></td>
+                                <td class="price" data-title="Price"><span>￥210.00</span></td>
+                                <td class="qty" data-title="Qty">
+                                    <!-- Input Order -->
+                                    <div class="input-group">
+                                        <div class="button minus">
+                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[4]">
+												<i class="ti-minus"></i>
+											</button>
+                                        </div>
+                                        <input type="text" name="quant[4]" class="input-number" data-min="1" data-max="5" value="1">
+                                        <div class="button plus">
+                                            <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[4]">
+												<i class="ti-plus"></i>
+											</button>
+                                        </div>
+                                    </div>
+                                    <!--/ End Input Order -->
+                                </td>
+                                <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
+                                <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--/ End Shopping Summery -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <!-- Total Amount -->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-12">
+                            <div class="right">
+                                <div class="button6" id="calculate-total">
+                                    <a href="#" class="btn">計算する</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-12 padding-left">
-                        <div class="content">
-                            <div class="heading-block">
-                                <p class="small-title">Deal of day</p>
-                                <h3 class="title">Beatutyful dress for women</h3>
-                                <p class="text">Suspendisse massa leo, vestibulum cursus nulla sit amet, frungilla placerat lorem. Cars fermentum, sapien. </p>
-                                <h1 class="price">$1200 <s>$1890</s></h1>
-                                <div class="coming-time">
-                                    <div class="clearfix" data-countdown="2021/02/30">
-                                        <div class="cdown"><span class="days"><strong>39</strong><p>Days.</p></span></div>
-                                        <div class="cdown"><span class="hour"><strong> 1</strong><p>Hours.</p></span></div>
-                                        <div class="cdown"><span class="minutes"><strong>13</strong> <p>MINUTES.</p></span></div>
-                                        <div class="cdown"><span class="second"><strong> 23</strong><p>SECONDS.</p></span></div>
+                    <div class="total-amount">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-5 col-12">
+                                <div class="left">
+                                    <li class="last discount-important">　※　<span class="discount-percentage">5%</span> 割引詳細</li>
+                                    <li class="important1">　※　<span class="delivery">配送料：</span> 全国７００円</li>
+                                    <li class="important2">　※　<span class="tax">消費税：</span> 10％</li>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-7 col-12">
+                                <div class="right">
+                                    <ul>
+                                        <li>合計    :<span id="subtotal-amount">￥</span></li>
+                                        <li class="important2">消費税   :<span>10%</span></li>
+                                        <li class="important1">配送料   :<span>￥700</span></li>
+                                        <!-- <li class="important">割引率    :<span>￥20.00</span></li> -->
+                                        <?php
+                                            $today = date("d");
+                                            if($today === "05"){
+                                        ?>
+                                            <li class='important'>割引率    :<span class='discount-rate'>5%</span></li>
+                                        <?php
+                                            }else if($today === "10"){
+                                        ?>
+                                            <li class='important'>割引率    :<span class='discount-rate'>5%</span></li>
+                                        <?php
+                                            }else if($today === "15"){
+                                        ?>
+                                            <li class='important'>割引率    :<span class='discount-rate'>5%</span></li>
+                                        <?php
+                                            }else{ 
+                                        ?>
+                                            <li class='important'>割引率    :<span class='discount-rate'>0%</span></li>
+                                        <?php
+                                            } 
+                                        ?>
+                                        <li class="last">注文合計   :<span id="calculated-total-amount">￥</span></li>
+                                       
+                                    </ul>
+                                    <div class="button5">
+                                        <a href="sendRegister.html" class="btn">注文に進む</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--/ End Total Amount -->
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    <!--/ End Shopping Cart -->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
@@ -524,16 +512,16 @@
                             <div class="product-gallery">
                                 <div class="quickview-slider-active">
                                     <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                        <img src="images/man.jpg" alt="#">
                                     </div>
                                     <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                        <img src="images/man.jpg" alt="#">
                                     </div>
                                     <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                        <img src="images/man.jpg" alt="#">
                                     </div>
                                     <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                        <img src="images/man.jpg" alt="#">
                                     </div>
                                 </div>
                             </div>
@@ -622,6 +610,65 @@
         </div>
     </div>
     <!-- Modal end -->
+
+    <!-- confirmation modal -->
+    <!-- <div class="modal fade" id="order_confirmation" tabindex="-1" role="dialog" aria-labelledby="orderConfirmation" aria-hidden="true">
+        <div class="modal-dialog customize-modal-dialog" role="document">
+            <div class="modal-content customize-modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body customize-modal-body">
+                    <div>
+                        <h5 class="modal-title">ご希望の配送先をご確認して下さい。</h5>
+                        <p>別のお届け先に送る場合は【別の住所へ送る】を選択してください！</p>
+                    </div>
+                    <div class="card bg-light register-form">
+                        <article class="card-body checkout-register-article">
+                            <div class="input-container">
+                                <i class="fa fa-user icon"></i>
+                                <input class="username" type="text" placeholder="名前" name="username" disabled="disabled">
+                            </div>
+
+                            <div class="input-container">
+                                <i class="fa fa-address-book icon"></i>
+                                <input class="address" type="text" placeholder="住所" name="address" disabled="disabled">
+                            </div>
+
+                            <div class="input-container">
+                                <i class="fa fa-key icon"></i>
+                                <input class="phone-no" type="text" placeholder="電話番号" name="phone" disabled="disabled">
+                            </div>
+                            <div class="input-container">
+                                <select class="delivery-time" name="delivery-times" required>
+                                <option value="">指定なし</option>
+                                <option value="option1">9:00 ~ 12:00</option>
+                                <option value="option2">13:00 ~ 17:00</option>
+                                <option value="option3">18:00 ~ 21:00</option>
+                                </select>
+                                <label class="important-note">※　時間帯を選んでください</label>
+                            </div>
+                            <div class="input-container">
+                                <input class="delivery-date" type="date" data-date="" data-date-format="YYYY MM DD" value="YYYY-MM-DD">
+                                <label class="important-note">※　日付を選んでください</label>
+                            </div>
+                            <div class="input-container">
+                                <a class="link-name" target="_blank" href="./register.html"><i class="fa fa-share-square-o"></i>  別の住所へ送る</a>
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+                    <a href="payment.html"><button type="button" id="order_confirm" class="btn btn-primary">確定</button></a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- end confirmation modal -->
 
     <!-- Start Footer Area -->
     <footer class="footer">
@@ -729,12 +776,16 @@
     <script src="js/owl-carousel.js"></script>
     <!-- Magnific Popup JS -->
     <script src="js/magnific-popup.js"></script>
+    <!-- Fancybox JS -->
+    <script src="js/facnybox.min.js"></script>
     <!-- Waypoints JS -->
     <script src="js/waypoints.min.js"></script>
     <!-- Countdown JS -->
     <script src="js/finalcountdown.min.js"></script>
     <!-- Nice Select JS -->
     <script src="js/nicesellect.js"></script>
+    <!-- Ytplayer JS -->
+    <script src="js/ytplayer.min.js"></script>
     <!-- Flex Slider JS -->
     <script src="js/flex-slider.js"></script>
     <!-- ScrollUp JS -->
@@ -745,7 +796,9 @@
     <script src="js/easing.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
-    <!-- index JS -->
+    <!-- Cart JS -->
+    <script src="js/cart.js"></script>
+    <!-- Index JS -->
     <script src="js/index.js"></script>
 </body>
 

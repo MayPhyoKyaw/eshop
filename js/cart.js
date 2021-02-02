@@ -53,6 +53,9 @@ $(document).ready(function () {
     $(this).parent().parent().parent().find('.calculated-amount').text(`￥${calculate_Price.toFixed(2)}`);
   })
 
+  var discount_rate = $(".discount-rate").text();
+  console.log(discount_rate);
+
   $("#calculate-total").click(function () {
     var get_Price = $('.calculated-amount');
     var prices_Arr = get_Price.map(function() {
