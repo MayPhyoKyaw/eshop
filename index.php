@@ -284,7 +284,7 @@
                                             <ul class="nav main-menu menu navbar-nav">
                                                 <li class="active"><a href="index.html">Home</a></li>
                                                 <li><a href="about.html">About Us</a></li>
-                                                <li><a href="cart.html">My Cart</a></li>
+                                                <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
                                                         <li><a href="cart.html">My Cart</a></li>

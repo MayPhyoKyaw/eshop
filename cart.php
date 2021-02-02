@@ -174,6 +174,9 @@
             </div>
         </div>
         </div>
+        <?php 
+            include_once 'db_connection.php';
+        ?>
         <!-- Header Inner -->
         <div class="header-inner">
             <div class="container">
@@ -183,56 +186,29 @@
                             <div id="all_Category" class="all-category">
                                 <h3 class="cat-heading" id="toggle"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                                 <ul id="main_Category" class="main-category" style="display: none;">
-                                    <li><span class="main-categoryName">トップス <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">ジャケット <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">BBB</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">パンツ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">ホールインワソ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">スカート <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">フォマルスーツ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">バッグ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">シューズ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">財布 <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">帽子 <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
+                                    <?php 
+                                        try {
+                                            $database = new Connection();
+                                            $dbConn = $database->openConnection();
+                                            $category_sql = "SELECT mName, scName FROM subcategory sc INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id" ;
+                                            $st1 = $dbConn->prepare($category_sql);
+                                            $st1->execute();
+
+                                            foreach ($st1->fetchAll() as $row) {
+                                    ?>
+                                        <li><span class="main-categoryName"><?php echo $row['mName'] ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                            <ul class="sub-category">
+                                                <a href="shop-grid.php?large_category=<?php echo $row['mName']; ?>&small_category=<?php echo $row['scName'] ?>">
+                                                    <li><span class="sub-categoryName"><?php echo $row['scName'] ?></span></li>
+                                                </a>
+                                            </ul>
+                                        </li>
+                                    <?php 
+                                            } 
+                                        }catch (PDOException $e) {
+                                            echo "There is some problem in connection: " . $e->getMessage();
+                                        }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
@@ -464,21 +440,13 @@
                                         <?php
                                             $today = date("d");
                                             if($today === "05"){
-                                        ?>
-                                            <li class='important'>割引率    :<span class='discount-rate'>5%</span></li>
-                                        <?php
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
                                             }else if($today === "10"){
-                                        ?>
-                                            <li class='important'>割引率    :<span class='discount-rate'>5%</span></li>
-                                        <?php
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
                                             }else if($today === "15"){
-                                        ?>
-                                            <li class='important'>割引率    :<span class='discount-rate'>5%</span></li>
-                                        <?php
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
                                             }else{ 
-                                        ?>
-                                            <li class='important'>割引率    :<span class='discount-rate'>0%</span></li>
-                                        <?php
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>0%</span></li>";
                                             } 
                                         ?>
                                         <li class="last">注文合計   :<span id="calculated-total-amount">￥</span></li>

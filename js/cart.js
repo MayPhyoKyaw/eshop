@@ -55,6 +55,7 @@ $(document).ready(function () {
 
   var discount_rate = $(".discount-rate").text();
   console.log(discount_rate);
+  var discount_value = discount_rate.replace(regExpr, "");
 
   $("#calculate-total").click(function () {
     var get_Price = $('.calculated-amount');
@@ -78,7 +79,7 @@ $(document).ready(function () {
     })
     console.log(typeof(subtotal), subtotal);
     document.getElementById("subtotal-amount").innerHTML = `￥ ${subtotal.toFixed(2)}`;
-    var total = subtotal - 20;
+    var total = subtotal - (subtotal * (parseInt(discount_value))/100) + 700 + (subtotal * 0.01);
     document.getElementById("calculated-total-amount").innerHTML = `￥ ${total.toFixed(2)}`
   })
 })
