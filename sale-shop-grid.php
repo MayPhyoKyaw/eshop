@@ -220,7 +220,7 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="index.php">Home</a></li>
                                                 <li><a href="about.html">About Us</a></li>
                                                 <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
@@ -230,7 +230,7 @@
                                                     </ul>
                                                 </li>
 
-                                                <li class="active"><a href="sale-shop-grid.html">Sales<span class="new">New</span></a>
+                                                <li class="active"><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
                                                 </li>
                                                 <li><a href="contact.html">Contact Us</a></li>
                                             </ul>
@@ -293,7 +293,7 @@
                     <div class="row search-product-wrapper">
                         <?php                             
                             try {
-                                $item_sql = "SELECT item_id, itemName, sName, cName, mName, scName, price, tenPercent FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id" ;
+                                $item_sql = "SELECT item_id, itemName, sName, cName, mName, scName, price, tenPercent FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id WHERE i.tenPercent <> 0";
                                 $st = $dbConn->prepare($item_sql);
                                 $st->execute();
                                 foreach ($st->fetchAll() as $row) {
