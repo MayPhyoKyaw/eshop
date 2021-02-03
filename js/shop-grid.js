@@ -10,7 +10,10 @@ $(".sub-category-name").append(small_categoryName);
 var items = $(".product-wrapper .product-item");
 var numItems = items.length;
 var perPage = 3;
-$(".count-item").append(` 在${perPage}件　/ 全${numItems}件`)
+if (numItems < perPage)
+    $(".count-item").append(` 在${numItems}件　/ 全${numItems}件`)
+else
+    $(".count-item").append(` 在${perPage}件　/ 全${numItems}件`)
 
 items.slice(perPage).hide();
 

@@ -187,22 +187,40 @@
                             <div id="all_Category" class="all-category">
                                 <h3 class="cat-heading" id="toggle"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                                 <ul id="main_Category" class="main-category" style="display: none;">
-                                    <?php 
+                                <?php 
                                         try {
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
-                                            $category_sql = "SELECT mName, scName FROM subcategory sc INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id" ;
-                                            $st1 = $dbConn->prepare($category_sql);
+                                            $mainCat_sql = "SELECT * FROM maincategory" ;
+                                            $st1 = $dbConn->prepare($mainCat_sql);
                                             $st1->execute();
-
-                                            foreach ($st1->fetchAll() as $row) {
+                                            $mainCat = array();
+                                            $i = 0;
+                                            foreach ($st1->fetchAll() as $row1) {
                                     ?>
-                                        <li><span class="main-categoryName"><?php echo $row['mName'] ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                            <ul class="sub-category">
-                                                <a href="shop-grid.php?large_category=<?php echo $row['mName']; ?>&small_category=<?php echo $row['scName'] ?>">
-                                                    <li><span class="sub-categoryName"><?php echo $row['scName'] ?></span></li>
-                                                </a>
-                                            </ul>
+                                        <li><span class="main-categoryName"><?php echo $row1['mName']; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                            <?php 
+                                                $mainCat = $row1['main_cat_id'];
+                                                $subCat_sql = "SELECT main_cat_id, GROUP_CONCAT(scName) FROM subcategory WHERE main_cat_id = :mainCat GROUP BY main_cat_id";
+                                                $st2 = $dbConn->prepare($subCat_sql);
+                                                $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
+                                                $st2->execute();
+                                                $subCatArray = array();
+                                                foreach ($st2->fetchAll() as $row2) {
+                                                    $subCatName = $row2['GROUP_CONCAT(scName)'];
+                                                    $subCatArray = explode(",", $subCatName);
+                                                    $i = 0;
+                                            ?>
+                                                <ul class="sub-category">
+                                                    <?php while($i < Count($subCatArray)){ ?>
+                                                        <a href="shop-grid.php?large_category=<?php echo $row1['mName']; ?>&small_category=<?php echo $subCatArray[$i]; ?>">
+                                                            <li><span class="sub-categoryName"><?php echo $subCatArray[$i]; ?></span></li>
+                                                        </a>
+                                                    <?php $i++;  } ?>
+                                                </ul>
+                                            <?php 
+                                                }
+                                            ?>
                                         </li>
                                     <?php 
                                             } 

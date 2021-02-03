@@ -1458,7 +1458,6 @@ Version:1.0
 	End Header CSS
 ========================================*/
 
-
 /*======================================
    Hero Area CSS
 ========================================*/
@@ -2128,6 +2127,8 @@ Version:1.0
 }
 
 .single-product .product-img {
+    max-width: 550px;
+    height: 400px;
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -2556,6 +2557,18 @@ Version:1.0
 .shop .range .check-box-list .count {
     margin-left: 5px;
     color: #666;
+}
+
+.shop .range .check-box-list .sizeSubmit{
+    text-align: center;
+    border-radius: 3px;
+    width: 100%;
+    margin: 10px auto 0px;
+    height: 25px;
+    line-height: 18px;
+    font-size: 13px;
+    color: #fff;
+    background: #f39018;
 }
 
 

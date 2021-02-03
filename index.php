@@ -191,33 +191,34 @@
                                         try {
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
-                                            $mainCat_sql = "SELECT mName FROM maincategory" ;
+                                            $mainCat_sql = "SELECT * FROM maincategory" ;
                                             $st1 = $dbConn->prepare($mainCat_sql);
                                             $st1->execute();
                                             $mainCat = array();
                                             $i = 0;
                                             foreach ($st1->fetchAll() as $row1) {
-                                                array_push($mainCat, $row1['mName']);
-                                                // echo $mainCat[0];
-                                                while ($i < count($mainCat)) {
                                     ?>
-                                        <li><span class="main-categoryName"><?php echo $mainCat[$i]; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                        <li><span class="main-categoryName"><?php echo $row1['mName']; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                             <?php 
-                                                $subCat_sql = "SELECT * FROM subcategory" ;
+                                                $mainCat = $row1['main_cat_id'];
+                                                $subCat_sql = "SELECT main_cat_id, GROUP_CONCAT(scName) FROM subcategory WHERE main_cat_id = :mainCat GROUP BY main_cat_id";
                                                 $st2 = $dbConn->prepare($subCat_sql);
-                                                // $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
+                                                $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
                                                 $st2->execute();
+                                                $subCatArray = array();
                                                 foreach ($st2->fetchAll() as $row2) {
-                                                    // if()
+                                                    $subCatName = $row2['GROUP_CONCAT(scName)'];
+                                                    $subCatArray = explode(",", $subCatName);
+                                                    $i = 0;
                                             ?>
                                                 <ul class="sub-category">
-                                                    <a href="shop-grid.php?large_category=<?php echo $mainCat[$i]; ?>&small_category=<?php echo $row2['scName']; ?>">
-                                                        <li><span class="sub-categoryName"><?php echo $row2['scName']; ?></span></li>
-                                                    </a>
+                                                    <?php while($i < Count($subCatArray)){ ?>
+                                                        <a href="shop-grid.php?large_category=<?php echo $row1['mName']; ?>&small_category=<?php echo $subCatArray[$i]; ?>">
+                                                            <li><span class="sub-categoryName"><?php echo $subCatArray[$i]; ?></span></li>
+                                                        </a>
+                                                    <?php $i++;  } ?>
                                                 </ul>
                                             <?php 
-                                                }
-                                                $i++;
                                                 }
                                             ?>
                                         </li>

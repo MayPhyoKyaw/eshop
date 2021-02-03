@@ -330,6 +330,11 @@
     color: #F7941D;
 }
 
+.image1 {
+    display: none;
+    word-break: break-all;
+}
+
 
 /* search-shop-grid */
 
@@ -350,8 +355,11 @@
     cursor: pointer;
 }
 
-.money-back,
-.payment-method {
+.company-break,
+.payment-break,
+.price-break,
+.delivery-break,
+.privacy-break {
     word-break: break-all;
 }
 
@@ -369,14 +377,17 @@
 .discount-important {
     color: red !important;
 }
-.important{
+
+.important {
     color: red !important;
 }
-.important1{
+
+.important1 {
     color: #1f8c18 !important;
 }
-.important2{
-    color:#2d67a5 !important;
+
+.important2 {
+    color: #2d67a5 !important;
 }
 
 .small-size {
@@ -503,5 +514,22 @@
 /* bank payment */
 
 .bank-payment-btns {
+    text-align: center;
+}
+
+h5 {
+    /*中央揃えにする*/
+    text-align: center;
+    text-decoration: underline;
+    color: rgb(212, 11, 11);
+}
+
+
+/*段落のスタイル設定*/
+
+p {
+    /*行の高さを1.6に設定する*/
+    line-height: 1.6;
+    /*中央揃えにする*/
     text-align: center;
 }

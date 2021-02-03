@@ -187,22 +187,40 @@
                             <div id="all_Category" class="all-category">
                                 <h3 class="cat-heading" id="toggle"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                                 <ul id="main_Category" class="main-category" style="display: none;">
-                                    <?php 
+                                <?php 
                                         try {
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
-                                            $category_sql = "SELECT mName, scName FROM subcategory sc INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id" ;
-                                            $st1 = $dbConn->prepare($category_sql);
+                                            $mainCat_sql = "SELECT * FROM maincategory" ;
+                                            $st1 = $dbConn->prepare($mainCat_sql);
                                             $st1->execute();
-
-                                            foreach ($st1->fetchAll() as $row) {
+                                            $mainCat = array();
+                                            $i = 0;
+                                            foreach ($st1->fetchAll() as $row1) {
                                     ?>
-                                        <li><span class="main-categoryName"><?php echo $row['mName'] ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                            <ul class="sub-category">
-                                                <a href="shop-grid.php?large_category=<?php echo $row['mName']; ?>&small_category=<?php echo $row['scName'] ?>">
-                                                    <li><span class="sub-categoryName"><?php echo $row['scName'] ?></span></li>
-                                                </a>
-                                            </ul>
+                                        <li><span class="main-categoryName"><?php echo $row1['mName']; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                            <?php 
+                                                $mainCat = $row1['main_cat_id'];
+                                                $subCat_sql = "SELECT main_cat_id, GROUP_CONCAT(scName) FROM subcategory WHERE main_cat_id = :mainCat GROUP BY main_cat_id";
+                                                $st2 = $dbConn->prepare($subCat_sql);
+                                                $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
+                                                $st2->execute();
+                                                $subCatArray = array();
+                                                foreach ($st2->fetchAll() as $row2) {
+                                                    $subCatName = $row2['GROUP_CONCAT(scName)'];
+                                                    $subCatArray = explode(",", $subCatName);
+                                                    $i = 0;
+                                            ?>
+                                                <ul class="sub-category">
+                                                    <?php while($i < Count($subCatArray)){ ?>
+                                                        <a href="shop-grid.php?large_category=<?php echo $row1['mName']; ?>&small_category=<?php echo $subCatArray[$i]; ?>">
+                                                            <li><span class="sub-categoryName"><?php echo $subCatArray[$i]; ?></span></li>
+                                                        </a>
+                                                    <?php $i++;  } ?>
+                                                </ul>
+                                            <?php 
+                                                }
+                                            ?>
                                         </li>
                                     <?php 
                                             } 
@@ -210,51 +228,6 @@
                                             echo "There is some problem in connection: " . $e->getMessage();
                                         }
                                     ?>
-                                    <!-- <li><span class="main-categoryName">ジャケット <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">BBB</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">パンツ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">ホールインワソ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">スカート <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">フォマルスーツ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">バッグ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">シューズ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">財布 <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">帽子 <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li> -->
                                 </ul>
                             </div>
                         </div>
@@ -331,11 +304,14 @@
                             <h3 class="title">Categories</h3>
                             <ul class="categor-list">
                                 <?php 
-                                        try {
-                                            $st2 = $dbConn->prepare($category_sql);
-                                            $st2->execute();
+                                    try {
+                                        $mainCat = $_GET['large_category'];
+                                        $sub_category_sql = "SELECT mName, scName FROM subcategory sc INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id WHERE mc.mName = :mainCat" ;
+                                        $st2 = $dbConn->prepare($sub_category_sql);
+                                        $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
+                                        $st2->execute();
 
-                                            foreach ($st2->fetchAll() as $row) {
+                                        foreach ($st2->fetchAll() as $row) {
                                 ?>
                                     <li class="selected side-sub-category" id="<?php echo $row['scName'] ?>">
                                         <a href="shop-grid.php?large_category=<?php echo $row['mName']; ?>&small_category=<?php echo $row['scName'] ?>">
@@ -370,23 +346,41 @@
                                     </div>
                                 </div>
                             </div> -->
-                            <ul class="check-box-list">
-                                <li>
-                                    <label class="checkbox-inline" for="1"><input name="news" id="1" type="checkbox">Small<span class="count">(3)</span></label>
-                                </li>
-                                <li>
-                                    <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox">Medium<span class="count">(5)</span></label>
-                                </li>
-                                <li>
-                                    <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox">Large<span class="count">(8)</span></label>
-                                </li>
-                                <li>
-                                    <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox">Xl<span class="count">(8)</span></label>
-                                </li>
-                                <li>
-                                    <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox">XXl<span class="count">(8)</span></label>
-                                </li>
-                            </ul>
+                            <form action="#" method="post">
+                                <ul class="check-box-list">
+                                    <li>
+                                        <label class="checkbox-inline" for="1">
+                                            <input name="size" id="1" class="size" type="checkbox" value="Small">Small
+                                            <span class="count">(3)</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="checkbox-inline" for="2">
+                                            <input name="size" id="2" class="size" type="checkbox" value="Medium">Medium
+                                            <span class="count">(5)</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="checkbox-inline" for="3">
+                                            <input name="size" id="3" class="size" type="checkbox" value="Large">Large
+                                            <span class="count">(8)</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="checkbox-inline" for="3">
+                                            <input name="size" id="4" class="size" type="checkbox" value="Xl">Xl
+                                            <span class="count">(8)</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="checkbox-inline" for="3">
+                                            <input name="size" id="5" class="size" type="checkbox" value="XXl">XXl
+                                            <span class="count">(8)</span>
+                                        </label>
+                                    </li>
+                                    <input type="submit" name="sizeSubmit" value="Submit" class="sizeSubmit"/>
+                                </ul>
+                            </form>
                         </div>
                         <!--/ End Shop By Price -->
                         <!-- Single Widget -->
@@ -428,22 +422,25 @@
                     </div>
                     <div class="row product-wrapper">
                         <?php 
-                            try {
-                                $subCat = $_GET['small_category'];
+                            if(isset($_POST['sizeSubmit'])){
+                                $size = $_POST['size'];
+                                try {
+                                    $subCat = $_GET['small_category'];
 
-                                $item_sql = "SELECT item_id, itemName, sName, cName, mName, scName FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id WHERE sc.scName = :subCat" ;
-                                $st3 = $dbConn->prepare($item_sql);
-                                $st3->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
-                                $st3->execute();
+                                    $filter_item_sql = "SELECT item_id, itemName, sName, cName, mName, scName, image1, price FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id WHERE sc.scName = :subCat AND s.sName = :size" ;
+                                    $st4 = $dbConn->prepare($filter_item_sql);
+                                    $st4->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
+                                    $st4->bindParam( ":size", $size, PDO::PARAM_STR);
+                                    $st4->execute();
 
-                                foreach ($st3->fetchAll() as $row) {
+                                    foreach ($st4->fetchAll() as $row3) {
                         ?>
                             <div class="col-lg-4 col-md-6 col-12 product-item">
                                 <div class="single-product">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                            <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+                                            <img class="default-img" src="<?php echo "./images/items/" . $row3['image1']; ?>" alt="#">
+                                            <img class="hover-img" src="<?php echo "./images/items/" . $row3['image1']; ?>" alt="#">
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">
@@ -459,20 +456,84 @@
                                     <div class="product-content">
                                         <h3><a href="product-details.html">
                                             <?php 
-                                                echo "Item:" . $row['itemName'] . "\t"; 
-                                                echo "Color:" . $row['cName'] . "\t"; 
+                                                echo $row3['itemName'] . "\t/"; 
+                                                echo $row3['cName'] . "\t/"; 
+                                                echo $row3['sName'] . "\t"; 
                                             ?>
                                         </a></h3>
                                         <div class="product-price">
-                                            <span>$29.00</span>
+                                            <span>$<?php echo $row3['price']; ?></span>
+                                        </div>
+                                        <div class="image1">
+                                            <span>
+                                                <?php
+                                                    echo $row['image1']
+                                                ?>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         <?php 
-                                } 
-                            }catch (PDOException $e) {
-                                echo "There is some problem in connection: " . $e->getMessage();
+                                    } 
+                                }catch (PDOException $e) {
+                                    echo "There is some problem in connection: " . $e->getMessage();
+                                }
+                            }else{
+                                try {
+                                    $subCat = $_GET['small_category'];
+
+                                    $item_sql = "SELECT item_id, itemName, sName, cName, mName, scName, image1, price FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id WHERE sc.scName = :subCat" ;
+                                    $st3 = $dbConn->prepare($item_sql);
+                                    $st3->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
+                                    $st3->execute();
+
+                                    foreach ($st3->fetchAll() as $row) {
+                        ?>
+                            <div class="col-lg-4 col-md-6 col-12 product-item">
+                                <div class="single-product">
+                                    <div class="product-img">
+                                        <a href="product-details.html">
+                                            <img class="default-img" src="<?php echo "./images/items/" . $row['image1']; ?>" alt="#">
+                                            <img class="hover-img" src="<?php echo "./images/items/" . $row['image1']; ?>" alt="#">
+                                        </a>
+                                        <div class="button-head">
+                                            <div class="product-action">
+                                                <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                            </div>
+                                            <div class="product-action-2">
+                                                <a title="Add to cart" href="#">Add to cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h3><a href="product-details.html">
+                                            <?php 
+                                                echo $row['itemName'] . "\t/"; 
+                                                echo $row['cName'] . "\t/"; 
+                                                echo $row['sName'] . "\t"; 
+                                            ?>
+                                        </a></h3>
+                                        <div class="product-price">
+                                            <span>$<?php echo $row['price']; ?></span>
+                                        </div>
+                                        <div class="image1">
+                                            <span>
+                                                <?php
+                                                    echo $row['image1']
+                                                ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php 
+                                    } 
+                                }catch (PDOException $e) {
+                                    echo "There is some problem in connection: " . $e->getMessage();
+                                }
                             }
                         ?>
                     </div>
@@ -727,6 +788,12 @@
     <script src="js/index.js"></script>
     <!-- shop grid JS -->
     <script src="js/shop-grid.js"></script>
+
+    <script type="text/javascript">
+        $('.size').on('change', function() {
+            $('.size').not(this).prop('checked', false);  
+        });
+    </script>
 </body>
 
 </html>
