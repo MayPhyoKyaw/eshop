@@ -360,7 +360,7 @@
                                     ?>
                                         <li>
                                             <label class="checkbox-inline" for="1">
-                                                <input name="size" id="1" class="size" type="checkbox" value="Small"><?php echo $row4['sName']; ?>
+                                                <input name="size" id="1" class="size" type="checkbox" value=<?php echo $row4['sName']; ?>><?php echo $row4['sName']; ?>
                                                 <span class="count"><?php echo "(" . $row4['COUNT(s.s_id)'] . ")"; ?></span>
                                             </label>
                                         </li>
