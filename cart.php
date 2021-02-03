@@ -295,7 +295,7 @@
                             <tr>
                                 <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
                                 <td class="product-des" data-title="Description">
-                                    <p class="product-name">>Women Dress <span class="small-size">S</span></p>
+                                    <p class="product-name">Women Dress <span class="small-size">S</span></p>
                                     <p class="product-des">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
                                 </td>
                                 <td class="color" data-title="Color"><span>Red </span></td>
@@ -637,6 +637,29 @@
         </div>
     </div> -->
     <!-- end confirmation modal -->
+
+    <!-- Warning Modal -->
+    <div class="modal fade" id="quantity_warning" tabindex="-1" role="dialog" aria-labelledby="quantityWarning" aria-hidden="true">
+        <div class="modal-dialog customize-warning-modal-dialog" role="document">
+            <div class="modal-content customize-warning-modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body customize-warning-modal-body">
+                    <div>
+                        <h3 class="modal-title">警告：</h3><br>
+                        <h4 style="text-align: center;">商品が在庫切れです！</h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Warning Modal -->
 
     <!-- Start Footer Area -->
     <footer class="footer">

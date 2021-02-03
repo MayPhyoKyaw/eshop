@@ -24,6 +24,12 @@
     min-height: auto !important;
 }
 
+.customize-warning-modal-dialog .customize-warning-modal-content .customize-warning-modal-body {
+    padding: 50px !important;
+    height: 25% !important;
+}
+
+
 .register-confirm-customize-modal-dialog .register-confirm-customize-modal-content .register-confirm-customize-modal-body {
     padding: 30px !important;
     overflow-y: hidden !important;
@@ -43,6 +49,10 @@
 
 .customize-modal-dialog {
     max-width: 30%;
+}
+
+.customize-warning-modal-dialog {
+    max-width: 35%;
 }
 
 .register-form,
@@ -522,6 +532,11 @@ h5 {
     text-align: center;
     text-decoration: underline;
     color: rgb(212, 11, 11);
+}
+
+h3 {
+    text-align: center;
+    color: rgb(250, 183, 0);
 }
 
 

@@ -39,15 +39,16 @@ $(document).ready(function () {
     // quantity++;
     // $(this).siblings('.input-number').val(quantity);
     console.log(quantity);
-    // if (quantity == 5) {
-    //   $(".plus-btn").css('cursor', 'not-allowed');
-    // }
-    // else {
-    //   $(".plus-btn").css('cursor', 'pointer');
-    // }
+    if (quantity == 5) {
+      $('#quantity_warning').modal('show');
+    }
+    else {
+      // $(".plus-btn").css('cursor', 'pointer');
+      console.log("hide")
+    }
     var priceStr = $(this).parent().parent().parent().find('.price').text();
     var price = priceStr.replace(regExpr, "");
-    console.log(parseFloat(price).toFixed(2))
+    // console.log(parseFloat(price).toFixed(2))
     calculate_Price = parseInt(price).toFixed(2) * quantity;
     // console.log($(this).parent().parent().parent().find('.total-amount').text())
     $(this).parent().parent().parent().find('.calculated-amount').text(`￥${calculate_Price.toFixed(2)}`);

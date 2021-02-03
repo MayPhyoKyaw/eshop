@@ -357,7 +357,6 @@
                                             $st5->execute();
 
                                             foreach ($st5->fetchAll() as $row4) {
-                                        
                                     ?>
                                         <li>
                                             <label class="checkbox-inline" for="1">
