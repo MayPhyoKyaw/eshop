@@ -2128,6 +2128,8 @@ Version:1.0
 }
 
 .single-product .product-img {
+    max-width: 550px;
+    height: 400px;
     position: relative;
     overflow: hidden;
     cursor: pointer;

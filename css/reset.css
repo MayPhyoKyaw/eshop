@@ -1338,24 +1338,24 @@ object {
 }
 
 .quickview-content {
-    padding: 40px 40px;
+    padding: 40px 10px 0px 10px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .quickview-content {
-        padding: 15px 35px 20px;
+        padding: 40px 10px 0px 10px;
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .quickview-content {
-        padding: 20px 35px 35px;
+        padding: 40px 10px 0px 10px;
     }
 }
 
 @media only screen and (max-width: 767px) {
     .quickview-content {
-        padding: 15px 15px 15px;
+        padding: 40px 10px 0px 10px;
     }
 }
 
