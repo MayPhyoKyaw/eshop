@@ -649,7 +649,7 @@
                 </div>
                 <div class="modal-body customize-warning-modal-body">
                     <div>
-                        <h3 class="modal-title">警告：</h3><br>
+                        <h3 class="modal-title waring-title">警告：</h3><br>
                         <h4 style="text-align: center;">商品が在庫切れです！</h4>
                     </div>
                 </div>

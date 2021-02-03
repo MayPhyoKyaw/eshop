@@ -29,7 +29,6 @@
     height: 25% !important;
 }
 
-
 .register-confirm-customize-modal-dialog .register-confirm-customize-modal-content .register-confirm-customize-modal-body {
     padding: 30px !important;
     overflow-y: hidden !important;
@@ -534,7 +533,7 @@ h5 {
     color: rgb(212, 11, 11);
 }
 
-h3 {
+.warning-title {
     text-align: center;
     color: rgb(250, 183, 0);
 }
@@ -547,4 +546,49 @@ p {
     line-height: 1.6;
     /*中央揃えにする*/
     text-align: center;
+}
+
+
+/* detail item grid */
+
+.detail-grid-container {
+    display: grid;
+    grid-template-columns: 120px auto;
+    padding: 10px;
+}
+
+.detail-items {
+    background-color: transparent;
+    border: 1px solid rgba(160, 152, 152, 0.8);
+    padding: 8px;
+    font-size: 14px;
+    text-align: center;
+    word-break: break-all;
+}
+
+.number-of-item {
+    max-width: 100px;
+    margin-right: 45px;
+}
+
+.number-btn {
+    width: auto;
+    height: 33px;
+    outline: none;
+    border-color: #3f51b5;
+    background-color: #3f51b5;
+    position: relative;
+    border-radius: 7px;
+    padding: 0px 8px 0px 8px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.number-btn:hover,
+.number-btn:active,
+.number-btn:focus,
+.number-btn:visited {
+    background-color: #3f51b5 !important;
+    border-color: #3f51b5 !important;
+    outline: none !important;
+    box-shadow: none;
 }
