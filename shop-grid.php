@@ -187,7 +187,7 @@
                             <div id="all_Category" class="all-category">
                                 <h3 class="cat-heading" id="toggle"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                                 <ul id="main_Category" class="main-category" style="display: none;">
-                                <?php 
+                                    <?php 
                                         try {
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
@@ -348,13 +348,30 @@
                             </div> -->
                             <form action="#" method="post">
                                 <ul class="check-box-list">
-                                    <li>
-                                        <label class="checkbox-inline" for="1">
-                                            <input name="size" id="1" class="size" type="checkbox" value="Small">Small
-                                            <span class="count">(3)</span>
-                                        </label>
-                                    </li>
-                                    <li>
+                                    <?php
+                                        try{
+                                            $smallCat = $_GET['small_category'];
+                                            $sub_category_sql = "SELECT COUNT(s.s_id), sName, scName  FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN size s ON i.s_id = s.s_id WHERE scName = :smallCat GROUP BY sName" ;
+                                            $st5 = $dbConn->prepare($sub_category_sql);
+                                            $st5->bindParam( ":smallCat", $smallCat, PDO::PARAM_STR);
+                                            $st5->execute();
+
+                                            foreach ($st5->fetchAll() as $row4) {
+                                        
+                                    ?>
+                                        <li>
+                                            <label class="checkbox-inline" for="1">
+                                                <input name="size" id="1" class="size" type="checkbox" value="Small"><?php echo $row4['sName']; ?>
+                                                <span class="count"><?php echo "(" . $row4['COUNT(s.s_id)'] . ")"; ?></span>
+                                            </label>
+                                        </li>
+                                    <?php 
+                                            } 
+                                        }catch (PDOException $e) {
+                                            echo "There is some problem in connection: " . $e->getMessage();
+                                        }
+                                    ?>
+                                    <!-- <li>
                                         <label class="checkbox-inline" for="2">
                                             <input name="size" id="2" class="size" type="checkbox" value="Medium">Medium
                                             <span class="count">(5)</span>
@@ -377,7 +394,7 @@
                                             <input name="size" id="5" class="size" type="checkbox" value="XXl">XXl
                                             <span class="count">(8)</span>
                                         </label>
-                                    </li>
+                                    </li> -->
                                     <input type="submit" name="sizeSubmit" value="Submit" class="sizeSubmit"/>
                                 </ul>
                             </form>
