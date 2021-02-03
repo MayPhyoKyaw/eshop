@@ -521,16 +521,24 @@
                         <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 ">
                             <div class="quickview-content">
                                 <h2>Detail</h2>
-                                <div class="quickview-ratting-review">
+                                <!-- <div class="quickview-ratting-review">
                                     <div class="quickview-stock">
                                         <span><i class="fa fa-check-circle-o"></i> in stock</span>
                                     </div>
+                                </div> -->
+                                <div>
+                                    <span class="important-note">※割引詳細</span> </br>
+                                    <span class="important-note">※サイズ交換</span> </br>
+                                    <span class="important-note">※Test</span> </br>
                                 </div>
-                                
                                 <!-- detail grid table -->
                                 <div class="detail-grid-container">
                                     <div class="detail-items">AA</div>
-                                    <div class="detail-items"></div>
+                                    <div class="detail-items">
+                                        <div class="quickview-stock">
+                                        <span><i class="fa fa-check-circle-o"></i> in stock</span>
+                                        </div>
+                                    </div>
                                     <div class="detail-items">BB</div>
                                     <div class="detail-items"></div>
                                     <div class="detail-items">CC</div>
@@ -538,6 +546,10 @@
                                     <div class="detail-items">DD</div>
                                     <div class="detail-items"></div>
                                     <div class="detail-items">EE</div>
+                                    <div class="detail-items"></div>
+                                    <!-- <div class="detail-items">FF</div>
+                                    <div class="detail-items"></div> -->
+                                    <div class="detail-items">GG</div>
                                     <div class="detail-items">
                                     <input class="number-of-item" name="somename" value="1"
                                         oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"

@@ -1404,15 +1404,15 @@ object {
     margin-left: 5px;
 }
 
-.quickview-content .quickview-ratting-review .quickview-stock {
+.quickview-stock {
     margin-left: 24px;
 }
 
-.quickview-content .quickview-ratting-review .quickview-stock span {
+.quickview-stock span {
     font-size: 12px;
 }
 
-.quickview-content .quickview-ratting-review .quickview-stock span i {
+.quickview-stock span i {
     font-size: 16px;
     color: #63ab01;
     margin-right: 2px;
