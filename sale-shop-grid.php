@@ -311,7 +311,7 @@
                     <div class="row search-product-wrapper">
                         <?php                             
                             try {
-                                $item_sql = "SELECT item_id, itemName, sName, cName, mName, scName, price, tenPercent FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id WHERE i.tenPercent <> 0";
+                                $item_sql = "SELECT item_id, itemName, sName, cName, mName, scName, image1, price, tenPercent FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id WHERE i.tenPercent <> 0";
                                 $st = $dbConn->prepare($item_sql);
                                 $st->execute();
                                 foreach ($st->fetchAll() as $row) {
@@ -320,14 +320,14 @@
                                 <div class="single-product">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                            <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+                                            <img class="default-img" src="<?php echo "./images/items/" . $row['image1']; ?>" alt="#">
+                                            <img class="hover-img" src="<?php echo "./images/items/" . $row['image1']; ?>" alt="#">
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                                <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                                <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                                <!-- <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
                                             <div class="product-action-2">
                                                 <a title="Add to cart" href="#">Add to cart</a>
@@ -337,13 +337,14 @@
                                     <div class="product-content">
                                         <h3><a href="product-details.html">
                                             <?php 
-                                                echo "Item:" . $row['itemName'] . "\t"; 
-                                                echo "Color:" . $row['cName'] . "\t"; 
+                                                echo $row['itemName'] . "\t/ "; 
+                                                echo $row['cName'] . "\t/ "; 
+                                                echo $row['sName'] . "\t"; 
                                             ?>
                                         </a></h3>
                                         <div class="product-price">
-                                            <span class='old'><?php echo number_format($row['price'], 2); ?></span>
-                                            <span><?php echo number_format($row['tenPercent'], 2); ?></span>
+                                            <span class='old'>￥<?php echo number_format($row['price'], 2); ?></span>
+                                            <span>￥<?php echo number_format($row['tenPercent'], 2); ?></span>
                                         </div>
                                     </div>
                                 </div>

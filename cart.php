@@ -186,22 +186,40 @@
                             <div id="all_Category" class="all-category">
                                 <h3 class="cat-heading" id="toggle"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                                 <ul id="main_Category" class="main-category" style="display: none;">
-                                    <?php 
+                                <?php 
                                         try {
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
-                                            $category_sql = "SELECT mName, scName FROM subcategory sc INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id" ;
-                                            $st1 = $dbConn->prepare($category_sql);
+                                            $mainCat_sql = "SELECT * FROM maincategory" ;
+                                            $st1 = $dbConn->prepare($mainCat_sql);
                                             $st1->execute();
-
-                                            foreach ($st1->fetchAll() as $row) {
+                                            $mainCat = array();
+                                            $i = 0;
+                                            foreach ($st1->fetchAll() as $row1) {
                                     ?>
-                                        <li><span class="main-categoryName"><?php echo $row['mName'] ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                            <ul class="sub-category">
-                                                <a href="shop-grid.php?large_category=<?php echo $row['mName']; ?>&small_category=<?php echo $row['scName'] ?>">
-                                                    <li><span class="sub-categoryName"><?php echo $row['scName'] ?></span></li>
-                                                </a>
-                                            </ul>
+                                        <li><span class="main-categoryName"><?php echo $row1['mName']; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                            <?php 
+                                                $mainCat = $row1['main_cat_id'];
+                                                $subCat_sql = "SELECT main_cat_id, GROUP_CONCAT(scName) FROM subcategory WHERE main_cat_id = :mainCat GROUP BY main_cat_id";
+                                                $st2 = $dbConn->prepare($subCat_sql);
+                                                $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
+                                                $st2->execute();
+                                                $subCatArray = array();
+                                                foreach ($st2->fetchAll() as $row2) {
+                                                    $subCatName = $row2['GROUP_CONCAT(scName)'];
+                                                    $subCatArray = explode(",", $subCatName);
+                                                    $i = 0;
+                                            ?>
+                                                <ul class="sub-category">
+                                                    <?php while($i < Count($subCatArray)){ ?>
+                                                        <a href="shop-grid.php?large_category=<?php echo $row1['mName']; ?>&small_category=<?php echo $subCatArray[$i]; ?>">
+                                                            <li><span class="sub-categoryName"><?php echo $subCatArray[$i]; ?></span></li>
+                                                        </a>
+                                                    <?php $i++;  } ?>
+                                                </ul>
+                                            <?php 
+                                                }
+                                            ?>
                                         </li>
                                     <?php 
                                             } 
@@ -292,35 +310,64 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
-                                <td class="product-des" data-title="Description">
-                                    <p class="product-name">Women Dress <span class="small-size">S</span></p>
-                                    <p class="product-des">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
-                                </td>
-                                <td class="color" data-title="Color"><span>Red </span></td>
-                                <td class="price" data-title="Price"><span>￥110.00</span></td>
-                                <td class="qty" data-title="Qty">
-                                    <!-- Input Order -->
-                                    <div class="input-group">
-                                        <div class="button minus">
-                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-												<i class="ti-minus"></i>
-											</button>
+                            <?php 
+                                try{
+                                    $cart_sql = "SELECT * FROM shoppingcart";
+                                    $st = $dbConn->prepare($cart_sql);
+                                    $st->execute();
+                                    foreach ($st->fetchAll() as $row) {
+                            ?>
+                                <tr>
+                                    <td class="image" data-title="No"><img src="<?php echo "./images/items/" . $row['shoppingItemImage']; ?>" alt="#"></td>
+                                    <td class="product-des" data-title="Description">
+                                        <p class="product-name">
+                                            <?php 
+                                                echo $row['shoppingItemMainType'] . " &#8594; " . $row['shoppingItemSubType']; 
+                                                
+                                                if ($row['shoppingItemSize'] === "Small")
+                                                    echo "<span class='small-size'>S</span>";
+                                                elseif ($row['shoppingItemSize'] === "Medium")
+                                                    echo "<span class='medium-size'>M</span>";
+                                                elseif ($row['shoppingItemSize'] === "Large")
+                                                    echo "<span class='large-size'>L</span>";
+                                                elseif ($row['shoppingItemSize'] === "Xlarge")
+                                                    echo "<span class='xlarge-size'>XL</span>";
+                                                else 
+                                                    echo "";                                                
+                                            ?>
+                                            <!-- <span class='small-size'>S</span> -->
+                                        </p>
+                                        <p class="product-des"><?php echo $row['shoppingItemId'] . " &nbsp; / &nbsp; " . $row['shoppingItemName']; ?></p>
+                                    </td>
+                                    <td class="color" data-title="Color"><span><?php echo $row['shoppingItemColor']; ?></span></td>
+                                    <td class="price" data-title="Price"><span>￥<?php echo number_format($row['shoppingItemPrice'], 2); ?></span></td>
+                                    <td class="qty" data-title="Qty">
+                                        <!-- Input Order -->
+                                        <div class="input-group">
+                                            <div class="button minus">
+                                                <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[<?php echo $row['shoppingItemId']; ?>]">
+                                                    <i class="ti-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" name="quant[<?php echo $row['shoppingItemId']; ?>]" class="input-number" data-min="1" data-max="5" value="1">
+                                            <div class="button plus">
+                                                <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[<?php echo $row['shoppingItemId']; ?>]">
+                                                    <i class="ti-plus"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                        <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="5" value="1">
-                                        <div class="button plus">
-                                            <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[1]">
-												<i class="ti-plus"></i>
-											</button>
-                                        </div>
-                                    </div>
-                                    <!--/ End Input Order -->
-                                </td>
-                                <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
-                                <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
-                            </tr>
-                            <tr>
+                                        <!--/ End Input Order -->
+                                    </td>
+                                    <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
+                                    <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
+                                </tr>
+                            <?php 
+                                    } 
+                                }catch (PDOException $e) {
+                                    echo "There is some problem in connection: " . $e->getMessage();
+                                }
+                            ?>
+                            <!-- <tr>
                                 <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
                                 <td class="product-des" data-title="Description">
                                     <p class="product-name">Women Dress <span class="medium-size">M</span></p>
@@ -329,7 +376,7 @@
                                 <td class="color" data-title="Color"><span>Red</span></td>
                                 <td class="price" data-title="Price"><span>￥120.00</span></td>
                                 <td class="qty" data-title="Qty">
-                                    <!-- Input Order -->
+                                    <!- Input Order ->
                                     <div class="input-group">
                                         <div class="button minus">
                                             <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[2]">
@@ -343,7 +390,7 @@
 											</button>
                                         </div>
                                     </div>
-                                    <!--/ End Input Order -->
+                                    <!- End Input Order ->
                                 </td>
                                 <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
                                 <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
@@ -357,7 +404,7 @@
                                 <td class="color" data-title="Color"><span>Red </span></td>
                                 <td class="price" data-title="Price"><span>￥160.00</span></td>
                                 <td class="qty" data-title="Qty">
-                                    <!-- Input Order -->
+                                    <!- Input Order ->
                                     <div class="input-group">
                                         <div class="button minus">
                                             <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[3]">
@@ -371,7 +418,7 @@
 											</button>
                                         </div>
                                     </div>
-                                    <!--/ End Input Order -->
+                                    <!- End Input Order ->
                                 </td>
                                 <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
                                 <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
@@ -385,7 +432,7 @@
                                 <td class="color" data-title="Color"><span>Red </span></td>
                                 <td class="price" data-title="Price"><span>￥210.00</span></td>
                                 <td class="qty" data-title="Qty">
-                                    <!-- Input Order -->
+                                    <!- Input Order ->
                                     <div class="input-group">
                                         <div class="button minus">
                                             <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[4]">
@@ -399,11 +446,11 @@
 											</button>
                                         </div>
                                     </div>
-                                    <!--/ End Input Order -->
+                                    <!- End Input Order ->
                                 </td>
                                 <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
                                 <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                     <!--/ End Shopping Summery -->

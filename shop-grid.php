@@ -465,25 +465,38 @@
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                                             </div>
                                             <div class="product-action-2">
-                                                <a title="Add to cart" href="#">Add to cart</a>
+                                                <?php $url= $_SERVER['REQUEST_URI']; ?>
+                                                <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row3['item_id']; ?>" method="post">
+                                                    <input type="hidden" name="cart_itemId" value="<?php echo $row3['item_id']; ?>" />
+                                                    <input type="hidden" name="cart_image" value="<?php echo $row3['image1']; ?>" />
+                                                    <input type="hidden" name="cart_itemMainType" value="<?php echo $row3['mName']; ?>" />
+                                                    <input type="hidden" name="cart_itemSubType" value="<?php echo $row3['scName']; ?>" />
+                                                    <input type="hidden" name="cart_itemName" value="<?php echo $row3['itemName']; ?>" />
+                                                    <input type="hidden" name="cart_cName" value="<?php echo $row3['cName']; ?>" />
+                                                    <input type="hidden" name="cart_sName" value="<?php echo $row3['sName']; ?>" />
+                                                    <input type="hidden" name="cart_price" value="<?php echo $row3['price']; ?>" />
+                                                    <a title="Add to cart" href="#">
+                                                        <input type="submit" name="add_to_cart" value="Add to Cart" />
+                                                    </a>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product-content">
                                         <h3><a href="product-details.html">
                                             <?php 
-                                                echo $row3['itemName'] . "\t/"; 
-                                                echo $row3['cName'] . "\t/"; 
+                                                echo $row3['itemName'] . "\t/ "; 
+                                                echo $row3['cName'] . "\t/ "; 
                                                 echo $row3['sName'] . "\t"; 
                                             ?>
                                         </a></h3>
                                         <div class="product-price">
-                                            <span>$<?php echo $row3['price']; ?></span>
+                                            <span>￥<?php echo number_format($row3['price'], 2); ?></span>
                                         </div>
                                         <div class="image1">
                                             <span>
                                                 <?php
-                                                    echo $row['image1']
+                                                    echo $row3['image1'];
                                                 ?>
                                             </span>
                                         </div>
@@ -520,25 +533,38 @@
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
                                             <div class="product-action-2">
-                                                <a title="Add to cart" href="#">Add to cart</a>
+                                                <?php $url= $_SERVER['REQUEST_URI']; ?>
+                                                <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row['item_id']; ?>" method="post">
+                                                    <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
+                                                    <input type="hidden" name="cart_image" value="<?php echo $row['image1']; ?>" />
+                                                    <input type="hidden" name="cart_itemMainType" value="<?php echo $row['mName']; ?>" />
+                                                    <input type="hidden" name="cart_itemSubType" value="<?php echo $row['scName']; ?>" />
+                                                    <input type="hidden" name="cart_itemName" value="<?php echo $row['itemName']; ?>" />
+                                                    <input type="hidden" name="cart_cName" value="<?php echo $row['cName']; ?>" />
+                                                    <input type="hidden" name="cart_sName" value="<?php echo $row['sName']; ?>" />
+                                                    <input type="hidden" name="cart_price" value="<?php echo $row['price']; ?>" />
+                                                    <a title="Add to cart" href="#">
+                                                        <input type="submit" name="add_to_cart" value="Add to Cart" />
+                                                    </a>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product-content">
                                         <h3><a href="product-details.html">
                                             <?php 
-                                                echo $row['itemName'] . "\t/"; 
-                                                echo $row['cName'] . "\t/"; 
+                                                echo $row['itemName'] . "\t/ "; 
+                                                echo $row['cName'] . "\t/ "; 
                                                 echo $row['sName'] . "\t"; 
                                             ?>
                                         </a></h3>
                                         <div class="product-price">
-                                            <span>$<?php echo $row['price']; ?></span>
+                                            <span>￥<?php echo number_format($row['price'], 2); ?></span>
                                         </div>
                                         <div class="image1">
                                             <span>
                                                 <?php
-                                                    echo $row['image1']
+                                                    echo $row['image1'];
                                                 ?>
                                             </span>
                                         </div>
@@ -558,6 +584,41 @@
         </div>
     </section>
     <!--/ End Product Style 1  -->
+
+    <?php 
+        try {
+            $database = new Connection();
+            $db = $database->openConnection();
+            
+            if(isset($_POST["add_to_cart"])) {
+                $id = $_POST['cart_itemId'];
+                $image = $_POST['cart_image'];
+                $mainType = $_POST['cart_itemMainType'];
+                $subType = $_POST['cart_itemSubType'];
+                $itemName = $_POST['cart_itemName'];
+                $color = $_POST['cart_cName'];
+                $size = $_POST['cart_sName'];
+                $price = $_POST['cart_price'];
+                $stm = $db->prepare("INSERT INTO shoppingcart (shoppingItemId, shoppingItemImage, shoppingItemMainType, shoppingItemSubType, shoppingItemName, shoppingItemColor, shoppingItemSize, shoppingItemPrice) 
+                            VALUES ( :cart_itemId, :cart_image, :cart_itemMainType, :cart_itemSubType, :cart_itemName, :cart_cName, :cart_sName, :cart_price)") ;
+                // inserting a record
+                $stm->execute(
+                    array(
+                        ':cart_itemId' => $_POST['cart_itemId'], 
+                        ':cart_image' => $_POST['cart_image'], 
+                        ':cart_itemMainType' => $_POST['cart_itemMainType'],
+                        ':cart_itemSubType' => $_POST['cart_itemSubType'],
+                        ':cart_itemName' => $_POST['cart_itemName'], 
+                        ':cart_cName' => $_POST['cart_cName'],
+                        ':cart_sName' => $_POST['cart_sName'],
+                        ':cart_price' => $_POST['cart_price'],
+                    )
+                );
+            }
+        }catch (PDOException $e) {
+            echo "There is some problem in connection: " . $e->getMessage();
+        }
+    ?>
 
    <!-- Modal -->
    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">

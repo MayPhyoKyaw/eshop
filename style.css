@@ -2308,7 +2308,7 @@ Version:1.0
     transition: all 250ms ease-out;
 }
 
-.single-product .product-img .product-action-2 a {
+.single-product .product-img .product-action-2 a input{
     display: block;
     background-color: transparent;
     color: #333;
@@ -2318,9 +2318,13 @@ Version:1.0
     text-transform: uppercase;
     line-height: 1;
     display: inline-block;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
 }
 
-.single-product .product-img .product-action-2 a:hover {
+.single-product .product-img .product-action-2 a input:hover {
     color: #F7941D;
 }
 
@@ -3637,7 +3641,19 @@ Version:1.0
     text-align: center;
 }
 
+.shopping-summery tbody .color {
+    text-align: center;
+}
+
 .shopping-summery tbody .price span {}
+
+.shopping-cart tbody .qty {
+    text-align: center;
+}
+
+.shopping-summery tbody .image {
+    text-align: center;
+}
 
 .shopping-cart tbody .qty .input-group {
     width: 175px;
