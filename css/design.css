@@ -41,6 +41,13 @@
     height: 410px !important;
 }
 
+.privacy-modal-dialog .privacy-modal-content .privacy-modal-body {
+    padding: 30px !important;
+    overflow-y: hidden !important;
+    width: auto !important;
+    max-height: 640px !important;
+}
+
 .register-confirm-customize-modal-dialog,
 .card-confirm-customize-modal-dialog {
     max-width: 700px !important;
@@ -591,4 +598,12 @@ p {
     border-color: #3f51b5 !important;
     outline: none !important;
     box-shadow: none;
+}
+
+/* about */
+
+.privacy {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
 }

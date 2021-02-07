@@ -191,29 +191,29 @@
                                         try {
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
-                                            $mainCat_sql = "SELECT * FROM maincategory" ;
+                                            $mainCat_sql = "SELECT * FROM b_category" ;
                                             $st1 = $dbConn->prepare($mainCat_sql);
                                             $st1->execute();
                                             $mainCat = array();
                                             $i = 0;
                                             foreach ($st1->fetchAll() as $row1) {
                                     ?>
-                                        <li><span class="main-categoryName"><?php echo $row1['mName']; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                        <li><span class="main-categoryName"><?php echo $row1['b_catName']; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                             <?php 
-                                                $mainCat = $row1['main_cat_id'];
-                                                $subCat_sql = "SELECT main_cat_id, GROUP_CONCAT(scName) FROM subcategory WHERE main_cat_id = :mainCat GROUP BY main_cat_id";
+                                                $mainCat = $row1['b_categoryID'];
+                                                $subCat_sql = "SELECT b_categoryID, GROUP_CONCAT(s_catName) FROM s_category WHERE b_categoryID = :mainCat GROUP BY b_categoryID";
                                                 $st2 = $dbConn->prepare($subCat_sql);
                                                 $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
                                                 $st2->execute();
                                                 $subCatArray = array();
                                                 foreach ($st2->fetchAll() as $row2) {
-                                                    $subCatName = $row2['GROUP_CONCAT(scName)'];
+                                                    $subCatName = $row2['GROUP_CONCAT(s_catName)'];
                                                     $subCatArray = explode(",", $subCatName);
                                                     $i = 0;
                                             ?>
                                                 <ul class="sub-category">
                                                     <?php while($i < Count($subCatArray)){ ?>
-                                                        <a href="shop-grid.php?large_category=<?php echo $row1['mName']; ?>&small_category=<?php echo $subCatArray[$i]; ?>">
+                                                        <a href="shop-grid.php?large_category=<?php echo $row1['b_catName']; ?>&small_category=<?php echo $subCatArray[$i]; ?>">
                                                             <li><span class="sub-categoryName"><?php echo $subCatArray[$i]; ?></span></li>
                                                         </a>
                                                     <?php $i++;  } ?>
@@ -306,16 +306,16 @@
                                 <?php 
                                     try {
                                         $mainCat = $_GET['large_category'];
-                                        $sub_category_sql = "SELECT mName, scName FROM subcategory sc INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id WHERE mc.mName = :mainCat" ;
+                                        $sub_category_sql = "SELECT b_catName, s_catName FROM s_category sc INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID WHERE mc.b_catName = :mainCat" ;
                                         $st2 = $dbConn->prepare($sub_category_sql);
                                         $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
                                         $st2->execute();
 
                                         foreach ($st2->fetchAll() as $row) {
                                 ?>
-                                    <li class="selected side-sub-category" id="<?php echo $row['scName'] ?>">
-                                        <a href="shop-grid.php?large_category=<?php echo $row['mName']; ?>&small_category=<?php echo $row['scName'] ?>">
-                                            <?php echo $row['scName'] ?>
+                                    <li class="selected side-sub-category" id="<?php echo $row['s_catName'] ?>">
+                                        <a href="shop-grid.php?large_category=<?php echo $row['b_catName']; ?>&small_category=<?php echo $row['s_catName'] ?>">
+                                            <?php echo $row['s_catName'] ?>
                                         </a>
                                     </li>
                                 <?php 
@@ -346,30 +346,25 @@
                                     </div>
                                 </div>
                             </div> -->
-                            <form action="#" method="post">
-                                <ul class="check-box-list">
-                                    <?php
-                                        try{
-                                            $smallCat = $_GET['small_category'];
-                                            $sub_category_sql = "SELECT COUNT(s.s_id), sName, scName  FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN size s ON i.s_id = s.s_id WHERE scName = :smallCat GROUP BY sName" ;
-                                            $st5 = $dbConn->prepare($sub_category_sql);
-                                            $st5->bindParam( ":smallCat", $smallCat, PDO::PARAM_STR);
-                                            $st5->execute();
+                            <?php $url= $_SERVER['REQUEST_URI']; ?>
+                            <?php
+                                try{
+                                    $smallCat = $_GET['small_category'];
+                                    $sub_category_sql = "SELECT COUNT(s.size_id), size_name, s_catName  FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN size s ON i.size_id = s.size_id WHERE s_catName = :smallCat GROUP BY size_name" ;
+                                    $st5 = $dbConn->prepare($sub_category_sql);
+                                    $st5->bindParam( ":smallCat", $smallCat, PDO::PARAM_STR);
+                                    $st5->execute();
 
-                                            foreach ($st5->fetchAll() as $row4) {
-                                    ?>
+                                    foreach ($st5->fetchAll() as $row4) {
+                            ?>
+                            <form action="<?php echo $url; ?>&size=<?php echo $row4['size_name']; ?>" method="post">
+                                <ul class="check-box-list">
                                         <li>
                                             <label class="checkbox-inline" for="1">
-                                                <input name="size" id="1" class="size" type="checkbox" value=<?php echo $row4['sName']; ?>><?php echo $row4['sName']; ?>
-                                                <span class="count"><?php echo "(" . $row4['COUNT(s.s_id)'] . ")"; ?></span>
+                                                <input name="size" id="1" class="size" type="checkbox" value=<?php echo $row4['size_name']; ?>><?php echo $row4['size_name']; ?>
+                                                <span class="count"><?php echo "(" . $row4['COUNT(s.size_id)'] . ")"; ?></span>
                                             </label>
                                         </li>
-                                    <?php 
-                                            } 
-                                        }catch (PDOException $e) {
-                                            echo "There is some problem in connection: " . $e->getMessage();
-                                        }
-                                    ?>
                                     <!-- <li>
                                         <label class="checkbox-inline" for="2">
                                             <input name="size" id="2" class="size" type="checkbox" value="Medium">Medium
@@ -397,6 +392,12 @@
                                     <input type="submit" name="sizeSubmit" value="Submit" class="sizeSubmit"/>
                                 </ul>
                             </form>
+                            <?php 
+                                    } 
+                                }catch (PDOException $e) {
+                                    echo "There is some problem in connection: " . $e->getMessage();
+                                }
+                            ?>
                         </div>
                         <!--/ End Shop By Price -->
                         <!-- Single Widget -->
@@ -443,7 +444,7 @@
                                 try {
                                     $subCat = $_GET['small_category'];
 
-                                    $filter_item_sql = "SELECT item_id, itemName, sName, cName, mName, scName, image1, price FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id WHERE sc.scName = :subCat AND s.sName = :size" ;
+                                    $filter_item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, price FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id  WHERE sc.s_catName = :subCat AND s.size_name = :size" ;
                                     $st4 = $dbConn->prepare($filter_item_sql);
                                     $st4->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
                                     $st4->bindParam( ":size", $size, PDO::PARAM_STR);
@@ -455,8 +456,8 @@
                                 <div class="single-product">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img class="default-img" src="<?php echo "./images/items/" . $row3['image1']; ?>" alt="#">
-                                            <img class="hover-img" src="<?php echo "./images/items/" . $row3['image1']; ?>" alt="#">
+                                            <img class="default-img" src="<?php echo "./images/items/" . $row3['item_img1']; ?>" alt="#">
+                                            <img class="hover-img" src="<?php echo "./images/items/" . $row3['item_img1']; ?>" alt="#">
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">
@@ -468,12 +469,11 @@
                                                 <?php $url= $_SERVER['REQUEST_URI']; ?>
                                                 <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row3['item_id']; ?>" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row3['item_id']; ?>" />
-                                                    <input type="hidden" name="cart_image" value="<?php echo $row3['image1']; ?>" />
-                                                    <input type="hidden" name="cart_itemMainType" value="<?php echo $row3['mName']; ?>" />
-                                                    <input type="hidden" name="cart_itemSubType" value="<?php echo $row3['scName']; ?>" />
-                                                    <input type="hidden" name="cart_itemName" value="<?php echo $row3['itemName']; ?>" />
-                                                    <input type="hidden" name="cart_cName" value="<?php echo $row3['cName']; ?>" />
-                                                    <input type="hidden" name="cart_sName" value="<?php echo $row3['sName']; ?>" />
+                                                    <input type="hidden" name="cart_image" value="<?php echo $row3['item_img1']; ?>" />
+                                                    <input type="hidden" name="cart_itemMainType" value="<?php echo $row3['b_catName']; ?>" />
+                                                    <input type="hidden" name="cart_itemSubType" value="<?php echo $row3['s_catName']; ?>" />
+                                                    <input type="hidden" name="cart_iteb_catName" value="<?php echo $row3['item_name']; ?>" />
+                                                    <input type="hidden" name="cart_size_name" value="<?php echo $row3['size_name']; ?>" />
                                                     <input type="hidden" name="cart_price" value="<?php echo $row3['price']; ?>" />
                                                     <a title="Add to cart" href="#">
                                                         <input type="submit" name="add_to_cart" value="Add to Cart" />
@@ -485,9 +485,8 @@
                                     <div class="product-content">
                                         <h3><a href="product-details.html">
                                             <?php 
-                                                echo $row3['itemName'] . "\t/ "; 
-                                                echo $row3['cName'] . "\t/ "; 
-                                                echo $row3['sName'] . "\t"; 
+                                                echo $row3['item_name'] . "\t/ "; 
+                                                echo $row3['size_name'] . "\t"; 
                                             ?>
                                         </a></h3>
                                         <div class="product-price">
@@ -496,7 +495,7 @@
                                         <div class="image1">
                                             <span>
                                                 <?php
-                                                    echo $row3['image1'];
+                                                    echo $row3['item_img1'];
                                                 ?>
                                             </span>
                                         </div>
@@ -512,7 +511,7 @@
                                 try {
                                     $subCat = $_GET['small_category'];
 
-                                    $item_sql = "SELECT item_id, itemName, sName, cName, mName, scName, image1, price FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id WHERE sc.scName = :subCat" ;
+                                    $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, price FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id  WHERE sc.s_catName = :subCat" ;
                                     $st3 = $dbConn->prepare($item_sql);
                                     $st3->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
                                     $st3->execute();
@@ -523,8 +522,8 @@
                                 <div class="single-product">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img class="default-img" src="<?php echo "./images/items/" . $row['image1']; ?>" alt="#">
-                                            <img class="hover-img" src="<?php echo "./images/items/" . $row['image1']; ?>" alt="#">
+                                            <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
+                                            <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">
@@ -536,12 +535,11 @@
                                                 <?php $url= $_SERVER['REQUEST_URI']; ?>
                                                 <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row['item_id']; ?>" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
-                                                    <input type="hidden" name="cart_image" value="<?php echo $row['image1']; ?>" />
-                                                    <input type="hidden" name="cart_itemMainType" value="<?php echo $row['mName']; ?>" />
-                                                    <input type="hidden" name="cart_itemSubType" value="<?php echo $row['scName']; ?>" />
-                                                    <input type="hidden" name="cart_itemName" value="<?php echo $row['itemName']; ?>" />
-                                                    <input type="hidden" name="cart_cName" value="<?php echo $row['cName']; ?>" />
-                                                    <input type="hidden" name="cart_sName" value="<?php echo $row['sName']; ?>" />
+                                                    <input type="hidden" name="cart_image" value="<?php echo $row['item_img1']; ?>" />
+                                                    <input type="hidden" name="cart_itemMainType" value="<?php echo $row['b_catName']; ?>" />
+                                                    <input type="hidden" name="cart_itemSubType" value="<?php echo $row['s_catName']; ?>" />
+                                                    <input type="hidden" name="cart_iteb_catName" value="<?php echo $row['item_name']; ?>" />
+                                                    <input type="hidden" name="cart_size_name" value="<?php echo $row['size_name']; ?>" />
                                                     <input type="hidden" name="cart_price" value="<?php echo $row['price']; ?>" />
                                                     <a title="Add to cart" href="#">
                                                         <input type="submit" name="add_to_cart" value="Add to Cart" />
@@ -553,9 +551,8 @@
                                     <div class="product-content">
                                         <h3><a href="product-details.html">
                                             <?php 
-                                                echo $row['itemName'] . "\t/ "; 
-                                                echo $row['cName'] . "\t/ "; 
-                                                echo $row['sName'] . "\t"; 
+                                                echo $row['item_name'] . "\t/ "; 
+                                                echo $row['size_name'] . "\t"; 
                                             ?>
                                         </a></h3>
                                         <div class="product-price">
@@ -564,7 +561,7 @@
                                         <div class="image1">
                                             <span>
                                                 <?php
-                                                    echo $row['image1'];
+                                                    echo $row['item_img1'];
                                                 ?>
                                             </span>
                                         </div>
@@ -595,12 +592,11 @@
                 $image = $_POST['cart_image'];
                 $mainType = $_POST['cart_itemMainType'];
                 $subType = $_POST['cart_itemSubType'];
-                $itemName = $_POST['cart_itemName'];
-                $color = $_POST['cart_cName'];
-                $size = $_POST['cart_sName'];
+                $iteb_catName = $_POST['cart_iteb_catName'];
+                $size = $_POST['cart_size_name'];
                 $price = $_POST['cart_price'];
-                $stm = $db->prepare("INSERT INTO shoppingcart (shoppingItemId, shoppingItemImage, shoppingItemMainType, shoppingItemSubType, shoppingItemName, shoppingItemColor, shoppingItemSize, shoppingItemPrice) 
-                            VALUES ( :cart_itemId, :cart_image, :cart_itemMainType, :cart_itemSubType, :cart_itemName, :cart_cName, :cart_sName, :cart_price)") ;
+                $stm = $db->prepare("INSERT INTO shoppingcart (shoppingItemId, shoppingItemImage, shoppingItemMainType, shoppingItemSubType, shoppingIteb_catName, shoppingItemColor, shoppingItemSize, shoppingItemPrice) 
+                            VALUES ( :cart_itemId, :cart_image, :cart_itemMainType, :cart_itemSubType, :cart_iteb_catName, :cart_size_name, :cart_price)") ;
                 // inserting a record
                 $stm->execute(
                     array(
@@ -608,9 +604,8 @@
                         ':cart_image' => $_POST['cart_image'], 
                         ':cart_itemMainType' => $_POST['cart_itemMainType'],
                         ':cart_itemSubType' => $_POST['cart_itemSubType'],
-                        ':cart_itemName' => $_POST['cart_itemName'], 
-                        ':cart_cName' => $_POST['cart_cName'],
-                        ':cart_sName' => $_POST['cart_sName'],
+                        ':cart_iteb_catName' => $_POST['cart_iteb_catName'], 
+                        ':cart_size_name' => $_POST['cart_size_name'],
                         ':cart_price' => $_POST['cart_price'],
                     )
                 );
@@ -722,17 +717,17 @@
                         <!-- Single Widget -->
                         <div class="single-footer about">
                             <div class="logo">
-                                <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
+                                <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
                             </div>
-                            <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
-                            <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
+                            <p class="text">charmcloではトップス・パンツ・ワンピースなど最新トレンドアイテムをオンラインでご購入いただけます。charmcloは多くのブランドの人気アイテムを公式に取扱うファッション通販サイトです！</p>
+                            <p class="call">Got Question? Call us 24/7<span><a href="tel:800280115822">+070 (8002) 8011-5822</a></span></p>
                         </div>
                         <!-- End Single Widget -->
                     </div>
                     <div class="col-lg-2 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer links">
-                            <h4>Information</h4>
+                            <h4>会社情報</h4>
                             <ul>
                                 <li><a href="about.html">About Us</a></li>
                                 <li><a href="contact.html">Contact Us</a></li>
@@ -743,13 +738,13 @@
                     <div class="col-lg-2 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer links">
-                            <h4>Customer Service</h4>
+                            <h4>お客様サービス</h4>
                             <ul>
-                                <li><a href="about.html">Payment Methods</a></li>
-                                <li><a href="about.html">Money-back</a></li>
-                                <li><a href="about.html">Returns</a></li>
-                                <li><a href="about.html">Shipping</a></li>
-                                <li><a href="about.html">Privacy Policy</a></li>
+                                <li><a href="about.html">会社概要</a></li>
+                                <li><a href="about.html">お支払いについて</a></li>
+                                <li><a href="about.html">表示価格について</a></li>
+                                <li><a href="about.html">配送・送料について</a></li>
+                                <li><a href="about.html">プライバシーポリシーについて</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -757,14 +752,14 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer social">
-                            <h4>Contact us</h4>
+                            <h4>お問い合わせ</h4>
                             <!-- Single Widget -->
                             <div class="contact">
                                 <ul>
-                                    <li>NO. 342 - London Oxford Street.</li>
-                                    <li>012 United Kingdom.</li>
-                                    <li>info@eshop.com</li>
-                                    <li>+032 3456 7890</li>
+                                    <li>〒169-0073 東京都新宿区百人町　　1-25-4</li>
+                                    <li>日本、東京</li>
+                                    <li>info@charmclo.com</li>
+                                    <li> +070 (8001) 8011-5822</li>
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
@@ -787,7 +782,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <div class="left">
-                                <p>Copyright © 2020 - All Rights Reserved.</p>
+                                <p>Copyright © 2021 - All Rights Reserved.</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">

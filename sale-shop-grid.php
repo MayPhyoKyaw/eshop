@@ -191,29 +191,29 @@
                                         try {
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
-                                            $mainCat_sql = "SELECT * FROM maincategory" ;
+                                            $mainCat_sql = "SELECT * FROM b_category" ;
                                             $st1 = $dbConn->prepare($mainCat_sql);
                                             $st1->execute();
                                             $mainCat = array();
                                             $i = 0;
                                             foreach ($st1->fetchAll() as $row1) {
                                     ?>
-                                        <li><span class="main-categoryName"><?php echo $row1['mName']; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                        <li><span class="main-categoryName"><?php echo $row1['b_catName']; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                             <?php 
-                                                $mainCat = $row1['main_cat_id'];
-                                                $subCat_sql = "SELECT main_cat_id, GROUP_CONCAT(scName) FROM subcategory WHERE main_cat_id = :mainCat GROUP BY main_cat_id";
+                                                $mainCat = $row1['b_categoryID'];
+                                                $subCat_sql = "SELECT b_categoryID, GROUP_CONCAT(s_catName) FROM s_category WHERE b_categoryID = :mainCat GROUP BY b_categoryID";
                                                 $st2 = $dbConn->prepare($subCat_sql);
                                                 $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
                                                 $st2->execute();
                                                 $subCatArray = array();
                                                 foreach ($st2->fetchAll() as $row2) {
-                                                    $subCatName = $row2['GROUP_CONCAT(scName)'];
+                                                    $subCatName = $row2['GROUP_CONCAT(s_catName)'];
                                                     $subCatArray = explode(",", $subCatName);
                                                     $i = 0;
                                             ?>
                                                 <ul class="sub-category">
                                                     <?php while($i < Count($subCatArray)){ ?>
-                                                        <a href="shop-grid.php?large_category=<?php echo $row1['mName']; ?>&small_category=<?php echo $subCatArray[$i]; ?>">
+                                                        <a href="shop-grid.php?large_category=<?php echo $row1['b_catName']; ?>&small_category=<?php echo $subCatArray[$i]; ?>">
                                                             <li><span class="sub-categoryName"><?php echo $subCatArray[$i]; ?></span></li>
                                                         </a>
                                                     <?php $i++;  } ?>
@@ -311,7 +311,7 @@
                     <div class="row search-product-wrapper">
                         <?php                             
                             try {
-                                $item_sql = "SELECT item_id, itemName, sName, cName, mName, scName, image1, price, tenPercent FROM item i INNER JOIN subcategory sc ON i.sub_cat_id = sc.sub_cat_id INNER JOIN maincategory mc ON sc.main_cat_id = mc.main_cat_id INNER JOIN size s ON i.s_id = s.s_id INNER JOIN color c ON i.c_id = c.c_id WHERE i.tenPercent <> 0";
+                                $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, price, sale_price FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN sales ON i.sale_id = sales.sale_id WHERE sales.sale_rate <> '0%'";
                                 $st = $dbConn->prepare($item_sql);
                                 $st->execute();
                                 foreach ($st->fetchAll() as $row) {
@@ -320,8 +320,8 @@
                                 <div class="single-product">
                                     <div class="product-img">
                                         <a href="product-details.html">
-                                            <img class="default-img" src="<?php echo "./images/items/" . $row['image1']; ?>" alt="#">
-                                            <img class="hover-img" src="<?php echo "./images/items/" . $row['image1']; ?>" alt="#">
+                                            <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
+                                            <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">
@@ -337,14 +337,13 @@
                                     <div class="product-content">
                                         <h3><a href="product-details.html">
                                             <?php 
-                                                echo $row['itemName'] . "\t/ "; 
-                                                echo $row['cName'] . "\t/ "; 
-                                                echo $row['sName'] . "\t"; 
+                                                echo $row['item_name'] . "\t/ "; 
+                                                echo $row['size_name'] . "\t"; 
                                             ?>
                                         </a></h3>
                                         <div class="product-price">
                                             <span class='old'>￥<?php echo number_format($row['price'], 2); ?></span>
-                                            <span>￥<?php echo number_format($row['tenPercent'], 2); ?></span>
+                                            <span>￥<?php echo number_format($row['sale_price'], 2); ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -485,17 +484,17 @@
                         <!-- Single Widget -->
                         <div class="single-footer about">
                             <div class="logo">
-                                <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
+                                <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
                             </div>
-                            <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
-                            <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
+                            <p class="text">charmcloではトップス・パンツ・ワンピースなど最新トレンドアイテムをオンラインでご購入いただけます。charmcloは多くのブランドの人気アイテムを公式に取扱うファッション通販サイトです！</p>
+                            <p class="call">Got Question? Call us 24/7<span><a href="tel:800280115822">+070 (8002) 8011-5822</a></span></p>
                         </div>
                         <!-- End Single Widget -->
                     </div>
                     <div class="col-lg-2 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer links">
-                            <h4>Information</h4>
+                            <h4>会社情報</h4>
                             <ul>
                                 <li><a href="about.html">About Us</a></li>
                                 <li><a href="contact.html">Contact Us</a></li>
@@ -506,13 +505,13 @@
                     <div class="col-lg-2 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer links">
-                            <h4>Customer Service</h4>
+                            <h4>お客様サービス</h4>
                             <ul>
-                                <li><a href="about.html">Payment Methods</a></li>
-                                <li><a href="about.html">Money-back</a></li>
-                                <li><a href="about.html">Returns</a></li>
-                                <li><a href="about.html">Shipping</a></li>
-                                <li><a href="about.html">Privacy Policy</a></li>
+                                <li><a href="about.html">会社概要</a></li>
+                                <li><a href="about.html">お支払いについて</a></li>
+                                <li><a href="about.html">表示価格について</a></li>
+                                <li><a href="about.html">配送・送料について</a></li>
+                                <li><a href="about.html">プライバシーポリシーについて</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -520,14 +519,14 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer social">
-                            <h4>Contact us</h4>
+                            <h4>お問い合わせ</h4>
                             <!-- Single Widget -->
                             <div class="contact">
                                 <ul>
-                                    <li>NO. 342 - London Oxford Street.</li>
-                                    <li>012 United Kingdom.</li>
-                                    <li>info@eshop.com</li>
-                                    <li>+032 3456 7890</li>
+                                    <li>〒169-0073 東京都新宿区百人町　　1-25-4</li>
+                                    <li>日本、東京</li>
+                                    <li>info@charmclo.com</li>
+                                    <li> +070 (8001) 8011-5822</li>
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
@@ -550,7 +549,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <div class="left">
-                                <p>Copyright © 2020 - All Rights Reserved.</p>
+                                <p>Copyright © 2021 - All Rights Reserved.</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">

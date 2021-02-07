@@ -27,11 +27,16 @@ $(document).ready(function () {
   //   location.href = `./shop-grid.html?large_category=${get_largeCategoryName}&small_category=${get_smallCategoryName}`;
   // })
 
-  // $(".search-btn").click(function() {
-  //   const get_searchName = $( ".nice-select" ).find('span').html();
-  //   console.log(get_searchName);
-  //   location.href = `./search-shop-grid.html?search=${get_searchName}`;
-  // })
+  $(".search-btn").click(function() {
+    const get_searchName = $( ".nice-select" ).find('span').html();
+    console.log(get_searchName);
+    if (get_searchName === "ブランドから探す") {
+      location.href = `./brand-display.html?search=${get_searchName}`;
+    }
+    else {
+      location.href = `./search-shop-grid.html?search=${get_searchName}`;
+    }
+  })
 });
 
 function goBack() {
