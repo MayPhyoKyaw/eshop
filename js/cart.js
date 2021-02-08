@@ -83,4 +83,13 @@ $(document).ready(function () {
     var total = subtotal - (subtotal * (parseInt(discount_value))/100) + 700 + (subtotal * 0.01);
     document.getElementById("calculated-total-amount").innerHTML = `￥ ${total.toFixed(2)}`
   })
+
 })
+
+function deleteRow(row){
+  // console.log()
+  var row_index = row.parentNode.parentNode.rowIndex;
+  console.log(row_index)
+  document.getElementById("cart-table").deleteRow(row_index);
+  document.getElementById("cart-table").refresh();
+}

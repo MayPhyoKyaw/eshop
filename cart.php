@@ -312,7 +312,7 @@
                         <tbody>
                             <?php 
                                 try{
-                                    $cart_sql = "SELECT item_img1, item_name, s_catName, b_catName, price, size_name, color, i.item_id, description FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category bc ON sc.b_categoryID = bc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id";
+                                    $cart_sql = "SELECT item_img1, item_name, s_catName, b_catName, price, size_name, color, c.item_id, description FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category bc ON sc.b_categoryID = bc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id";
                                     $st = $dbConn->prepare($cart_sql);
                                     $st->execute();
                                     foreach ($st->fetchAll() as $row) {
@@ -359,7 +359,14 @@
                                         <!--/ End Input Order -->
                                     </td>
                                     <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
-                                    <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
+                                    <td class="action" data-title="Remove"><a href="#">
+                                        <form action='' method='post'>
+                                            <input type="hidden" name="cartItemId" value="<?php echo $row['item_id']; ?>" />
+                                            <button type="submit" name="delete" class="cart-item-delete-btn" onclick="deleteRow(this)">
+                                                <i class="ti-trash remove-icon"></i>
+                                            </button>
+                                        </form> 
+                                    </a></td>
                                 </tr>
                             <?php 
                                     } 
@@ -456,6 +463,24 @@
                     <!--/ End Shopping Summery -->
                 </div>
             </div>
+
+            <?php 
+                try{
+                    if(isset($_POST['delete'])){
+                        $del_id = $_POST['cartItemId'];
+                        // echo $del_id;
+                        $del_sql = "DELETE FROM cart WHERE `item_id` = :del_id" ;
+                        // $affectedrows  = $db->exec($del_sql);
+                        $del_st = $dbConn->prepare($del_sql);
+                        $del_st->bindParam( ":del_id", $del_id, PDO::PARAM_STR);
+                        $del_st->execute();
+                    } 
+                } catch (PDOException $e) {
+                   echo "There is some problem in connection: " . $e->getMessage();
+                }
+                
+            ?>
+
             <div class="row">
                 <div class="col-12">
                     <!-- Total Amount -->
@@ -486,11 +511,12 @@
                                         <!-- <li class="important">割引率    :<span>￥20.00</span></li> -->
                                         <?php
                                             $today = date("d");
+                                            // echo date("d/m/Y h:m:s a");
                                             if($today === "05"){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
-                                            }else if($today === "10"){
-                                                echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
                                             }else if($today === "15"){
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
+                                            }else if($today === "25"){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
                                             }else{ 
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>0%</span></li>";

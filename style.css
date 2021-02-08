@@ -3714,7 +3714,12 @@ Version:1.0
     text-align: center;
 }
 
-.shopping-summery tbody .action a:hover {
+.shopping-summery tbody .action a button {
+    background: none;
+    border: none;
+}
+
+.shopping-summery tbody .action a button:hover {
     color: #F7941D;
 }
 
