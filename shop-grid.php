@@ -469,12 +469,12 @@
                                                 <?php $url= $_SERVER['REQUEST_URI']; ?>
                                                 <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row3['item_id']; ?>" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row3['item_id']; ?>" />
-                                                    <input type="hidden" name="cart_image" value="<?php echo $row3['item_img1']; ?>" />
-                                                    <input type="hidden" name="cart_itemMainType" value="<?php echo $row3['b_catName']; ?>" />
-                                                    <input type="hidden" name="cart_itemSubType" value="<?php echo $row3['s_catName']; ?>" />
-                                                    <input type="hidden" name="cart_iteb_catName" value="<?php echo $row3['item_name']; ?>" />
-                                                    <input type="hidden" name="cart_size_name" value="<?php echo $row3['size_name']; ?>" />
-                                                    <input type="hidden" name="cart_price" value="<?php echo $row3['price']; ?>" />
+                                                    <!-- <input type="hidden" name="cart_image" value="<?php //echo $row3['item_img1']; ?>" />
+                                                    <input type="hidden" name="cart_itemMainType" value="<?php //echo $row3['b_catName']; ?>" />
+                                                    <input type="hidden" name="cart_itemSubType" value="<?php //echo $row3['s_catName']; ?>" />
+                                                    <input type="hidden" name="cart_iteb_catName" value="<?php //echo $row3['item_name']; ?>" />
+                                                    <input type="hidden" name="cart_size_name" value="<?php //echo $row3['size_name']; ?>" />
+                                                    <input type="hidden" name="cart_price" value="<?php //echo $row3['price']; ?>" /> -->
                                                     <a title="Add to cart" href="#">
                                                         <input type="submit" name="add_to_cart" value="Add to Cart" />
                                                     </a>
@@ -589,24 +589,24 @@
             
             if(isset($_POST["add_to_cart"])) {
                 $id = $_POST['cart_itemId'];
-                $image = $_POST['cart_image'];
-                $mainType = $_POST['cart_itemMainType'];
-                $subType = $_POST['cart_itemSubType'];
-                $iteb_catName = $_POST['cart_iteb_catName'];
-                $size = $_POST['cart_size_name'];
-                $price = $_POST['cart_price'];
-                $stm = $db->prepare("INSERT INTO shoppingcart (shoppingItemId, shoppingItemImage, shoppingItemMainType, shoppingItemSubType, shoppingIteb_catName, shoppingItemColor, shoppingItemSize, shoppingItemPrice) 
-                            VALUES ( :cart_itemId, :cart_image, :cart_itemMainType, :cart_itemSubType, :cart_iteb_catName, :cart_size_name, :cart_price)") ;
+                // $image = $_POST['cart_image'];
+                // $mainType = $_POST['cart_itemMainType'];
+                // $subType = $_POST['cart_itemSubType'];
+                // $iteb_catName = $_POST['cart_iteb_catName'];
+                // $size = $_POST['cart_size_name'];
+                // $price = $_POST['cart_price'];
+                $stm = $db->prepare("INSERT INTO cart (item_id, c_code, quantity) 
+                            VALUES ( :cart_itemId, 100, 1)") ;
                 // inserting a record
                 $stm->execute(
                     array(
                         ':cart_itemId' => $_POST['cart_itemId'], 
-                        ':cart_image' => $_POST['cart_image'], 
-                        ':cart_itemMainType' => $_POST['cart_itemMainType'],
-                        ':cart_itemSubType' => $_POST['cart_itemSubType'],
-                        ':cart_iteb_catName' => $_POST['cart_iteb_catName'], 
-                        ':cart_size_name' => $_POST['cart_size_name'],
-                        ':cart_price' => $_POST['cart_price'],
+                        // ':cart_image' => $_POST['cart_image'], 
+                        // ':cart_itemMainType' => $_POST['cart_itemMainType'],
+                        // ':cart_itemSubType' => $_POST['cart_itemSubType'],
+                        // ':cart_iteb_catName' => $_POST['cart_iteb_catName'], 
+                        // ':cart_size_name' => $_POST['cart_size_name'],
+                        // ':cart_price' => $_POST['cart_price'],
                     )
                 );
             }

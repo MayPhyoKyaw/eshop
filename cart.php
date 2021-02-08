@@ -312,46 +312,46 @@
                         <tbody>
                             <?php 
                                 try{
-                                    $cart_sql = "SELECT * FROM cart";
+                                    $cart_sql = "SELECT item_img1, item_name, s_catName, b_catName, price, size_name, color, i.item_id, description FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category bc ON sc.b_categoryID = bc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id";
                                     $st = $dbConn->prepare($cart_sql);
                                     $st->execute();
                                     foreach ($st->fetchAll() as $row) {
                             ?>
                                 <tr>
-                                    <td class="image" data-title="No"><img src="<?php echo "./images/items/" . $row['shoppingItemImage']; ?>" alt="#"></td>
+                                    <td class="image" data-title="No"><img src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#"></td>
                                     <td class="product-des" data-title="Description">
                                         <p class="product-name">
                                             <?php 
-                                                echo $row['shoppingItemMainType'] . " &#8594; " . $row['shoppingItemSubType']; 
+                                                echo $row['b_catName'] . " &#8594; " . $row['s_catName'] . " &#8594; " . $row['item_name']; 
                                                 
-                                                if ($row['shoppingItemSize'] === "Small")
+                                                if ($row['size_name'] === "Small")
                                                     echo "<span class='small-size'>S</span>";
-                                                elseif ($row['shoppingItemSize'] === "Medium")
+                                                elseif ($row['size_name'] === "Medium")
                                                     echo "<span class='medium-size'>M</span>";
-                                                elseif ($row['shoppingItemSize'] === "Large")
+                                                elseif ($row['size_name'] === "Large")
                                                     echo "<span class='large-size'>L</span>";
-                                                elseif ($row['shoppingItemSize'] === "Xlarge")
+                                                elseif ($row['size_name'] === "Xlarge")
                                                     echo "<span class='xlarge-size'>XL</span>";
                                                 else 
                                                     echo "";                                                
                                             ?>
                                             <!-- <span class='small-size'>S</span> -->
                                         </p>
-                                        <p class="product-des"><?php echo $row['shoppingItemId'] . " &nbsp; / &nbsp; " . $row['shoppingItemName']; ?></p>
+                                        <p class="product-des"><?php echo $row['description']?></p>
                                     </td>
-                                    <td class="color" data-title="Color"><span><?php echo $row['shoppingItemColor']; ?></span></td>
-                                    <td class="price" data-title="Price"><span>￥<?php echo number_format($row['shoppingItemPrice'], 2); ?></span></td>
+                                    <td class="color" data-title="Color"><span><?php echo $row['color']; ?></span></td>
+                                    <td class="price" data-title="Price"><span>￥<?php echo number_format($row['price'], 2); ?></span></td>
                                     <td class="qty" data-title="Qty">
                                         <!-- Input Order -->
                                         <div class="input-group">
                                             <div class="button minus">
-                                                <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[<?php echo $row['shoppingItemId']; ?>]">
+                                                <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[<?php echo $row['item_id']; ?>]">
                                                     <i class="ti-minus"></i>
                                                 </button>
                                             </div>
-                                            <input type="text" name="quant[<?php echo $row['shoppingItemId']; ?>]" class="input-number" data-min="1" data-max="5" value="1">
+                                            <input type="text" name="quant[<?php echo $row['item_id']; ?>]" class="input-number" data-min="1" data-max="5" value="1">
                                             <div class="button plus">
-                                                <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[<?php echo $row['shoppingItemId']; ?>]">
+                                                <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[<?php echo $row['item_id']; ?>]">
                                                     <i class="ti-plus"></i>
                                                 </button>
                                             </div>
