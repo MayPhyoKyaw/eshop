@@ -190,29 +190,29 @@
                                         try {
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
-                                            $mainCat_sql = "SELECT * FROM maincategory" ;
+                                            $mainCat_sql = "SELECT * FROM b_category" ;
                                             $st1 = $dbConn->prepare($mainCat_sql);
                                             $st1->execute();
                                             $mainCat = array();
                                             $i = 0;
                                             foreach ($st1->fetchAll() as $row1) {
                                     ?>
-                                        <li><span class="main-categoryName"><?php echo $row1['mName']; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                        <li><span class="main-categoryName"><?php echo $row1['b_catName']; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                                             <?php 
-                                                $mainCat = $row1['main_cat_id'];
-                                                $subCat_sql = "SELECT main_cat_id, GROUP_CONCAT(scName) FROM subcategory WHERE main_cat_id = :mainCat GROUP BY main_cat_id";
+                                                $mainCat = $row1['b_categoryID'];
+                                                $subCat_sql = "SELECT b_categoryID, GROUP_CONCAT(s_catName) FROM s_category WHERE b_categoryID = :mainCat GROUP BY b_categoryID";
                                                 $st2 = $dbConn->prepare($subCat_sql);
                                                 $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
                                                 $st2->execute();
                                                 $subCatArray = array();
                                                 foreach ($st2->fetchAll() as $row2) {
-                                                    $subCatName = $row2['GROUP_CONCAT(scName)'];
+                                                    $subCatName = $row2['GROUP_CONCAT(s_catName)'];
                                                     $subCatArray = explode(",", $subCatName);
                                                     $i = 0;
                                             ?>
                                                 <ul class="sub-category">
                                                     <?php while($i < Count($subCatArray)){ ?>
-                                                        <a href="shop-grid.php?large_category=<?php echo $row1['mName']; ?>&small_category=<?php echo $subCatArray[$i]; ?>">
+                                                        <a href="shop-grid.php?large_category=<?php echo $row1['b_catName']; ?>&small_category=<?php echo $subCatArray[$i]; ?>">
                                                             <li><span class="sub-categoryName"><?php echo $subCatArray[$i]; ?></span></li>
                                                         </a>
                                                     <?php $i++;  } ?>
@@ -312,7 +312,7 @@
                         <tbody>
                             <?php 
                                 try{
-                                    $cart_sql = "SELECT * FROM shoppingcart";
+                                    $cart_sql = "SELECT * FROM cart";
                                     $st = $dbConn->prepare($cart_sql);
                                     $st->execute();
                                     foreach ($st->fetchAll() as $row) {
