@@ -322,7 +322,7 @@
                                     <td class="product-des" data-title="Description">
                                         <p class="product-name">
                                             <?php 
-                                                echo $row['b_catName'] . " &#8594; " . $row['s_catName'] . " &#8594; " . $row['item_name']; 
+                                                echo $row['b_catName'] . "</br> " . $row['s_catName'] . " </br> " . $row['item_name']; 
                                                 
                                                 if ($row['size_name'] === "Small")
                                                     echo "<span class='small-size'>S</span>";
@@ -337,7 +337,7 @@
                                             ?>
                                             <!-- <span class='small-size'>S</span> -->
                                         </p>
-                                        <p class="product-des"><?php echo $row['description']?></p>
+                                        <p class="product-des"><?php echo $row['size_name']?></p>
                                     </td>
                                     <td class="color" data-title="Color"><span><?php echo $row['color']; ?></span></td>
                                     <td class="price" data-title="Price"><span>￥<?php echo number_format($row['price'], 2); ?></span></td>
