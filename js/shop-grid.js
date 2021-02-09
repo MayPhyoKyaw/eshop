@@ -30,16 +30,21 @@ $('#pagination-container').pagination({
     }
 });
 $(document).ready(function () {
+
+    var regExpr = /[&\/\\#, +()$~%.'":*?<>{}]/g;
     console.log($('.side-sub-category').text());
     var subCat = $('.side-sub-category');
     var subCat_Arr = subCat.map(function() {
         return this.textContent.trim();
     }).get();
     console.log(subCat_Arr, small_categoryName);
+    var sub_cat = small_categoryName.replace(regExpr, "_");
+    console.log(sub_cat);
     for(i=0; i<subCat_Arr.length; i++){
-        if (subCat_Arr[i] === small_categoryName){
-            console.log(subCat_Arr[i])
-            $(`#${subCat_Arr[i]}`).addClass('selected').siblings().removeClass('selected');
+        var arr = subCat_Arr[i].replace(regExpr, "_");
+        if (arr === sub_cat){
+            console.log(arr)
+            $(`#${arr}`).addClass('selected').siblings().removeClass('selected');
         }
     }
 })

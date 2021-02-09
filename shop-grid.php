@@ -312,8 +312,9 @@
                                         $st2->execute();
 
                                         foreach ($st2->fetchAll() as $row) {
+                                            $subCatStr = preg_replace('/[^\w\s]+/u','_' ,$row['s_catName']);
                                 ?>
-                                    <li class="selected side-sub-category" id="<?php echo $row['s_catName'] ?>">
+                                    <li class="selected side-sub-category" id="<?php echo $subCatStr ?>">
                                         <a href="shop-grid.php?large_category=<?php echo $row['b_catName']; ?>&small_category=<?php echo $row['s_catName'] ?>">
                                             <?php echo $row['s_catName'] ?>
                                         </a>
