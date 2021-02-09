@@ -61,8 +61,9 @@ $(document).ready(function () {
         var country = $(this).parent().parent().parent().parent().find('.hide-country').text();
         var description = $(this).parent().parent().parent().parent().find('.hide-description').text();
         var price = $(this).parent().parent().parent().parent().find('.hide-price').text();
-        var img1 = $(this).parent().parent().parent().parent().find('.hide-img').text();
-        console.log(itemName, mainType, subType, gender, season, brand, size, color, country, description, price, img1);
+        var img1 = $(this).parent().parent().parent().parent().find('.hide-img1').text();
+        var img2 = $(this).parent().parent().parent().parent().find('.hide-img2').text();
+        console.log(itemName, mainType, subType, gender, season, brand, size, color, country, description, price);
         // var r = '&commat;';
         $('.detail-itemName').text(itemName);
         $('.detail-main-sub').text(`${mainType} >> ${subType}`);
@@ -74,6 +75,7 @@ $(document).ready(function () {
         $('.detail-country').text(country);
         $('.detail-description').text(description);
         $('.detail-price').text(price);
-        $('.img').html(`<img src="./images/items/${img1}" alt="#">`)
+        $('.img').append(`<img src="./images/items/${img1}" alt="#">`)
+        $('.img').append(`<img src="./images/items/${img2}" alt="#">`)
     })
 })

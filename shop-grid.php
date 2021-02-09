@@ -503,7 +503,8 @@
                                         <span class="hide hide-description"><?php echo $row3['description'];?></span>
                                         <span class="hide hide-largeCat"><?php echo $row3['b_catName'];?></span>
                                         <span class="hide hide-smallCat"><?php echo $row3['s_catName'];?></span>
-                                        <span class="hide hide-img"><?php echo $row3['item_img1'];?></span>
+                                        <span class="hide hide-img1"><?php echo $row3['item_img1'];?></span>
+                                        <span class="hide hide-img2"><?php echo $row3['item_img2'];?></span>
                                         <div class="image1">
                                             <span>
                                                 <?php
@@ -580,7 +581,8 @@
                                         <span class="hide hide-description"><?php echo $row['description'];?></span>
                                         <span class="hide hide-largeCat"><?php echo $row['b_catName'];?></span>
                                         <span class="hide hide-smallCat"><?php echo $row['s_catName'];?></span>
-                                        <span class="hide hide-img"><?php echo $row['item_img1'];?></span>
+                                        <span class="hide hide-img1"><?php echo $row['item_img1'];?></span>
+                                        <span class="hide hide-img2"><?php echo $row['item_img2'];?></span>
                                         <div class="image1">
                                             <span>
                                                 <?php
@@ -651,10 +653,10 @@
                             <!-- Product Slider -->
                             <div class="product-gallery">
                                 <div class="quickview-slider-active">
-                                    <div class="single-slider img">
-                                        <!-- <img src="https://via.placeholder.com/569x528" alt="#"> -->
+                                    <!-- <div class="single-slider img">
+                                        <!- <img src="https://via.placeholder.com/569x528" alt="#"> ->
                                     </div>
-                                    <!-- <div class="single-slider">
+                                    <div class="single-slider">
                                         <img src="https://via.placeholder.com/569x528" alt="#">
                                     </div> -->
                                     <!-- <div class="single-slider">
