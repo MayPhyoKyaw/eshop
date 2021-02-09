@@ -31,7 +31,7 @@ $('#pagination-container').pagination({
 });
 $(document).ready(function () {
 
-    var regExpr = /[&\/\\#, +()$~%.'":*?<>{}]/g;
+    var regExpr = /[&\/\\#, +()$~%.'":*?<>{}-]/g;
     console.log($('.side-sub-category').text());
     var subCat = $('.side-sub-category');
     var subCat_Arr = subCat.map(function() {
