@@ -445,7 +445,7 @@
                                 try {
                                     $subCat = $_GET['small_category'];
 
-                                    $filter_item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sc.s_catName = :subCat AND s.size_name = :size" ;
+                                    $filter_item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sc.s_catName = :subCat AND s.size_name = :size" ;
                                     $st4 = $dbConn->prepare($filter_item_sql);
                                     $st4->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
                                     $st4->bindParam( ":size", $size, PDO::PARAM_STR);
@@ -524,7 +524,7 @@
                                 try {
                                     $subCat = $_GET['small_category'];
 
-                                    $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sc.s_catName = :subCat" ;
+                                    $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sc.s_catName = :subCat" ;
                                     $st3 = $dbConn->prepare($item_sql);
                                     $st3->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
                                     $st3->execute();
@@ -653,12 +653,12 @@
                             <!-- Product Slider -->
                             <div class="product-gallery">
                                 <div class="quickview-slider-active">
-                                    <!-- <div class="single-slider img">
-                                        <!- <img src="https://via.placeholder.com/569x528" alt="#"> ->
+                                    <div class="single-slider img1">
+                                        <!-- <img src="https://via.placeholder.com/569x528" alt="#"> -->
                                     </div>
-                                    <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
-                                    </div> -->
+                                    <div class="single-slider img2">
+                                        <!-- <img src="https://via.placeholder.com/569x528" alt="#"> -->
+                                    </div>
                                     <!-- <div class="single-slider">
                                         <img src="https://via.placeholder.com/569x528" alt="#">
                                     </div>

@@ -31,7 +31,7 @@ $('#pagination-container').pagination({
 });
 $(document).ready(function () {
 
-    var regExpr = /[&\/\\#, +()$~%.'":*?<>{}-]/g;
+    var regExpr = /[&\/\\#, +()$~%.'"・:*?<>{}-]/g;
     console.log($('.side-sub-category').text());
     var subCat = $('.side-sub-category');
     var subCat_Arr = subCat.map(function() {
@@ -63,7 +63,7 @@ $(document).ready(function () {
         var price = $(this).parent().parent().parent().parent().find('.hide-price').text();
         var img1 = $(this).parent().parent().parent().parent().find('.hide-img1').text();
         var img2 = $(this).parent().parent().parent().parent().find('.hide-img2').text();
-        console.log(itemName, mainType, subType, gender, season, brand, size, color, country, description, price);
+        console.log(itemName, mainType, subType, gender, season, brand, size, color, country, description, price, img1, img2);
         // var r = '&commat;';
         $('.detail-itemName').text(itemName);
         $('.detail-main-sub').text(`${mainType} >> ${subType}`);
@@ -75,7 +75,7 @@ $(document).ready(function () {
         $('.detail-country').text(country);
         $('.detail-description').text(description);
         $('.detail-price').text(price);
-        $('.img').append(`<img src="./images/items/${img1}" alt="#">`)
-        $('.img').append(`<img src="./images/items/${img2}" alt="#">`)
+        $('.img1') .html(`<img src="./images/items/${img1}" alt="#">`)
+        $('.img2').html(`<img src="./images/items/${img2}" alt="#">`)
     })
 })

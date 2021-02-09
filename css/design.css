@@ -580,6 +580,15 @@ p {
     word-break: break-all;
 }
 
+.img1{
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+.img2{
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
 .number-of-item {
     max-width: 100px;
     margin-right: 45px;
