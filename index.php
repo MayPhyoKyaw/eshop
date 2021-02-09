@@ -365,34 +365,65 @@
                     </div>
                     <div class="owl-carousel popular-slider">
                         <!-- Start Single Product -->
+                        <?php 
+                            try {
+                                $hot_item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE price > 2600" ;
+                                $st3 = $dbConn->prepare($hot_item_sql);
+                                $st3->execute();
+
+                                foreach ($st3->fetchAll() as $row) {
+                        ?>
                         <div class="single-product">
                             <div class="product-img">
                                 <a href="product-details.html">
-                                    <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
-                                    <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
+                                    <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
+                                    <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                     <span class="out-of-stock">Hot</span>
                                 </a>
                                 <div class="button-head">
                                     <div class="product-action">
-                                        <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
-                                        <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
-                                        <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
+                                        <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view-detail"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                        <!-- <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                        <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                     </div>
                                     <div class="product-action-2">
-                                        <a title="Add to cart" href="cart.html">Add to cart</a>
+                                        <form action="" method="post">
+                                            <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
+                                            <a title="Add to cart" href="#">
+                                                <input type="submit" name="add_to_cart" value="Add to Cart" />
+                                            </a>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-content">
-                                <h3><a href="product-details.html">Black Sunglass For Women</a></h3>
+                                <h3><a href="product-details.html"><?php echo $row['color'] . "\t" . $row['item_name'] ?></a></h3>
                                 <div class="product-price">
-                                    <span class="old">$60.00</span>
-                                    <span>$50.00</span>
+                                    <!-- <span class="old"></span> -->
+                                    <span><?php echo "￥" . number_format($row['price'], 2) ?></span>
                                 </div>
                             </div>
+                            <span class="hide hide-itemName"><?php echo $row['item_name'];?></span>
+                            <span class="hide hide-size"><?php echo $row['size_name'];?></span>
+                            <span class="hide hide-gender"><?php echo $row['gender'];?></span>
+                            <span class="hide hide-country"><?php echo $row['country'];?></span>
+                            <span class="hide hide-season"><?php echo $row['season_name'];?></span>
+                            <span class="hide hide-brand"><?php echo $row['brand_name'];?></span>
+                            <span class="hide hide-color"><?php echo $row['color'];?></span>
+                            <span class="hide hide-description"><?php echo $row['description'];?></span>
+                            <span class="hide hide-largeCat"><?php echo $row['b_catName'];?></span>
+                            <span class="hide hide-smallCat"><?php echo $row['s_catName'];?></span>
+                            <span class="hide hide-img1"><?php echo $row['item_img1'];?></span>
+                            <span class="hide hide-img2"><?php echo $row['item_img2'];?></span>
                         </div>
+                        <?php 
+                                    } 
+                                }catch (PDOException $e) {
+                                    echo "There is some problem in connection: " . $e->getMessage();
+                                }
+                        ?>
                         <!-- End Single Product -->
-                        <!-- Start Single Product -->
+                        <!-- Start Single Product
                         <div class="single-product">
                             <div class="product-img">
                                 <a href="product-details.html">
@@ -418,8 +449,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
+                        <!- End Single Product ->
+                        <!- Start Single Product ->
                         <div class="single-product">
                             <div class="product-img">
                                 <a href="product-details.html">
@@ -445,8 +476,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End Single Product -->
-                        <!-- Start Single Product -->
+                        <!- End Single Product ->
+                        <!- Start Single Product ->
                         <div class="single-product">
                             <div class="product-img">
                                 <a href="product-details.html">
@@ -470,7 +501,7 @@
                                     <span>$50.00</span>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- End Single Product -->
                     </div>
                 </div>
@@ -479,7 +510,142 @@
     </div>
     <!-- End Most Popular Area -->
 
-    <section class="cown-down">
+    <?php 
+        try {
+            $database = new Connection();
+            $db = $database->openConnection();
+            
+            if(isset($_POST["add_to_cart"])) {
+                $id = $_POST['cart_itemId'];
+                // echo $id;
+                $stm = $db->prepare("INSERT INTO cart (item_id, c_code, quantity) 
+                            VALUES ( :cart_itemId, 100, 1)") ;
+                // inserting a record
+                $stm->execute(
+                    array(
+                        ':cart_itemId' => $_POST['cart_itemId'], 
+                    )
+                );
+            }
+        }catch (PDOException $e) {
+            echo "There is some problem in connection: " . $e->getMessage();
+        }
+    ?>
+
+    <!-- Modal -->
+   <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row no-gutters">
+                        <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 ">
+                            <!-- Product Slider -->
+                            <div class="product-gallery">
+                                <div class="quickview-slider-active">
+                                    <div class="single-slider img1">
+                                        <!-- <img src="https://via.placeholder.com/569x528" alt="#"> -->
+                                    </div>
+                                    <div class="single-slider img2">
+                                        <!-- <img src="https://via.placeholder.com/569x528" alt="#"> -->
+                                    </div>
+                                    <!-- <div class="single-slider">
+                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                    </div>
+                                    <div class="single-slider">
+                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                    </div> -->
+                                </div>
+                            </div>
+                            <!-- End Product slider -->
+                        </div>
+                        <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="quickview-content">
+                                <h2>Detail</h2>
+                                <!-- <div class="quickview-ratting-review">
+                                    <div class="quickview-stock">
+                                        <span><i class="fa fa-check-circle-o"></i> in stock</span>
+                                    </div>
+                                </div> -->
+                                <div>
+                                    <span class="important-note">※割引詳細</span> </br>
+                                    <span class="important-note">※サイズ交換</span> </br>
+                                    <span class="important-note">※Test</span> </br>
+                                </div>
+                                <!-- detail grid table -->
+                                <div class="detail-grid-container">
+                                    <div class="detail-items">Stock</div>
+                                    <div class="detail-items">
+                                        <div class="quickview-stock">
+                                            <span><i class="fa fa-check-circle-o"></i> in stock</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="detail-items">Item Name</div>
+                                    <div class="detail-items detail-itemName"></div>
+
+                                    <div class="detail-items">Collection</div>
+                                    <div class="detail-items detail-main-sub"></div>
+
+                                    <div class="detail-items">Gender</div>
+                                    <div class="detail-items detail-gender"></div>
+
+                                    <div class="detail-items">Season</div>
+                                    <div class="detail-items detail-season"></div>
+
+                                    <div class="detail-items">Brand</div>
+                                    <div class="detail-items detail-brand"></div>
+
+                                    <div class="detail-items">Size</div>
+                                    <div class="detail-items detail-size"></div>
+
+                                    <div class="detail-items">Color</div>
+                                    <div class="detail-items detail-color"></div>
+
+                                    <div class="detail-items">Country</div>
+                                    <div class="detail-items detail-country"></div>
+
+                                    <div class="detail-items">Description</div>
+                                    <div class="detail-items detail-description"></div>
+                                    
+                                    <div class="detail-items">Price</div>
+                                    <div class="detail-items detail-price"></div>
+                                    
+                                    <div class="detail-items">Quantity</div>
+                                    <div class="detail-items">
+                                        <input class="number-of-item" name="somename" value="1"
+                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                            type = "number"
+                                            maxlength = "2"
+                                        />
+                                        <button type="button" class="btn btn-outline-primary btn-sm number-btn">カートに入れる</button>
+                                    </div>
+                                </div>
+
+                                <div class="add-to-cart">
+                                    <a href="#" class="btn">Add to cart</a>
+                                </div>
+                                <!-- <div class="default-social">
+                                    <h4 class="share-now">Share:</h4>
+                                    <ul>
+                                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a class="youtube" href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                        <li><a class="dribbble" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal end -->
+
+    <!-- <section class="cown-down">
         <div class="section-inner ">
             <div class="container-fluid">
                 <div class="row">
@@ -509,120 +675,7 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row no-gutters">
-                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                            <!-- Product Slider -->
-                            <div class="product-gallery">
-                                <div class="quickview-slider-active">
-                                    <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
-                                    </div>
-                                    <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
-                                    </div>
-                                    <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
-                                    </div>
-                                    <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Product slider -->
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                            <div class="quickview-content">
-                                <h2>Flared Shift Dress</h2>
-                                <div class="quickview-ratting-review">
-                                    <div class="quickview-ratting-wrap">
-                                        <div class="quickview-ratting">
-                                            <i class="yellow fa fa-star"></i>
-                                            <i class="yellow fa fa-star"></i>
-                                            <i class="yellow fa fa-star"></i>
-                                            <i class="yellow fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <a href="#"> (1 customer review)</a>
-                                    </div>
-                                    <div class="quickview-stock">
-                                        <span><i class="fa fa-check-circle-o"></i> in stock</span>
-                                    </div>
-                                </div>
-                                <h3>$29.00</h3>
-                                <div class="quickview-peragraph">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui nemo ipsum numquam.</p>
-                                </div>
-                                <div class="size">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <h5 class="title">Size</h5>
-                                            <select>
-													<option selected="selected">s</option>
-													<option>m</option>
-													<option>l</option>
-													<option>xl</option>
-												</select>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <h5 class="title">Color</h5>
-                                            <select>
-													<option selected="selected">orange</option>
-													<option>purple</option>
-													<option>black</option>
-													<option>pink</option>
-												</select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="quantity">
-                                    <!-- Input Order -->
-                                    <div class="input-group">
-                                        <div class="button minus">
-                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-													<i class="ti-minus"></i>
-												</button>
-                                        </div>
-                                        <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000" value="1">
-                                        <div class="button plus">
-                                            <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
-													<i class="ti-plus"></i>
-												</button>
-                                        </div>
-                                    </div>
-                                    <!--/ End Input Order -->
-                                </div>
-                                <div class="add-to-cart">
-                                    <a href="#" class="btn">Add to cart</a>
-                                    <a href="#" class="btn min"><i class="ti-heart"></i></a>
-                                    <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
-                                </div>
-                                <div class="default-social">
-                                    <h4 class="share-now">Share:</h4>
-                                    <ul>
-                                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a class="youtube" href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                        <li><a class="dribbble" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal end -->
+    </section> -->
 
     <!-- Start Footer Area -->
     <footer class="footer">

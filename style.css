@@ -2227,6 +2227,7 @@ Version:1.0
     height: 52px;
     position: relative;
     top: 2px;
+    padding-right: 8px;
 }
 
 .single-product .product-img .product-action a:last-child {
@@ -2323,6 +2324,7 @@ Version:1.0
     border-right-style: hidden;
     border-left-style: hidden;
     border-bottom-style: hidden;
+    padding-left: 10px;
 }
 
 .single-product .product-img .product-action-2 a input:hover {

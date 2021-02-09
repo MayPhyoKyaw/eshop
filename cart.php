@@ -322,22 +322,24 @@
                                     <td class="product-des" data-title="Description">
                                         <p class="product-name">
                                             <?php 
-                                                echo $row['b_catName'] . "</br> " . $row['s_catName'] . " </br> " . $row['item_name']; 
+                                                echo $row['b_catName'] . "  &#8594;  " . $row['s_catName'] . " <br/> " . $row['item_name']; 
                                                 
-                                                if ($row['size_name'] === "Small")
+                                                if ($row['size_name'] === "S")
                                                     echo "<span class='small-size'>S</span>";
-                                                elseif ($row['size_name'] === "Medium")
+                                                elseif ($row['size_name'] === "M")
                                                     echo "<span class='medium-size'>M</span>";
-                                                elseif ($row['size_name'] === "Large")
+                                                elseif ($row['size_name'] === "L")
                                                     echo "<span class='large-size'>L</span>";
-                                                elseif ($row['size_name'] === "Xlarge")
-                                                    echo "<span class='xlarge-size'>XL</span>";
+                                                elseif ($row['size_name'] === "LL")
+                                                    echo "<span class='xlarge-size'>LL</span>";
+                                                elseif ($row['size_name'] === "XXL")
+                                                    echo "<span class='xlarge-size'>XXL</span>";
                                                 else 
                                                     echo "";                                                
                                             ?>
                                             <!-- <span class='small-size'>S</span> -->
                                         </p>
-                                        <p class="product-des"><?php echo $row['size_name']?></p>
+                                        <!-- <p class="product-des"><?php //echo $row['size_name']?></p> -->
                                     </td>
                                     <td class="color" data-title="Color"><span><?php echo $row['color']; ?></span></td>
                                     <td class="price" data-title="Price"><span>￥<?php echo number_format($row['price'], 2); ?></span></td>

@@ -98,7 +98,7 @@
                     <div class="col-lg-2 col-md-2 col-12">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
+                            <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
                         </div>
                         <!--/ End Logo -->
                         <!-- Search Form -->
@@ -238,12 +238,12 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="index.php">Home</a></li>
                                                 <li><a href="about.html">About Us</a></li>
                                                 <li><a href="cart.php">My Cart</a></li>
                                                 <li class="active"><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="cart.html">My Cart</a></li>
+                                                        <li><a href="cart.php">My Cart</a></li>
                                                         <li><a href="checkout.html">Order History</a></li>
                                                     </ul>
                                                 </li>

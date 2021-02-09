@@ -187,7 +187,7 @@
                             <div id="all_Category" class="all-category">
                                 <h3 class="cat-heading" id="toggle"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                                 <ul id="main_Category" class="main-category" style="display: none;">
-                                <?php 
+                                    <?php 
                                         try {
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
@@ -311,7 +311,7 @@
                     <div class="row search-product-wrapper">
                         <?php                             
                             try {
-                                $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, price, sale_price FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN sales ON i.sale_id = sales.sale_id WHERE sales.sale_rate <> '0%'";
+                                $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, price, sale_price FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN sales ON i.sale_id = sales.sale_id WHERE sales.sale_rate <> '0%' AND sales.sale_condition = 1";
                                 $st = $dbConn->prepare($item_sql);
                                 $st->execute();
                                 foreach ($st->fetchAll() as $row) {
