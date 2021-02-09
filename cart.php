@@ -360,9 +360,9 @@
                                     </td>
                                     <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
                                     <td class="action" data-title="Remove"><a href="#">
-                                        <form action='' method='post'>
+                                        <form method="post" action="">
                                             <input type="hidden" name="cartItemId" value="<?php echo $row['item_id']; ?>" />
-                                            <button type="submit" name="delete" class="cart-item-delete-btn" onclick="deleteRow(this)">
+                                            <button type="submit" name="delete" class="cart-item-delete-btn">
                                                 <i class="ti-trash remove-icon"></i>
                                             </button>
                                         </form> 
@@ -374,90 +374,7 @@
                                     echo "There is some problem in connection: " . $e->getMessage();
                                 }
                             ?>
-                            <!-- <tr>
-                                <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
-                                <td class="product-des" data-title="Description">
-                                    <p class="product-name">Women Dress <span class="medium-size">M</span></p>
-                                    <p class="product-des">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
-                                </td>
-                                <td class="color" data-title="Color"><span>Red</span></td>
-                                <td class="price" data-title="Price"><span>￥120.00</span></td>
-                                <td class="qty" data-title="Qty">
-                                    <!- Input Order ->
-                                    <div class="input-group">
-                                        <div class="button minus">
-                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[2]">
-												<i class="ti-minus"></i>
-											</button>
-                                        </div>
-                                        <input type="text" name="quant[2]" class="input-number" data-min="1" data-max="5" value="1">
-                                        <div class="button plus">
-                                            <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[2]">
-												<i class="ti-plus"></i>
-											</button>
-                                        </div>
-                                    </div>
-                                    <!- End Input Order ->
-                                </td>
-                                <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
-                                <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
-                                <td class="product-des" data-title="Description">
-                                    <p class="product-name">Women Dress <span class="large-size">L</span></p>
-                                    <p class="product-des">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
-                                </td>
-                                <td class="color" data-title="Color"><span>Red </span></td>
-                                <td class="price" data-title="Price"><span>￥160.00</span></td>
-                                <td class="qty" data-title="Qty">
-                                    <!- Input Order ->
-                                    <div class="input-group">
-                                        <div class="button minus">
-                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[3]">
-												<i class="ti-minus"></i>
-											</button>
-                                        </div>
-                                        <input type="text" name="quant[3]" class="input-number" data-min="1" data-max="5" value="1">
-                                        <div class="button plus">
-                                            <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[3]">
-												<i class="ti-plus"></i>
-											</button>
-                                        </div>
-                                    </div>
-                                    <!- End Input Order ->
-                                </td>
-                                <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
-                                <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
-                                <td class="product-des" data-title="Description">
-                                    <p class="product-name">Women Dress <span class="xlarge-size">XL</span></p>
-                                    <p class="product-des">Maboriosam in a tonto nesciung eget distingy magndapibus.</p>
-                                </td>
-                                <td class="color" data-title="Color"><span>Red </span></td>
-                                <td class="price" data-title="Price"><span>￥210.00</span></td>
-                                <td class="qty" data-title="Qty">
-                                    <!- Input Order ->
-                                    <div class="input-group">
-                                        <div class="button minus">
-                                            <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[4]">
-												<i class="ti-minus"></i>
-											</button>
-                                        </div>
-                                        <input type="text" name="quant[4]" class="input-number" data-min="1" data-max="5" value="1">
-                                        <div class="button plus">
-                                            <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[4]">
-												<i class="ti-plus"></i>
-											</button>
-                                        </div>
-                                    </div>
-                                    <!- End Input Order ->
-                                </td>
-                                <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
-                                <td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
-                            </tr> -->
+                            
                         </tbody>
                     </table>
                     <!--/ End Shopping Summery -->
@@ -474,6 +391,7 @@
                         $del_st = $dbConn->prepare($del_sql);
                         $del_st->bindParam( ":del_id", $del_id, PDO::PARAM_STR);
                         $del_st->execute();
+                        echo "<meta http-equiv='refresh' content='0'>";
                     } 
                 } catch (PDOException $e) {
                    echo "There is some problem in connection: " . $e->getMessage();
