@@ -445,7 +445,7 @@
                                 try {
                                     $subCat = $_GET['small_category'];
 
-                                    $filter_item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, price FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id  WHERE sc.s_catName = :subCat AND s.size_name = :size" ;
+                                    $filter_item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sc.s_catName = :subCat AND s.size_name = :size" ;
                                     $st4 = $dbConn->prepare($filter_item_sql);
                                     $st4->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
                                     $st4->bindParam( ":size", $size, PDO::PARAM_STR);
@@ -462,7 +462,7 @@
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">
-                                                <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                                 <!-- <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
@@ -491,8 +491,19 @@
                                             ?>
                                         </a></h3>
                                         <div class="product-price">
-                                            <span>￥<?php echo number_format($row3['price'], 2); ?></span>
+                                            <span class="hide-price">￥<?php echo number_format($row3['price'], 2); ?></span>
                                         </div>
+                                        <span class="hide hide-itemName"><?php echo $row3['item_name'];?></span>
+                                        <span class="hide hide-size"><?php echo $row3['size_name'];?></span>
+                                        <span class="hide hide-gender"><?php echo $row3['gender'];?></span>
+                                        <span class="hide hide-country"><?php echo $row3['country'];?></span>
+                                        <span class="hide hide-season"><?php echo $row3['season_name'];?></span>
+                                        <span class="hide hide-brand"><?php echo $row3['brand_name'];?></span>
+                                        <span class="hide hide-color"><?php echo $row3['color'];?></span>
+                                        <span class="hide hide-description"><?php echo $row3['description'];?></span>
+                                        <span class="hide hide-largeCat"><?php echo $row3['b_catName'];?></span>
+                                        <span class="hide hide-smallCat"><?php echo $row3['s_catName'];?></span>
+                                        <span class="hide hide-img"><?php echo $row3['item_img1'];?></span>
                                         <div class="image1">
                                             <span>
                                                 <?php
@@ -512,7 +523,7 @@
                                 try {
                                     $subCat = $_GET['small_category'];
 
-                                    $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, price FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id  WHERE sc.s_catName = :subCat" ;
+                                    $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sc.s_catName = :subCat" ;
                                     $st3 = $dbConn->prepare($item_sql);
                                     $st3->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
                                     $st3->execute();
@@ -528,7 +539,7 @@
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">
-                                                <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                                 <!-- <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
@@ -557,8 +568,19 @@
                                             ?>
                                         </a></h3>
                                         <div class="product-price">
-                                            <span>￥<?php echo number_format($row['price'], 2); ?></span>
+                                            <span class="hide-price">￥<?php echo number_format($row['price'], 2); ?></span>
                                         </div>
+                                        <span class="hide hide-itemName"><?php echo $row['item_name'];?></span>
+                                        <span class="hide hide-size"><?php echo $row['size_name'];?></span>
+                                        <span class="hide hide-gender"><?php echo $row['gender'];?></span>
+                                        <span class="hide hide-country"><?php echo $row['country'];?></span>
+                                        <span class="hide hide-season"><?php echo $row['season_name'];?></span>
+                                        <span class="hide hide-brand"><?php echo $row['brand_name'];?></span>
+                                        <span class="hide hide-color"><?php echo $row['color'];?></span>
+                                        <span class="hide hide-description"><?php echo $row['description'];?></span>
+                                        <span class="hide hide-largeCat"><?php echo $row['b_catName'];?></span>
+                                        <span class="hide hide-smallCat"><?php echo $row['s_catName'];?></span>
+                                        <span class="hide hide-img"><?php echo $row['item_img1'];?></span>
                                         <div class="image1">
                                             <span>
                                                 <?php
@@ -629,12 +651,12 @@
                             <!-- Product Slider -->
                             <div class="product-gallery">
                                 <div class="quickview-slider-active">
-                                    <div class="single-slider">
-                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                    <div class="single-slider img">
+                                        <!-- <img src="https://via.placeholder.com/569x528" alt="#"> -->
                                     </div>
-                                    <div class="single-slider">
+                                    <!-- <div class="single-slider">
                                         <img src="https://via.placeholder.com/569x528" alt="#">
-                                    </div>
+                                    </div> -->
                                     <!-- <div class="single-slider">
                                         <img src="https://via.placeholder.com/569x528" alt="#">
                                     </div>
@@ -666,24 +688,45 @@
                                             <span><i class="fa fa-check-circle-o"></i> in stock</span>
                                         </div>
                                     </div>
-                                    <div class="detail-items">BB</div>
-                                    <div class="detail-items"></div>
-                                    <div class="detail-items">CC</div>
-                                    <div class="detail-items"></div>
-                                    <div class="detail-items">DD</div>
-                                    <div class="detail-items"></div>
-                                    <div class="detail-items">EE</div>
-                                    <div class="detail-items"></div>
-                                    <!-- <div class="detail-items">FF</div>
-                                    <div class="detail-items"></div> -->
-                                    <div class="detail-items">GG</div>
+
+                                    <div class="detail-items">Item Name</div>
+                                    <div class="detail-items detail-itemName"></div>
+
+                                    <div class="detail-items">Collection</div>
+                                    <div class="detail-items detail-main-sub"></div>
+
+                                    <div class="detail-items">Gender</div>
+                                    <div class="detail-items detail-gender"></div>
+
+                                    <div class="detail-items">Season</div>
+                                    <div class="detail-items detail-season"></div>
+
+                                    <div class="detail-items">Brand</div>
+                                    <div class="detail-items detail-brand"></div>
+
+                                    <div class="detail-items">Size</div>
+                                    <div class="detail-items detail-size"></div>
+
+                                    <div class="detail-items">Color</div>
+                                    <div class="detail-items detail-color"></div>
+
+                                    <div class="detail-items">Country</div>
+                                    <div class="detail-items detail-country"></div>
+
+                                    <div class="detail-items">Description</div>
+                                    <div class="detail-items detail-description"></div>
+                                    
+                                    <div class="detail-items">Price</div>
+                                    <div class="detail-items detail-price"></div>
+                                    
+                                    <div class="detail-items">Quantity</div>
                                     <div class="detail-items">
-                                    <input class="number-of-item" name="somename" value="1"
-                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                        type = "number"
-                                        maxlength = "2"
-                                    />
-                                    <button type="button" class="btn btn-outline-primary btn-sm number-btn">カートに入れる</button>
+                                        <input class="number-of-item" name="somename" value="1"
+                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                            type = "number"
+                                            maxlength = "2"
+                                        />
+                                        <button type="button" class="btn btn-outline-primary btn-sm number-btn">カートに入れる</button>
                                     </div>
                                 </div>
 

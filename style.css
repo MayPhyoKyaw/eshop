@@ -2775,6 +2775,9 @@ Version:1.0
    End Shop Sidebar CSS
 ========================================*/
 
+.hide {
+    display: none;
+}
 
 /*======================================
    Start Shop Single CSS
