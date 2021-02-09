@@ -9,6 +9,13 @@
 }
 
 
+/* button */
+
+button {
+    cursor: pointer !important;
+}
+
+
 /* navigation */
 
 #toggle {
@@ -599,6 +606,7 @@ p {
     outline: none !important;
     box-shadow: none;
 }
+
 
 /* about */
 
