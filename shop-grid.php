@@ -462,7 +462,7 @@
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">
-                                                <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                                 <!-- <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
@@ -528,7 +528,7 @@
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">
-                                                <a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
                                                 <!-- <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
@@ -617,7 +617,7 @@
     ?>
 
    <!-- Modal -->
-   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+   <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -660,10 +660,10 @@
                                 </div>
                                 <!-- detail grid table -->
                                 <div class="detail-grid-container">
-                                    <div class="detail-items">AA</div>
+                                    <div class="detail-items">Stock</div>
                                     <div class="detail-items">
                                         <div class="quickview-stock">
-                                        <span><i class="fa fa-check-circle-o"></i> in stock</span>
+                                            <span><i class="fa fa-check-circle-o"></i> in stock</span>
                                         </div>
                                     </div>
                                     <div class="detail-items">BB</div>
