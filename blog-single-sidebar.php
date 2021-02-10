@@ -172,6 +172,9 @@
                 </div>
             </div>
         </div>
+        <?php 
+            include_once 'db_connection.php';
+        ?>
         <!-- Header Inner -->
         <div class="header-inner">
             <div class="container">
@@ -181,56 +184,47 @@
                             <div id="all_Category" class="all-category">
                                 <h3 class="cat-heading" id="toggle"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
                                 <ul id="main_Category" class="main-category" style="display: none;">
-                                    <li><span class="main-categoryName">トップス <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">ジャケット <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">BBB</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">パンツ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">ホールインワソ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">スカート <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">フォマルスーツ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">バッグ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">シューズ <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">財布 <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
-                                    <li><span class="main-categoryName">帽子 <i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                                        <ul class="sub-category">
-                                            <li><span class="sub-categoryName">AAA</span></li>
-                                        </ul>
-                                    </li>
+                                <?php 
+                                        try {
+                                            $database = new Connection();
+                                            $dbConn = $database->openConnection();
+                                            $mainCat_sql = "SELECT * FROM b_category" ;
+                                            $st1 = $dbConn->prepare($mainCat_sql);
+                                            $st1->execute();
+                                            $mainCat = array();
+                                            $i = 0;
+                                            foreach ($st1->fetchAll() as $row1) {
+                                    ?>
+                                        <li><span class="main-categoryName"><?php echo $row1['b_catName']; ?><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                            <?php 
+                                                $mainCat = $row1['b_categoryID'];
+                                                $subCat_sql = "SELECT b_categoryID, GROUP_CONCAT(s_catName) FROM s_category WHERE b_categoryID = :mainCat GROUP BY b_categoryID";
+                                                $st2 = $dbConn->prepare($subCat_sql);
+                                                $st2->bindParam( ":mainCat", $mainCat, PDO::PARAM_STR);
+                                                $st2->execute();
+                                                $subCatArray = array();
+                                                foreach ($st2->fetchAll() as $row2) {
+                                                    $subCatName = $row2['GROUP_CONCAT(s_catName)'];
+                                                    $subCatArray = explode(",", $subCatName);
+                                                    $i = 0;
+                                            ?>
+                                                <ul class="sub-category">
+                                                    <?php while($i < Count($subCatArray)){ ?>
+                                                        <a href="shop-grid.php?large_category=<?php echo $row1['b_catName']; ?>&small_category=<?php echo $subCatArray[$i]; ?>">
+                                                            <li><span class="sub-categoryName"><?php echo $subCatArray[$i]; ?></span></li>
+                                                        </a>
+                                                    <?php $i++;  } ?>
+                                                </ul>
+                                            <?php 
+                                                }
+                                            ?>
+                                        </li>
+                                    <?php 
+                                            } 
+                                        }catch (PDOException $e) {
+                                            echo "There is some problem in connection: " . $e->getMessage();
+                                        }
+                                    ?>
                                 </ul>
                             </div>
                         </div>

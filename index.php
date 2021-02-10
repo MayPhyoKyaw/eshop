@@ -403,6 +403,7 @@
                                     <span class="hide-price"><?php echo "￥" . number_format($row['price'], 2) ?></span>
                                 </div>
                             </div>
+                            <span class="hide hide-itemId"><?php echo $row['item_id'];?></span>
                             <span class="hide hide-itemName"><?php echo $row['item_name'];?></span>
                             <span class="hide hide-size"><?php echo $row['size_name'];?></span>
                             <span class="hide hide-gender"><?php echo $row['gender'];?></span>
@@ -625,7 +626,12 @@
                                 </div>
 
                                 <div class="add-to-cart">
-                                    <a href="#" class="btn">Add to cart</a>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="cart_itemId" value="" id="cart_itemId" />
+                                        <button class="btn" href="#" type="submit" name="add_to_cart">
+                                            Add to Cart
+                                        </button>
+                                    </form>
                                 </div>
                                 <!-- <div class="default-social">
                                     <h4 class="share-now">Share:</h4>

@@ -50,6 +50,7 @@ $(document).ready(function () {
 
     $(".view").click(function () {
         // console.log($(this).parent().parent().parent().parent().html());
+        var itemId = $(this).parent().parent().parent().parent().find('.hide-itemId').text();
         var itemName = $(this).parent().parent().parent().parent().find('.hide-itemName').text();
         var mainType = $(this).parent().parent().parent().parent().find('.hide-largeCat').text();
         var subType = $(this).parent().parent().parent().parent().find('.hide-smallCat').text();
@@ -75,7 +76,9 @@ $(document).ready(function () {
         $('.detail-country').text(country);
         $('.detail-description').text(description);
         $('.detail-price').text(price);
-        $('.img1') .html(`<img src="./images/items/${img1}" alt="#">`)
-        $('.img2').html(`<img src="./images/items/${img2}" alt="#">`)
+        $('.img1') .html(`<img src="./images/items/${img1}" alt="#">`);
+        $('.img2').html(`<img src="./images/items/${img2}" alt="#">`);
+        $('#cart_itemId').val(itemId);
+        console.log(itemId);
     })
 })

@@ -312,7 +312,7 @@
                         <tbody>
                             <?php 
                                 try{
-                                    $cart_sql = "SELECT item_img1, item_name, s_catName, b_catName, price, size_name, color, c.item_id, description FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category bc ON sc.b_categoryID = bc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id";
+                                    $cart_sql = "SELECT item_img1, item_name, s_catName, b_catName, price, size_name, color, c.item_id, description, stock FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category bc ON sc.b_categoryID = bc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id";
                                     $st = $dbConn->prepare($cart_sql);
                                     $st->execute();
                                     foreach ($st->fetchAll() as $row) {
@@ -337,14 +337,14 @@
                                                     echo "<span class='cart-item-name'>" . $row['item_name'] . "</span> <span class='xlarge-size'>LL</span> <br/>" . $row['b_catName'] . "  &#8594;  " . $row['s_catName']; 
                                                     // echo "<span class='xlarge-size'>LL</span>";
                                                 elseif ($row['size_name'] === "XXL")
-                                                    echo "<span class='cart-item-name'>" . $row['item_name'] . "</span> <span class='xlarge-size'>XXL</span> <br/>" . $row['b_catName'] . "  &#8594;  " . $row['s_catName']; 
+                                                    echo "<span class='cart-item-name'>" . $row['item_name'] . "</span> <span class='xxlarge-size'>XXL</span> <br/>" . $row['b_catName'] . "  &#8594;  " . $row['s_catName']; 
                                                     // echo "<span class='xlarge-size'>XXL</span>";
                                                 else 
                                                     echo "";                                                
                                             ?>
                                             <!-- <span class='small-size'>S</span> -->
                                         </p>
-                                        <!-- <p class="product-des"><?php //echo $row['size_name']?></p> -->
+                                        <!-- <p class="product-des"><?php //echo $row['stock']?></p> -->
                                     </td>
                                     <td class="color" data-title="Color"><span><?php echo $row['color']; ?></span></td>
                                     <td class="price" data-title="Price"><span>￥<?php echo number_format($row['price'], 2); ?></span></td>
@@ -356,7 +356,8 @@
                                                     <i class="ti-minus"></i>
                                                 </button>
                                             </div>
-                                            <input type="text" name="quant[<?php echo $row['item_id']; ?>]" class="input-number" data-min="1" data-max="5" value="1">
+                                            <span class="hide stock"><?php echo $row['stock']; ?></span>
+                                            <input type="text" name="quant[<?php echo $row['item_id']; ?>]" class="input-number" data-min="1" data-max="<?php echo $row['stock']; ?>" value="1">
                                             <div class="button plus">
                                                 <button type="button" class="btn btn-primary btn-number plus-btn" data-type="plus" data-field="quant[<?php echo $row['item_id']; ?>]">
                                                     <i class="ti-plus"></i>

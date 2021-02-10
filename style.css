@@ -3093,6 +3093,10 @@ Version:1.0
     color: #fff;
     display: inline-block;
     font-weight: 500;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
 }
 
 .shop.single .add-to-cart .btn:hover {

@@ -464,6 +464,19 @@ button {
     font-weight: bolder;
     font-size: 12px;
     border-radius: 20px;
+    background: rgb(240, 128, 203);
+    color: rgb(255, 255, 255);
+    padding: 0px 5px 0px 6px;
+    margin-left: 5px;
+    cursor: default;
+}
+
+.xxlarge-size {
+    display: inline-block;
+    font-family: inherit;
+    font-weight: bolder;
+    font-size: 12px;
+    border-radius: 20px;
     background: rgb(240, 173, 128);
     color: rgb(255, 255, 255);
     padding: 0px 5px 0px 6px;
@@ -586,6 +599,12 @@ p {
     font-size: 14px;
     text-align: center;
     word-break: break-all;
+}
+
+.detail-items span.old-price {
+    text-decoration: line-through;
+    opacity: .6;
+    margin-right: 2px;
 }
 
 .img1{

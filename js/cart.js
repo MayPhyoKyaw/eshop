@@ -25,7 +25,6 @@ $(document).ready(function () {
     quantity = parseInt($(this).siblings('.input-number').val());
     // quantity--;
     // $(this).siblings('.input-number').val(quantity);
-    // console.log(quantity);
     var priceStr = $(this).parent().parent().parent().find('.price').text();
     var price = priceStr.replace(regExpr, "");
     // console.log(parseFloat(price).toFixed(2))
@@ -39,7 +38,9 @@ $(document).ready(function () {
     // quantity++;
     // $(this).siblings('.input-number').val(quantity);
     // console.log(quantity);
-    if (quantity == 5) {
+    var stock = $(this).siblings('.stock').text();
+    console.log(parseInt(stock));
+    if (quantity == parseInt(stock)) {
       $('#quantity_warning').modal('show');
     }
     else {

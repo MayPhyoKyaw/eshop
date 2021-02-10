@@ -390,15 +390,15 @@
                                             <span class="count">(8)</span>
                                         </label>
                                     </li> -->
+                                    <?php 
+                                            } 
+                                        }catch (PDOException $e) {
+                                            echo "There is some problem in connection: " . $e->getMessage();
+                                        }
+                                    ?>
                                     <input type="submit" name="sizeSubmit" value="Submit" class="sizeSubmit"/>
                                 </ul>
                             </form>
-                            <?php 
-                                    } 
-                                }catch (PDOException $e) {
-                                    echo "There is some problem in connection: " . $e->getMessage();
-                                }
-                            ?>
                         </div>
                         <!--/ End Shop By Price -->
                         <!-- Single Widget -->
@@ -548,12 +548,6 @@
                                                 <?php $url= $_SERVER['REQUEST_URI']; ?>
                                                 <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row['item_id']; ?>" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
-                                                    <input type="hidden" name="cart_image" value="<?php echo $row['item_img1']; ?>" />
-                                                    <input type="hidden" name="cart_itemMainType" value="<?php echo $row['b_catName']; ?>" />
-                                                    <input type="hidden" name="cart_itemSubType" value="<?php echo $row['s_catName']; ?>" />
-                                                    <input type="hidden" name="cart_iteb_catName" value="<?php echo $row['item_name']; ?>" />
-                                                    <input type="hidden" name="cart_size_name" value="<?php echo $row['size_name']; ?>" />
-                                                    <input type="hidden" name="cart_price" value="<?php echo $row['price']; ?>" />
                                                     <a title="Add to cart" href="#">
                                                         <input type="submit" name="add_to_cart" value="Add to Cart" />
                                                     </a>
@@ -571,6 +565,7 @@
                                         <div class="product-price">
                                             <span class="hide-price">￥<?php echo number_format($row['price'], 2); ?></span>
                                         </div>
+                                        <span class="hide hide-itemId"><?php echo $row['item_id'];?></span>
                                         <span class="hide hide-itemName"><?php echo $row['item_name'];?></span>
                                         <span class="hide hide-size"><?php echo $row['size_name'];?></span>
                                         <span class="hide hide-gender"><?php echo $row['gender'];?></span>
@@ -733,7 +728,13 @@
                                 </div>
 
                                 <div class="add-to-cart">
-                                    <a href="#" class="btn">Add to cart</a>
+                                    <!-- <a href="#" class="btn">Add to cart</a> -->
+                                    <form action="" method="post">
+                                        <input type="hidden" name="cart_itemId" value="" id="cart_itemId" />
+                                        <button class="btn" href="#" type="submit" name="add_to_cart">
+                                            Add to Cart
+                                        </button>
+                                    </form>
                                 </div>
                                 <!-- <div class="default-social">
                                     <h4 class="share-now">Share:</h4>
