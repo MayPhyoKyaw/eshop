@@ -83,7 +83,7 @@
                         <!-- Top Right -->
                         <div class="right-content">
                             <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> <a href="contact.html">Store location</a></li>
+                                <li><i class="ti-location-pin"></i> <a href="contact.php">Store location</a></li>
                             </ul>
                         </div>
                         <!-- End Top Right -->
@@ -98,7 +98,7 @@
                     <div class="col-lg-2 col-md-2 col-12">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
+                            <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
                         </div>
                         <!--/ End Logo -->
                         <!-- Search Form -->
@@ -151,13 +151,13 @@
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Ring</a></h4>
+                                            <h4><a href="cart.php">Woman Ring</a></h4>
                                             <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                         </li>
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Necklace</a></h4>
+                                            <h4><a href="cart.php">Woman Necklace</a></h4>
                                             <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                         </li>
                                     </ul>
@@ -166,7 +166,7 @@
                                             <span>Total</span>
                                             <span class="total-amount">$134.00</span>
                                         </div>
-                                        <a href="checkout.html" class="btn animate">Checkout</a>
+                                        <a href="checkout.php" class="btn animate">Checkout</a>
                                     </div>
                                 </div>
                             </div> -->
@@ -244,19 +244,19 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="cart.html">My Cart</a></li>
+                                                <li><a href="index.php">Home</a></li>
+                                                <li><a href="about.php">About Us</a></li>
+                                                <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="cart.html">My Cart</a></li>
-                                                        <li><a href="checkout.html">Order History</a></li>
+                                                        <li><a href="cart.php">My Cart</a></li>
+                                                        <li><a href="checkout.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
-                                                <li class="active"><a href="sale-shop-grid.html">Sales<span class="new">New</span></a>
+                                                <li class="active"><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
                                                 </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="contact.php">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -279,8 +279,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index.html">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="shop-grid.html">Shop Grid</a></li>
+                            <li><a href="index.php">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="shop-grid.php">Shop Grid</a></li>
                         </ul>
                     </div>
                 </div>
@@ -318,7 +318,7 @@
                         <div class="col-lg-4 col-md-6 col-12 search-product-item">
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="product-details.php">
                                         <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                     </a>
@@ -334,7 +334,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">Women Hot Collection</a></h3>
+                                    <h3><a href="product-details.php">Women Hot Collection</a></h3>
                                     <div class="product-price">
                                         <span class="old">$60.00</span>
                                         <span>$50.00</span>
@@ -345,7 +345,7 @@
                         <div class="col-lg-4 col-md-6 col-12 search-product-item">
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="product-details.php">
                                         <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                     </a>
@@ -361,7 +361,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">Awesome Pink Show</a></h3>
+                                    <h3><a href="product-details.php">Awesome Pink Show</a></h3>
                                     <div class="product-price">
                                         <span>$29.00</span>
                                     </div>
@@ -371,7 +371,7 @@
                         <div class="col-lg-4 col-md-6 col-12 search-product-item">
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="product-details.php">
                                         <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                     </a>
@@ -387,7 +387,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+                                    <h3><a href="product-details.php">Awesome Bags Collection</a></h3>
                                     <div class="product-price">
                                         <span>$29.00</span>
                                     </div>
@@ -397,7 +397,7 @@
                         <div class="col-lg-4 col-md-6 col-12 search-product-item">
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="product-details.php">
                                         <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <!-- <span class="new">New</span> -->
@@ -414,7 +414,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">Women Pant Collectons</a></h3>
+                                    <h3><a href="product-details.php">Women Pant Collectons</a></h3>
                                     <div class="product-price">
                                         <span>$29.00</span>
                                     </div>
@@ -424,7 +424,7 @@
                         <div class="col-lg-4 col-md-6 col-12 search-product-item">
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="product-details.php">
                                         <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                     </a>
@@ -440,7 +440,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+                                    <h3><a href="product-details.php">Awesome Bags Collection</a></h3>
                                     <div class="product-price">
                                         <span>$29.00</span>
                                     </div>
@@ -450,7 +450,7 @@
                         <div class="col-lg-4 col-md-6 col-12 search-product-item">
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="product-details.php">
                                         <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <span class="price-dec">30% Off</span>
@@ -467,7 +467,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">Awesome Cap For Women</a></h3>
+                                    <h3><a href="product-details.php">Awesome Cap For Women</a></h3>
                                     <div class="product-price">
                                         <span>$29.00</span>
                                     </div>
@@ -477,7 +477,7 @@
                         <div class="col-lg-4 col-md-6 col-12 search-product-item">
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="product-details.php">
                                         <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                     </a>
@@ -493,7 +493,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">Polo Dress For Women</a></h3>
+                                    <h3><a href="product-details.php">Polo Dress For Women</a></h3>
                                     <div class="product-price">
                                         <span>$29.00</span>
                                     </div>
@@ -503,7 +503,7 @@
                         <div class="col-lg-4 col-md-6 col-12 search-product-item">
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="product-details.php">
                                         <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <!-- <span class="out-of-stock">Hot</span> -->
@@ -520,7 +520,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">Black Sunglass For Women</a></h3>
+                                    <h3><a href="product-details.php">Black Sunglass For Women</a></h3>
                                     <div class="product-price">
                                         <span class="old">$60.00</span>
                                         <span>$50.00</span>
@@ -531,7 +531,7 @@
                         <div class="col-lg-4 col-md-6 col-12 search-product-item">
                             <div class="single-product">
                                 <div class="product-img">
-                                    <a href="product-details.html">
+                                    <a href="product-details.php">
                                         <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                         <!-- <span class="new">New</span> -->
@@ -548,7 +548,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">Women Pant Collectons</a></h3>
+                                    <h3><a href="product-details.php">Women Pant Collectons</a></h3>
                                     <div class="product-price">
                                         <span>$29.00</span>
                                     </div>
@@ -685,7 +685,7 @@
                         <!-- Single Widget -->
                         <div class="single-footer about">
                             <div class="logo">
-                                <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
+                                <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
                             </div>
                             <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
                             <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
@@ -697,8 +697,8 @@
                         <div class="single-footer links">
                             <h4>Information</h4>
                             <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="about.php">About Us</a></li>
+                                <li><a href="contact.php">Contact Us</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -708,11 +708,11 @@
                         <div class="single-footer links">
                             <h4>Customer Service</h4>
                             <ul>
-                                <li><a href="about.html">Payment Methods</a></li>
-                                <li><a href="about.html">Money-back</a></li>
-                                <li><a href="about.html">Returns</a></li>
-                                <li><a href="about.html">Shipping</a></li>
-                                <li><a href="about.html">Privacy Policy</a></li>
+                                <li><a href="about.php">Payment Methods</a></li>
+                                <li><a href="about.php">Money-back</a></li>
+                                <li><a href="about.php">Returns</a></li>
+                                <li><a href="about.php">Shipping</a></li>
+                                <li><a href="about.php">Privacy Policy</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->

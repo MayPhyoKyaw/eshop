@@ -83,7 +83,7 @@
                         <!-- Top Right -->
                         <div class="right-content">
                             <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> <a href="contact.html">Store location</a></li>
+                                <li><i class="ti-location-pin"></i> <a href="contact.php">Store location</a></li>
                             </ul>
                         </div>
                         <!-- End Top Right -->
@@ -98,7 +98,7 @@
                     <div class="col-lg-2 col-md-2 col-12">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
+                            <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
                         </div>
                         <!--/ End Logo -->
                         <!-- Search Form -->
@@ -151,13 +151,13 @@
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Ring</a></h4>
+                                            <h4><a href="cart.php">Woman Ring</a></h4>
                                             <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                         </li>
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Necklace</a></h4>
+                                            <h4><a href="cart.php">Woman Necklace</a></h4>
                                             <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                         </li>
                                     </ul>
@@ -166,7 +166,7 @@
                                             <span>Total</span>
                                             <span class="total-amount">$134.00</span>
                                         </div>
-                                        <a href="checkout.html" class="btn animate">Checkout</a>
+                                        <a href="checkout.php" class="btn animate">Checkout</a>
                                     </div>
                                 </div>
                             </div> -->
@@ -244,19 +244,19 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li><a href="index.html">Home</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="cart.html">My Cart</a></li>
+                                                <li><a href="index.php">Home</a></li>
+                                                <li class="active"><a href="about.php">About Us</a></li>
+                                                <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="cart.html">My Cart</a></li>
-                                                        <li><a href="checkout.html">Order History</a></li>
+                                                        <li><a href="cart.php">My Cart</a></li>
+                                                        <li><a href="checkout.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
-                                                <li><a href="sale-shop-grid.html">Sales<span class="new">New</span></a>
+                                                <li><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
                                                 </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="contact.php">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -279,8 +279,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="about.html">About</a></li>
+                            <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="about.php">About</a></li>
                         </ul>
                     </div>
                 </div>
@@ -297,46 +297,49 @@
                     <div class="col-lg-16 col-12">
                         <div class="form-main">
                             <div class="title">
-                                <h4>ご希望の配送先をご確認して下さい。</h4>
-                                <p>別のお届け先に送る場合は【別の住所へ送る】を選択してください！</p>
+                                <h4>Brand Names</h4>
                             </div>
-                            <div class="card bg-light register-form">
-                                <article class="card-body checkout-register-article">
-                                    <div class="input-container">
-                                        <i class="fa fa-user icon"></i>
-                                        <input class="username" type="text" placeholder="名前" name="username" disabled="disabled">
-                                    </div>
-
-                                    <div class="input-container">
-                                        <i class="fa fa-address-book icon"></i>
-                                        <input class="address" type="text" placeholder="住所" name="address" disabled="disabled">
-                                    </div>
-
-                                    <div class="input-container">
-                                        <i class="fa fa-key icon"></i>
-                                        <input class="phone-no" type="text" placeholder="電話番号" name="phone" disabled="disabled">
-                                    </div>
-                                    <div class="input-container">
-                                        <select class="delivery-time" name="delivery-times" required>
-                                      <option value="">指定なし</option>
-                                      <option value="option1">9:00 ~ 12:00</option>
-                                      <option value="option2">13:00 ~ 17:00</option>
-                                      <option value="option3">18:00 ~ 21:00</option>
-                                      </select>
-                                        <label class="important-note">※　時間帯を選んでください</label>
-                                    </div>
-                                    <div class="input-container">
-                                        <input class="delivery-date" type="date" data-date="" data-date-format="YYYY MM DD" value="YYYY-MM-DD">
-                                        <label class="important-note">※　日付を選んでください</label>
-                                    </div>
-                                    <div class="input-container">
-                                        <a class="link-name" target="_blank" href="./register.html"><i class="fa fa-share-square-o"></i>  別の住所へ送る</a>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="send-register-btns">
-                                <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
-                                <a href="payment.html"><button type="button" id="order_confirm" class="btn btn-primary">確定</button></a>
+                            <div class="brand-grid-container">
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">AA</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">BB</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">CC</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">DD</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">EE</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">FF</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">GG</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">HH</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">II</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">JJ</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">AA</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">BB</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">CC</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">DD</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">EE</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">FF</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">GG</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">HH</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">II</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">JJ</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">AA</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">BB</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">CC</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">DD</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">EE</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">FF</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">GG</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">HH</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">II</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">JJ</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">AA</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">BB</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">CC</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">DD</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">EE</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">FF</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">GG</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">HH</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">II</a></div>
+                                <div class="brand-grid-item"><a href="search-shop-grid.php">JJ</a></div>
                             </div>
                         </div>
                     </div>
@@ -356,7 +359,7 @@
                         <!-- Single Widget -->
                         <div class="single-footer about">
                             <div class="logo">
-                                <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
+                                <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
                             </div>
                             <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
                             <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
@@ -368,8 +371,8 @@
                         <div class="single-footer links">
                             <h4>Information</h4>
                             <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="about.php">About Us</a></li>
+                                <li><a href="contact.php">Contact Us</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -379,11 +382,11 @@
                         <div class="single-footer links">
                             <h4>Customer Service</h4>
                             <ul>
-                                <li><a href="about.html">Payment Methods</a></li>
-                                <li><a href="about.html">Money-back</a></li>
-                                <li><a href="about.html">Returns</a></li>
-                                <li><a href="about.html">Shipping</a></li>
-                                <li><a href="about.html">Privacy Policy</a></li>
+                                <li><a href="about.php">Payment Methods</a></li>
+                                <li><a href="about.php">Money-back</a></li>
+                                <li><a href="about.php">Returns</a></li>
+                                <li><a href="about.php">Shipping</a></li>
+                                <li><a href="about.php">Privacy Policy</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -435,6 +438,8 @@
         </div>
     </footer>
     <!-- /End Footer Area -->
+
+
 
     <!-- Jquery -->
     <script src="js/jquery.min.js"></script>

@@ -61,8 +61,6 @@
     </div>
     <!-- End Preloader -->
 
-
-
     <!-- Header -->
     <header class="header shop">
         <!-- Topbar -->
@@ -83,7 +81,7 @@
                         <!-- Top Right -->
                         <div class="right-content">
                             <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> <a href="contact.html">Store location</a></li>
+                                <li><i class="ti-location-pin"></i> <a href="contact.php">Store location</a></li>
                             </ul>
                         </div>
                         <!-- End Top Right -->
@@ -98,7 +96,7 @@
                     <div class="col-lg-2 col-md-2 col-12">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
+                            <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
                         </div>
                         <!--/ End Logo -->
                         <!-- Search Form -->
@@ -120,13 +118,13 @@
                         <div class="search-bar-top">
                             <div class="search-bar">
                                 <select>
-                                    <option selected="selected">探す</option>
+									<option selected="selected">探す</option>
                                         <option>ブランドから探す</option>
                                         <option>春用で探す</option>
                                         <option>夏用で探す</option>
                                         <option>秋用で探す</option>
                                         <option>冬用で探す</option>
-                                </select>
+								</select>
                                 <!-- <form> -->
                                 <input name="search" placeholder="Search Products Here....." type="search">
                                 <button class="btnn search-btn"><i class="ti-search"></i></button>
@@ -151,13 +149,13 @@
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Ring</a></h4>
+                                            <h4><a href="cart.php">Woman Ring</a></h4>
                                             <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                         </li>
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Necklace</a></h4>
+                                            <h4><a href="cart.php">Woman Necklace</a></h4>
                                             <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                         </li>
                                     </ul>
@@ -166,7 +164,7 @@
                                             <span>Total</span>
                                             <span class="total-amount">$134.00</span>
                                         </div>
-                                        <a href="checkout.html" class="btn animate">Checkout</a>
+                                        <a href="checkout.php" class="btn animate">Checkout</a>
                                     </div>
                                 </div>
                             </div> -->
@@ -244,19 +242,19 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li><a href="index.php">Home</a></li>
-                                                <li class="active"><a href="about.html">About Us</a></li>
-                                                <li><a href="cart.html">My Cart</a></li>
+                                                <li class="active"><a href="index.php">Home</a></li>
+                                                <li><a href="about.php">About Us</a></li>
+                                                <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="cart.html">My Cart</a></li>
-                                                        <li><a href="checkout.html">Order History</a></li>
+                                                        <li><a href="cart.php">My Cart</a></li>
+                                                        <li><a href="checkout.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
-                                                <li><a href="sale-shop-grid.html">Sales<span class="new">New</span></a>
+                                                <li><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
                                                 </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="contact.php">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -279,8 +277,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="about.html">About</a></li>
+                            <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="payment.php">Payment</a></li>
                         </ul>
                     </div>
                 </div>
@@ -297,130 +295,40 @@
                     <div class="col-lg-16 col-12">
                         <div class="form-main">
                             <div class="title">
-                                <h3>ご利用ガイド</h3>
+                                <h4>♦♦♦ご希望の決済方法↓を選択して下さい。別画面にて決済画面を開きます♦♦♦</h4>
                             </div>
-                            <div class="company-break">
-                                <p><i class="fa fa-plus-square fa-plus-square-company-profile" aria-hidden="true"></i>
-
-                                    <h4>会社概要</h4>
-
-                                </p>
-                                <div id="company_profile" class="hidden">
-                                    <div class="b-color1">
-                                        <table border="1">
-                                            <tr>
-                                                <th>会社名</th>
-                                                <td>株式会社Charmclo</td>
-                                            </tr>
-                                            <tr>
-                                                <th>代表者</th>
-                                                <td>代表取締役 ニーウィントゥン</td>
-                                            </tr>
-                                            <tr>
-                                                <th>所在地</th>
-                                                <td>〒169-0073</br>東京都新宿区百人町1-25-4</td>
-                                            </tr>
-                                            <tr>
-                                                <th>資本金</th>
-                                                <td>1,000万</td>
-                                            </tr>
-                                            <tr>
-                                                <th>事業内容</th>
-                                                <td>衣料品の販売</td>
-                                            </tr>
-                                            <tr>
-                                                <th>設立</th>
-                                                <td>2021年1月</td>
-                                            </tr>
-                                            <tr>
-                                                <th>従業員数</th>
-                                                <td>3名</td>
-                                            </tr>
-                                            <tr>
-                                                <th>主要取引先</th>
-                                                <td>日専株式会社、電子株式会社、株式会社SK</td>
-                                            </tr>
-                                            <tr>
-                                                <th>主要取引銀行</th>
-                                                <td>日専銀行、電子銀行</td>
-                                            </tr>
-                                        </table>
+                            <div class="card bg-light payment-form">
+                                <h3 class="payment-detail">お支払い情報</h3>
+                                <article class="card-body payment-article">
+                                    <div class="input-container">
+                                        <span class="payment-label">お名前</span>
+                                        <input class="payment-username" type="text" placeholder="Payment Username" name="payment-user" required/>
                                     </div>
 
+                                    <div class="input-container">
+                                        <span class="payment-label">支払う金額</span>
+                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" required/>
+                                    </div>
+
+                                    <div class="input-container">
+                                        <span class="payment-label">支払う内容</span>
+                                        <textarea class="description" placeholder="Description" name="description" required></textarea>
+                                    </div>
+
+                                    <div class="input-container">
+                                        <span class="payment-label payment-type">決済方法</span>
+                                        <div class="rdb-payment-type">
+                                            <a class="link-name" href="creditPayment.php"><i class="fa fa-check-circle" aria-hidden="true"></i> クレジットカード払い</a><br>
+                                            <a class="link-name" href="conviniPayment.php"><i class="fa fa-check-circle" aria-hidden="true"></i> コンビニ払い</a><br>
+                                            <a class="link-name" href="bankPayment.php"><i class="fa fa-check-circle" aria-hidden="true"></i> 銀行振り込み</a>
+                                        </div>
+                                    </div>
+
+                                </article>
+                                <div class="back-btn">
+                                    <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
                                 </div>
                             </div>
-                            <br>
-                            <div class="payment-break">
-                                <p><i class="fa fa-plus-square fa-plus-square-payment-method" aria-hidden="true"></i>
-                                    <h4>お支払いについて</h4>
-                                </p>
-                                <div id="payment_method" class="hidden">
-                                    <p>
-                                        お支払方法については、クレジットカード払い、</br>
-                                        銀行振込、コンビニ払いよりお選びいただけます。
-                                    </p><br>
-                                    <h5>クレジットカード払い</h5>
-                                    <p>
-                                        VISA,MASTER,JCB,Diners,AMEXがご利用いただけます。
-                                    </p><br>
-                                    <h5>コンビニ払い</h5>
-                                    <p>
-                                        セブンイレブン、ローソン、ファミリーマートがご利用いただけます。
-                                    </p>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="price-break">
-                                <p><i class="fa fa-plus-square fa-plus-square-price" aria-hidden="true"></i>
-                                    <h4>表示価格について</h4>
-                                </p>
-                                <div id="price" class="hidden">
-                                    <p>
-                                        ※オンラインショップに記載された価格は、消費税込みの価格です。
-                                    </p>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="delivery-break">
-                                <p><i class="fa fa-plus-square fa-plus-square-delivery-method" aria-hidden="true"></i>
-                                    <h4>配送・送料について</h4>
-                                </p>
-                                <div id="delivery_method" class="hidden">
-                                    <h5>配送について</h5>
-                                    <p>
-                                        「電子運送」にて、お届けします。 ご注文後、通常約7日程度でお届けします。
-                                        </br>
-                                        ※但し、配送上の都合で遅れる事もございますので、予めご了承下さい。</br>
-                                        ※商品のお届けは、日本国内に限らせていただきます。
-                                    </p><br>
-                                    <h5>お届け日時のご指定について</h5>
-                                    <p>
-                                        お届け時間帯は、下記よりご指定いただけます。</br>
-                                        ・8時～12時</br>
-                                        ・13時～17時</br>
-                                        ・18時～21時
-                                    </p><br>
-                                    <h5>送料について</h5>
-                                    <p>
-                                        全国一律750円となります。
-                                    </p>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="privacy-break">
-                                <p><i class="fa fa-plus-square fa-plus-square-privacy" aria-hidden="true"></i>
-                                    <h4>プライバシーポリシーについて</h4>
-                                </p>
-                                <div id="privacy" class="hidden">
-                                    <p>プライバシーポリシーについて、詳しくは<span class="privacy" data-toggle="modal" data-target="#privacy_paragraph">こちら</span>をご覧ください。</p>
-                                </div>
-                            </div>
-                            <!-- <form class="form" method="post" action="mail/mail.php">
-                                <div class="row">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d728.7956263280897!2d141.34743348813586!3d43.058628978575804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDAzJzMxLjEiTiAxNDHCsDIwJzUyLjciRQ!5e0!3m2!1sen!2sjp!4v1597623282683!5m2!1sen!2sjp"
-                                        width="1000" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                                </div>
-                            </form> -->
                         </div>
                     </div>
                 </div>
@@ -428,54 +336,6 @@
         </div>
     </section>
     <!--/ End Contact -->
-
-    <div class="modal fade" id="privacy_paragraph" tabindex="-1" role="dialog" aria-labelledby="privacy_paragraph" aria-hidden="true">
-        <div class="modal-dialog privacy-modal-dialog" role="document">
-            <div class="modal-content privacy-modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button> </div>
-                <div class="modal-body privacy-modal-body">
-                    <div>
-                        <h1 class="modal-title shopping-cart-header">プライバシーポリシー</h1>
-                    </div>
-                    <p>――――（以下、「<span>当社</span>」と言います。）は本ウェブサイトで提供するサービス（以下、「<span>本サービス</span>」と言います。）における、<br/> ユーザーの個人情報の取扱いについて、以下の通りプライバシーポリシー（以下、「
-                        <span>本ポリシー</span>」と言います。）を定めます。
-                    </p>
-                    <h2>第一条（個人情報）</h2>
-                    <p>
-                        「個人情報」とは、個人情報保護法にいう「個人情報」を指すものとし、生存する個人に関する情報であって、<br/> 当該情報に含まれる氏名、生年月日、住所、電話番号、連絡先その他の記述等により特定の個人を識別できる
-                        <br/> 情報及び容貌、指紋、声紋にかかるデータ、及び健康保険証の保険者番号などの当該情報単体から特定の
-                        <br/> 個人を識別できる情報（個人識別情報）を指します。
-                    </p>
-                    <h2>第二条（個人情報の収集方法）</h2>
-                    <p>
-                        当社は、ユーザーが利用登録をする際に氏名、生年月日、住所、電話番号、メールアドレス、<br/> 銀行口座番号、クレジットカード番号などの個人情報をお尋ねすることがあります。
-                    </p>
-                    <h2>第三条（個人情報を収集・利用する目的）</h2>
-                    <p>
-                        当社が個人情報を収集・利用する目的は、以下の通りです。<br/> ・当社サービスの提供・運営のため
-                        <br/> ・ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）
-                        <br/>
-                    </p>
-                    <h2>第四条（お問い合わせ窓口）</h2>
-                    <p>
-                        本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。<br/> 住所：東京都新宿区百人町1-25-4
-                        <br/> 社名：株式会社Charmclo
-                        <br/> 担当：株式会社Charmclo個人情報保護管理者
-                        <br/> 電話：03-3369-7761
-                        <br/> Ｅメールアドレス：19jy0215@jec.ac.jp
-                        <br/>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- Start Footer Area -->
     <footer class="footer">
@@ -489,18 +349,18 @@
                             <div class="logo">
                                 <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
                             </div>
-                            <p class="text">charmcloではトップス・パンツ・ワンピースなど最新トレンドアイテムをオンラインでご購入いただけます。charmcloは多くのブランドの人気アイテムを公式に取扱うファッション通販サイトです！</p>
-                            <p class="call">Got Question? Call us 24/7<span><a href="tel:800280115822">+070 (8002) 8011-5822</a></span></p>
+                            <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
+                            <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
                         </div>
                         <!-- End Single Widget -->
                     </div>
                     <div class="col-lg-2 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer links">
-                            <h4>会社情報</h4>
+                            <h4>Information</h4>
                             <ul>
-                                <li><a href="index.php">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="about.php">About Us</a></li>
+                                <li><a href="contact.php">Contact Us</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -508,13 +368,13 @@
                     <div class="col-lg-2 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer links">
-                            <h4>お客様サービス</h4>
+                            <h4>Customer Service</h4>
                             <ul>
-                                <li><a href="about.html">会社概要</a></li>
-                                <li><a href="about.html">お支払いについて</a></li>
-                                <li><a href="about.html">表示価格について</a></li>
-                                <li><a href="about.html">配送・送料について</a></li>
-                                <li><a href="about.html">プライバシーポリシーについて</a></li>
+                                <li><a href="about.php">Payment Methods</a></li>
+                                <li><a href="about.php">Money-back</a></li>
+                                <li><a href="about.php">Returns</a></li>
+                                <li><a href="about.php">Shipping</a></li>
+                                <li><a href="about.php">Privacy Policy</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -522,14 +382,14 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer social">
-                            <h4>お問い合わせ</h4>
+                            <h4>Contact us</h4>
                             <!-- Single Widget -->
                             <div class="contact">
                                 <ul>
-                                    <li>〒169-0073 東京都新宿区百人町　　1-25-4</li>
-                                    <li>日本、東京</li>
-                                    <li>info@charmclo.com</li>
-                                    <li> +070 (8001) 8011-5822</li>
+                                    <li>NO. 342 - London Oxford Street.</li>
+                                    <li>012 United Kingdom.</li>
+                                    <li>info@eshop.com</li>
+                                    <li>+032 3456 7890</li>
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
@@ -552,7 +412,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <div class="left">
-                                <p>Copyright © 2021 - All Rights Reserved.</p>
+                                <p>Copyright © 2020 - All Rights Reserved.</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">
@@ -612,7 +472,7 @@
     <!-- Active JS -->
     <script src="js/active.js"></script>
     <!-- about JS -->
-    <script src="js/about.js"></script>
+    <script src="js/payment.js"></script>
     <!-- Index JS -->
     <script src="js/index.js"></script>
 </body>

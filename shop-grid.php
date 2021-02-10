@@ -83,7 +83,7 @@
                         <!-- Top Right -->
                         <div class="right-content">
                             <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> <a href="contact.html">Store location</a></li>
+                                <li><i class="ti-location-pin"></i> <a href="contact.php">Store location</a></li>
                             </ul>
                         </div>
                         <!-- End Top Right -->
@@ -151,13 +151,13 @@
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Ring</a></h4>
+                                            <h4><a href="cart.php">Woman Ring</a></h4>
                                             <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                         </li>
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Necklace</a></h4>
+                                            <h4><a href="cart.php">Woman Necklace</a></h4>
                                             <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                         </li>
                                     </ul>
@@ -166,7 +166,7 @@
                                             <span>Total</span>
                                             <span class="total-amount">$134.00</span>
                                         </div>
-                                        <a href="checkout.html" class="btn animate">Checkout</a>
+                                        <a href="checkout.php" class="btn animate">Checkout</a>
                                     </div>
                                 </div>
                             </div> -->
@@ -239,18 +239,18 @@
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
                                                 <li><a href="index.php">Home</a></li>
-                                                <li><a href="about.html">About Us</a></li>
+                                                <li><a href="about.php">About Us</a></li>
                                                 <li><a href="cart.php">My Cart</a></li>
                                                 <li class="active"><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
                                                         <li><a href="cart.php">My Cart</a></li>
-                                                        <li><a href="checkout.html">Order History</a></li>
+                                                        <li><a href="checkout.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
                                                 <li><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
                                                 </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="contact.php">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -273,8 +273,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index.html">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="shop-grid.html">Shop Grid</a></li>
+                            <li><a href="index.php">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="shop-grid.php">Shop Grid</a></li>
                         </ul>
                     </div>
                 </div>
@@ -775,8 +775,8 @@
                         <div class="single-footer links">
                             <h4>会社情報</h4>
                             <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="about.php">About Us</a></li>
+                                <li><a href="contact.php">Contact Us</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -786,11 +786,11 @@
                         <div class="single-footer links">
                             <h4>お客様サービス</h4>
                             <ul>
-                                <li><a href="about.html">会社概要</a></li>
-                                <li><a href="about.html">お支払いについて</a></li>
-                                <li><a href="about.html">表示価格について</a></li>
-                                <li><a href="about.html">配送・送料について</a></li>
-                                <li><a href="about.html">プライバシーポリシーについて</a></li>
+                                <li><a href="about.php">会社概要</a></li>
+                                <li><a href="about.php">お支払いについて</a></li>
+                                <li><a href="about.php">表示価格について</a></li>
+                                <li><a href="about.php">配送・送料について</a></li>
+                                <li><a href="about.php">プライバシーポリシーについて</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->

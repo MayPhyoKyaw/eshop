@@ -83,7 +83,7 @@
                         <!-- Top Right -->
                         <div class="right-content">
                             <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> <a href="contact.html">Store location</a></li>
+                                <li><i class="ti-location-pin"></i> <a href="contact.php">Store location</a></li>
                             </ul>
                         </div>
                         <!-- End Top Right -->
@@ -98,7 +98,7 @@
                     <div class="col-lg-2 col-md-2 col-12">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
+                            <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
                         </div>
                         <!--/ End Logo -->
                         <!-- Search Form -->
@@ -151,13 +151,13 @@
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Ring</a></h4>
+                                            <h4><a href="cart.php">Woman Ring</a></h4>
                                             <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                         </li>
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Necklace</a></h4>
+                                            <h4><a href="cart.php">Woman Necklace</a></h4>
                                             <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                         </li>
                                     </ul>
@@ -166,7 +166,7 @@
                                             <span>Total</span>
                                             <span class="total-amount">$134.00</span>
                                         </div>
-                                        <a href="checkout.html" class="btn animate">Checkout</a>
+                                        <a href="checkout.php" class="btn animate">Checkout</a>
                                     </div>
                                 </div>
                             </div> -->
@@ -244,19 +244,19 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="index.html">Home</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="cart.html">My Cart</a></li>
+                                                <li class="active"><a href="index.php">Home</a></li>
+                                                <li><a href="about.php">About Us</a></li>
+                                                <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="cart.html">My Cart</a></li>
-                                                        <li><a href="checkout.html">Order History</a></li>
+                                                        <li><a href="cart.php">My Cart</a></li>
+                                                        <li><a href="checkout.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
-                                                <li><a href="sale-shop-grid.html">Sales<span class="new">New</span></a>
+                                                <li><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
                                                 </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="contact.php">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -279,8 +279,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="payment.html">Payment</a></li>
+                            <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="payment.php">Payment</a></li>
                         </ul>
                     </div>
                 </div>
@@ -297,33 +297,82 @@
                     <div class="col-lg-16 col-12">
                         <div class="form-main">
                             <div class="title">
-                                <h4>支払内容確認</h4>
+                                <h4>Convenient Payment</h4>
                             </div>
                             <div class="card bg-light payment-form">
                                 <article class="card-body payment-article">
-                                    <p class="important-note">　※　お支払い内容と必要な情報を確認してください</p><br/>
-                                    <div class="credit-type">
-                                        <div class="credit-head"><label><h3>支払い内容 <span class="important-note">(クレジットカード)</span></h3></label></div>
-                                        <div class="credit-conf-grid-container">
-                                            <div class="grid-item">お客様名前</div>
-                                            <div class="grid-item credit-conf-name"></div>
-                                            <div class="grid-item">お支払い金額</div>
-                                            <div class="grid-item credit-conf-amount"></div>
-                                            <!-- <div class="grid-item">クレジットカード No</div>
-                                            <div class="grid-item credit-confーcardNo"></div> -->
-                                            <div class="grid-item">お支払い方法</div>
-                                            <div class="grid-item credit-conf-method"><span class="credit-withdrawl-method"></span>&nbsp;&nbsp;<span class="important-note">※　１回払い</span></div>
-                                            <div class="grid-item">引落日</div>
-                                            <div class="grid-item credit-conf-date">
-                                                <!--span class="credit-wiithdrawl-date"></span>-->&nbsp;&nbsp;<span class="important-note">※　クレジットカード会社によって支払い日が異なりますので、各クレジットカード会社のウェブサイトにてご確認ください</span></div>
-                                            <div class="grid-item">お支払い内容</div>
-                                            <div class="grid-item credit-conf-description"></div>
+                                    <div class="convini-type">
+                                        <div class="convini-head"><label><h3>Lawson</h3></label></div>
+                                        <div class="convini-grid-container">
+                                            <div class="convini-grid-item">Card Name</div>
+                                            <div class="convini-grid-item"><input class="convini-card-name" type="text" value="Lawson" disabled="disabled" name="convini-card-name" required/></div>
+                                            <div class="convini-grid-item row1">
+                                                <img class="convenient-logo" src="./images/lawson-1-logo-png-transparent (1).png">
+                                            </div>
+                                            <div class="convini-grid-item">Card No</div>
+                                            <div class="convini-grid-item"><input class="convini-card-name" type="text" value="123456789" disabled="disabled" name="convini-card-name" required/></div>
                                         </div>
+                                        <p>* Test</p>
+                                        <p>* Test1</p>
+                                        <p>* Test2</p>
                                     </div>
                                 </article>
                                 <div class="back-btn">
-                                    <button type="button" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#credit_payment_confirmation">注文する</button>
+                                    <!-- <a href=""><button type="button" class="btn btn-secondary card-submit">SELECT</button></a> -->
+                                    <button type="button" class="btn btn-secondary card-submit">SELECT</button>
                                 </div>
+                            </div>
+
+                            <div class="card bg-light payment-form">
+                                <article class="card-body payment-article">
+                                    <div class="convini-type">
+                                        <div class="convini-head"><label><h3>7 Eleven</h3></label></div>
+                                        <div class="convini-grid-container">
+                                            <div class="convini-grid-item">Card Name</div>
+                                            <div class="convini-grid-item"><input class="convini-card-name" type="text" disabled="disabled" value="7 Eleven" name="convini-card-name" required/></div>
+                                            <div class="convini-grid-item row1">
+                                                <img class="convenient-logo" src="./images/58429094a6515b1e0ad75abd.png">
+                                            </div>
+                                            <div class="convini-grid-item">Card No</div>
+                                            <div class="convini-grid-item"><input class="convini-card-name" type="text" value="123456789" disabled="disabled" name="convini-card-name" required/></div>
+                                        </div>
+                                        <p>* Test</p>
+                                        <p>* Test1</p>
+                                        <p>* Test2</p>
+                                    </div>
+                                </article>
+                                <div class="back-btn">
+                                    <!-- <a href=""><button type="button" class="btn btn-secondary card-submit">SELECT</button></a> -->
+                                    <button type="button" class="btn btn-secondary card-submit">SELECT</button>
+                                </div>
+                            </div>
+
+                            <div class="card bg-light payment-form">
+                                <article class="card-body payment-article">
+                                    <div class="convini-type">
+                                        <div class="convini-head"><label><h3>Family Mart</h3></label></div>
+                                        <div class="convini-grid-container">
+                                            <div class="convini-grid-item">Card Name</div>
+                                            <div class="convini-grid-item"><input class="convini-card-name" type="text" disabled="disabled" value="Family Mart" name="convini-card-name" /></div>
+                                            <div class="convini-grid-item row1">
+                                                <img class="convenient-logo" src="./images/images_0-removebg-preview.png">
+                                            </div>
+                                            <div class="convini-grid-item">Card No</div>
+                                            <div class="convini-grid-item"><input class="convini-card-name" type="text" value="123456789" disabled="disabled" name="convini-card-name" /></div>
+                                        </div>
+                                        <p>* Test</p>
+                                        <p>* Test1</p>
+                                        <p>* Test2</p>
+                                    </div>
+                                </article>
+                                <div class="back-btn">
+                                    <!-- <a href=""><button type="button" class="btn btn-secondary card-submit">SELECT</button></a> -->
+                                    <button type="button" class="btn btn-secondary card-submit">SELECT</button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
                             </div>
                         </div>
                     </div>
@@ -332,42 +381,6 @@
         </div>
     </section>
     <!--/ End Contact -->
-
-    <!-- start conivini payment confirmation modal -->
-    <div class="modal fade" id="credit_payment_confirmation" tabindex="-1" role="dialog" aria-labelledby="cardConfirmation" aria-hidden="true">
-        <div class="modal-dialog card-confirm-customize-modal-dialog" role="document">
-            <div class="modal-content card-confirm-customize-modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-                </div>
-                <div class="modal-body card-confirm-customize-modal-body">
-                    <div>
-                        <h3 class="modal-title">ご注文完了</h3>
-                        <!--<p>ご注文詳細内容についてのメールをご登録していただいたメールアドレスにご送信させていただきます。</p>-->
-                    </div>
-                    <div class="card bg-light card-form">
-                        <h3 class="card-detail">ご注文ありがとうございます&#10083;</h3>
-                        <p>Test1</p>
-                        <p>Test2</p>
-                        <p>Test3</p>
-                        <div class="thank-gif">
-                            <img src="./images/PDECOPOCHI01003.gif">
-                        </div>
-                        <!--<label for="">お支払い詳細内容については登録してたメールアドレスに</label>-->
-                    </div>
-                    <!-- card.// -->
-
-                </div>
-                <div class="modal-footer">
-                    <a href="myorder.html"><button type="submit" class="btn ">完了</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end conivini payment confirmation modal -->
-
     <!-- Start Footer Area -->
     <footer class="footer">
         <!-- Footer Top -->
@@ -378,7 +391,7 @@
                         <!-- Single Widget -->
                         <div class="single-footer about">
                             <div class="logo">
-                                <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
+                                <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
                             </div>
                             <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
                             <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
@@ -390,8 +403,8 @@
                         <div class="single-footer links">
                             <h4>Information</h4>
                             <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="about.php">About Us</a></li>
+                                <li><a href="contact.php">Contact Us</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -401,11 +414,11 @@
                         <div class="single-footer links">
                             <h4>Customer Service</h4>
                             <ul>
-                                <li><a href="about.html">Payment Methods</a></li>
-                                <li><a href="about.html">Money-back</a></li>
-                                <li><a href="about.html">Returns</a></li>
-                                <li><a href="about.html">Shipping</a></li>
-                                <li><a href="about.html">Privacy Policy</a></li>
+                                <li><a href="about.php">Payment Methods</a></li>
+                                <li><a href="about.php">Money-back</a></li>
+                                <li><a href="about.php">Returns</a></li>
+                                <li><a href="about.php">Shipping</a></li>
+                                <li><a href="about.php">Privacy Policy</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -502,8 +515,9 @@
     <script src="js/map-script.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
-    <!-- Credit payment Confirm JS -->
-    <script src="js/creditPaymentConfirm.js"></script>
+    <!-- about JS -->
+    <script src="js/creditPayment.js"></script>
+    <script src="js/conviniPayment.js"></script>
     <!-- Index JS -->
     <script src="js/index.js"></script>
 </body>

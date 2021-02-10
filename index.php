@@ -83,7 +83,7 @@
                         <!-- Top Right -->
                         <div class="right-content">
                             <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> <a href="contact.html">Store location</a></li>
+                                <li><i class="ti-location-pin"></i> <a href="contact.php">Store location</a></li>
                             </ul>
                         </div>
                         <!-- End Top Right -->
@@ -98,7 +98,7 @@
                     <div class="col-lg-2 col-md-2 col-12">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
+                            <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
                         </div>
                         <!--/ End Logo -->
                         <!-- Search Form -->
@@ -151,13 +151,13 @@
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Ring</a></h4>
+                                            <h4><a href="cart.php">Woman Ring</a></h4>
                                             <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                         </li>
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Necklace</a></h4>
+                                            <h4><a href="cart.php">Woman Necklace</a></h4>
                                             <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                         </li>
                                     </ul>
@@ -166,7 +166,7 @@
                                             <span>Total</span>
                                             <span class="total-amount">$134.00</span>
                                         </div>
-                                        <a href="checkout.html" class="btn animate">Checkout</a>
+                                        <a href="checkout.php" class="btn animate">Checkout</a>
                                     </div>
                                 </div>
                             </div> -->
@@ -284,18 +284,18 @@
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
                                                 <li class="active"><a href="index.php">Home</a></li>
-                                                <li><a href="about.html">About Us</a></li>
+                                                <li><a href="about.php">About Us</a></li>
                                                 <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
                                                         <li><a href="cart.php">My Cart</a></li>
-                                                        <li><a href="checkout.html">Order History</a></li>
+                                                        <li><a href="checkout.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
                                                 <li><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
                                                 </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="contact.php">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -426,7 +426,7 @@
                         <!-- Start Single Product
                         <div class="single-product">
                             <div class="product-img">
-                                <a href="product-details.html">
+                                <a href="product-details.php">
                                     <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                     <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                     <span class="price-dec">30% Off</span>
@@ -438,12 +438,12 @@
                                         <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                                     </div>
                                     <div class="product-action-2">
-                                        <a title="Add to cart" href="cart.html">Add to cart</a>
+                                        <a title="Add to cart" href="cart.php">Add to cart</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-content">
-                                <h3><a href="product-details.html">Women Hot Collection</a></h3>
+                                <h3><a href="product-details.php">Women Hot Collection</a></h3>
                                 <div class="product-price">
                                     <span>$50.00</span>
                                 </div>
@@ -453,7 +453,7 @@
                         <!- Start Single Product ->
                         <div class="single-product">
                             <div class="product-img">
-                                <a href="product-details.html">
+                                <a href="product-details.php">
                                     <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                     <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                     <span class="new">New</span>
@@ -465,12 +465,12 @@
                                         <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                                     </div>
                                     <div class="product-action-2">
-                                        <a title="Add to cart" href="cart.html">Add to cart</a>
+                                        <a title="Add to cart" href="cart.php">Add to cart</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-content">
-                                <h3><a href="product-details.html">Awesome Pink Show</a></h3>
+                                <h3><a href="product-details.php">Awesome Pink Show</a></h3>
                                 <div class="product-price">
                                     <span>$50.00</span>
                                 </div>
@@ -480,7 +480,7 @@
                         <!- Start Single Product ->
                         <div class="single-product">
                             <div class="product-img">
-                                <a href="product-details.html">
+                                <a href="product-details.php">
                                     <img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
                                     <img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
                                 </a>
@@ -491,12 +491,12 @@
                                         <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
                                     </div>
                                     <div class="product-action-2">
-                                        <a title="Add to cart" href="cart.html">Add to cart</a>
+                                        <a title="Add to cart" href="cart.php">Add to cart</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-content">
-                                <h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+                                <h3><a href="product-details.php">Awesome Bags Collection</a></h3>
                                 <div class="product-price">
                                     <span>$50.00</span>
                                 </div>
@@ -699,8 +699,8 @@
                         <div class="single-footer links">
                             <h4>会社情報</h4>
                             <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="about.php">About Us</a></li>
+                                <li><a href="contact.php">Contact Us</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -710,11 +710,11 @@
                         <div class="single-footer links">
                             <h4>お客様サービス</h4>
                             <ul>
-                                <li><a href="about.html">会社概要</a></li>
-                                <li><a href="about.html">お支払いについて</a></li>
-                                <li><a href="about.html">表示価格について</a></li>
-                                <li><a href="about.html">配送・送料について</a></li>
-                                <li><a href="about.html">プライバシーポリシーについて</a></li>
+                                <li><a href="about.php">会社概要</a></li>
+                                <li><a href="about.php">お支払いについて</a></li>
+                                <li><a href="about.php">表示価格について</a></li>
+                                <li><a href="about.php">配送・送料について</a></li>
+                                <li><a href="about.php">プライバシーポリシーについて</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->

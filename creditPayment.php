@@ -45,6 +45,7 @@
 
     <!-- customize design css -->
     <link rel="stylesheet" href="css/design.css">
+
 </head>
 
 <body class="js">
@@ -59,6 +60,8 @@
         </div>
     </div>
     <!-- End Preloader -->
+
+
 
     <!-- Header -->
     <header class="header shop">
@@ -80,7 +83,7 @@
                         <!-- Top Right -->
                         <div class="right-content">
                             <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> <a href="contact.html">Store location</a></li>
+                                <li><i class="ti-location-pin"></i> <a href="contact.php">Store location</a></li>
                             </ul>
                         </div>
                         <!-- End Top Right -->
@@ -95,7 +98,7 @@
                     <div class="col-lg-2 col-md-2 col-12">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
+                            <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
                         </div>
                         <!--/ End Logo -->
                         <!-- Search Form -->
@@ -148,13 +151,13 @@
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Ring</a></h4>
+                                            <h4><a href="cart.php">Woman Ring</a></h4>
                                             <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                         </li>
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Necklace</a></h4>
+                                            <h4><a href="cart.php">Woman Necklace</a></h4>
                                             <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                         </li>
                                     </ul>
@@ -163,7 +166,7 @@
                                             <span>Total</span>
                                             <span class="total-amount">$134.00</span>
                                         </div>
-                                        <a href="checkout.html" class="btn animate">Checkout</a>
+                                        <a href="checkout.php" class="btn animate">Checkout</a>
                                     </div>
                                 </div>
                             </div> -->
@@ -241,19 +244,19 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="index.html">Home</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="cart.html">My Cart</a></li>
+                                                <li class="active"><a href="index.php">Home</a></li>
+                                                <li><a href="about.php">About Us</a></li>
+                                                <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="cart.html">My Cart</a></li>
-                                                        <li><a href="checkout.html">Order History</a></li>
+                                                        <li><a href="cart.php">My Cart</a></li>
+                                                        <li><a href="checkout.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
-                                                <li><a href="sale-shop-grid.html">Sales<span class="new">New</span></a>
+                                                <li><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
                                                 </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="contact.php">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -276,8 +279,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="blog-single.html">Blog Single Sidebar</a></li>
+                            <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="payment.php">Payment</a></li>
                         </ul>
                     </div>
                 </div>
@@ -286,129 +289,137 @@
     </div>
     <!-- End Breadcrumbs -->
 
-    <!-- Start Blog Single -->
-    <section class="blog-single section">
+    <!-- Start Contact -->
+    <section id="contact-us" class="contact-us section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-12">
-                    <div class="blog-single-main">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="image">
-                                    <img src="https://via.placeholder.com/950x460" alt="#">
-                                </div>
-                                <div class="blog-detail">
-                                    <h2 class="blog-title">What are the secrets to start- up success?</h2>
-                                    <div class="blog-meta">
-                                        <span class="author"><a href="#"><i class="fa fa-user"></i>By Admin</a><a href="#"><i class="fa fa-calendar"></i>Dec 24, 2018</a><a href="#"><i class="fa fa-comments"></i>Comment (15)</a></span>
+            <div class="contact-head">
+                <div class="row">
+                    <div class="col-lg-16 col-12">
+                        <div class="form-main">
+                            <div class="title">
+                                <h4>クレジットカード決済</h4>
+                            </div>
+                            <div class="card bg-light payment-form">
+                                <h3 class="payment-detail">クレジットカード情報を入力</h3>
+                                <article class="card-body payment-article">
+
+                                    <div class="input-container del-mg-bot">
+                                        <span class="card-label">カード会社</span>
+                                        <select class="cards" name="cards" id="card" required>
+                                          <option value="">選択して下さい</option>
+                                          <option value="VISA">VISA</option>
+                                          <option value="MASTER">MASTER</option>
+                                          <option value="JCB">JCB</option>
+                                          <option value="JCB">Diners</option>
+                                          <option value="JCB">AMEX</option>
+                                          </select>
+                                        <span class="important-note">※　カード会社を選んでください</span>
                                     </div>
-                                    <div class="content">
-                                        <p>What a crazy time. I have five children in colleghigh school graduates.jpge or pursing post graduate studies Each of my children attends college far from home, the closest of which is more than 800 miles away. While
-                                            I miss being with my older children, I know that a college experience can be the source of great growth and experience can be the source of source of great growth and can provide them with even greater in future.</p>
-                                        <blockquote> <i class="fa fa-quote-left"></i> Do what you love to do and give it your very best. Whether it's business or baseball, or the theater, or any field. If you don't love what you're doing and you can't give it your
-                                            best, get out of it. Life is too short. You'll be an old man before you know it. risus. Ut tincidunt, erat eget feugiat eleifend, eros magna dapibus diam.</blockquote>
-                                        <p>What a crazy time. I have five children in colleghigh school graduates.jpge or pursing post graduate studies Each of my children attends college far from home, the closest of which is more than 800 miles away. While
-                                            I miss being with my older children, I know that a college experience can be the source of great growth and experience can be the source of source of great growth and can provide them with even greater in future.</p>
-                                        <p>What a crazy time. I have five children in colleghigh school graduates.jpge or pursing post graduate studies Each of my children attends college far from home, the closest of which is more than 800 miles away. While
-                                            I miss being with my older children, I know that a college experience can be the source of great growth and experience can be the source of source of great growth and can provide them with even greater in future.</p>
+                                    <div class="input-container">
+                                        <span class="card-label">カード番号</span>
+                                        <input class="card-no" type="text" placeholder="例（1234-5678-1234-5678)" name="card-no" pattern="/^([0-9]{4}( |\-)){3}[0-4]{4}$/" required/>
+                                        <span class="important-note">※　カードの表記どおりにご入力ください</span>
                                     </div>
+                                    <div class="input-container del-mg-bot">
+                                        <span class="card-label">有効期限</span>
+                                        <select class="card-expired-month" name="選択してください" required>
+                                          <option value="01">01</option>
+                                          <option value="02">02</option>
+                                          <option value="03">03</option>
+                                          <option value="04">04</option>
+                                          <option value="05">05</option>
+                                          <option value="06">06</option>
+                                          <option value="07">07</option>
+                                          <option value="08">08</option>
+                                          <option value="09">09</option>
+                                          <option value="10">10</option>
+                                          <option value="11">11</option>
+                                          <option value="12">12</option>
+                                        </select><span class="card-month">月</span><select class="card-expired-year" name="選択してください" required>
+                                          <option value="2021">2021</option>
+                                          <option value="2022">2022</option>
+                                          <option value="2023">2023</option>
+                                          <option value="2024">2024</option>
+                                          <option value="2025">2025</option>
+                                          <option value="2026">2026</option>
+                                          <option value="2027">2027</option>
+                                          <option value="2028">2028</option>
+                                          <option value="2029">2029</option>
+                                          <option value="2030">2030</option>
+                                          <option value="2031">2031</option>
+                                          <option value="2032">2032</option>
+                                          <option value="2033">2033</option>
+                                          <option value="2034">2034</option>
+                                          <option value="2035">2035</option>
+                                          <option value="2036">2036</option>
+                                          <option value="2037">2037</option>
+                                          <option value="2038">2038</option>
+                                          <option value="2039">2039</option>
+                                          <option value="2040">2040</option>
+                                        </select><span class="card-year">年</span>
+                                        <span class="important-note">※　カードの表記のとろりご指定ください</span>
+                                    </div>
+                                    <div class="input-container">
+                                        <span class="card-label">名義人</span>
+                                        <input class="card-username" type="text" placeholder="例（example）" name="card-user-name" required/>
+                                        <span class="important-note">※　カードの表示どろりに入力してください</span>
+                                    </div>
+                                    <div class="input-container">
+                                        <input type="checkbox" class="card-checkbox" name="" value="">
+                                        <label for="">入力したクレジットカードをCharmCloの情報として登録する</label>
+                                    </div>
+                                </article>
+                                <div class="back-btn">
+                                    <button type="button" class="btn btn-secondary" onclick="goBack()">Back</button>
+                                    <button type="button" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#card_confirmation">OK</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-12">
-                    <div class="main-sidebar">
-                        <!-- Single Widget -->
-                        <div class="single-widget search">
-                            <div class="form">
-                                <input type="email" placeholder="Search Here...">
-                                <a class="button" href="#"><i class="fa fa-search"></i></a>
-                            </div>
-                        </div>
-                        <!--/ End Single Widget -->
-                        <!-- Single Widget -->
-                        <div class="single-widget category">
-                            <h3 class="title">Blog Categories</h3>
-                            <ul class="categor-list">
-                                <li><a href="#">Men's Apparel</a></li>
-                                <li><a href="#">Women's Apparel</a></li>
-                                <li><a href="#">Bags Collection</a></li>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">Sun Glasses</a></li>
-                            </ul>
-                        </div>
-                        <!--/ End Single Widget -->
-                        <!-- Single Widget -->
-                        <div class="single-widget recent-post">
-                            <h3 class="title">Recent post</h3>
-                            <!-- Single Post -->
-                            <div class="single-post">
-                                <div class="image">
-                                    <img src="https://via.placeholder.com/100x100" alt="#">
-                                </div>
-                                <div class="content">
-                                    <h5><a href="#">Top 10 Beautyful Women Dress in the world</a></h5>
-                                    <ul class="comment">
-                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>Jan 11, 2020</li>
-                                        <li><i class="fa fa-commenting-o" aria-hidden="true"></i>35</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End Single Post -->
-                            <!-- Single Post -->
-                            <div class="single-post">
-                                <div class="image">
-                                    <img src="https://via.placeholder.com/100x100" alt="#">
-                                </div>
-                                <div class="content">
-                                    <h5><a href="#">Top 10 Beautyful Women Dress in the world</a></h5>
-                                    <ul class="comment">
-                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>Mar 05, 2019</li>
-                                        <li><i class="fa fa-commenting-o" aria-hidden="true"></i>59</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End Single Post -->
-                            <!-- Single Post -->
-                            <div class="single-post">
-                                <div class="image">
-                                    <img src="https://via.placeholder.com/100x100" alt="#">
-                                </div>
-                                <div class="content">
-                                    <h5><a href="#">Top 10 Beautyful Women Dress in the world</a></h5>
-                                    <ul class="comment">
-                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>June 09, 2019</li>
-                                        <li><i class="fa fa-commenting-o" aria-hidden="true"></i>44</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- End Single Post -->
-                        </div>
-                        <!--/ End Single Widget -->
-                        <!-- Single Widget -->
-                        <!--/ End Single Widget -->
-                        <!-- Single Widget -->
-                        <div class="single-widget side-tags">
-                            <h3 class="title">Tags</h3>
-                            <ul class="tag">
-                                <li><a href="#">business</a></li>
-                                <li><a href="#">wordpress</a></li>
-                                <li><a href="#">html</a></li>
-                                <li><a href="#">multipurpose</a></li>
-                                <li><a href="#">education</a></li>
-                                <li><a href="#">template</a></li>
-                                <li><a href="#">Ecommerce</a></li>
-                            </ul>
-                        </div>
-                        <!--/ End Single Widget -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--/ End Blog Single -->
+    <!--/ End Contact -->
+    <!-- start card confirmation modal -->
+    <div class="modal fade" id="card_confirmation" tabindex="-1" role="dialog" aria-labelledby="cardConfirmation" aria-hidden="true">
+        <div class="modal-dialog card-confirm-customize-modal-dialog" role="document">
+            <div class="modal-content card-confirm-customize-modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body card-confirm-customize-modal-body">
+                    <div>
+                        <h3 class="modal-title">確認。。。。</h3>
+                    </div>
+                    <div class="card bg-light card-form">
+                        <h3 class="card-detail">「↓」の情報をご確認ください</h3>
+                        <article class="card-body card-article">
+                            <div class="grid-container">
+                                <div class="grid-item">カード会社</div>
+                                <div class="grid-item card-name"></div>
+                                <div class="grid-item">カード番号</div>
+                                <div class="grid-item card-number"></div>
+                                <div class="grid-item">有効期限</div>
+                                <div class="grid-item card-expired-date"></div>
+                                <div class="grid-item">名義人</div>
+                                <div class="grid-item card-user-name"></div>
+                            </div>
+                        </article>
+                    </div>
+                    <!-- card.// -->
 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">キャンセル</button>
+                    <button type="submit" class="btn credit-payment-submit">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end card confirmation modal -->
     <!-- Start Footer Area -->
     <footer class="footer">
         <!-- Footer Top -->
@@ -419,7 +430,7 @@
                         <!-- Single Widget -->
                         <div class="single-footer about">
                             <div class="logo">
-                                <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
+                                <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
                             </div>
                             <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
                             <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
@@ -431,8 +442,8 @@
                         <div class="single-footer links">
                             <h4>Information</h4>
                             <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="about.php">About Us</a></li>
+                                <li><a href="contact.php">Contact Us</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -442,11 +453,11 @@
                         <div class="single-footer links">
                             <h4>Customer Service</h4>
                             <ul>
-                                <li><a href="about.html">Payment Methods</a></li>
-                                <li><a href="about.html">Money-back</a></li>
-                                <li><a href="about.html">Returns</a></li>
-                                <li><a href="about.html">Shipping</a></li>
-                                <li><a href="about.html">Privacy Policy</a></li>
+                                <li><a href="about.php">Payment Methods</a></li>
+                                <li><a href="about.php">Money-back</a></li>
+                                <li><a href="about.php">Returns</a></li>
+                                <li><a href="about.php">Shipping</a></li>
+                                <li><a href="about.php">Privacy Policy</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -484,7 +495,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <div class="left">
-                                <p>Copyright © 2020 <a href="http://www.wpthemesgrid.com" target="_blank">Wpthemesgrid</a> - All Rights Reserved.</p>
+                                <p>Copyright © 2020 - All Rights Reserved.</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">
@@ -498,6 +509,8 @@
         </div>
     </footer>
     <!-- /End Footer Area -->
+
+
 
     <!-- Jquery -->
     <script src="js/jquery.min.js"></script>
@@ -519,6 +532,8 @@
     <script src="js/facnybox.min.js"></script>
     <!-- Waypoints JS -->
     <script src="js/waypoints.min.js"></script>
+    <!-- Jquery Counterup JS -->
+    <script src="js/jquery-counterup.min.js"></script>
     <!-- Countdown JS -->
     <script src="js/finalcountdown.min.js"></script>
     <!-- Nice Select JS -->
@@ -533,8 +548,14 @@
     <script src="js/onepage-nav.min.js"></script>
     <!-- Easing JS -->
     <script src="js/easing.js"></script>
+    <!-- Google Map JS -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnhgNBg6jrSuqhTeKKEFDWI0_5fZLx0vM"></script>
+    <script src="js/gmap.min.js"></script>
+    <script src="js/map-script.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
+    <!-- about JS -->
+    <script src="js/creditPayment.js"></script>
     <!-- Index JS -->
     <script src="js/index.js"></script>
 </body>

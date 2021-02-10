@@ -83,7 +83,7 @@
                         <!-- Top Right -->
                         <div class="right-content">
                             <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> <a href="contact.html">Store location</a></li>
+                                <li><i class="ti-location-pin"></i> <a href="contact.php">Store location</a></li>
                             </ul>
                         </div>
                         <!-- End Top Right -->
@@ -98,7 +98,7 @@
                     <div class="col-lg-2 col-md-2 col-12">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
+                            <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
                         </div>
                         <!--/ End Logo -->
                         <!-- Search Form -->
@@ -151,13 +151,13 @@
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Ring</a></h4>
+                                            <h4><a href="cart.php">Woman Ring</a></h4>
                                             <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                         </li>
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Necklace</a></h4>
+                                            <h4><a href="cart.php">Woman Necklace</a></h4>
                                             <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                         </li>
                                     </ul>
@@ -166,7 +166,7 @@
                                             <span>Total</span>
                                             <span class="total-amount">$134.00</span>
                                         </div>
-                                        <a href="checkout.html" class="btn animate">Checkout</a>
+                                        <a href="checkout.php" class="btn animate">Checkout</a>
                                     </div>
                                 </div>
                             </div> -->
@@ -244,19 +244,19 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="index.html">Home</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="cart.html">My Cart</a></li>
+                                                <li class="active"><a href="index.php">Home</a></li>
+                                                <li><a href="about.php">About Us</a></li>
+                                                <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="cart.html">My Cart</a></li>
-                                                        <li><a href="checkout.html">Order History</a></li>
+                                                        <li><a href="cart.php">My Cart</a></li>
+                                                        <li><a href="checkout.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
-                                                <li><a href="sale-shop-grid.html">Sales<span class="new">New</span></a>
+                                                <li><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
                                                 </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="contact.php">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -279,8 +279,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="payment.html">Payment</a></li>
+                            <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="payment.php">Payment</a></li>
                         </ul>
                     </div>
                 </div>
@@ -297,81 +297,29 @@
                     <div class="col-lg-16 col-12">
                         <div class="form-main">
                             <div class="title">
-                                <h4>クレジットカード決済</h4>
+                                <h4>支払内容確認</h4>
                             </div>
                             <div class="card bg-light payment-form">
-                                <h3 class="payment-detail">クレジットカード情報を入力</h3>
                                 <article class="card-body payment-article">
-
-                                    <div class="input-container del-mg-bot">
-                                        <span class="card-label">カード会社</span>
-                                        <select class="cards" name="cards" id="card" required>
-                                          <option value="">選択して下さい</option>
-                                          <option value="VISA">VISA</option>
-                                          <option value="MASTER">MASTER</option>
-                                          <option value="JCB">JCB</option>
-                                          <option value="JCB">Diners</option>
-                                          <option value="JCB">AMEX</option>
-                                          </select>
-                                        <span class="important-note">※　カード会社を選んでください</span>
-                                    </div>
-                                    <div class="input-container">
-                                        <span class="card-label">カード番号</span>
-                                        <input class="card-no" type="text" placeholder="例（1234-5678-1234-5678)" name="card-no" pattern="/^([0-9]{4}( |\-)){3}[0-4]{4}$/" required/>
-                                        <span class="important-note">※　カードの表記どおりにご入力ください</span>
-                                    </div>
-                                    <div class="input-container del-mg-bot">
-                                        <span class="card-label">有効期限</span>
-                                        <select class="card-expired-month" name="選択してください" required>
-                                          <option value="01">01</option>
-                                          <option value="02">02</option>
-                                          <option value="03">03</option>
-                                          <option value="04">04</option>
-                                          <option value="05">05</option>
-                                          <option value="06">06</option>
-                                          <option value="07">07</option>
-                                          <option value="08">08</option>
-                                          <option value="09">09</option>
-                                          <option value="10">10</option>
-                                          <option value="11">11</option>
-                                          <option value="12">12</option>
-                                        </select><span class="card-month">月</span><select class="card-expired-year" name="選択してください" required>
-                                          <option value="2021">2021</option>
-                                          <option value="2022">2022</option>
-                                          <option value="2023">2023</option>
-                                          <option value="2024">2024</option>
-                                          <option value="2025">2025</option>
-                                          <option value="2026">2026</option>
-                                          <option value="2027">2027</option>
-                                          <option value="2028">2028</option>
-                                          <option value="2029">2029</option>
-                                          <option value="2030">2030</option>
-                                          <option value="2031">2031</option>
-                                          <option value="2032">2032</option>
-                                          <option value="2033">2033</option>
-                                          <option value="2034">2034</option>
-                                          <option value="2035">2035</option>
-                                          <option value="2036">2036</option>
-                                          <option value="2037">2037</option>
-                                          <option value="2038">2038</option>
-                                          <option value="2039">2039</option>
-                                          <option value="2040">2040</option>
-                                        </select><span class="card-year">年</span>
-                                        <span class="important-note">※　カードの表記のとろりご指定ください</span>
-                                    </div>
-                                    <div class="input-container">
-                                        <span class="card-label">名義人</span>
-                                        <input class="card-username" type="text" placeholder="例（example）" name="card-user-name" required/>
-                                        <span class="important-note">※　カードの表示どろりに入力してください</span>
-                                    </div>
-                                    <div class="input-container">
-                                        <input type="checkbox" class="card-checkbox" name="" value="">
-                                        <label for="">入力したクレジットカードをCharmCloの情報として登録する</label>
+                                    <p class="important-note">　※　支払い内容を確認し、お支払い期間までにお支払いください</p><br/>
+                                    <div class="convini-type">
+                                        <div class="convini-head"><label><h3>支払い内容</h3></label></div>
+                                        <div class="grid-container">
+                                            <div class="grid-item">お客様名前</div>
+                                            <div class="grid-item convini-conf-name"></div>
+                                            <div class="grid-item">お支払い金額</div>
+                                            <div class="grid-item convini-conf-amount"></div>
+                                            <div class="grid-item">お支払い期間</div>
+                                            <div class="grid-item convini-conf-date"></div>
+                                            <div class="grid-item">お支払い方法</div>
+                                            <div class="grid-item convini-conf-method"></div>
+                                            <div class="grid-item">お支払い内容</div>
+                                            <div class="grid-item convini-conf-description"></div>
+                                        </div>
                                     </div>
                                 </article>
                                 <div class="back-btn">
-                                    <button type="button" class="btn btn-secondary" onclick="goBack()">Back</button>
-                                    <button type="button" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#card_confirmation">OK</button>
+                                    <button type="button" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#convini_payment_confirmation">注文する</button>
                                 </div>
                             </div>
                         </div>
@@ -381,8 +329,9 @@
         </div>
     </section>
     <!--/ End Contact -->
-    <!-- start card confirmation modal -->
-    <div class="modal fade" id="card_confirmation" tabindex="-1" role="dialog" aria-labelledby="cardConfirmation" aria-hidden="true">
+
+    <!-- start conivini payment confirmation modal -->
+    <div class="modal fade" id="convini_payment_confirmation" tabindex="-1" role="dialog" aria-labelledby="cardConfirmation" aria-hidden="true">
         <div class="modal-dialog card-confirm-customize-modal-dialog" role="document">
             <div class="modal-content card-confirm-customize-modal-content">
                 <div class="modal-header">
@@ -392,34 +341,28 @@
                 </div>
                 <div class="modal-body card-confirm-customize-modal-body">
                     <div>
-                        <h3 class="modal-title">確認。。。。</h3>
+                        <h3 class="modal-title">ご注文完了</h3>
                     </div>
                     <div class="card bg-light card-form">
-                        <h3 class="card-detail">「↓」の情報をご確認ください</h3>
-                        <article class="card-body card-article">
-                            <div class="grid-container">
-                                <div class="grid-item">カード会社</div>
-                                <div class="grid-item card-name"></div>
-                                <div class="grid-item">カード番号</div>
-                                <div class="grid-item card-number"></div>
-                                <div class="grid-item">有効期限</div>
-                                <div class="grid-item card-expired-date"></div>
-                                <div class="grid-item">名義人</div>
-                                <div class="grid-item card-user-name"></div>
-                            </div>
-                        </article>
+                        <h3 class="card-detail">ご注文ありがとうございます</h3>
+                        <p>Test1</p>
+                        <p>Test2</p>
+                        <p>Test3</p>
+                        <div class="thank-gif">
+                            <img src="./images/PDECOPOCHI01003.gif">
+                        </div>
                     </div>
                     <!-- card.// -->
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">キャンセル</button>
-                    <button type="submit" class="btn credit-payment-submit">確認</button>
+                    <a href="myorder.php"><button type="submit" class="btn ">完了</button></a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- end card confirmation modal -->
+    <!-- end conivini payment confirmation modal -->
+
     <!-- Start Footer Area -->
     <footer class="footer">
         <!-- Footer Top -->
@@ -430,7 +373,7 @@
                         <!-- Single Widget -->
                         <div class="single-footer about">
                             <div class="logo">
-                                <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
+                                <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
                             </div>
                             <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
                             <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
@@ -442,8 +385,8 @@
                         <div class="single-footer links">
                             <h4>Information</h4>
                             <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="about.php">About Us</a></li>
+                                <li><a href="contact.php">Contact Us</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -453,11 +396,11 @@
                         <div class="single-footer links">
                             <h4>Customer Service</h4>
                             <ul>
-                                <li><a href="about.html">Payment Methods</a></li>
-                                <li><a href="about.html">Money-back</a></li>
-                                <li><a href="about.html">Returns</a></li>
-                                <li><a href="about.html">Shipping</a></li>
-                                <li><a href="about.html">Privacy Policy</a></li>
+                                <li><a href="about.php">Payment Methods</a></li>
+                                <li><a href="about.php">Money-back</a></li>
+                                <li><a href="about.php">Returns</a></li>
+                                <li><a href="about.php">Shipping</a></li>
+                                <li><a href="about.php">Privacy Policy</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -554,8 +497,8 @@
     <script src="js/map-script.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
-    <!-- about JS -->
-    <script src="js/creditPayment.js"></script>
+    <!-- Convini payment Confirm JS -->
+    <script src="js/conviniPaymentConfirm.js"></script>
     <!-- Index JS -->
     <script src="js/index.js"></script>
 </body>

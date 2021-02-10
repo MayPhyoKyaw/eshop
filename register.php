@@ -83,7 +83,7 @@
                         <!-- Top Right -->
                         <div class="right-content">
                             <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> <a href="contact.html">Store location</a></li>
+                                <li><i class="ti-location-pin"></i> <a href="contact.php">Store location</a></li>
                             </ul>
                         </div>
                         <!-- End Top Right -->
@@ -98,7 +98,7 @@
                     <div class="col-lg-2 col-md-2 col-12">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.html"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
+                            <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="logo"></a>
                         </div>
                         <!--/ End Logo -->
                         <!-- Search Form -->
@@ -151,13 +151,13 @@
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Ring</a></h4>
+                                            <h4><a href="cart.php">Woman Ring</a></h4>
                                             <p class="quantity">1x - <span class="amount">$99.00</span></p>
                                         </li>
                                         <li>
                                             <a href="#" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
                                             <a class="cart-img" href="#"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-                                            <h4><a href="cart.html">Woman Necklace</a></h4>
+                                            <h4><a href="cart.php">Woman Necklace</a></h4>
                                             <p class="quantity">1x - <span class="amount">$35.00</span></p>
                                         </li>
                                     </ul>
@@ -166,7 +166,7 @@
                                             <span>Total</span>
                                             <span class="total-amount">$134.00</span>
                                         </div>
-                                        <a href="checkout.html" class="btn animate">Checkout</a>
+                                        <a href="checkout.php" class="btn animate">Checkout</a>
                                     </div>
                                 </div>
                             </div> -->
@@ -244,19 +244,19 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="index.html">Home</a></li>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="cart.html">My Cart</a></li>
+                                                <li class="active"><a href="index.php">Home</a></li>
+                                                <li><a href="about.php">About Us</a></li>
+                                                <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="cart.html">My Cart</a></li>
-                                                        <li><a href="checkout.html">Order History</a></li>
+                                                        <li><a href="cart.php">My Cart</a></li>
+                                                        <li><a href="checkout.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
-                                                <li><a href="sale-shop-grid.html">Sales<span class="new">New</span></a>
+                                                <li><a href="sale-shop-grid.php">Sales<span class="new">New</span></a>
                                                 </li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li><a href="contact.php">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -279,8 +279,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="blog-single.html">Register</a></li>
+                            <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="blog-single.php">Register</a></li>
                         </ul>
                     </div>
                 </div>
@@ -506,7 +506,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">キャンセル</button>
-                    <a href="payment.html"><button type="submit" class="btn ">OK</button></a>
+                    <a href="payment.php"><button type="submit" class="btn ">OK</button></a>
                 </div>
             </div>
         </div>
@@ -523,7 +523,7 @@
                         <!-- Single Widget -->
                         <div class="single-footer about ">
                             <div class="logo ">
-                                <a href="index.html "><img class="main-logo " src="images/charmclo_logo.png " alt="# "></a>
+                                <a href="index.php "><img class="main-logo " src="images/charmclo_logo.png " alt="# "></a>
                             </div>
                             <p class="text ">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
                             <p class="call ">Got Question? Call us 24/7<span><a href="tel:123456789 ">+0123 456 789</a></span></p>
@@ -535,8 +535,8 @@
                         <div class="single-footer links ">
                             <h4>Information</h4>
                             <ul>
-                                <li><a href="about.html ">About Us</a></li>
-                                <li><a href="contact.html ">Contact Us</a></li>
+                                <li><a href="about.php ">About Us</a></li>
+                                <li><a href="contact.php ">Contact Us</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -546,11 +546,11 @@
                         <div class="single-footer links ">
                             <h4>Customer Service</h4>
                             <ul>
-                                <li><a href="about.html ">Payment Methods</a></li>
-                                <li><a href="about.html ">Money-back</a></li>
-                                <li><a href="about.html ">Returns</a></li>
-                                <li><a href="about.html ">Shipping</a></li>
-                                <li><a href="about.html ">Privacy Policy</a></li>
+                                <li><a href="about.php ">Payment Methods</a></li>
+                                <li><a href="about.php ">Money-back</a></li>
+                                <li><a href="about.php ">Returns</a></li>
+                                <li><a href="about.php ">Shipping</a></li>
+                                <li><a href="about.php ">Privacy Policy</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
