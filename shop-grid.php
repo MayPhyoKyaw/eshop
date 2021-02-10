@@ -456,7 +456,7 @@
                             <div class="col-lg-4 col-md-6 col-12 product-item">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="product-details.html">
+                                        <a href="#">
                                             <img class="default-img" src="<?php echo "./images/items/" . $row3['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row3['item_img1']; ?>" alt="#">
                                         </a>
@@ -484,7 +484,7 @@
                                         </div>
                                     </div>
                                     <div class="product-content">
-                                        <h3><a href="product-details.html">
+                                        <h3><a href="#">
                                             <?php 
                                                 echo $row3['item_name'] . "\t/ "; 
                                                 echo $row3['size_name'] . "\t"; 
@@ -534,7 +534,7 @@
                             <div class="col-lg-4 col-md-6 col-12 product-item">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="product-details.html">
+                                        <a href="#">
                                             <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                         </a>
@@ -562,7 +562,7 @@
                                         </div>
                                     </div>
                                     <div class="product-content">
-                                        <h3><a href="product-details.html">
+                                        <h3><a href="#">
                                             <?php 
                                                 echo $row['item_name'] . "\t/ "; 
                                                 echo $row['size_name'] . "\t"; 
@@ -642,12 +642,12 @@
 
    <!-- Modal -->
    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog detail-modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body detail-modal-body">
                     <div class="row no-gutters">
                         <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 ">
                             <!-- Product Slider -->

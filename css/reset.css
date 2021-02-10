@@ -1238,6 +1238,9 @@ object {
     max-width: 1358px;
     width: 1358px;
 }
+.detail-modal-dialog {
+    margin: 2% auto 4%;
+}
 
 @media only screen and (min-width: 1366px) and (max-width: 1600px) {
     .modal-dialog {

@@ -322,18 +322,23 @@
                                     <td class="product-des" data-title="Description">
                                         <p class="product-name">
                                             <?php 
-                                                echo $row['b_catName'] . "  &#8594;  " . $row['s_catName'] . " <br/> " . $row['item_name']; 
-                                                
+                                                // echo $row['b_catName'] . "  &#8594;  " . $row['s_catName'] . " <br/> <span class='cart-item-name'>" . $row['item_name'] . "</span>"; 
+
                                                 if ($row['size_name'] === "S")
-                                                    echo "<span class='small-size'>S</span>";
+                                                    echo "<span class='cart-item-name'>" . $row['item_name'] . "</span> <span class='small-size'>S</span> <br/>" . $row['b_catName'] . "  &#8594;  " . $row['s_catName']; 
+                                                    // echo "<span class='small-size'>S</span>";
                                                 elseif ($row['size_name'] === "M")
-                                                    echo "<span class='medium-size'>M</span>";
+                                                    echo "<span class='cart-item-name'>" . $row['item_name'] . "</span> <span class='medium-size'>M</span> <br/>" . $row['b_catName'] . "  &#8594;  " . $row['s_catName']; 
+                                                    // echo "<span class='medium-size'>M</span>";
                                                 elseif ($row['size_name'] === "L")
-                                                    echo "<span class='large-size'>L</span>";
+                                                    echo "<span class='cart-item-name'>" . $row['item_name'] . "</span> <span class='large-size'>L</span> <br/>" . $row['b_catName'] . "  &#8594;  " . $row['s_catName']; 
+                                                    // echo "<span class='large-size'>L</span>";
                                                 elseif ($row['size_name'] === "LL")
-                                                    echo "<span class='xlarge-size'>LL</span>";
+                                                    echo "<span class='cart-item-name'>" . $row['item_name'] . "</span> <span class='xlarge-size'>LL</span> <br/>" . $row['b_catName'] . "  &#8594;  " . $row['s_catName']; 
+                                                    // echo "<span class='xlarge-size'>LL</span>";
                                                 elseif ($row['size_name'] === "XXL")
-                                                    echo "<span class='xlarge-size'>XXL</span>";
+                                                    echo "<span class='cart-item-name'>" . $row['item_name'] . "</span> <span class='xlarge-size'>XXL</span> <br/>" . $row['b_catName'] . "  &#8594;  " . $row['s_catName']; 
+                                                    // echo "<span class='xlarge-size'>XXL</span>";
                                                 else 
                                                     echo "";                                                
                                             ?>

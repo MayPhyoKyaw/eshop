@@ -51,6 +51,7 @@ $(document).ready(function () {
     var country = $(this).parent().parent().parent().parent().find('.hide-country').text();
     var description = $(this).parent().parent().parent().parent().find('.hide-description').text();
     var price = $(this).parent().parent().parent().parent().find('.hide-price').text();
+    console.log(price)
     var img1 = $(this).parent().parent().parent().parent().find('.hide-img1').text();
     var img2 = $(this).parent().parent().parent().parent().find('.hide-img2').text();
     console.log(itemName, mainType, subType, gender, season, brand, size, color, country, description, price, img1, img2);

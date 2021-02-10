@@ -67,6 +67,10 @@ button {
 .customize-warning-modal-dialog {
     max-width: 35%;
 }
+.detail-modal-body {
+    max-height: none !important;
+    height: auto !important;
+}
 
 .register-form,
 .card-form,
@@ -470,6 +474,10 @@ button {
 .thank-gif {
     max-width: 240px;
     margin-left: 200px;
+}
+
+.cart-item-name {
+    font-weight: 700;
 }
 
 
