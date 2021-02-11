@@ -294,46 +294,23 @@
                                 <h4>Brand Names</h4>
                             </div>
                             <div class="brand-grid-container">
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">AA</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">BB</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">CC</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">DD</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">EE</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">FF</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">GG</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">HH</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">II</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">JJ</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">AA</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">BB</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">CC</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">DD</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">EE</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">FF</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">GG</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">HH</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">II</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">JJ</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">AA</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">BB</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">CC</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">DD</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">EE</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">FF</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">GG</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">HH</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">II</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">JJ</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">AA</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">BB</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">CC</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">DD</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">EE</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">FF</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">GG</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">HH</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">II</a></div>
-                                <div class="brand-grid-item"><a href="search-shop-grid.php">JJ</a></div>
+                                <?php 
+                                    try {
+                                        $database = new Connection();
+                                        $db = $database->openConnection();
+                                        $brand_item_sql = "SELECT * FROM brand" ;
+                                        $st3 = $db->prepare($brand_item_sql);
+                                        $st3->execute();
+
+                                        foreach ($st3->fetchAll() as $row) {
+                                ?>
+                                    <div class="brand-grid-item"><a href="search-shop-grid.php?search=<?php echo $row['brand_name']; ?>"><?php echo $row['brand_name']; ?></a></div>
+                                <?php 
+                                        } 
+                                    }catch (PDOException $e) {
+                                        echo "There is some problem in connection: " . $e->getMessage();
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>

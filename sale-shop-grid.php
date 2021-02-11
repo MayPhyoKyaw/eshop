@@ -274,7 +274,7 @@
                     <div class="bread-inner">
                         <ul class="bread-list">
                             <li><a href="index.php">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="shop-grid.php">Shop Grid</a></li>
+                            <li class="active"><a href="shop-grid.php">Sales Shop Grid</a></li>
                         </ul>
                     </div>
                 </div>

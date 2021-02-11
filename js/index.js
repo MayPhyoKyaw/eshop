@@ -31,10 +31,10 @@ $(document).ready(function () {
     const get_searchName = $( ".nice-select" ).find('span').html();
     console.log(get_searchName);
     if (get_searchName === "ブランドから探す") {
-      location.href = `./brand-display.html?search=${get_searchName}`;
+      location.href = `./brand-display.php?search=${get_searchName}`;
     }
     else {
-      location.href = `./search-shop-grid.html?search=${get_searchName}`;
+      location.href = `./search-shop-grid.php?search=${get_searchName}`;
     }
   })
 
