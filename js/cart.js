@@ -5,16 +5,29 @@ $(document).ready(function () {
   var single_prices = ini_Prices.split("￥");
   // var item_quantity = $(".item-quantity").val();
   // console.log(item_quantity);
-  // var qty_Arr = Array()
+  var qty_Arr = [];
+  var qty = document.querySelectorAll(".item-quantity");
+  qty.forEach((q) => {
+    // console.log(q.value);
+    qty_Arr.push(q.value);
+  })
   var cal_amount = $(".calculated-amount").text();
   // console.log(cal_amount)
   for (i = 1; i <= cal_amount.length; i++) {
-    console.log(i);
-    var item_quantity = $(".item-quantity").val();
+    // console.log(i);
+    // var item_quantity = $(".item-quantity").val();
     // console.log(item_quantity);
-    var qty = document.getElementById("cart-table").rows[i].cells[4].value;
-    console.log(qty);
-    document.getElementById("cart-table").rows[i].cells[5].innerHTML = `￥${single_prices[i]}`;
+    // qty_Arr.push(item_quantity);
+    // console.log(qty_Arr);
+    var single_qty = qty_Arr[i-1];
+    console.log(typeof(qty_Arr[i-1]), typeof(single_prices[i]))
+    // var qty = document.getElementById("cart-table").rows[i].cells[4].value;
+    var single_price = single_prices[i];
+    var sg_price = single_price.replace("," , "");
+    console.log(parseInt(qty_Arr[i-1]), parseFloat(sg_price));
+    var calculate_sub_price = parseFloat(sg_price) * parseInt(qty_Arr[i-1]);
+    console.log(calculate_sub_price);
+    document.getElementById("cart-table").rows[i].cells[5].innerHTML = `￥${calculate_sub_price.toFixed(2)}`;
   }
 
   var shopping_items = document.getElementById("cart-table").rows.length;
