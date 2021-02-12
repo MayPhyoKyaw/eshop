@@ -13,6 +13,13 @@
 
 button {
     cursor: pointer !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.btn {
+    border: none !important;
+    outline: none !important;
 }
 
 
@@ -364,7 +371,10 @@ button {
 
 
 /* search-shop-grid */
-
+.brand-name {
+    color: #F7941D;
+    margin-bottom: 10px;
+}
 
 /* .product-shop {
     background-color: #F6F7FB;
@@ -493,7 +503,15 @@ button {
     font-weight: 700;
 }
 
+.item-quantity {
+    max-width: 60px;
+}
 
+.item-quantity-confirm {
+    height: 32px;
+    width: 40px;
+    padding: 8px;
+}
 /* shop grid */
 
 .selected {
@@ -646,7 +664,7 @@ p {
 
 /* about */
 
-.privacy {
+.privacy, .back {
     color: blue;
     cursor: pointer;
     text-decoration: underline;

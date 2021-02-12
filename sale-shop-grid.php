@@ -322,6 +322,7 @@
                                         <a href="product-details.php">
                                             <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
+                                            <span class="price-dec">30% Off</span>
                                         </a>
                                         <div class="button-head">
                                             <div class="product-action">

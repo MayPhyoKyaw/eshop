@@ -273,8 +273,9 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index.php">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="shop-grid.php">Search Shop Grid</a></li>
+                            <!-- <li><a href="index.php">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="shop-grid.php">Search Shop Grid</a></li> -->
+                            <a href="#" class="back"  onclick="goBack()"> <<戻る</a>
                         </ul>
                     </div>
                 </div>
@@ -296,8 +297,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="row">
+                    <div class="row">                   
                         <div class="col-12">
+                        <h3 class="brand-name"></h3>
                             <!-- Shop Top -->
                             <div class="shop-top">
                                 <div class="shop-shorter">

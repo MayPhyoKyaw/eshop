@@ -23,6 +23,16 @@ $('#search-product-pagination-container').pagination({
     }
 });
 
+// brand name to display
+var get_url = new URL(location);
+var brandName = get_url.searchParams.get('search');
+console.log(brandName)
+$(".brand-name").append(`ブランド : ${brandName}`)
+
+function goBack() {
+    window.history.back();
+}
+
 $(document).ready(function () {
     $(".sale-view-detail").click(function () {
         // console.log($(this).parent().parent().parent().parent().html());
@@ -55,8 +65,8 @@ $(document).ready(function () {
         $('.detail-description').text(description);
         $('.old-price').text(old_price);
         $('.now-price').text(price);
-        $('.img1') .html(`<img src="./images/items/${img1}" alt="#">`);
+        $('.img1').html(`<img src="./images/items/${img1}" alt="#">`);
         $('.img2').html(`<img src="./images/items/${img2}" alt="#">`);
         $('#cart_itemId').val(itemId);
-      })
+    })
 })

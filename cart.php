@@ -350,7 +350,7 @@
                                     <td class="price" data-title="Price"><span>￥<?php echo number_format($row['price'], 2); ?></span></td>
                                     <td class="qty" data-title="Qty">
                                         <!-- Input Order -->
-                                        <div class="input-group">
+                                        <!-- <div class="input-group">
                                             <div class="button minus">
                                                 <button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[<?php echo $row['item_id']; ?>]">
                                                     <i class="ti-minus"></i>
@@ -363,8 +363,13 @@
                                                     <i class="ti-plus"></i>
                                                 </button>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!--/ End Input Order -->
+                                        <!-- quantity text box -->
+                                        <div class="input-group">
+                                            <input class="item-quantity" type="number"  name="item-quantity">
+                                            <button type="button" class="btn btn-primary item-quantity-confirm">OK</button>
+                                        </div>
                                     </td>
                                     <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
                                     <td class="action" data-title="Remove"><a href="#">
