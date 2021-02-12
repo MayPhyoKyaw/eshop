@@ -312,7 +312,7 @@
                         <tbody>
                             <?php 
                                 try{
-                                    $cart_sql = "SELECT item_img1, item_name, s_catName, b_catName, price, size_name, color, c.item_id, description, stock FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category bc ON sc.b_categoryID = bc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id";
+                                    $cart_sql = "SELECT item_img1, item_name, s_catName, b_catName, price, size_name, color, c.item_id, description, stock, quantity FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category bc ON sc.b_categoryID = bc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id";
                                     $st = $dbConn->prepare($cart_sql);
                                     $st->execute();
                                     foreach ($st->fetchAll() as $row) {
@@ -367,8 +367,13 @@
                                         <!--/ End Input Order -->
                                         <!-- quantity text box -->
                                         <div class="input-group">
-                                            <input class="item-quantity" type="number"  name="item-quantity">
-                                            <button type="button" class="btn btn-primary item-quantity-confirm">OK</button>
+                                            <form action="" method="post">
+                                                <span class="hide stock"><?php echo $row['stock']; ?></span>
+                                                <input type="hidden" name="cartItemId" value="<?php echo $row['item_id']; ?>" />
+                                                <input type="hidden" name="stock" value="<?php echo $row['stock']; ?>" />
+                                                <input class="item-quantity" type="number" min="1" max="<?php echo $row['stock']; ?>" name="item-quantity" value="<?php echo $row['quantity'] ?>">
+                                                <button type="submit" class="btn btn-primary item-quantity-confirm" name="quantity_confirm">OK</button>
+                                            </form>
                                         </div>
                                     </td>
                                     <td class="total-amount calculated-amount" data-title="Total"><span>￥</span></td>
@@ -409,7 +414,28 @@
                 } catch (PDOException $e) {
                    echo "There is some problem in connection: " . $e->getMessage();
                 }
-                
+
+                try{
+                    if(isset($_POST['quantity_confirm'])){
+                        $quantity = $_POST['item-quantity'];
+                        $update_id = $_POST['cartItemId'];
+                        $stock = $_POST['stock'];
+                        // echo $del_id;
+                        if($quantity <= $stock){
+                            $update_sql = "UPDATE cart SET quantity = :quantity  WHERE `item_id` = :update_id" ;
+                            // $affectedrows  = $db->exec($del_sql);
+                            $update_st = $dbConn->prepare($update_sql);
+                            $update_st->bindParam( ":update_id", $update_id, PDO::PARAM_STR);
+                            $update_st->bindParam( ":quantity", $quantity, PDO::PARAM_INT);
+                            $update_st->execute();
+                            echo "<meta http-equiv='refresh' content='0'>";
+                        }else{
+                            echo "<script>$('#quantity_warning').modal('show');</script>";
+                        }
+                    } 
+                } catch (PDOException $e) {
+                   echo "There is some problem in connection: " . $e->getMessage();
+                }
             ?>
 
             <div class="row">

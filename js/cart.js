@@ -3,11 +3,17 @@ $(document).ready(function () {
   // console.log($(".price").text());
   var ini_Prices = $(".price").text();
   var single_prices = ini_Prices.split("￥");
-  // console.log(single_prices)
+  // var item_quantity = $(".item-quantity").val();
+  // console.log(item_quantity);
+  // var qty_Arr = Array()
   var cal_amount = $(".calculated-amount").text();
   // console.log(cal_amount)
   for (i = 1; i <= cal_amount.length; i++) {
     console.log(i);
+    var item_quantity = $(".item-quantity").val();
+    // console.log(item_quantity);
+    var qty = document.getElementById("cart-table").rows[i].cells[4].value;
+    console.log(qty);
     document.getElementById("cart-table").rows[i].cells[5].innerHTML = `￥${single_prices[i]}`;
   }
 
@@ -21,38 +27,56 @@ $(document).ready(function () {
     $("order_confirmation").modal('hide');
   })
 
-  $(".input-group .minus").click(function () {
-    quantity = parseInt($(this).siblings('.input-number').val());
-    // quantity--;
-    // $(this).siblings('.input-number').val(quantity);
-    var priceStr = $(this).parent().parent().parent().find('.price').text();
-    var price = priceStr.replace(regExpr, "");
-    // console.log(parseFloat(price).toFixed(2))
-    calculate_Price = parseInt(price).toFixed(2) * quantity;
-    // console.log($(this).parent().parent().parent().find('.total-amount').text())
-    $(this).parent().parent().parent().find('.calculated-amount').text(`￥${calculate_Price.toFixed(2)}`);
-  })
+  // $(".input-group .minus").click(function () {
+  //   quantity = parseInt($(this).siblings('.input-number').val());
+  //   // quantity--;
+  //   // $(this).siblings('.input-number').val(quantity);
+  //   var priceStr = $(this).parent().parent().parent().find('.price').text();
+  //   var price = priceStr.replace(regExpr, "");
+  //   // console.log(parseFloat(price).toFixed(2))
+  //   calculate_Price = parseInt(price).toFixed(2) * quantity;
+  //   // console.log($(this).parent().parent().parent().find('.total-amount').text())
+  //   $(this).parent().parent().parent().find('.calculated-amount').text(`￥${calculate_Price.toFixed(2)}`);
+  // })
 
-  $(".input-group .plus").click(function () {
-    quantity = parseInt($(this).siblings('.input-number').val());
-    // quantity++;
-    // $(this).siblings('.input-number').val(quantity);
-    // console.log(quantity);
+  // $(".input-group .plus").click(function () {
+  //   quantity = parseInt($(this).siblings('.input-number').val());
+  //   // quantity++;
+  //   // $(this).siblings('.input-number').val(quantity);
+  //   // console.log(quantity);
+  //   var stock = $(this).siblings('.stock').text();
+  //   console.log(parseInt(stock));
+  //   if (quantity == parseInt(stock)) {
+  //     $('#quantity_warning').modal('show');
+  //   }
+  //   else {
+  //     // $(".plus-btn").css('cursor', 'pointer');
+  //     console.log("hide")
+  //   }
+  //   var priceStr = $(this).parent().parent().parent().find('.price').text();
+  //   var price = priceStr.replace(regExpr, "");
+  //   // console.log(parseFloat(price).toFixed(2))
+  //   calculate_Price = parseInt(price).toFixed(2) * quantity;
+  //   // console.log($(this).parent().parent().parent().find('.total-amount').text())
+  //   $(this).parent().parent().parent().find('.calculated-amount').text(`￥${calculate_Price.toFixed(2)}`);
+  // })
+
+  $(".item-quantity-confirm").click(function () {
+    quantity = parseInt($(this).siblings('.item-quantity').val());
     var stock = $(this).siblings('.stock').text();
-    console.log(parseInt(stock));
-    if (quantity == parseInt(stock)) {
+    if (quantity > parseInt(stock)) {
       $('#quantity_warning').modal('show');
     }
     else {
       // $(".plus-btn").css('cursor', 'pointer');
-      console.log("hide")
+      var priceStr = $(this).parent().parent().parent().parent().find('.price').text();
+      var price = priceStr.replace(regExpr, "");
+      console.log(price)
+      calculate_Price = parseFloat(price) * quantity;
+      console.log(calculate_Price);
+      $(this).parent().parent().parent().parent().find('.calculated-amount').text(`￥${calculate_Price.toFixed(2)}`);
+      // console.log("hide");
     }
-    var priceStr = $(this).parent().parent().parent().find('.price').text();
-    var price = priceStr.replace(regExpr, "");
-    // console.log(parseFloat(price).toFixed(2))
-    calculate_Price = parseInt(price).toFixed(2) * quantity;
-    // console.log($(this).parent().parent().parent().find('.total-amount').text())
-    $(this).parent().parent().parent().find('.calculated-amount').text(`￥${calculate_Price.toFixed(2)}`);
   })
 
   var discount_rate = $(".discount-rate").text();
