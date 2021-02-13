@@ -484,11 +484,11 @@
                                         <?php
                                             $today = date("d");
                                             // echo date("d/m/Y h:m:s a");
-                                            if($today === "13"){
+                                            if($today === "05"){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
-                                            }else if($today === "15"){
+                                            }elseif($today === "15"){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
-                                            }else if($today === "25"){
+                                            }elseif($today === "25"){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
                                             }else{
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>0%</span></li>";
@@ -498,9 +498,9 @@
                                         <li class="last">注文合計   :<span id="calculated-total-amount"><?php 
                                         $formula = (($row1['result']/100)*10) + $row1['result'] + 700;
                                         $today = date("d");
-                                        if($today === "13"){ echo ($formula - ($formula/100)*5) ;  }
-                                        else if($today === "15"){ echo ($formula - ($formula/100)*5) ;  }
-                                        else if($today === "25"){ echo ($formula - ($formula/100)*5) ;  }
+                                        if($today === "05"){ echo ($formula - ($formula/100)*5) ;  }
+                                        elseif($today === "15"){ echo ($formula - ($formula/100)*5) ;  }
+                                        elseif($today === "25"){ echo ($formula - ($formula/100)*5) ;  }
                                         else { echo ($formula - ($formula/100)*0) ;  }  ?> </span></li>
                                         <?php } ?>
                                     </ul>
