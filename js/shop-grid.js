@@ -90,6 +90,7 @@ function input_qty() {
     var qty = $(".number-of-item").val();
     // console.log(typeof(qty));
     var stock = $('.detail-stock').text();
+    console.log(stock)
     if(parseInt(qty) <= parseInt(stock)){
         $('#qty').val(qty);
     }else{

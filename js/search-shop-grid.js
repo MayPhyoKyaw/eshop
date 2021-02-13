@@ -33,20 +33,6 @@ function goBack() {
     window.history.back();
 }
 
-function input_qty() {
-    console.log($(".number-of-item").val());
-    var qty = $(".number-of-item").val();
-    // console.log(typeof(qty));
-    var stock = $('.detail-stock').text();
-    if(parseInt(qty) <= parseInt(stock)){
-        $('#qty').val(qty);
-    }else{
-        // $('#quantity_warning').modal('show');
-        $(".number-of-item").val(stock);
-        // $('#detailModal').modal('hide');
-    }
-}
-
 $(document).ready(function () {
     $(".sale-view-detail").click(function () {
         // console.log($(this).parent().parent().parent().parent().html());
@@ -86,3 +72,17 @@ $(document).ready(function () {
         $('#cart_itemId').val(itemId);
     })
 })
+
+function input_qty() {
+    console.log($(".number-of-item").val());
+    var qty = $(".number-of-item").val();
+    // console.log(qty);
+    var stock = $('.detail-stock').text();
+    if(parseInt(qty) <= parseInt(stock)){
+        $('#qty').val(qty);
+    }else{
+        // $('#quantity_warning').modal('show');
+        $(".number-of-item").val(stock);
+        // $('#detailModal').modal('hide');
+    }
+}

@@ -75,6 +75,21 @@ $(document).ready(function () {
   })
 });
 
+function input_qty() {
+  console.log($(".number-of-item").val());
+  var qty = $(".number-of-item").val();
+  // console.log(typeof(qty));
+  var stock = $('.detail-stock').text();
+  console.log(stock)
+  if(parseInt(qty) <= parseInt(stock)){
+      $('#qty').val(qty);
+  }else{
+      // $('#quantity_warning').modal('show');
+      $(".number-of-item").val(stock);
+      // $('#detailModal').modal('hide');
+  }
+}
+
 function goBack() {
   window.history.back();
 };

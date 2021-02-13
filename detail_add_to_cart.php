@@ -6,6 +6,7 @@
         if(isset($_POST["add_to_cart_detail"])) {
             $id = $_POST['cart_itemId'];
             $qty = $_POST['cart_qty'];
+            // echo $qty;
             $stm = $db->prepare("INSERT INTO cart (item_id, c_code, quantity) 
                         VALUES ( :cart_itemId, 100, :qty)") ;
             // inserting a record
