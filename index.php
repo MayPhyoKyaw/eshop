@@ -601,7 +601,7 @@
                                             maxlength = "2"
                                             min="1"
                                         />
-                                        <button type="button" class="btn btn-outline-primary btn-sm number-btn">カートに入れる</button>
+                                        <!-- <button type="button" class="btn btn-outline-primary btn-sm number-btn">カートに入れる</button> -->
                                     </div>
                                     <div class="detail-items hide detail-stock"></div>
                                 </div>
@@ -612,7 +612,7 @@
                                         <input type="hidden" name="cart_itemId" value="" id="cart_itemId" />
                                         <input type="hidden" name="cart_qty" value="" id="qty" />
                                         <button class="btn" href="#" type="submit" name="add_to_cart_detail">
-                                            Add to Cart
+                                        カートに入れる
                                         </button>
                                     </form>
                                 </div>
