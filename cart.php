@@ -443,11 +443,11 @@
                     <!-- Total Amount -->
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-12">
-                            <div class="right">
+                            <!-- <div class="right">
                                 <div class="button6" id="calculate-total">
                                     <a href="#" class="btn">計算する</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="total-amount">
@@ -475,6 +475,7 @@
                                         ?>
                                         </span></li>
                                         <li class="important2">消費税   :<span class="consumption-tax">10%</span></li>
+                                        <?php $v = "<script> $('.consumption-tax').text() </script>"; ?>
                                         <li class="important1">配送料   :<span class="delivery-fee">￥700</span></li>
                                         <!-- <li class="important">割引率    :<span>￥20.00</span></li> -->
                                         <?php
