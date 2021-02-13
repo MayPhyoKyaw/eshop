@@ -62,6 +62,7 @@ $(document).ready(function () {
         var country = $(this).parent().parent().parent().parent().find('.hide-country').text();
         var description = $(this).parent().parent().parent().parent().find('.hide-description').text();
         var price = $(this).parent().parent().parent().parent().find('.hide-price').text();
+        var stock = $(this).parent().parent().parent().parent().find('.hide-stock').text();
         var img1 = $(this).parent().parent().parent().parent().find('.hide-img1').text();
         var img2 = $(this).parent().parent().parent().parent().find('.hide-img2').text();
         console.log(itemName, mainType, subType, gender, season, brand, size, color, country, description, price, img1, img2);
@@ -76,9 +77,24 @@ $(document).ready(function () {
         $('.detail-country').text(country);
         $('.detail-description').text(description);
         $('.detail-price').text(price);
+        $('.detail-stock').text(stock);
         $('.img1') .html(`<img src="./images/items/${img1}" alt="#">`);
         $('.img2').html(`<img src="./images/items/${img2}" alt="#">`);
         $('#cart_itemId').val(itemId);
         console.log(itemId);
     })
 })
+
+function input_qty() {
+    console.log($(".number-of-item").val());
+    var qty = $(".number-of-item").val();
+    // console.log(typeof(qty));
+    var stock = $('.detail-stock').text();
+    if(parseInt(qty) <= parseInt(stock)){
+        $('.qty').val(qty);
+    }else{
+        // $('#quantity_warning').modal('show');
+        $(".number-of-item").val(stock);
+        // $('#detailModal').modal('hide');
+    }
+}

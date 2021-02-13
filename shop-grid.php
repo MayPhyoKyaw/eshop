@@ -524,7 +524,7 @@
                                 try {
                                     $subCat = $_GET['small_category'];
 
-                                    $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sc.s_catName = :subCat" ;
+                                    $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color, stock FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id  WHERE sc.s_catName = :subCat" ;
                                     $st3 = $dbConn->prepare($item_sql);
                                     $st3->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
                                     $st3->execute();
@@ -573,6 +573,8 @@
                                         <span class="hide hide-season"><?php echo $row['season_name'];?></span>
                                         <span class="hide hide-brand"><?php echo $row['brand_name'];?></span>
                                         <span class="hide hide-color"><?php echo $row['color'];?></span>
+                                        <!-- <span class="hide hide-quantity"><?php //echo $row['quantity'];?></span> -->
+                                        <span class="hide hide-stock"><?php echo $row['stock'];?></span>
                                         <span class="hide hide-description"><?php echo $row['description'];?></span>
                                         <span class="hide hide-largeCat"><?php echo $row['b_catName'];?></span>
                                         <span class="hide hide-smallCat"><?php echo $row['s_catName'];?></span>
@@ -627,6 +629,24 @@
                         // ':cart_iteb_catName' => $_POST['cart_iteb_catName'], 
                         // ':cart_size_name' => $_POST['cart_size_name'],
                         // ':cart_price' => $_POST['cart_price'],
+                    )
+                );
+            }
+        }catch (PDOException $e) {
+            echo "There is some problem in connection: " . $e->getMessage();
+        }
+
+        try {
+            if(isset($_POST["add_to_cart_detail"])) {
+                $id = $_POST['cart_itemId'];
+                $qty = $_POST['cart_qty'];
+                $stm = $db->prepare("INSERT INTO cart (item_id, c_code, quantity) 
+                            VALUES ( :cart_itemId, 100, :qty)") ;
+                // inserting a record
+                $stm->execute(
+                    array(
+                        ':cart_itemId' => $_POST['cart_itemId'], 
+                        ':qty' => $_POST['cart_qty'], 
                     )
                 );
             }
@@ -718,20 +738,23 @@
                                     
                                     <div class="detail-items">Quantity</div>
                                     <div class="detail-items">
-                                        <input class="number-of-item" name="somename" value="1"
-                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        <input class="number-of-item" name="numberOfItem" value="1"
+                                            oninput="input_qty()"
                                             type = "number"
                                             maxlength = "2"
+                                            min="1"
                                         />
                                         <button type="button" class="btn btn-outline-primary btn-sm number-btn">カートに入れる</button>
                                     </div>
+                                    <div class="detail-items hide detail-stock"></div>
                                 </div>
 
                                 <div class="add-to-cart">
                                     <!-- <a href="#" class="btn">Add to cart</a> -->
                                     <form action="" method="post">
                                         <input type="hidden" name="cart_itemId" value="" id="cart_itemId" />
-                                        <button class="btn" href="#" type="submit" name="add_to_cart">
+                                        <input type="hidden" name="cart_qty" value="" id="qty" />
+                                        <button class="btn" href="#" type="submit" name="add_to_cart_detail">
                                             Add to Cart
                                         </button>
                                     </form>
@@ -753,6 +776,29 @@
         </div>
     </div>
     <!-- Modal end -->
+
+    <!-- Warning Modal -->
+    <div class="modal fade" id="quantity_warning" tabindex="-1" role="dialog" aria-labelledby="quantityWarning" aria-hidden="true">
+        <div class="modal-dialog customize-warning-modal-dialog" role="document">
+            <div class="modal-content customize-warning-modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body customize-warning-modal-body">
+                    <div>
+                        <h3 class="modal-title waring-title">警告：</h3><br>
+                        <h4 style="text-align: center;">商品が在庫切れです！</h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Warning Modal -->
 
     <!-- Start Footer Area -->
     <footer class="footer">
