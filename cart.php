@@ -462,9 +462,20 @@
                             <div class="col-lg-5 col-md-7 col-12">
                                 <div class="right">
                                     <ul>
-                                        <li>合計    :<span id="subtotal-amount">￥</span></li>
-                                        <li class="important2">消費税   :<span>10%</span></li>
-                                        <li class="important1">配送料   :<span>￥700</span></li>
+                                        <li>合計    :<span id="subtotal-amount">
+                                        <?php
+                                            $database = new Connection();
+                                            $dbConn = $database->openConnection();
+                                            $mainCat_sql = "SELECT Sum(price*quantity) as result FROM cart INNER JOIN item on cart.item_id = item.item_id" ;
+                                            $st1 = $dbConn->prepare($mainCat_sql);
+                                            $st1->execute();
+                                            foreach ($st1->fetchAll() as $row1) {
+                                                echo "￥" . $row1['result'];
+                                            }
+                                        ?>
+                                        </span></li>
+                                        <li class="important2">消費税   :<span class="consumption-tax">10%</span></li>
+                                        <li class="important1">配送料   :<span class="delivery-fee">￥700</span></li>
                                         <!-- <li class="important">割引率    :<span>￥20.00</span></li> -->
                                         <?php
                                             $today = date("d");
@@ -475,12 +486,11 @@
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
                                             }else if($today === "25"){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
-                                            }else{ 
+                                            }else{
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>0%</span></li>";
-                                            } 
+                                            }
                                         ?>
-                                        <li class="last">注文合計   :<span id="calculated-total-amount">￥</span></li>
-                                       
+                                        <li class="last">注文合計   :<span id="calculated-total-amount"></span></li>
                                     </ul>
                                     <div class="button5">
                                         <a href="sendRegister.php" class="btn">注文に進む</a>
