@@ -483,11 +483,8 @@
                                         ?>
                                         <?php
                                             $today = date("d");
-                                            echo $tax;
-                                            echo $deliveryFee;
-                                            echo $row1['result'];
                                             // echo date("d/m/Y h:m:s a");
-                                            if($today === "05"){
+                                            if($today === "14"){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
                                             }else if($today === "15"){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
@@ -498,7 +495,13 @@
                                             }
                                         ?>
 
-                                        <li class="last">注文合計   :<span id="calculated-total-amount"><?php echo ((int) $row1['result']/100) * (int) $tax ?> </span></li>
+                                        <li class="last">注文合計   :<span id="calculated-total-amount"><?php 
+                                        $formula = (($row1['result']/100)*10) + $row1['result'] + 700;
+                                        $today = date("d");
+                                        if($today === "14"){ echo (($formula/100)*5) + $formula;  }
+                                        else if($today === "15"){ echo (($formula/100)*5) + $formula;  }
+                                        else if($today === "25"){ echo (($formula/100)*5) + $formula;  }
+                                        else { echo (($formula/100)*0) + $formula;  }  ?> </span></li>
                                         <?php } ?>
                                     </ul>
                                     <div class="button5">
