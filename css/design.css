@@ -355,9 +355,9 @@ button {
     margin-bottom: 18px;
 }
 
-.count-item {
+/* .count-item {
     margin-left: 200px;
-}
+} */
 
 .shopping-cart-header {
     margin-top: 15px;
@@ -665,7 +665,7 @@ p {
 /* about */
 
 .privacy, .back {
-    color: blue;
+    color: blue !important;
     cursor: pointer;
     text-decoration: underline;
 }

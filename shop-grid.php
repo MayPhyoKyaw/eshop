@@ -301,7 +301,7 @@
                     <div class="shop-sidebar">
                         <!-- Single Widget -->
                         <div class="single-widget category">
-                            <h3 class="title">Categories</h3>
+                            <h3 class="title main-category-name"></h3>
                             <ul class="categor-list">
                                 <?php 
                                     try {
@@ -428,9 +428,9 @@
                             <!-- Shop Top -->
                             <div class="shop-top">
                                 <div class="shop-shorter">
-                                    <span class="main-category-name"></span>
+                                    <!-- <span class="main-category-name"></span>
                                     <i class="ti-arrow-right category-ref"></i>
-                                    <span class="sub-category-name"></span>
+                                    <span class="sub-category-name"></span> -->
                                     <span class="count-item"></span>
                                 </div>
                                 <div id="pagination-container"></div>
@@ -694,7 +694,7 @@
                                             maxlength = "2"
                                             min="1"
                                         />
-                                        <button type="button" class="btn btn-outline-primary btn-sm number-btn">カートに入れる</button>
+                                        <!-- <button type="button" class="btn btn-outline-primary btn-sm number-btn">カートに入れる</button> -->
                                     </div>
                                     <div class="detail-items hide detail-stock"></div>
                                 </div>
@@ -705,7 +705,7 @@
                                         <input type="hidden" name="cart_itemId" value="" id="cart_itemId" />
                                         <input type="hidden" name="cart_qty" value="" id="qty" />
                                         <button class="btn" href="#" type="submit" name="add_to_cart_detail">
-                                            Add to Cart
+                                        カートに入れる
                                         </button>
                                     </form>
                                 </div>

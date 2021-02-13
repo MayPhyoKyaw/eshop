@@ -272,8 +272,9 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="blog-single.php">Cart</a></li>
+                            <!-- <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="blog-single.php">Cart</a></li> -->
+                            <a href="#" class="back" onclick="goBack()"><<戻る</a>
                         </ul>
                     </div>
                     <div class="row">

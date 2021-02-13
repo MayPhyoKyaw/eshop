@@ -5,7 +5,7 @@ var large_categoryName = get_url.searchParams.get('large_category');
 console.log(small_categoryName)
 console.log(large_categoryName)
 $(".main-category-name").append(large_categoryName);
-$(".sub-category-name").append(small_categoryName);
+// $(".sub-category-name").append(small_categoryName);
 
 var items = $(".product-wrapper .product-item");
 var numItems = items.length;
