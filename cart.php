@@ -475,14 +475,18 @@
                                         </span></li>
                                         <li class="important2">消費税   :<span class="consumption-tax" id="consumption_tax">10%</span></li>
                                         <?php 
-                                            $tax = "<script> document.write(document.getElementById('consumption_tax').innerHTML) </script>"; 
+                                            $tax = "<script> document.write(document.getElementById('consumption_tax').innerHTML.slice(0,2)) </script>"; 
                                         ?>
-                                        <li class="important1">配送料   :<span class="delivery-fee">￥700</span></li>
-                                        <!-- <li class="important">割引率    :<span>￥20.00</span></li> -->
+                                        <li class="important1">配送料   :<span class="delivery-fee" id="delivery_fee">￥700</span></li>
+                                        <?php 
+                                            $deliveryFee = "<script> document.write(document.getElementById('delivery_fee').innerHTML.slice(1)) </script>"; 
+                                        ?>
                                         <?php
                                             $today = date("d");
-                                            // echo date("d/m/Y h:m:s a");
                                             echo $tax;
+                                            echo $deliveryFee;
+                                            echo $row1['result'];
+                                            // echo date("d/m/Y h:m:s a");
                                             if($today === "05"){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
                                             }else if($today === "15"){
@@ -493,7 +497,8 @@
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>0%</span></li>";
                                             }
                                         ?>
-                                        <li class="last">注文合計   :<span id="calculated-total-amount"></span></li>
+
+                                        <li class="last">注文合計   :<span id="calculated-total-amount"><?php echo ((int) $row1['result']/100) * (int) $tax ?> </span></li>
                                         <?php } ?>
                                     </ul>
                                     <div class="button5">

@@ -122,27 +122,27 @@ $(document).ready(function () {
   //   document.getElementById("calculated-total-amount").innerHTML = `￥ ${total.toFixed(2)}`
   // })
 
-  var subtotalAmountValue = $("#subtotal-amount").text();
-  var subtotalAmount = subtotalAmountValue.replace("￥"," ");
+  // var subtotalAmountValue = $("#subtotal-amount").text();
+  // var subtotalAmount = subtotalAmountValue.replace("￥"," ");
 
-  var consumptionTaxValue = $(".consumption-tax").text();
-  var consumptionTax = consumptionTaxValue.slice(0,2);
+  // var consumptionTaxValue = $(".consumption-tax").text();
+  // var consumptionTax = consumptionTaxValue.slice(0,2);
 
-  var deliveryFeeValue = $(".delivery-fee").text();
-  var deliveryFee = deliveryFeeValue.slice(1);
+  // var deliveryFeeValue = $(".delivery-fee").text();
+  // var deliveryFee = deliveryFeeValue.slice(1);
 
-  var total = (subtotalAmount/100)*consumptionTax;
-  var formula1 = parseInt(subtotalAmount) + parseInt(total) + parseInt(deliveryFee);
-  console.log("Formula1 => " + formula1);
+  // var total = (subtotalAmount/100)*consumptionTax;
+  // var formula1 = parseInt(subtotalAmount) + parseInt(total) + parseInt(deliveryFee);
+  // console.log("Formula1 => " + formula1);
 
-  var discountRateValue = $(".discount-rate").text();
-  var discountRate = discountRateValue.replace("%", " ");
+  // var discountRateValue = $(".discount-rate").text();
+  // var discountRate = discountRateValue.replace("%", " ");
 
-  var discountCalculation = (formula1/100)*parseInt(discountRate);
-  var formula2 = formula1 - discountCalculation;
-  console.log("Formula2 => " + formula2)
+  // var discountCalculation = (formula1/100)*parseInt(discountRate);
+  // var formula2 = formula1 - discountCalculation;
+  // console.log("Formula2 => " + formula2)
 
-  $("#calculated-total-amount").append(`${formula2}`);
+  // $("#calculated-total-amount").append(`${formula2}`);
 })
 
 // function deleteRow(row){
