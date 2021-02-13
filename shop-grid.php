@@ -467,8 +467,8 @@
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
                                             <div class="product-action-2">
-                                                <?php $url= $_SERVER['REQUEST_URI']; ?>
-                                                <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row3['item_id']; ?>" method="post">
+                                                <?php //$url= $_SERVER['REQUEST_URI']; ?>
+                                                <form action="add_to_cart.php" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row3['item_id']; ?>" />
                                                     <!-- <input type="hidden" name="cart_image" value="<?php //echo $row3['item_img1']; ?>" />
                                                     <input type="hidden" name="cart_itemMainType" value="<?php //echo $row3['b_catName']; ?>" />
@@ -500,6 +500,7 @@
                                         <span class="hide hide-season"><?php echo $row3['season_name'];?></span>
                                         <span class="hide hide-brand"><?php echo $row3['brand_name'];?></span>
                                         <span class="hide hide-color"><?php echo $row3['color'];?></span>
+                                        <span class="hide hide-stock"><?php echo $row['stock'];?></span>
                                         <span class="hide hide-description"><?php echo $row3['description'];?></span>
                                         <span class="hide hide-largeCat"><?php echo $row3['b_catName'];?></span>
                                         <span class="hide hide-smallCat"><?php echo $row3['s_catName'];?></span>
@@ -545,8 +546,8 @@
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
                                             <div class="product-action-2">
-                                                <?php $url= $_SERVER['REQUEST_URI']; ?>
-                                                <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row['item_id']; ?>" method="post">
+                                                <?php //$url= $_SERVER['REQUEST_URI']; ?>
+                                                <form action="add_to_cart.php" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
                                                     <a title="Add to cart" href="#">
                                                         <input type="submit" name="add_to_cart" value="Add to Cart" />
@@ -603,57 +604,6 @@
         </div>
     </section>
     <!--/ End Product Style 1  -->
-
-    <?php 
-        try {
-            $database = new Connection();
-            $db = $database->openConnection();
-            
-            if(isset($_POST["add_to_cart"])) {
-                $id = $_POST['cart_itemId'];
-                // $image = $_POST['cart_image'];
-                // $mainType = $_POST['cart_itemMainType'];
-                // $subType = $_POST['cart_itemSubType'];
-                // $iteb_catName = $_POST['cart_iteb_catName'];
-                // $size = $_POST['cart_size_name'];
-                // $price = $_POST['cart_price'];
-                $stm = $db->prepare("INSERT INTO cart (item_id, c_code, quantity) 
-                            VALUES ( :cart_itemId, 100, 1)") ;
-                // inserting a record
-                $stm->execute(
-                    array(
-                        ':cart_itemId' => $_POST['cart_itemId'], 
-                        // ':cart_image' => $_POST['cart_image'], 
-                        // ':cart_itemMainType' => $_POST['cart_itemMainType'],
-                        // ':cart_itemSubType' => $_POST['cart_itemSubType'],
-                        // ':cart_iteb_catName' => $_POST['cart_iteb_catName'], 
-                        // ':cart_size_name' => $_POST['cart_size_name'],
-                        // ':cart_price' => $_POST['cart_price'],
-                    )
-                );
-            }
-        }catch (PDOException $e) {
-            echo "There is some problem in connection: " . $e->getMessage();
-        }
-
-        try {
-            if(isset($_POST["add_to_cart_detail"])) {
-                $id = $_POST['cart_itemId'];
-                $qty = $_POST['cart_qty'];
-                $stm = $db->prepare("INSERT INTO cart (item_id, c_code, quantity) 
-                            VALUES ( :cart_itemId, 100, :qty)") ;
-                // inserting a record
-                $stm->execute(
-                    array(
-                        ':cart_itemId' => $_POST['cart_itemId'], 
-                        ':qty' => $_POST['cart_qty'], 
-                    )
-                );
-            }
-        }catch (PDOException $e) {
-            echo "There is some problem in connection: " . $e->getMessage();
-        }
-    ?>
 
    <!-- Modal -->
    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
@@ -751,7 +701,7 @@
 
                                 <div class="add-to-cart">
                                     <!-- <a href="#" class="btn">Add to cart</a> -->
-                                    <form action="" method="post">
+                                    <form action="detail_add_to_cart.php" method="post">
                                         <input type="hidden" name="cart_itemId" value="" id="cart_itemId" />
                                         <input type="hidden" name="cart_qty" value="" id="qty" />
                                         <button class="btn" href="#" type="submit" name="add_to_cart_detail">

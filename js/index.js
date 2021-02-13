@@ -49,6 +49,7 @@ $(document).ready(function () {
     var brand = $(this).parent().parent().parent().parent().find('.hide-brand').text();
     var size = $(this).parent().parent().parent().parent().find('.hide-size').text();
     var color = $(this).parent().parent().parent().parent().find('.hide-color').text();
+    var stock = $(this).parent().parent().parent().parent().find('.hide-stock').text();
     var country = $(this).parent().parent().parent().parent().find('.hide-country').text();
     var description = $(this).parent().parent().parent().parent().find('.hide-description').text();
     var price = $(this).parent().parent().parent().parent().find('.hide-price').text();
@@ -67,6 +68,7 @@ $(document).ready(function () {
     $('.detail-country').text(country);
     $('.detail-description').text(description);
     $('.detail-price').text(price);
+    $('.detail-stock').text(stock);
     $('.img1') .html(`<img src="./images/items/${img1}" alt="#">`);
     $('.img2').html(`<img src="./images/items/${img2}" alt="#">`);
     $('#cart_itemId').val(itemId);

@@ -33,6 +33,20 @@ function goBack() {
     window.history.back();
 }
 
+function input_qty() {
+    console.log($(".number-of-item").val());
+    var qty = $(".number-of-item").val();
+    // console.log(typeof(qty));
+    var stock = $('.detail-stock').text();
+    if(parseInt(qty) <= parseInt(stock)){
+        $('#qty').val(qty);
+    }else{
+        // $('#quantity_warning').modal('show');
+        $(".number-of-item").val(stock);
+        // $('#detailModal').modal('hide');
+    }
+}
+
 $(document).ready(function () {
     $(".sale-view-detail").click(function () {
         // console.log($(this).parent().parent().parent().parent().html());
@@ -46,6 +60,7 @@ $(document).ready(function () {
         var size = $(this).parent().parent().parent().parent().find('.hide-size').text();
         var color = $(this).parent().parent().parent().parent().find('.hide-color').text();
         var country = $(this).parent().parent().parent().parent().find('.hide-country').text();
+        var stock = $(this).parent().parent().parent().parent().find('.hide-stock').text();
         var description = $(this).parent().parent().parent().parent().find('.hide-description').text();
         var price = $(this).parent().parent().parent().parent().find('.hide-price').text();
         var old_price = $(this).parent().parent().parent().parent().find('.old').text();
@@ -65,6 +80,7 @@ $(document).ready(function () {
         $('.detail-description').text(description);
         $('.old-price').text(old_price);
         $('.now-price').text(price);
+        $('.detail-stock').text(stock);
         $('.img1').html(`<img src="./images/items/${img1}" alt="#">`);
         $('.img2').html(`<img src="./images/items/${img2}" alt="#">`);
         $('#cart_itemId').val(itemId);

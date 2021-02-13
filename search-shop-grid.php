@@ -335,8 +335,8 @@
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
                                             <div class="product-action-2">
-                                                <?php $url= $_SERVER['REQUEST_URI']; ?>
-                                                <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row['item_id']; ?>" method="post">
+                                                <?php //$url= $_SERVER['REQUEST_URI']; ?>
+                                                <form action="add_to_cart.php" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
                                                     <a title="Add to cart" href="#">
                                                         <input type="submit" name="add_to_cart" value="Add to Cart" />
@@ -363,6 +363,7 @@
                                         <span class="hide hide-season"><?php echo $row['season_name'];?></span>
                                         <span class="hide hide-brand"><?php echo $row['brand_name'];?></span>
                                         <span class="hide hide-color"><?php echo $row['color'];?></span>
+                                        <span class="hide hide-stock"><?php echo $row['stock'];?></span>
                                         <span class="hide hide-description"><?php echo $row['description'];?></span>
                                         <span class="hide hide-largeCat"><?php echo $row['b_catName'];?></span>
                                         <span class="hide hide-smallCat"><?php echo $row['s_catName'];?></span>
@@ -406,8 +407,8 @@
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
                                             <div class="product-action-2">
-                                                <?php $url= $_SERVER['REQUEST_URI']; ?>
-                                                <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row['item_id']; ?>" method="post">
+                                                <?php //$url= $_SERVER['REQUEST_URI']; ?>
+                                                <form action="add_to_cart.php" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
                                                     <a title="Add to cart" href="#">
                                                         <input type="submit" name="add_to_cart" value="Add to Cart" />
@@ -434,6 +435,7 @@
                                         <span class="hide hide-season"><?php echo $row['season_name'];?></span>
                                         <span class="hide hide-brand"><?php echo $row['brand_name'];?></span>
                                         <span class="hide hide-color"><?php echo $row['color'];?></span>
+                                        <span class="hide hide-stock"><?php echo $row['stock'];?></span>
                                         <span class="hide hide-description"><?php echo $row['description'];?></span>
                                         <span class="hide hide-largeCat"><?php echo $row['b_catName'];?></span>
                                         <span class="hide hide-smallCat"><?php echo $row['s_catName'];?></span>
@@ -477,8 +479,8 @@
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
                                             <div class="product-action-2">
-                                                <?php $url= $_SERVER['REQUEST_URI']; ?>
-                                                <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row['item_id']; ?>" method="post">
+                                                <?php //$url= $_SERVER['REQUEST_URI']; ?>
+                                                <form action="add_to_cart.php" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
                                                     <a title="Add to cart" href="#">
                                                         <input type="submit" name="add_to_cart" value="Add to Cart" />
@@ -505,6 +507,7 @@
                                         <span class="hide hide-season"><?php echo $row['season_name'];?></span>
                                         <span class="hide hide-brand"><?php echo $row['brand_name'];?></span>
                                         <span class="hide hide-color"><?php echo $row['color'];?></span>
+                                        <span class="hide hide-stock"><?php echo $row['stock'];?></span>
                                         <span class="hide hide-description"><?php echo $row['description'];?></span>
                                         <span class="hide hide-largeCat"><?php echo $row['b_catName'];?></span>
                                         <span class="hide hide-smallCat"><?php echo $row['s_catName'];?></span>
@@ -548,8 +551,8 @@
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
                                             <div class="product-action-2">
-                                                <?php $url= $_SERVER['REQUEST_URI']; ?>
-                                                <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row['item_id']; ?>" method="post">
+                                                <?php //$url= $_SERVER['REQUEST_URI']; ?>
+                                                <form action="add_to_cart.php" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
                                                     <a title="Add to cart" href="#">
                                                         <input type="submit" name="add_to_cart" value="Add to Cart" />
@@ -576,6 +579,7 @@
                                         <span class="hide hide-season"><?php echo $row['season_name'];?></span>
                                         <span class="hide hide-brand"><?php echo $row['brand_name'];?></span>
                                         <span class="hide hide-color"><?php echo $row['color'];?></span>
+                                        <span class="hide hide-stock"><?php echo $row['stock'];?></span>
                                         <span class="hide hide-description"><?php echo $row['description'];?></span>
                                         <span class="hide hide-largeCat"><?php echo $row['b_catName'];?></span>
                                         <span class="hide hide-smallCat"><?php echo $row['s_catName'];?></span>
@@ -620,8 +624,8 @@
                                                 <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
                                             </div>
                                             <div class="product-action-2">
-                                                <?php $url= $_SERVER['REQUEST_URI']; ?>
-                                                <form action="<?php echo $url; ?>&action=added&itemID=<?php echo $row['item_id']; ?>" method="post">
+                                                <?php //$url= $_SERVER['REQUEST_URI']; ?>
+                                                <form action="add_to_cart.php" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
                                                     <a title="Add to cart" href="#">
                                                         <input type="submit" name="add_to_cart" value="Add to Cart" />
@@ -648,6 +652,7 @@
                                         <span class="hide hide-season"><?php echo $row['season_name'];?></span>
                                         <span class="hide hide-brand"><?php echo $row['brand_name'];?></span>
                                         <span class="hide hide-color"><?php echo $row['color'];?></span>
+                                        <span class="hide hide-stock"><?php echo $row['stock'];?></span>
                                         <span class="hide hide-description"><?php echo $row['description'];?></span>
                                         <span class="hide hide-largeCat"><?php echo $row['b_catName'];?></span>
                                         <span class="hide hide-smallCat"><?php echo $row['s_catName'];?></span>
@@ -677,27 +682,6 @@
         </div>
     </section>
     <!--/ End Product Style 1  -->
-
-    <?php 
-        try {
-            $database = new Connection();
-            $db = $database->openConnection();
-            
-            if(isset($_POST["add_to_cart"])) {
-                $id = $_POST['cart_itemId'];
-                $stm = $db->prepare("INSERT INTO cart (item_id, c_code, quantity) 
-                            VALUES ( :cart_itemId, 100, 1)") ;
-                // inserting a record
-                $stm->execute(
-                    array(
-                        ':cart_itemId' => $_POST['cart_itemId'], 
-                    )
-                );
-            }
-        }catch (PDOException $e) {
-            echo "There is some problem in connection: " . $e->getMessage();
-        }
-    ?>
 
     <!-- Modal -->
     <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
@@ -782,20 +766,23 @@
                                     
                                     <div class="detail-items">Quantity</div>
                                     <div class="detail-items">
-                                        <input class="number-of-item" name="somename" value="1"
-                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        <input class="number-of-item" name="numberOfItem" value="1"
+                                            oninput="input_qty()"
                                             type = "number"
                                             maxlength = "2"
+                                            min="1"
                                         />
                                         <button type="button" class="btn btn-outline-primary btn-sm number-btn">カートに入れる</button>
                                     </div>
+                                    <div class="detail-items hide detail-stock"></div>
                                 </div>
 
                                 <div class="add-to-cart">
                                     <!-- <a href="#" class="btn">Add to cart</a> -->
-                                    <form action="" method="post">
+                                    <form action="detail_add_to_cart.php" method="post">
                                         <input type="hidden" name="cart_itemId" value="" id="cart_itemId" />
-                                        <button class="btn" href="#" type="submit" name="add_to_cart">
+                                        <input type="hidden" name="cart_qty" value="" id="qty" />
+                                        <button class="btn" href="#" type="submit" name="add_to_cart_detail">
                                             Add to Cart
                                         </button>
                                     </form>

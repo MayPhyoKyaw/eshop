@@ -91,7 +91,7 @@ function input_qty() {
     // console.log(typeof(qty));
     var stock = $('.detail-stock').text();
     if(parseInt(qty) <= parseInt(stock)){
-        $('.qty').val(qty);
+        $('#qty').val(qty);
     }else{
         // $('#quantity_warning').modal('show');
         $(".number-of-item").val(stock);
