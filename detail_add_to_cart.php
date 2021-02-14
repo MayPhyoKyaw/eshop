@@ -6,16 +6,27 @@
         if(isset($_POST["add_to_cart_detail"])) {
             $id = $_POST['cart_itemId'];
             $qty = $_POST['cart_qty'];
-            // echo $qty;
-            $stm = $db->prepare("INSERT INTO cart (item_id, c_code, quantity) 
-                        VALUES ( :cart_itemId, 100, :qty)") ;
-            // inserting a record
-            $stm->execute(
-                array(
-                    ':cart_itemId' => $_POST['cart_itemId'], 
-                    ':qty' => $_POST['cart_qty'], 
-                )
-            );
+            echo $qty;
+            if($qty == 0){
+                $stm = $db->prepare("INSERT INTO cart (item_id, c_code, quantity) 
+                        VALUES ( :cart_itemId, 100, 1)") ;
+                // inserting a record
+                $stm->execute(
+                    array(
+                        ':cart_itemId' => $_POST['cart_itemId'],
+                    )
+                );
+            }else{
+                $stm = $db->prepare("INSERT INTO cart (item_id, c_code, quantity) 
+                            VALUES ( :cart_itemId, 100, :qty)") ;
+                // inserting a record
+                $stm->execute(
+                    array(
+                        ':cart_itemId' => $_POST['cart_itemId'], 
+                        ':qty' => $_POST['cart_qty'], 
+                    )
+                );
+            }
         }
     }catch (PDOException $e) {
         echo "There is some problem in connection: " . $e->getMessage();

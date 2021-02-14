@@ -70,13 +70,14 @@ $(document).ready(function () {
         $('.img1').html(`<img src="./images/items/${img1}" alt="#">`);
         $('.img2').html(`<img src="./images/items/${img2}" alt="#">`);
         $('#cart_itemId').val(itemId);
+        console.log($(".number-of-item").val());
     })
 })
 
 function input_qty() {
     console.log($(".number-of-item").val());
     var qty = $(".number-of-item").val();
-    // console.log(qty);
+    console.log(qty);
     var stock = $('.detail-stock').text();
     if(parseInt(qty) <= parseInt(stock)){
         $('#qty').val(qty);
