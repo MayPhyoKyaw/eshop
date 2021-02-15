@@ -296,27 +296,48 @@
                             </div>
                             <div class="card bg-light register-form">
                                 <article class="card-body checkout-register-article">
+                                <?php 
+                                    $c_code = $_GET['c_code'];
+                                    $cName = null; 
+                                    $cPhone = null;
+                                    $cAddress1 = null;
+                                    $cAddress2 = null;
+                                    try {
+                                        $customer_sql = "SELECT c_name, c_address1, c_address2, c_phone FROM customers cus INNER JOIN cart c ON cus.c_code = c.c_code WHERE c.c_code = :c_code";
+                                        $st3 = $dbConn->prepare($customer_sql);
+                                        $st3->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
+                                        $st3->execute();
+                                        foreach ($st3->fetchAll() as $row3) {
+                                            $cName = $row3['c_name']; 
+                                            $cPhone = $row3['c_phone'];
+                                            $cAddress1 = $row3['c_address1'];
+                                            $cAddress2 = $row3['c_address2'];
+                                        } 
+                                    }catch (PDOException $e) {
+                                        echo "There is some problem in connection: " . $e->getMessage();
+                                    }
+                                ?>
                                     <div class="input-container">
                                         <i class="fa fa-user icon"></i>
-                                        <input class="username" type="text" placeholder="名前" name="username" disabled="disabled">
+                                        <input class="username" type="text" placeholder="名前" name="username" value="<?php echo $cName; ?>" disabled="disabled">
                                     </div>
 
                                     <div class="input-container">
                                         <i class="fa fa-address-book icon"></i>
-                                        <input class="address" type="text" placeholder="住所" name="address" disabled="disabled">
+                                        <input class="address" type="text" placeholder="住所" name="address" value="<?php echo $cAddress1 . ', ' . $cAddress2; ?>" disabled="disabled">
                                     </div>
 
                                     <div class="input-container">
                                         <i class="fa fa-key icon"></i>
-                                        <input class="phone-no" type="text" placeholder="電話番号" name="phone" disabled="disabled">
+                                        <input class="phone-no" type="text" placeholder="電話番号" name="phone" value="<?php echo $cPhone; ?>" disabled="disabled">
                                     </div>
                                     <div class="input-container">
                                         <select class="delivery-time" name="delivery-times" required>
-                                      <option value="">指定なし</option>
-                                      <option value="option1">9:00 ~ 12:00</option>
-                                      <option value="option2">13:00 ~ 17:00</option>
-                                      <option value="option3">18:00 ~ 21:00</option>
-                                      </select>
+                                            <option value="">指定なし</option>
+                                            <option value="option1">9:00 ~ 12:00</option>
+                                            <option value="option2">13:00 ~ 17:00</option>
+                                            <option value="option3">18:00 ~ 21:00</option>
+                                        </select>
                                         <label class="important-note">※　時間帯を選んでください</label>
                                     </div>
                                     <div class="input-container">

@@ -467,7 +467,7 @@
                                         <?php
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
-                                            $mainCat_sql = "SELECT Sum(price*quantity) as result FROM cart INNER JOIN item on cart.item_id = item.item_id" ;
+                                            $mainCat_sql = "SELECT Sum(price*quantity) as result, cart.c_code, Sum(quantity) as total_qty FROM cart INNER JOIN item on cart.item_id = item.item_id" ;
                                             $st1 = $dbConn->prepare($mainCat_sql);
                                             $st1->execute();
                                             foreach ($st1->fetchAll() as $row1) {
@@ -496,18 +496,43 @@
                                             }
                                         ?>
 
-                                        <li class="last">注文合計   :<span id="calculated-total-amount"><?php 
-                                        $formula = (($row1['result']/100)*10) + $row1['result'] + 700;
-                                        $today = date("d");
-                                        if($today === "05"){ echo ($formula - ($formula/100)*5) ;  }
-                                        elseif($today === "15"){ echo ($formula - ($formula/100)*5) ;  }
-                                        elseif($today === "25"){ echo ($formula - ($formula/100)*5) ;  }
-                                        else { echo ($formula - ($formula/100)*0) ;  }  ?> </span></li>
-                                        <?php } ?>
+                                        <li class="last">注文合計   :
+                                            <span id="calculated-total-amount">
+                                            <?php 
+                                                $formula = (($row1['result']/100)*10) + $row1['result'] + 700;
+                                                $today = date("d");
+                                                $final_amount = 0;
+                                                if($today === "05") { 
+                                                    $final_amount = ($formula - ($formula/100)*5);
+                                                    echo "￥" . $final_amount ;  
+                                                }elseif($today === "15") { 
+                                                    $final_amount = ($formula - ($formula/100)*5);
+                                                    echo "￥" . $final_amount ;  
+                                                }elseif($today === "25") { 
+                                                    $final_amount = ($formula - ($formula/100)*5);
+                                                    echo "￥" . $final_amount ;  
+                                                }
+                                                else { 
+                                                    $final_amount = ($formula - ($formula/100)*0);
+                                                    echo "￥" . $final_amount ; 
+                                                }  
+                                            ?> 
+                                            </span>
+                                        </li>
+                                        
                                     </ul>
                                     <div class="button5">
-                                        <a href="sendRegister.php" class="btn">注文に進む</a>
+                                        <!-- <a href="sendRegister.php" class="btn">注文に進む</a> -->
+                                        <form action="ordering.php" method="post">
+                                            <input type="hidden" name="c_code" value="<?php echo $row1['c_code']; ?>" />
+                                            <input type="hidden" name="total_amount" value="<?php echo $final_amount; ?>" />
+                                            <input type="hidden" name="total_qty" value="<?php echo $row1['total_qty']; ?>" />
+                                            <button class="btn" href="#" type="submit" name="add_ordering">
+                                                注文に進む
+                                            </button>
+                                        </form>
                                     </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

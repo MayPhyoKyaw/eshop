@@ -196,6 +196,7 @@ button {
 .delivery-time {
     margin-right: 10px;
     margin-bottom: 0px;
+    padding-top: 0.6% !important;
     width: 170px !important;
     height: 42px !important;
 }
