@@ -7,10 +7,7 @@
 .main-logo {
     max-height: 129px !important;
 }
-/* cart table */
-#cart-table tbody {
-    
-}
+
 
 /* button */
 
@@ -77,6 +74,7 @@ button {
 .customize-warning-modal-dialog {
     max-width: 35%;
 }
+
 .detail-modal-body {
     max-height: none !important;
     height: auto !important;
@@ -256,6 +254,7 @@ button {
     font-size: 17px;
     font-weight: 600;
 }
+
 .convini-conf-description {
     padding: 10px 0px 10px 20px;
 }
@@ -290,6 +289,7 @@ button {
     line-height: 1.2;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
 }
+
 
 /* register form */
 
@@ -383,6 +383,7 @@ button {
     margin-bottom: 18px;
 }
 
+
 /* .count-item {
     margin-left: 200px;
 } */
@@ -399,10 +400,12 @@ button {
 
 
 /* search-shop-grid */
+
 .brand-name {
     color: #F7941D;
     margin-bottom: 10px;
 }
+
 
 /* .product-shop {
     background-color: #F6F7FB;
@@ -540,6 +543,8 @@ button {
     width: 40px;
     padding: 8px;
 }
+
+
 /* shop grid */
 
 .selected {
@@ -653,11 +658,12 @@ p {
     margin-right: 2px;
 }
 
-.img1{
+.img1 {
     padding-top: 20%;
     padding-bottom: 20%;
 }
-.img2{
+
+.img2 {
     padding-top: 20%;
     padding-bottom: 20%;
 }
@@ -692,7 +698,8 @@ p {
 
 /* about */
 
-.privacy, .back {
+.privacy,
+.back {
     color: blue !important;
     cursor: pointer;
     text-decoration: underline;
