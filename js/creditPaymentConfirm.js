@@ -11,6 +11,6 @@ if (day < 10) day = "0" + day;
 
 var withdrawlDate = year + "/" + month + "/" + day;
 
-$(".credit-withdrawl-method").append(creditCardName);
+$(".credit-withdrawl-method").append(`( ${creditCardName} クレジットカード)`);
 $(".credit-wiithdrawl-date").append(withdrawlDate);
 // $(".credit-confーcardNo").append(creditCardNo);

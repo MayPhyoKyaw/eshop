@@ -119,7 +119,7 @@
                         <div class="search-bar-top">
                             <div class="search-bar">
                                 <select>
-									<option selected="selected">探す</option>
+									<option disabled selected hidden>探す</option>
                                         <option>ブランドから探す</option>
                                         <option>春用で探す</option>
                                         <option>夏用で探す</option>
@@ -239,7 +239,7 @@
                                             <ul class="nav main-menu menu navbar-nav">
                                                 <li><a href="index.php">Home</a></li>
                                                 <li><a href="about.php">About Us</a></li>
-                                                <li class="active"><a href="cart.php">My Cart<span class="new">New</span></a></li>
+                                                <li class="active"><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
                                                         <li><a href="cart.php">My Cart</a></li>

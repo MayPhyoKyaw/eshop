@@ -33,6 +33,9 @@ $(document).ready(function () {
     if (get_searchName === "ブランドから探す") {
       location.href = `./brand-display.php?search=${get_searchName}`;
     }
+    else if (get_searchName === "探す") {
+      location.reload(true);
+    }
     else {
       location.href = `./search-shop-grid.php?search=${get_searchName}`;
     }

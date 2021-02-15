@@ -7,7 +7,10 @@
 .main-logo {
     max-height: 129px !important;
 }
-
+/* cart table */
+#cart-table tbody {
+    
+}
 
 /* button */
 
@@ -243,28 +246,50 @@ button {
 
 /* convini confirmation payment */
 
-.convini-conf-name,
-.convini-conf-amount,
-.convini-conf-date,
-.convini-conf-method,
+.convini-conf-grid-container {
+    display: grid;
+    grid-template-columns: 270px 190px 190px 190px 120px;
+    padding: 10px;
+}
+
+.convini-conf-description-title {
+    font-size: 17px;
+    font-weight: 600;
+}
 .convini-conf-description {
-    padding-left: 15px !important;
-    text-align: left !important;
+    padding: 10px 0px 10px 20px;
+}
+
+.convini-payment-btns {
+    margin-top: 15px;
 }
 
 
 /* credit confirmation payment */
 
-.credit-conf-name,
-.credit-conf-amount,
-.credit-confーcardNo,
-.credit-conf-method,
-.credit-conf-date,
-.credit-conf-description {
-    padding-left: 15px !important;
-    text-align: left !important;
+.credit-conf-description-title {
+    font-size: 17px;
+    font-weight: 600;
 }
 
+.credit-conf-description {
+    padding: 10px 0px 10px 20px;
+}
+
+.space {
+    padding-bottom: 50px;
+}
+
+.credit-payment-btns {
+    margin-top: 15px;
+}
+
+.delete-btn {
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+    line-height: 1.2;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+}
 
 /* register form */
 
@@ -308,7 +333,7 @@ button {
 
 .credit-conf-grid-container {
     display: grid;
-    grid-template-columns: 170px auto;
+    grid-template-columns: 270px 190px 190px 190px 120px;
     padding: 10px;
 }
 
@@ -319,6 +344,9 @@ button {
 }
 
 .grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: transparent;
     border: 1px solid rgba(160, 152, 152, 0.8);
     padding: 8px;

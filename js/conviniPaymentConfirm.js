@@ -11,5 +11,5 @@ if (day < 10) day = "0" + day;
 
 var expireDate = year + "/" + month + "/" + day;
 
-$(".convini-conf-method").append(conviniName);
+$(".convini-conf-method").append(`( ${conviniName} コンビニ)`);
 $(".convini-conf-date").append(expireDate);

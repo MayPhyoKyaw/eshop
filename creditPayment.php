@@ -364,8 +364,8 @@
                                     </div>
                                 </article>
                                 <div class="back-btn">
-                                    <button type="button" class="btn btn-secondary" onclick="goBack()">Back</button>
-                                    <button type="button" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#card_confirmation">OK</button>
+                                    <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
+                                    <button type="button" class="btn btn-secondary card-submit credit-payment-submit">確認</button>
                                 </div>
                             </div>
                         </div>
@@ -376,7 +376,7 @@
     </section>
     <!--/ End Contact -->
     <!-- start card confirmation modal -->
-    <div class="modal fade" id="card_confirmation" tabindex="-1" role="dialog" aria-labelledby="cardConfirmation" aria-hidden="true">
+    <!-- <div class="modal fade" id="card_confirmation" tabindex="-1" role="dialog" aria-labelledby="cardConfirmation" aria-hidden="true">
         <div class="modal-dialog card-confirm-customize-modal-dialog" role="document">
             <div class="modal-content card-confirm-customize-modal-content">
                 <div class="modal-header">
@@ -403,8 +403,6 @@
                             </div>
                         </article>
                     </div>
-                    <!-- card.// -->
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">キャンセル</button>
@@ -412,7 +410,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- end card confirmation modal -->
     <!-- Start Footer Area -->
     <footer class="footer">

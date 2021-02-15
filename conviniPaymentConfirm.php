@@ -291,14 +291,14 @@
                     <div class="col-lg-16 col-12">
                         <div class="form-main">
                             <div class="title">
-                                <h4>支払内容確認</h4>
+                                <h4>ご注文内容の確認</h4>
                             </div>
                             <div class="card bg-light payment-form">
                                 <article class="card-body payment-article">
-                                    <p class="important-note">　※　支払い内容を確認し、お支払い期間までにお支払いください</p><br/>
+                                    <p class="important-note">　※　ご注文内容を確認してください</p><br/>
                                     <div class="convini-type">
-                                        <div class="convini-head"><label><h3>支払い内容</h3></label></div>
-                                        <div class="grid-container">
+                                        <div class="convini-head"><label><h3> オーダー <span class="important-note">(コンビニ)</span></h3></label></div>
+                                        <!-- <div class="grid-container">
                                             <div class="grid-item">お客様名前</div>
                                             <div class="grid-item convini-conf-name"></div>
                                             <div class="grid-item">お支払い金額</div>
@@ -309,10 +309,35 @@
                                             <div class="grid-item convini-conf-method"></div>
                                             <div class="grid-item">お支払い内容</div>
                                             <div class="grid-item convini-conf-description"></div>
+                                        </div> -->
+                                        <div class="convini-conf-grid-container">
+                                            <div class="grid-item">書名</div>
+                                            <div class="grid-item">単価</div>
+                                            <div class="grid-item">個数</div>
+                                            <div class="grid-item">金額</div>
+                                            <div class="grid-item"></div>
+                                            <div class="grid-item">TEST</div>
+                                            <div class="grid-item">TEST</div>
+                                            <div class="grid-item">TEST</div>
+                                            <div class="grid-item">TEST</div>
+                                            <div class="grid-item"><button type="submit" class="btn btn-primary delete-btn" name="quantity_confirm">削除</button></div>
+                                            <span class="convini-conf-description">合計金額 : 770</span>
+                                        </div>
+
+                                        <div>
+                                            <span class="convini-conf-description-title">．配送先</span> <br/>
+                                            <span class="convini-conf-description">郵便番号 :</span> <br/>
+                                            <span class="convini-conf-description">住所 :</span> <br/>
+                                            <span class="convini-conf-description">電話番号 :</span> <br/>
+                                            <span class="convini-conf-description-title">．支払方法</span> <br/>
+                                            <span class="convini-conf-description convini-conf-method"></span> <br/>
+                                            <span class="convini-conf-description space">支払い期間 : <span class="convini-conf-date"></span></span> <br/>
+                                            <!-- <span class="convini-conf-description space" >&nbsp;&nbsp;<span class="important-note">※　クレジットカード会社によって支払い日が異なりますので、各クレジットカード会社のウェブサイトにてご確認ください</span></span> -->
                                         </div>
                                     </div>
                                 </article>
-                                <div class="back-btn">
+                                <div class="back-btn convini-payment-btns">
+                                    <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
                                     <button type="button" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#convini_payment_confirmation">注文する</button>
                                 </div>
                             </div>

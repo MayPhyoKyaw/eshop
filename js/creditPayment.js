@@ -22,7 +22,6 @@ function goBack() {
   window.history.back();
 }
 $('.credit-payment-submit').click(function() {
-  const get_cardName = $(".card-name").text();
-  // const get_cardNo = $(".card-number").text();
-  location.href = `creditPaymentConfirm.html?card_type=${get_cardName}`;
+  const get_cardName = $(".cards").val();
+  location.href = `creditPaymentConfirm.php?card_type=${get_cardName}`;
 });

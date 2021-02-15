@@ -291,31 +291,52 @@
                     <div class="col-lg-16 col-12">
                         <div class="form-main">
                             <div class="title">
-                                <h4>支払内容確認</h4>
+                                <h4>ご注文内容の確認</h4>
                             </div>
                             <div class="card bg-light payment-form">
                                 <article class="card-body payment-article">
-                                    <p class="important-note">　※　お支払い内容と必要な情報を確認してください</p><br/>
+                                    <p class="important-note">　※　ご注文内容を確認してください</p><br/>
                                     <div class="credit-type">
-                                        <div class="credit-head"><label><h3>支払い内容 <span class="important-note">(クレジットカード)</span></h3></label></div>
+                                        <div class="credit-head"><label><h3> オーダー <span class="important-note">(クレジットカード)</span></h3></label></div>
                                         <div class="credit-conf-grid-container">
-                                            <div class="grid-item">お客様名前</div>
+                                            <!-- <div class="grid-item">Name</div>
                                             <div class="grid-item credit-conf-name"></div>
-                                            <div class="grid-item">お支払い金額</div>
+                                            <div class="grid-item">BB</div>
                                             <div class="grid-item credit-conf-amount"></div>
-                                            <!-- <div class="grid-item">クレジットカード No</div>
-                                            <div class="grid-item credit-confーcardNo"></div> -->
                                             <div class="grid-item">お支払い方法</div>
                                             <div class="grid-item credit-conf-method"><span class="credit-withdrawl-method"></span>&nbsp;&nbsp;<span class="important-note">※　１回払い</span></div>
                                             <div class="grid-item">引落日</div>
                                             <div class="grid-item credit-conf-date">
-                                                <!--span class="credit-wiithdrawl-date"></span>-->&nbsp;&nbsp;<span class="important-note">※　クレジットカード会社によって支払い日が異なりますので、各クレジットカード会社のウェブサイトにてご確認ください</span></div>
+                                            &nbsp;&nbsp;<span class="important-note">※　クレジットカード会社によって支払い日が異なりますので、各クレジットカード会社のウェブサイトにてご確認ください</span></div>
                                             <div class="grid-item">お支払い内容</div>
-                                            <div class="grid-item credit-conf-description"></div>
+                                            <div class="grid-item credit-conf-description"></div> -->
+                                            <div class="grid-item">書名</div>
+                                            <div class="grid-item">単価</div>
+                                            <div class="grid-item">個数</div>
+                                            <div class="grid-item">金額</div>
+                                            <div class="grid-item"></div>
+                                            <div class="grid-item">TEST</div>
+                                            <div class="grid-item">TEST</div>
+                                            <div class="grid-item">TEST</div>
+                                            <div class="grid-item">TEST</div>
+                                            <div class="grid-item"><button type="submit" class="btn btn-primary delete-btn" name="quantity_confirm">削除</button></div>
+                                            <span class="credit-conf-description">合計金額 : 770</span>
+                                        </div>
+
+                                        <div>
+                                            <span class="credit-conf-description-title">．配送先</span> <br/>
+                                            <span class="credit-conf-description">郵便番号 :</span> <br/>
+                                            <span class="credit-conf-description">住所 :</span> <br/>
+                                            <span class="credit-conf-description">電話番号 :</span> <br/>
+                                            <span class="credit-conf-description-title">．支払方法</span> <br/>
+                                            <span class="credit-conf-description credit-withdrawl-method"></span>&nbsp;&nbsp;<span class="important-note">※　１回払い</span> <br/>
+                                            <span class="credit-conf-description">支払い期間 : <span class="credit-wiithdrawl-date"></span></span> <br/>
+                                            <span class="credit-conf-description space" >&nbsp;&nbsp;<span class="important-note">※　クレジットカード会社によって支払い日が異なりますので、各クレジットカード会社のウェブサイトにてご確認ください</span></span>
                                         </div>
                                     </div>
                                 </article>
-                                <div class="back-btn">
+                                <div class="back-btn credit-payment-btns">
+                                    <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
                                     <button type="button" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#credit_payment_confirmation">注文する</button>
                                 </div>
                             </div>
