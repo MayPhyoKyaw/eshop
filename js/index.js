@@ -7,8 +7,8 @@ $(document).ready(function () {
     paginationSpeed: 500,
     items: 1,
     singleItem: true,
-    autoPlay: 4000
-
+    autoplay: true,
+    autoplayTimeout: 3000
   });
 
   $("#toggle").on('click', function () {
