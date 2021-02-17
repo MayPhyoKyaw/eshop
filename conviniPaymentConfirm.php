@@ -329,6 +329,8 @@
                                             <span class="convini-conf-description">郵便番号 :</span> <br/>
                                             <span class="convini-conf-description">住所 :</span> <br/>
                                             <span class="convini-conf-description">電話番号 :</span> <br/>
+                                            <span class="credit-conf-description">配送日 :</span> <br/>
+                                            <span class="credit-conf-description">配送時間 :</span> <br/>
                                             <span class="convini-conf-description-title">．支払方法</span> <br/>
                                             <span class="convini-conf-description convini-conf-method"></span> <br/>
                                             <span class="convini-conf-description space">支払い期間 : <span class="convini-conf-date"></span></span> <br/>
@@ -375,7 +377,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <a href="myorder.php"><button type="submit" class="btn ">完了</button></a>
+                    <a href="mycart.php"><button type="submit" class="btn ">完了</button></a>
                 </div>
             </div>
         </div>

@@ -328,6 +328,8 @@
                                             <span class="credit-conf-description">郵便番号 :</span> <br/>
                                             <span class="credit-conf-description">住所 :</span> <br/>
                                             <span class="credit-conf-description">電話番号 :</span> <br/>
+                                            <span class="credit-conf-description">配送日 :</span> <br/>
+                                            <span class="credit-conf-description">配送時間 :</span> <br/>
                                             <span class="credit-conf-description-title">．支払方法</span> <br/>
                                             <span class="credit-conf-description credit-withdrawl-method"></span>&nbsp;&nbsp;<span class="important-note">※　１回払い</span> <br/>
                                             <span class="credit-conf-description">支払い期間 : <span class="credit-wiithdrawl-date"></span></span> <br/>
@@ -376,7 +378,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <a href="myorder.php"><button type="submit" class="btn ">完了</button></a>
+                    <a href="mycart.php"><button type="submit" class="btn ">完了</button></a>
                 </div>
             </div>
         </div>
