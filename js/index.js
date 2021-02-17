@@ -27,8 +27,8 @@ $(document).ready(function () {
   //   location.href = `./shop-grid.html?large_category=${get_largeCategoryName}&small_category=${get_smallCategoryName}`;
   // })
 
-  $(".search-btn").click(function() {
-    const get_searchName = $( ".nice-select" ).find('span').html();
+  $(".search-btn").click(function () {
+    const get_searchName = $(".nice-select").find('span').html();
     console.log(get_searchName);
     if (get_searchName === "ブランドから探す") {
       location.href = `./brand-display.php?search=${get_searchName}`;
@@ -72,7 +72,7 @@ $(document).ready(function () {
     $('.detail-description').text(description);
     $('.detail-price').text(price);
     $('.detail-stock').text(stock);
-    $('.img1') .html(`<img src="./images/items/${img1}" alt="#">`);
+    $('.img1').html(`<img src="./images/items/${img1}" alt="#">`);
     $('.img2').html(`<img src="./images/items/${img2}" alt="#">`);
     $('#cart_itemId').val(itemId);
   })
@@ -84,14 +84,18 @@ function input_qty() {
   // console.log(typeof(qty));
   var stock = $('.detail-stock').text();
   console.log(stock)
-  if(parseInt(qty) <= parseInt(stock)){
-      $('#qty').val(qty);
-  }else{
-      // $('#quantity_warning').modal('show');
-      $(".number-of-item").val(stock);
-      // $('#detailModal').modal('hide');
+  if (parseInt(qty) <= parseInt(stock)) {
+    $('#qty').val(qty);
+  } else {
+    // $('#quantity_warning').modal('show');
+    $(".number-of-item").val(stock);
+    // $('#detailModal').modal('hide');
   }
 }
+
+$("#detailModal").on("hidden.bs.modal", function () {
+  $(".number-of-item").val('1');
+})
 
 function goBack() {
   window.history.back();
