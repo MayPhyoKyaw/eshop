@@ -309,7 +309,7 @@
                                             $st3->bindParam( ":cus_code", $cus_code, PDO::PARAM_STR);
                                             $st3->execute();
                                             foreach ($st3->fetchAll() as $row3) {
-                                                $_SESSION['total'] = number_format($row3['totalPrice'], 2);
+                                                $_SESSION['total'] = $row3['totalPrice'];
                                     ?>
                                     <div class="input-container">
                                         <span class="payment-label">お名前</span>

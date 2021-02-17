@@ -129,6 +129,15 @@ button {
 .cards {
     width: 152px;
     outline: none;
+    padding-top: .7% !important;
+}
+
+.card-expired-month{
+    padding-top: .7% !important;
+}
+
+.card-expired-year{
+    padding-top: .7% !important;
 }
 
 .del-mg-bot {
@@ -140,11 +149,11 @@ button {
 }
 
 .card-month {
-    margin: 3px 8px 0px 8px;
+    margin: 8px 8px 0px 8px;
 }
 
 .card-year {
-    margin: 3px 8px 0px 8px;
+    margin: 8px 8px 0px 8px;
 }
 
 .card-checkbox {

@@ -321,12 +321,18 @@
                                             <?php
                                                 $c_code = $_SESSION['cusCode'];
                                                 $total_amount = $_SESSION['total'];
+                                                $deliTime = $_SESSION['deliTime'];
+                                                $deliDate = $_SESSION['deliDate'];
+                                                $itemID_arr = array();
+                                                $qty_arr = array();
                                                 try {
-                                                    $order_item_sql = "SELECT item_name, price, quantity, (price*quantity) as amount FROM item i INNER JOIN cart c ON i.item_id = c.item_id WHERE c.c_code = :c_code";
+                                                    $order_item_sql = "SELECT c.item_id, item_name, price, quantity, (price*quantity) as amount FROM item i INNER JOIN cart c ON i.item_id = c.item_id WHERE c.c_code = :c_code";
                                                     $st4 = $dbConn->prepare($order_item_sql);
                                                     $st4->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
                                                     $st4->execute();
                                                     foreach ($st4->fetchAll() as $row4) {
+                                                        array_push($itemID_arr, $row4['item_id']);
+                                                        array_push($qty_arr, $row4['quantity']);
                                             ?>
                                                 <div class="grid-item"><?php echo $row4['item_name']; ?></div>
                                                 <div class="grid-item"><?php echo $row4['price']; ?></div>
@@ -339,7 +345,7 @@
                                                     echo "There is some problem in connection: " . $e->getMessage();
                                                 }
                                             ?>
-                                            <span class="credit-conf-description">合計金額 : <?php echo "￥" . $total_amount; ?></span>
+                                            <span class="credit-conf-description">合計金額 : <?php echo "￥" . number_format($total_amount, 2); ?></span>
                                         </div>
 
                                         <?php 
@@ -373,28 +379,38 @@
                                             <span class="credit-conf-description">郵便番号 :</span> <?php echo $postalCode; ?> <br/>
                                             <span class="credit-conf-description">住所 :</span> <?php echo $cAddress1; ?> <br/>
                                             <span class="credit-conf-description">電話番号 :</span> <?php echo $cPhone; ?> <br/>
-                                            <span class="credit-conf-description">配送時間 :</span> <?php echo $_SESSION['deliTime']; ?> <br/>
-                                            <span class="credit-conf-description">配送日 :</span> <?php echo $_SESSION['deliDate']; ?>  <br/>
+                                            <span class="credit-conf-description">配送時間 :</span> <?php echo $deliTime; ?> <br/>
+                                            <span class="credit-conf-description">配送日 :</span> <?php echo $deliDate; ?>  <br/>
 
                                             <span class="credit-conf-description-title">．支払方法</span> <br/>
                                             <span class="credit-conf-description credit-withdrawl-method"></span>&nbsp;&nbsp;<span class="important-note">※　１回払い</span> <br/>
                                             <span class="credit-conf-description">支払い期間 : <span class="credit-wiithdrawl-date"></span></span> <br/>
                                             <span class="credit-conf-description space" >&nbsp;&nbsp;<span class="important-note">※　クレジットカード会社によって支払い日が異なりますので、各クレジットカード会社のウェブサイトにてご確認ください</span></span>
+                                            <?php //var_dump($itemID_arr, $qty_arr); ?>
                                         </div>
                                     </div>
                                 </article>
                                 <div class="back-btn credit-payment-btns">
-                                    <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
-                                    <form action="add_ordering.php" method="post">
+                                    <form action="add_ordering_forCreditPayment.php" method="post">
+                                        <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
                                         <input type="hidden" name="c_code" value="<?php echo $c_code; ?>" />
                                         <input type="hidden" name="c_phone" value="<?php echo $cPhone; ?>" />
                                         <input type="hidden" name="c_address1" value="<?php echo $cAddress1; ?>" />
                                         <input type="hidden" name="c_address2" value="<?php echo $cAddress2; ?>" />
                                         <input type="hidden" name="c_email" value="<?php echo $cusEmail; ?>" />
                                         <input type="hidden" name="c_name" value="<?php echo $cName; ?>" />
-                                        <input type="hidden" name="payment_type" value="<?php echo $_GET['card_type']; ?>" />
                                         <input type="hidden" name="sum_qty" value="<?php echo $total_qty; ?>" />
                                         <input type="hidden" name="total_amount" value="<?php echo $total_amount; ?>" />
+                                        <input type="hidden" name="deliTime" value="<?php echo $deliTime; ?>" />
+                                        <input type="hidden" name="deliDate" value="<?php echo $deliDate; ?>" />
+                                        <?php foreach($itemID_arr as $id){ ?>
+                                            <input type="hidden" name="itemIDs[]" value="<?php echo $id; ?>" />
+                                        <?php 
+                                              }
+                                            foreach($qty_arr as $qty){ 
+                                        ?>
+                                            <input type="hidden" name="quantities[]" value="<?php echo $qty; ?>" />
+                                        <?php } ?>
                                         <button type="submit" name="add_ordering" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#credit_payment_confirmation">注文する</button>
                                     </form>
                                 </div>
