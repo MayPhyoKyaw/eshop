@@ -294,6 +294,7 @@
                                 <h4>ご希望の配送先をご確認して下さい。</h4>
                                 <p>別のお届け先に送る場合は【別の住所へ送る】を選択してください！</p>
                             </div>
+                            <form action="payment.php" method="">
                             <div class="card bg-light register-form">
                                 <article class="card-body checkout-register-article">
                                 <?php 
@@ -334,25 +335,27 @@
                                     <div class="input-container">
                                         <select class="delivery-time" name="delivery-times" required>
                                             <option value="">指定なし</option>
-                                            <option value="option1">9:00 ~ 12:00</option>
-                                            <option value="option2">13:00 ~ 17:00</option>
-                                            <option value="option3">18:00 ~ 21:00</option>
+                                            <option value="1">9:00 ~ 12:00</option>
+                                            <option value="2">13:00 ~ 17:00</option>
+                                            <option value="3">18:00 ~ 21:00</option>
                                         </select>
                                         <label class="important-note">※　時間帯を選んでください</label>
                                     </div>
                                     <div class="input-container">
-                                        <input class="delivery-date" type="date" data-date="" data-date-format="YYYY MM DD" value="YYYY-MM-DD">
+                                        <input class="delivery-date" type="date" data-date="" name="delivery-date" data-date-format="YYYY MM DD" value="">
                                         <label class="important-note">※　日付を選んでください</label>
                                     </div>
                                     <div class="input-container">
                                         <a class="link-name" target="_blank" href="./register.php"><i class="fa fa-share-square-o"></i>  別の住所へ送る</a>
                                     </div>
+                                    <input type="hidden" name="c_code" value="<?php echo $_GET['c_code']; ?>" >
                                 </article>
                             </div>
                             <div class="send-register-btns">
                                 <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
-                                <a href="payment.php"><button type="button" id="order_confirm" class="btn btn-primary">確定</button></a>
+                                <button type="submit" id="order_confirm" class="btn btn-primary">確定</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

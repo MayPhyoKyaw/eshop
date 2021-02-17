@@ -523,7 +523,7 @@
                                     </ul>
                                     <div class="button5">
                                         <!-- <a href="sendRegister.php" class="btn">注文に進む</a> -->
-                                        <form action="ordering.php" method="post">
+                                        <form action="sendRegister.php?c_code=<?php echo $row1['c_code']; ?>" method="post">
                                             <input type="hidden" name="c_code" value="<?php echo $row1['c_code']; ?>" />
                                             <input type="hidden" name="total_amount" value="<?php echo $final_amount; ?>" />
                                             <input type="hidden" name="total_qty" value="<?php echo $row1['total_qty']; ?>" />

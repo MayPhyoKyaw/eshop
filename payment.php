@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    $_SESSION['deliTime'] = $_GET['delivery-times']; 
+    $_SESSION['deliDate'] = $_GET['delivery-date'];
+    $_SESSION['cusCode'] = $_GET['c_code'];
+    // echo $_SESSION['deliTime'] . " . " . $_SESSION['deliDate'];
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -294,20 +301,66 @@
                             <div class="card bg-light payment-form">
                                 <h3 class="payment-detail">お支払い情報</h3>
                                 <article class="card-body payment-article">
+                                    <?php 
+                                        try {
+                                            $cus_code = $_GET['c_code'];
+                                            $info_sql = "SELECT Sum(price*quantity) as totalPrice, cus.c_name FROM cart INNER JOIN item on cart.item_id = item.item_id INNER JOIN customers cus ON cart.c_code = cus.c_code WHERE cart.c_code = :cus_code" ;
+                                            $st3 = $dbConn->prepare($info_sql);
+                                            $st3->bindParam( ":cus_code", $cus_code, PDO::PARAM_STR);
+                                            $st3->execute();
+                                            foreach ($st3->fetchAll() as $row3) {
+                                                $_SESSION['total'] = number_format($row3['totalPrice'], 2);
+                                    ?>
                                     <div class="input-container">
                                         <span class="payment-label">お名前</span>
-                                        <input class="payment-username" type="text" placeholder="Payment Username" name="payment-user" required/>
+                                        <input class="payment-username" type="text" placeholder="Payment Username" name="payment-user" value="<?php echo $row3['c_name']; ?>" required/>
                                     </div>
 
                                     <div class="input-container">
                                         <span class="payment-label">支払う金額</span>
-                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" required/>
+                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . number_format($row3['totalPrice'], 2); ?>" required/>
                                     </div>
+
+                                    <?php 
+                                        try {
+                                            $cart_item_sql = "SELECT item_name, quantity, size_name FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN size s ON i.size_id = s.size_id WHERE c.c_code = :cus_code" ;
+                                            $st4 = $dbConn->prepare($cart_item_sql);
+                                            $st4->bindParam( ":cus_code", $cus_code, PDO::PARAM_STR);
+                                            $st4->execute();
+                                            $item_name_Arr = array();
+                                            $qty_Arr = array();
+                                            $size_Arr = array();
+                                            foreach ($st4->fetchAll() as $row4) {
+                                                // echo $row4['item_name'] . "<br>";
+                                                array_push($item_name_Arr, $row4['item_name']);
+                                                // var_dump($item_name_Arr);
+                                                array_push($qty_Arr, $row4['quantity']);
+                                                array_push($size_Arr, $row4['size_name']);
+                                            } 
+                                            // var_dump($size_Arr);
+                                        }catch (PDOException $e) {
+                                            echo "There is some problem in connection: " . $e->getMessage();
+                                        }
+                                    ?>
 
                                     <div class="input-container">
                                         <span class="payment-label">支払う内容</span>
-                                        <textarea class="description" placeholder="Description" name="description" required></textarea>
+                                        <textarea class="description" placeholder="Description" name="description" required><?php
+                                                $i = 0;
+                                                while($i < Count($item_name_Arr)){
+                                                    echo $item_name_Arr[$i] . ", " . $qty_Arr[$i] . ", " . $size_Arr[$i] ;
+                                                    $i++;
+                                                    if($i < Count($item_name_Arr)) echo "\n";
+                                                }
+                                        ?></textarea>
                                     </div>
+
+                                    <?php
+                                            } 
+                                        }catch (PDOException $e) {
+                                            echo "There is some problem in connection: " . $e->getMessage();
+                                        }
+                                    ?>
 
                                     <div class="input-container">
                                         <span class="payment-label payment-type">決済方法</span>
