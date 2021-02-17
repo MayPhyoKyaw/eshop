@@ -79,11 +79,15 @@ function input_qty() {
     var qty = $(".number-of-item").val();
     console.log(qty);
     var stock = $('.detail-stock').text();
-    if(parseInt(qty) <= parseInt(stock)){
+    if (parseInt(qty) <= parseInt(stock)) {
         $('#qty').val(qty);
-    }else{
+    } else {
         // $('#quantity_warning').modal('show');
         $(".number-of-item").val(stock);
         // $('#detailModal').modal('hide');
     }
 }
+
+$("#detailModal").on("hidden.bs.modal", function () {
+    $(".number-of-item").val('1');
+})

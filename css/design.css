@@ -338,6 +338,12 @@ button {
     padding: 10px;
 }
 
+.myorder-grid-container {
+    display: grid;
+    grid-template-columns: 270px 270px 270px 150px;
+    padding: 10px;
+}
+
 .convini-grid-container {
     display: grid;
     grid-template-columns: 200px auto auto;
@@ -704,4 +710,23 @@ p {
     color: blue !important;
     cursor: pointer;
     text-decoration: underline;
+}
+
+/* my order list */
+.myorder-detail-grid-container {
+    display: grid;
+    grid-template-columns: 180px auto;
+    padding: 10px; 
+}
+
+.myorder-detail-grid-item {
+    display: flex;
+    word-break: break-all;
+    align-items: center;
+    justify-content: start;
+    background-color: transparent;
+    /* border: 1px solid rgba(160, 152, 152, 0.8); */
+    padding: 5px;
+    font-size: 14px;
+    text-align: left;
 }

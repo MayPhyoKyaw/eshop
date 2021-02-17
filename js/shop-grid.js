@@ -34,15 +34,15 @@ $(document).ready(function () {
     var regExpr = /[&\/\\#, +()$~%.'"・:*?<>{}-]/g;
     console.log($('.side-sub-category').text());
     var subCat = $('.side-sub-category');
-    var subCat_Arr = subCat.map(function() {
+    var subCat_Arr = subCat.map(function () {
         return this.textContent.trim();
     }).get();
     console.log(subCat_Arr, small_categoryName);
     var sub_cat = small_categoryName.replace(regExpr, "_");
     console.log(sub_cat);
-    for(i=0; i<subCat_Arr.length; i++){
+    for (i = 0; i < subCat_Arr.length; i++) {
         var arr = subCat_Arr[i].replace(regExpr, "_");
-        if (arr === sub_cat){
+        if (arr === sub_cat) {
             console.log(arr)
             $(`#${arr}`).addClass('selected').siblings().removeClass('selected');
         }
@@ -78,7 +78,7 @@ $(document).ready(function () {
         $('.detail-description').text(description);
         $('.detail-price').text(price);
         $('.detail-stock').text(stock);
-        $('.img1') .html(`<img src="./images/items/${img1}" alt="#">`);
+        $('.img1').html(`<img src="./images/items/${img1}" alt="#">`);
         $('.img2').html(`<img src="./images/items/${img2}" alt="#">`);
         $('#cart_itemId').val(itemId);
         console.log(itemId);
@@ -91,11 +91,15 @@ function input_qty() {
     // console.log(typeof(qty));
     var stock = $('.detail-stock').text();
     console.log(stock)
-    if(parseInt(qty) <= parseInt(stock)){
+    if (parseInt(qty) <= parseInt(stock)) {
         $('#qty').val(qty);
-    }else{
+    } else {
         // $('#quantity_warning').modal('show');
         $(".number-of-item").val(stock);
         // $('#detailModal').modal('hide');
     }
 }
+
+$("#detailModal").on("hidden.bs.modal", function () {
+    $(".number-of-item").val('1');
+})
