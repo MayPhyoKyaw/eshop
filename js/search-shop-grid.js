@@ -27,7 +27,25 @@ $('#search-product-pagination-container').pagination({
 var get_url = new URL(location);
 var brandName = get_url.searchParams.get('search');
 console.log(brandName)
-$(".brand-name").append(`ブランド : ${brandName}`)
+if (brandName === "春用で探す" ) {
+    $(".brand-name").append(`季節 : ${brandName}`);
+} 
+else if (brandName === "夏用で探す") {
+    $(".brand-name").append(`季節 : ${brandName}`);
+}
+else if (brandName === "秋用で探す") {
+    $(".brand-name").append(`季節 : ${brandName}`);
+}
+else if (brandName === "冬用で探す") {
+    $(".brand-name").append(`季節 : ${brandName}`);
+}
+else if (brandName === "探す") {
+    location.reload(true);
+}
+else {
+    $(".brand-name").append(`ブランド : ${brandName}`)
+}
+
 
 function goBack() {
     window.history.back();

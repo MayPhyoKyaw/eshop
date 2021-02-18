@@ -313,12 +313,12 @@
                                     ?>
                                     <div class="input-container">
                                         <span class="payment-label">お名前</span>
-                                        <input class="payment-username" type="text" placeholder="Payment Username" name="payment-user" value="<?php echo $row3['c_name']; ?>" required/>
+                                        <input class="payment-username" type="text" placeholder="Payment Username" name="payment-user" value="<?php echo $row3['c_name']; ?>" disabled="disabled" required/>
                                     </div>
 
                                     <div class="input-container">
                                         <span class="payment-label">支払う金額</span>
-                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . number_format($row3['totalPrice'], 2); ?>" required/>
+                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . number_format($row3['totalPrice'], 2); ?>" disabled="disabled" required/>
                                     </div>
 
                                     <?php 
@@ -345,7 +345,7 @@
 
                                     <div class="input-container">
                                         <span class="payment-label">支払う内容</span>
-                                        <textarea class="description" placeholder="Description" name="description" required><?php
+                                        <textarea class="description" placeholder="Description" name="description" disabled="disabled" required><?php
                                                 $i = 0;
                                                 while($i < Count($item_name_Arr)){
                                                     echo $item_name_Arr[$i] . ", " . $qty_Arr[$i] . ", " . $size_Arr[$i] ;

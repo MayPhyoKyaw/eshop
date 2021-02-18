@@ -16,12 +16,8 @@
             $order_date = date("Y-m-d");
             $deliTime = $_POST['deliTime'];
             $deliDate = $_POST['deliDate'];
-                // echo $deliTime;
-                // echo $order_date;
             $itemIDs = $_POST['itemIDs'];
             $quantities = $_POST['quantities'];
-            // print_r($itemIDs);
-            // print_r($quantities);
 
             $st1 = $dbConn->prepare("INSERT INTO ordering (c_code, oc_phone, o_address1, o_address2, o_email, o_custname, order_date, payment_type, sum_quantity, total_amount, delivery_fees, time, date) 
                             VALUES (?, ?, ?, ?, ?, ?, ?, 'クレジットカード', ?, ?, 700, ?, ?)") ;
@@ -54,7 +50,7 @@
                 $index++;
             }
             
-            // header("Location:sendRegister.php?c_code=$c_code");
+            header("Location: javascript:history.back(-1)");
         }
     }catch (PDOException $e) {
         echo "There is some problem in connection: " . $e->getMessage();
