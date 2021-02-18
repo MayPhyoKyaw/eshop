@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -504,17 +507,21 @@
                                                 $final_amount = 0;
                                                 if($today === "05") { 
                                                     $final_amount = ($formula - ($formula/100)*5);
-                                                    echo "￥" . $final_amount ;  
+                                                    echo "￥" . $final_amount ; 
+                                                    $_SESSION['final_amount'] = $final_amount;
                                                 }elseif($today === "15") { 
                                                     $final_amount = ($formula - ($formula/100)*5);
                                                     echo "￥" . $final_amount ;  
+                                                    $_SESSION['final_amount'] = $final_amount;
                                                 }elseif($today === "25") { 
                                                     $final_amount = ($formula - ($formula/100)*5);
                                                     echo "￥" . $final_amount ;  
+                                                    $_SESSION['final_amount'] = $final_amount;
                                                 }
                                                 else { 
                                                     $final_amount = ($formula - ($formula/100)*0);
                                                     echo "￥" . $final_amount ; 
+                                                    $_SESSION['final_amount'] = $final_amount;
                                                 }  
                                             ?> 
                                             </span>

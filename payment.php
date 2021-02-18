@@ -309,7 +309,7 @@
                                             $st3->bindParam( ":cus_code", $cus_code, PDO::PARAM_STR);
                                             $st3->execute();
                                             foreach ($st3->fetchAll() as $row3) {
-                                                $_SESSION['total'] = $row3['totalPrice'];
+                                                // $_SESSION['total'] = $row3['totalPrice'];
                                     ?>
                                     <div class="input-container">
                                         <span class="payment-label">お名前</span>
@@ -318,7 +318,7 @@
 
                                     <div class="input-container">
                                         <span class="payment-label">支払う金額</span>
-                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . number_format($row3['totalPrice'], 2); ?>" disabled="disabled" required/>
+                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . number_format($_SESSION['final_amount'], 2); ?>" disabled="disabled" required/>
                                     </div>
 
                                     <?php 

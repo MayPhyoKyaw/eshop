@@ -320,7 +320,7 @@
                                             <div class="grid-item"></div>
                                             <?php
                                                 $c_code = $_SESSION['cusCode'];
-                                                $total_amount = $_SESSION['total'];
+                                                $total_amount = $_SESSION['final_amount'];
                                                 $deliTime = $_SESSION['deliTime'];
                                                 $deliDate = $_SESSION['deliDate'];
                                                 $itemID_arr = array();
@@ -335,10 +335,16 @@
                                                         array_push($qty_arr, $row4['quantity']);
                                             ?>
                                                 <div class="grid-item"><?php echo $row4['item_name']; ?></div>
-                                                <div class="grid-item"><?php echo $row4['price']; ?></div>
+                                                <div class="grid-item"><?php echo "￥" . $row4['price']; ?></div>
                                                 <div class="grid-item"><?php echo $row4['quantity']; ?></div>
-                                                <div class="grid-item"><?php echo $row4['amount']; ?></div>
-                                                <div class="grid-item"><button type="submit" class="btn btn-primary delete-btn" name="quantity_confirm">削除</button></div>
+                                                <div class="grid-item"><?php echo "￥" . $row4['amount']; ?></div>
+                                                <div class="grid-item">
+                                                <form action="deleteFromCart.php" method="post">
+                                                    <input type="hidden" name="item_id" value="<?php echo $row4['item_id'] ?>" />
+                                                    <input type="hidden" name="card_name" value="<?php echo $_GET['card_type'] ?>" />
+                                                    <button type="submit" class="btn btn-primary delete-btn" name="delete">削除</button>
+                                                </form>
+                                                </div>
                                             <?php
                                                     } 
                                                 }catch (PDOException $e) {
@@ -357,10 +363,10 @@
                                             $cusEmail = null;
                                             $total_qty = 0;
                                             try {
-                                                $customer_sql = "SELECT c_name, c_address1, c_address2, c_phone, c_zip, c_email, Sum(quantity) as totalQty FROM customers cus INNER JOIN cart c ON cus.c_code = c.c_code INNER JOIN item i ON c.item_id = i.item_id WHERE c.c_code = :c_code";
+                                                $customer_sql = "SELECT c_name, c_address1, c_address2, c_phone, c_zip, c_email, Sum(quantity) as totalQty FROM customers cus INNER JOIN cart c ON cus.c_code = c.c_code INNER JOIN item i ON c.item_id = i.item_id WHERE c.c_code = ?";
                                                 $st3 = $dbConn->prepare($customer_sql);
-                                                $st3->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
-                                                $st3->execute();
+                                                // $st3->bindParam( ":c_code", , PDO::PARAM_INT);
+                                                $st3->execute(array($c_code));
                                                 foreach ($st3->fetchAll() as $row3) {
                                                     $cName = $row3['c_name']; 
                                                     $cPhone = $row3['c_phone'];
@@ -379,9 +385,21 @@
                                             <span class="credit-conf-description">郵便番号 :</span> <?php echo $postalCode; ?> <br/>
                                             <span class="credit-conf-description">住所 :</span> <?php echo $cAddress1; ?> <br/>
                                             <span class="credit-conf-description">電話番号 :</span> <?php echo $cPhone; ?> <br/>
-                                            <span class="credit-conf-description">配送時間 :</span> <?php echo $deliTime; ?> <br/>
+                                            <?php 
+                                                try {
+                                                    $deli_time_query = "SELECT deli_time FROM delivery_times WHERE deli_code = ?";
+                                                    $deli_st = $dbConn->prepare($deli_time_query);
+                                                    $deli_st->execute(array($deliTime));
+                                                    foreach ($deli_st->fetchAll() as $row5) {
+                                            ?>
+                                            <span class="credit-conf-description">配送時間 :</span> <?php echo $row5['deli_time']; ?> <br/>
+                                            <?php  
+                                                    } 
+                                                }catch (PDOException $e) {
+                                                    echo "There is some problem in connection: " . $e->getMessage();
+                                                }
+                                            ?>
                                             <span class="credit-conf-description">配送日 :</span> <?php echo $deliDate; ?>  <br/>
-
                                             <span class="credit-conf-description-title">．支払方法</span> <br/>
                                             <span class="credit-conf-description credit-withdrawl-method"></span>&nbsp;&nbsp;<span class="important-note">※　１回払い</span> <br/>
                                             <span class="credit-conf-description">支払い期間 : <span class="credit-wiithdrawl-date"></span></span> <br/>
