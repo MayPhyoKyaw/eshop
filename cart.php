@@ -473,8 +473,10 @@
                                             $mainCat_sql = "SELECT Sum(price*quantity) as result, cart.c_code, Sum(quantity) as total_qty FROM cart INNER JOIN item on cart.item_id = item.item_id" ;
                                             $st1 = $dbConn->prepare($mainCat_sql);
                                             $st1->execute();
+                                            $subtotal = 0;
                                             foreach ($st1->fetchAll() as $row1) {
-                                                echo "￥" . $row1['result'];
+                                                $subtotal = $row1['result'];
+                                                echo "￥" . $subtotal;
                                         ?>
                                         </span></li>
                                         <li class="important2">消費税   :<span class="consumption-tax" id="consumption_tax">10%</span></li>
@@ -507,21 +509,33 @@
                                                 $final_amount = 0;
                                                 if($today === "05") { 
                                                     $final_amount = ($formula - ($formula/100)*5);
-                                                    echo "￥" . $final_amount ; 
-                                                    $_SESSION['final_amount'] = $final_amount;
+                                                    if($final_amount == 700)
+                                                        $_SESSION['final_amount'] = 0;
+                                                    else
+                                                        $_SESSION['final_amount'] = $final_amount;
+                                                    echo "￥" . $_SESSION['final_amount']  ; 
                                                 }elseif($today === "15") { 
                                                     $final_amount = ($formula - ($formula/100)*5);
-                                                    echo "￥" . $final_amount ;  
-                                                    $_SESSION['final_amount'] = $final_amount;
+                                                    if($final_amount == 700)
+                                                        $_SESSION['final_amount'] = 0;
+                                                    else
+                                                        $_SESSION['final_amount'] = $final_amount;
+                                                    echo "￥" . $_SESSION['final_amount']  ; 
                                                 }elseif($today === "25") { 
                                                     $final_amount = ($formula - ($formula/100)*5);
-                                                    echo "￥" . $final_amount ;  
-                                                    $_SESSION['final_amount'] = $final_amount;
+                                                    if($final_amount == 700)
+                                                        $_SESSION['final_amount'] = 0;
+                                                    else
+                                                        $_SESSION['final_amount'] = $final_amount;
+                                                    echo "￥" . $_SESSION['final_amount']  ;  
                                                 }
                                                 else { 
                                                     $final_amount = ($formula - ($formula/100)*0);
-                                                    echo "￥" . $final_amount ; 
-                                                    $_SESSION['final_amount'] = $final_amount;
+                                                    if($final_amount == 700)
+                                                        $_SESSION['final_amount'] = 0;
+                                                    else
+                                                        $_SESSION['final_amount'] = $final_amount;
+                                                    echo "￥" .$_SESSION['final_amount']  ; 
                                                 }  
                                             ?> 
                                             </span>
