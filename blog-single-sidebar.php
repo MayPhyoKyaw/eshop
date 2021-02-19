@@ -270,8 +270,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="blog-single.php">Blog Single Sidebar</a></li>
+                        <li><a href="index.php">Home</a></li>
+                            <!-- <li class="active"><a href="blog-single.php">Blog Single Sidebar</a></li> -->
                         </ul>
                     </div>
                 </div>

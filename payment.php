@@ -278,8 +278,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="payment.php">Payment</a></li>
+                        <li><a href="index.php">Home</a></li>
+                            <!-- <li class="active"><a href="payment.php">Payment</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -318,7 +318,7 @@
 
                                     <div class="input-container">
                                         <span class="payment-label">支払う金額</span>
-                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . number_format($_SESSION['final_amount'], 2); ?>" disabled="disabled" required/>
+                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . $_SESSION['final_amount']; ?>" disabled="disabled" required/>
                                     </div>
 
                                     <?php 
@@ -348,7 +348,7 @@
                                         <textarea class="description" placeholder="Description" name="description" disabled="disabled" required><?php
                                                 $i = 0;
                                                 while($i < Count($item_name_Arr)){
-                                                    echo $item_name_Arr[$i] . ", " . $qty_Arr[$i] . ", " . $size_Arr[$i] ;
+                                                    echo  $item_name_Arr[$i]."(" . $size_Arr[$i] .")" ." × ". $qty_Arr[$i] ;
                                                     $i++;
                                                     if($i < Count($item_name_Arr)) echo "\n";
                                                 }

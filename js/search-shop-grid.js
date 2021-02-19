@@ -73,6 +73,7 @@ $(document).ready(function () {
         var img2 = $(this).parent().parent().parent().parent().find('.hide-img2').text();
         console.log(itemName, mainType, subType, gender, season, brand, size, color, country, description, price, img1, img2);
         // var r = '&commat;';
+        $('.detail-items-stock').html(`<i class="fa fa-check-circle-o"></i> 在庫　( ${stock}個 )有`);
         $('.detail-itemName').text(itemName);
         $('.detail-main-sub').text(`${mainType} >> ${subType}`);
         $('.detail-gender').text(gender);
@@ -100,9 +101,12 @@ function input_qty() {
     if (parseInt(qty) <= parseInt(stock)) {
         $('#qty').val(qty);
     } else {
-        // $('#quantity_warning').modal('show');
-        $(".number-of-item").val(stock);
-        // $('#detailModal').modal('hide');
+        if (parseInt(qty) <= parseInt(stock)) {
+            $(".number-of-item").val(qty);
+        } else {
+            alert("在庫が足りません！");
+            $(".number-of-item").val('');
+        }
     }
 }
 

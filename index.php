@@ -367,7 +367,7 @@
                         <!-- Start Single Product -->
                         <?php 
                             try {
-                                $hot_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE price > 2600" ;
+                                $hot_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, stock, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE price > 2600" ;
                                 $st3 = $dbConn->prepare($hot_item_sql);
                                 $st3->execute();
 
@@ -375,11 +375,11 @@
                         ?>
                         <div class="single-product">
                             <div class="product-img">
-                                <a href="#">
+                                <!-- <a href="#"> -->
                                     <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                     <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                     <span class="out-of-stock">Hot</span>
-                                </a>
+                                <!-- </a> -->
                                 <div class="button-head">
                                     <div class="product-action">
                                         <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view-detail"><i class=" ti-eye"></i><span>Quick Shop</span></a>
@@ -559,7 +559,7 @@
                                     <div class="detail-items">Stock</div>
                                     <div class="detail-items">
                                         <div class="quickview-stock">
-                                            <span><i class="fa fa-check-circle-o"></i> in stock</span>
+                                        <span class="detail-items-stock"></span>
                                         </div>
                                     </div>
 

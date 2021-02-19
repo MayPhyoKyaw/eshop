@@ -273,8 +273,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index.php">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="shop-grid.php">Shop Grid</a></li>
+                        <li><a href="index.php">Home</a></li>
+                            <!-- <li class="active"><a href="shop-grid.php">Shop Grid</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -445,7 +445,7 @@
                                 try {
                                     $subCat = $_GET['small_category'];
 
-                                    $filter_item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sc.s_catName = :subCat AND s.size_name = :size" ;
+                                    $filter_item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, stock, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sc.s_catName = :subCat AND s.size_name = :size" ;
                                     $st4 = $dbConn->prepare($filter_item_sql);
                                     $st4->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
                                     $st4->bindParam( ":size", $size, PDO::PARAM_STR);
@@ -456,10 +456,10 @@
                             <div class="col-lg-4 col-md-6 col-12 product-item">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="#">
+                                        <!-- <a href="#"> -->
                                             <img class="default-img" src="<?php echo "./images/items/" . $row3['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row3['item_img1']; ?>" alt="#">
-                                        </a>
+                                        <!-- </a> -->
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view"><i class=" ti-eye"></i><span>Quick Shop</span></a>
@@ -500,7 +500,7 @@
                                         <span class="hide hide-season"><?php echo $row3['season_name'];?></span>
                                         <span class="hide hide-brand"><?php echo $row3['brand_name'];?></span>
                                         <span class="hide hide-color"><?php echo $row3['color'];?></span>
-                                        <span class="hide hide-stock"><?php echo $row['stock'];?></span>
+                                        <span class="hide hide-stock"><?php echo $row3['stock'];?></span>
                                         <span class="hide hide-description"><?php echo $row3['description'];?></span>
                                         <span class="hide hide-largeCat"><?php echo $row3['b_catName'];?></span>
                                         <span class="hide hide-smallCat"><?php echo $row3['s_catName'];?></span>
@@ -525,7 +525,7 @@
                                 try {
                                     $subCat = $_GET['small_category'];
 
-                                    $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color, stock FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id  WHERE sc.s_catName = :subCat" ;
+                                    $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, stock, season_name, gender, country, description, color, stock FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id  WHERE sc.s_catName = :subCat" ;
                                     $st3 = $dbConn->prepare($item_sql);
                                     $st3->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
                                     $st3->execute();
@@ -535,10 +535,10 @@
                             <div class="col-lg-4 col-md-6 col-12 product-item">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="#">
+                                        <!-- <a href="#"> -->
                                             <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
-                                        </a>
+                                        <!-- </a> -->
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view"><i class=" ti-eye"></i><span>Quick Shop</span></a>
@@ -652,7 +652,7 @@
                                     <div class="detail-items">Stock</div>
                                     <div class="detail-items">
                                         <div class="quickview-stock">
-                                            <span><i class="fa fa-check-circle-o"></i> in stock</span>
+                                        <span class="detail-items-stock"></span>
                                         </div>
                                     </div>
 

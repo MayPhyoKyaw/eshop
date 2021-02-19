@@ -2135,16 +2135,16 @@ Version:1.0
     cursor: pointer;
 }
 
-.single-product .product-img a {
+.single-product .product-img {
     display: block;
     position: relative;
 }
 
-.single-product .product-img a img {
+.single-product .product-img img {
     width: 100%;
 }
 
-.single-product .product-img a img.hover-img {
+.single-product .product-img img.hover-img {
     position: absolute;
     left: 0;
     top: 0;
@@ -2153,7 +2153,7 @@ Version:1.0
     transition: opacity 0.5s ease, transform 2s cubic-bezier(0, 0, 0.44, 1.18), -webkit-transform 2s cubic-bezier(0, 0, 0.44, 1.18);
 }
 
-.single-product .product-img a span.price-dec {
+.single-product .product-img span.price-dec {
     background-color: #f6931d;
     display: inline-block;
     font-size: 11px;
@@ -2171,7 +2171,7 @@ Version:1.0
     line-height: 25px;
 }
 
-.single-product .product-img a span.new {
+.single-product .product-img span.new {
     background-color: #8493ca;
     display: inline-block;
     font-size: 11px;
@@ -2189,7 +2189,7 @@ Version:1.0
     line-height: 24px;
 }
 
-.single-product .product-img a span.out-of-stock {
+.single-product .product-img span.out-of-stock {
     background-color: #ed1b24;
     display: inline-block;
     font-size: 11px;
@@ -2780,6 +2780,7 @@ Version:1.0
 .hide {
     display: none;
 }
+
 
 /*======================================
    Start Shop Single CSS
