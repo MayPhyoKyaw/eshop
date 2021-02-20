@@ -27,7 +27,7 @@ $(document).ready(function () {
     // console.log(parseInt(qty_Arr[i-1]), parseFloat(sg_price));
     var calculate_sub_price = parseFloat(sg_price) * parseInt(qty_Arr[i - 1]);
     // console.log(calculate_sub_price);
-    document.getElementById("cart-table").rows[i].cells[5].innerHTML = `￥${calculate_sub_price.toFixed(2)}`;
+    document.getElementById("cart-table").rows[i].cells[5].innerHTML = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(`${calculate_sub_price}`);
   }
 
   var shopping_items = document.getElementById("cart-table").rows.length;

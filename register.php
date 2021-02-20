@@ -273,8 +273,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="blog-single.php">Register</a></li>
+                        <li><a href="index.php">Home</a></li>
+                            <!-- <li class="active"><a href="blog-single.php">Register</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -423,7 +423,7 @@
                                             <input class="fax" name="fax" type="fax" placeholder="例）　ファクス番号" />
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-12">
+                                    <!-- <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <label>メールアドレス<span class="text_required">必須</span></label>
                                             <input id="email" class="email" name="email" type="email" maxlength="254" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="例）　example@gmail.com" required/>
@@ -434,7 +434,7 @@
                                             <label>メールアドレス（確認）<span class="text_required">必須</span></label>
                                             <input id="confirm_Email" class="confirm-email" name="email1" type="email1" maxlength="254" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="例）　example@gmail.com" required/>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-12">
                                         <div class="form-group button">
                                             <button type="submit" id="reset" class="btn ">戻る</button>
@@ -462,7 +462,7 @@
                 </div>
                 <div class="modal-body register-confirm-customize-modal-body">
                     <div>
-                        <h3 class="modal-title">確認。。。。</h3>
+                        <h3 class="modal-title">購入者情報の確認</h3>
                     </div>
                     <div class="card bg-light payment-form">
                         <h3 class="payment-detail">「↓」の情報をご確認ください</h3>
@@ -490,8 +490,8 @@
                                 <div class="grid-item reg-conf-phone"></div>
                                 <div class="grid-item">ファクス番号</div>
                                 <div class="grid-item reg-conf-fax"></div>
-                                <div class="grid-item">メールアドレス</div>
-                                <div class="grid-item reg-conf-mail"></div>
+                                <!-- <div class="grid-item">メールアドレス</div>
+                                <div class="grid-item reg-conf-mail"></div> -->
                             </div>
                         </article>
                     </div>

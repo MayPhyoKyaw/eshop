@@ -315,7 +315,7 @@
                             $search = $_GET['search'];
                             if ($search === '春用で探す'){
                                 try {
-                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE i.season_id = '1'" ;
+                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, stock, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE i.season_id = '1'" ;
                                     $st3 = $dbConn->prepare($search_item_sql);
                                     $st3->execute();
 
@@ -324,10 +324,10 @@
                             <div class="col-lg-4 col-md-6 col-12 search-product-item">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="#">
+                                        <!-- <a href="#"> -->
                                             <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
-                                        </a>
+                                        <!-- </a> -->
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view-detail"><i class=" ti-eye"></i><span>Quick Shop</span></a>
@@ -387,7 +387,7 @@
                             }
                             elseif ($search === '夏用で探す'){
                                 try {
-                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE i.season_id = '2'" ;
+                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, stock, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE i.season_id = '2'" ;
                                     $st3 = $dbConn->prepare($search_item_sql);
                                     $st3->execute();
 
@@ -396,10 +396,10 @@
                             <div class="col-lg-4 col-md-6 col-12 search-product-item">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="#">
+                                        <!-- <a href="#"> -->
                                             <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
-                                        </a>
+                                        <!-- </a> -->
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view-detail"><i class=" ti-eye"></i><span>Quick Shop</span></a>
@@ -459,7 +459,7 @@
                             }
                             elseif ($search === '秋用で探す'){
                                 try {
-                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE i.season_id = '3'" ;
+                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, stock, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE i.season_id = '3'" ;
                                     $st3 = $dbConn->prepare($search_item_sql);
                                     $st3->execute();
 
@@ -468,10 +468,10 @@
                             <div class="col-lg-4 col-md-6 col-12 search-product-item">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="#">
+                                        <!-- <a href="#"> -->
                                             <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
-                                        </a>
+                                        <!-- </a> -->
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view-detail"><i class=" ti-eye"></i><span>Quick Shop</span></a>
@@ -531,7 +531,7 @@
                             }
                             elseif ($search === '冬用で探す'){
                                 try {
-                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE i.season_id = '4'" ;
+                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, stock, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE i.season_id = '4'" ;
                                     $st3 = $dbConn->prepare($search_item_sql);
                                     $st3->execute();
 
@@ -540,10 +540,10 @@
                             <div class="col-lg-4 col-md-6 col-12 search-product-item">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="#">
+                                        <!-- <a href="#"> -->
                                             <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
-                                        </a>
+                                        <!-- </a> -->
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view-detail"><i class=" ti-eye"></i><span>Quick Shop</span></a>
@@ -603,7 +603,7 @@
                             }
                             else {
                                 try {
-                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE b.brand_name = :search" ;
+                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, stock, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE b.brand_name = :search" ;
                                     $st3 = $dbConn->prepare($search_item_sql);
                                     $st3->bindParam( ":search", $search, PDO::PARAM_STR);
                                     $st3->execute();
@@ -613,10 +613,10 @@
                             <div class="col-lg-4 col-md-6 col-12 search-product-item">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="#">
+                                        <!-- <a href="#"> -->
                                             <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
-                                        </a>
+                                        <!-- </a> -->
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view-detail"><i class=" ti-eye"></i><span>Quick Shop</span></a>

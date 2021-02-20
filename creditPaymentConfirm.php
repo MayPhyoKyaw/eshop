@@ -276,8 +276,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index1.php">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="payment.php">Payment</a></li>
+                        <li><a href="index.php">Home</a></li>
+                            <!-- <li class="active"><a href="payment.php">Payment</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -335,9 +335,9 @@
                                                         array_push($qty_arr, $row4['quantity']);
                                             ?>
                                                 <div class="grid-item"><?php echo $row4['item_name']; ?></div>
-                                                <div class="grid-item"><?php echo "￥" . $row4['price']; ?></div>
+                                                <div class="grid-item"><?php echo "￥" . number_format($row4['price']); ?></div>
                                                 <div class="grid-item"><?php echo $row4['quantity']; ?></div>
-                                                <div class="grid-item"><?php echo "￥" . $row4['amount']; ?></div>
+                                                <div class="grid-item"><?php echo "￥" . number_format($row4['amount']); ?></div>
                                                 <div class="grid-item">
                                                 <form action="deleteFromCart.php" method="post">
                                                     <input type="hidden" name="item_id" value="<?php echo $row4['item_id'] ?>" />
@@ -351,7 +351,7 @@
                                                     echo "There is some problem in connection: " . $e->getMessage();
                                                 }
                                             ?>
-                                            <span class="credit-conf-description">合計金額 : <?php echo "￥" . number_format($total_amount, 2); ?></span>
+                                            <span class="credit-conf-description">合計金額 : <?php echo "￥" . $total_amount; ?></span>
                                         </div>
 
                                         <?php 
@@ -402,7 +402,7 @@
                                             <span class="credit-conf-description">配送日 :</span> <?php echo $deliDate; ?>  <br/>
                                             <span class="credit-conf-description-title">．支払方法</span> <br/>
                                             <span class="credit-conf-description credit-withdrawl-method"></span>&nbsp;&nbsp;<span class="important-note">※　１回払い</span> <br/>
-                                            <span class="credit-conf-description">支払い期間 : <span class="credit-wiithdrawl-date"></span></span> <br/>
+                                            <!-- <span class="credit-conf-description">支払い期間 : <span class="credit-wiithdrawl-date"></span></span> <br/> -->
                                             <span class="credit-conf-description space" >&nbsp;&nbsp;<span class="important-note">※　クレジットカード会社によって支払い日が異なりますので、各クレジットカード会社のウェブサイトにてご確認ください</span></span>
                                             <?php //var_dump($itemID_arr, $qty_arr); ?>
                                         </div>

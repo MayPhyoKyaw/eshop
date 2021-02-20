@@ -47,13 +47,13 @@ document.getElementById('theDate').value = today;
 $(document).ready(function () {
 
   $("#register").click(function () {
-    if ($('.email').val() !== $('.confirm-email').val()) {
-      document.getElementById("confirm_Email").setCustomValidity(this.value ? '' : '同じメールアドレスを入力してください。');
-    }
-    if ($('.email').val() === $('.confirm-email').val()) {
-      document.getElementById("confirm_Email").setCustomValidity('');
-      document.getElementById("confirm_Email").innerHTML = ('');
-    }
+    // if ($('.email').val() !== $('.confirm-email').val()) {
+    //   document.getElementById("confirm_Email").setCustomValidity(this.value ? '' : '同じメールアドレスを入力してください。');
+    // }
+    // if ($('.email').val() === $('.confirm-email').val()) {
+    //   document.getElementById("confirm_Email").setCustomValidity('');
+    //   document.getElementById("confirm_Email").innerHTML = ('');
+    // }
 
     if ($('.first-name').val() == "") {
       document.getElementById("first_name").oninvalid = function () {
@@ -65,7 +65,7 @@ $(document).ready(function () {
         this.setCustomValidity(this.value ? '' : 'お名前（姓）が入力されていません。');
       }
     }
-    if ($('.first-name').val() != "" && $('.last-name').val() != "" && $('.email').val() != "") {
+    if ($('.first-name').val() != "" && $('.last-name').val() != "" ) {
       $("#register_confirmation").modal('show');
       $(".reg-conf-name").append($(".first-name").val() + ' ' + $(".last-name").val());
       $(".reg-conf-lang-name").append($(".lang-first-name").val() + ' ' + $(".lang-last-name").val())
@@ -78,7 +78,7 @@ $(document).ready(function () {
       $(".reg-conf-time").append($(".time").val())
       $(".reg-conf-phone").append($(".phone").val())
       $(".reg-conf-fax").append($(".fax").val())
-      $(".reg-conf-mail").append($(".email").val())
+      // $(".reg-conf-mail").append($(".email").val())
     }
   })
   $("#register_confirmation").on("hidden.bs.modal", function () {
@@ -93,7 +93,7 @@ $(document).ready(function () {
     $(".reg-conf-time").text('');
     $(".reg-conf-phone").text('');
     $(".reg-conf-fax").text('');
-    $(".reg-conf-mail").text('');
+    // $(".reg-conf-mail").text('');
   })
   $(".cancel").click(function () {
     $(".reg-conf-name").text('');
@@ -107,7 +107,7 @@ $(document).ready(function () {
     $(".reg-conf-time").text('');
     $(".reg-conf-phone").text('');
     $(".reg-conf-fax").text('');
-    $(".reg-conf-mail").text('');
+    // $(".reg-conf-mail").text('');
   })
 })
 $(".link").click(function () {

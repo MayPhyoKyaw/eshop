@@ -273,8 +273,8 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                            <li><a href="index.php">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="shop-grid.php">Sales Shop Grid</a></li>
+                        <li><a href="index.php">Home</a></li>
+                            <!-- <li class="active"><a href="shop-grid.php">Sales Shop Grid</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -319,11 +319,11 @@
                             <div class="col-lg-4 col-md-6 col-12 search-product-item">
                                 <div class="single-product">
                                     <div class="product-img">
-                                        <a href="product-details.php">
+                                        <!-- <a href="product-details.php"> -->
                                             <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                             <span class="price-dec"><?php echo $row['sale_rate'] . " Off"; ?></span>
-                                        </a>
+                                        <!-- </a> -->
                                         <div class="button-head">
                                             <div class="product-action">
                                                 <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="sale-view-detail"><i class=" ti-eye"></i><span>Quick Shop</span></a>
@@ -428,7 +428,7 @@
                                     <div class="detail-items">Stock</div>
                                     <div class="detail-items">
                                         <div class="quickview-stock">
-                                            <span><i class="fa fa-check-circle-o"></i> in stock</span>
+                                        <span class="detail-items-stock"></span>
                                         </div>
                                     </div>
 
