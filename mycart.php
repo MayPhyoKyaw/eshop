@@ -311,7 +311,7 @@
                                                 $itemID_arr = array();
                                                 $qty_arr = array();
                                                 try {
-                                                    $order_item_sql = "SELECT order_date, order_no, total_amount FROM ordering o WHERE c_code = ?";
+                                                    $order_item_sql = "SELECT order_date, order_no, total_amount FROM ordering o WHERE c_code = ? ORDER BY order_date DESC";
                                                     $st4 = $dbConn->prepare($order_item_sql);
                                                     // $st4->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
                                                     $st4->execute([$c_code]);
