@@ -7,7 +7,7 @@
 
         if(isset($_POST['delete'])){
             $id = $_POST['item_id'];
-            $card = $_POST['card_name'];
+            $card = $_POST['card_type'];
                 echo $del_id;
             // $totalTax = (10/100*$_SESSION['final_amount']);
             // $value = $totalTax+700;

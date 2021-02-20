@@ -1,6 +1,8 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="zxx">
-
 <head>
     <!-- Meta Tag -->
     <meta charset="utf-8">
@@ -60,8 +62,6 @@
         </div>
     </div>
     <!-- End Preloader -->
-
-
 
     <!-- Header -->
     <header class="header shop">
@@ -303,10 +303,32 @@
                                             <div class="grid-item">注文番号</div>
                                             <div class="grid-item">会計</div>
                                             <div class="grid-item"></div>
-                                            <div class="grid-item">TEST</div>
-                                            <div class="grid-item">TEST</div>
-                                            <div class="grid-item">TEST</div>
-                                            <div class="grid-item"><button type="submit" class="btn btn-primary delete-btn" name="quantity_confirm" data-toggle="modal" data-target="#myorder_detail">詳細</button></div>
+                                            <?php
+                                                $c_code = $_SESSION['cusCode'];
+                                                $total_amount = $_SESSION['final_amount'];
+                                                $deliTime = $_SESSION['deliTime'];
+                                                $deliDate = $_SESSION['deliDate'];
+                                                $itemID_arr = array();
+                                                $qty_arr = array();
+                                                try {
+                                                    $order_item_sql = "SELECT order_date, order_no, total_amount FROM ordering o WHERE c_code = ?";
+                                                    $st4 = $dbConn->prepare($order_item_sql);
+                                                    // $st4->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
+                                                    $st4->execute([$c_code]);
+                                                    foreach ($st4->fetchAll() as $row4) {
+                                                        // array_push($itemID_arr, $row4['item_id']);
+                                                        // array_push($qty_arr, $row4['quantity']);
+                                            ?>
+                                                <div class="grid-item"><?php echo $row4['order_date']; ?></div>
+                                                <div class="grid-item"><?php echo $row4['order_no']; ?></div>
+                                                <div class="grid-item"><?php echo $row4['total_amount']; ?></div>
+                                                <div class="grid-item"><button type="submit" class="btn btn-primary delete-btn" name="quantity_confirm" data-toggle="modal" data-target="#myorder_detail">詳細</button></div>
+                                            <?php
+                                                    } 
+                                                }catch (PDOException $e) {
+                                                    echo "There is some problem in connection: " . $e->getMessage();
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 </article>
@@ -355,6 +377,7 @@
                             <div class="myorder-detail-grid-item">TEST</div>
                             <div class="myorder-detail-grid-item">color :</div>
                             <div class="myorder-detail-grid-item">TEST</div>
+                            <hr>
                         </div>
                     </div>
                     <!-- card.// -->

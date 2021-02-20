@@ -326,10 +326,10 @@
                                                 $itemID_arr = array();
                                                 $qty_arr = array();
                                                 try {
-                                                    $order_item_sql = "SELECT c.item_id, item_name, price, quantity, (price*quantity) as amount FROM item i INNER JOIN cart c ON i.item_id = c.item_id WHERE c.c_code = :c_code";
+                                                    $order_item_sql = "SELECT c.item_id, item_name, price, quantity, (price*quantity) as amount FROM item i INNER JOIN cart c ON i.item_id = c.item_id WHERE c.c_code = ?";
                                                     $st4 = $dbConn->prepare($order_item_sql);
-                                                    $st4->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
-                                                    $st4->execute();
+                                                    // $st4->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
+                                                    $st4->execute([$c_code]);
                                                     foreach ($st4->fetchAll() as $row4) {
                                                         array_push($itemID_arr, $row4['item_id']);
                                                         array_push($qty_arr, $row4['quantity']);
@@ -339,9 +339,9 @@
                                                 <div class="grid-item"><?php echo $row4['quantity']; ?></div>
                                                 <div class="grid-item"><?php echo "￥" . number_format($row4['amount']); ?></div>
                                                 <div class="grid-item">
-                                                <form action="deleteFromCart.php" method="post">
+                                                <form action="deleteFromCart_forCreditPayment.php" method="post">
                                                     <input type="hidden" name="item_id" value="<?php echo $row4['item_id'] ?>" />
-                                                    <input type="hidden" name="card_name" value="<?php echo $_GET['card_type'] ?>" />
+                                                    <input type="hidden" name="card_type" value="<?php echo $_GET['card_type'] ?>" />
                                                     <button type="submit" class="btn btn-primary delete-btn" name="delete">削除</button>
                                                 </form>
                                                 </div>

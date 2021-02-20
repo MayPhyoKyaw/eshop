@@ -21,7 +21,7 @@
             $quantities = $_POST['quantities'];
 
             $st1 = $dbConn->prepare("INSERT INTO ordering (c_code, oc_phone, o_address1, o_address2, o_email, o_custname, order_date, payment_type, sum_quantity, total_amount, delivery_fees, deli_code, date) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, 'クレジットカード', ?, ?, 700, ?, ?)") ;
+                            VALUES (?, ?, ?, ?, ?, ?, ?, 'コンビニ', ?, ?, 700, ?, ?)") ;
                 // inserting a record
             $st1->execute(
                 array(
