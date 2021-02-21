@@ -364,7 +364,7 @@
                         <div class="myorder-detail-grid-container">
                             <div class="hide orderNo" id="orderNo"></div>
                             <?php
-                                $orderNo = "<script> document.write(document.getElementById('orderNo').innerHTML </script>";
+                                $orderNo = "<script> document.write(document.getElementById('orderNo').innerHTML) </script>";
                                 echo $orderNo;
                                 // try {
                                 //     $order_detail_sql = "SELECT item_name, s_catName, quantity, country, price, sale_price, size_name, color FROM item i INNER JOIN size s ON i.size_id = s.size_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN order_details od ON i.item_id = od.item_id WHERE od.order_no = ?";
