@@ -109,7 +109,7 @@ function orderNoForDetails(orderNo) {
   console.log(orderNo.getAttribute("data-order-no"));
   var thisOrderNo = orderNo.getAttribute("data-order-no");
   console.log(parseInt(thisOrderNo));
-  $(".orderNo").innerHTML = thisOrderNo;
+  $(".orderNo").append(thisOrderNo);
 }
 
 function goBack() {
