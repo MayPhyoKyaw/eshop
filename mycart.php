@@ -322,7 +322,7 @@
                                                 <div class="grid-item"><?php echo $row4['order_date']; ?></div>
                                                 <div class="grid-item"><?php echo $row4['order_no']; ?></div>
                                                 <div class="grid-item"><?php echo $row4['total_amount']; ?></div>
-                                                <div class="grid-item"><button type="submit" class="btn btn-primary delete-btn" name="quantity_confirm" data-toggle="modal" data-target="#myorder_detail">詳細</button></div>
+                                                <div class="grid-item"><button type="submit" class="btn btn-primary delete-btn detail" name="quantity_confirm" data-toggle="modal" data-target="#myorder_detail">詳細</button></div>
                                             <?php
                                                     } 
                                                 }catch (PDOException $e) {
@@ -361,6 +361,7 @@
                     </div>
                     <div class="card bg-light card-form">
                         <div class="myorder-detail-grid-container">
+                            <div class="hide orderNo"></div>
                             <div class="myorder-detail-grid-item">itemName :</div>
                             <div class="myorder-detail-grid-item">TEST</div>
                             <div class="myorder-detail-grid-item">subCategory :</div>

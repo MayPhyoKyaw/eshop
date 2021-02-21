@@ -77,6 +77,11 @@ $(document).ready(function () {
     $('.img2').html(`<img src="./images/items/${img2}" alt="#">`);
     $('#cart_itemId').val(itemId);
   })
+
+  $('.detail').click(function() {
+    console.log($(this).text());
+  })
+
 });
 
 function input_qty() {
