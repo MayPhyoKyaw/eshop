@@ -25,7 +25,7 @@
                 // inserting a record
             $st1->execute(
                 array(
-                    $c_code, $c_phone, $c_address1, $c_address2, $c_email, $c_name, $order_date, $total_qty, $total_amount, $deliTime,  $deliDate
+                    $c_code, $c_phone, $c_address1, $c_address2, $c_email, $c_name, $order_date, $total_qty, number_format($total_amount), $deliTime,  $deliDate
                 )
             );
 
