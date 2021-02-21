@@ -362,10 +362,9 @@
                     </div>
                     <div class="card bg-light card-form">
                         <div class="myorder-detail-grid-container">
-                            <div class="hide orderNo" id="orderNo"></div>
-                            <div class="myorder-detail-grid-item">
+                            <div class="hide orderNo" id="order_no"></div>
                             <?php
-                                $orderNo = "<script> document.write(document.getElementById('orderNo').innerHTML) </script>";
+                                $orderNo = "<script> document.write(document.getElementById('order_no').innerHTML) </script>";
                                 echo $orderNo;
                                 // try {
                                 //     $order_detail_sql = "SELECT item_name, s_catName, quantity, country, price, sale_price, size_name, color FROM item i INNER JOIN size s ON i.size_id = s.size_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN order_details od ON i.item_id = od.item_id WHERE od.order_no = ?";
@@ -373,23 +372,22 @@
                                 //     $st5->execute([$orderNo]);
                                 //     foreach ($st5->fetchAll() as $row5) {
                             ?>
-                            </div>
                                 <div class="myorder-detail-grid-item">itemName : </div>
                                 <div class="myorder-detail-grid-item"><?php echo $orderNo; //echo $row5['item_name']; ?></div>
                                 <div class="myorder-detail-grid-item">subCategory :</div>
-                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item"><?php //echo $row5['s_catName']; ?></div>
                                 <div class="myorder-detail-grid-item">quantity :</div>
-                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item"><?php //echo $row5['quantity']; ?></div>
                                 <div class="myorder-detail-grid-item">Country :</div>
-                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item"><?php //echo $row5['country']; ?></div>
                                 <div class="myorder-detail-grid-item">Price :</div>
-                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item"><?php //echo $row5['price']; ?></div>
                                 <div class="myorder-detail-grid-item">Sale Price :</div>
-                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item"><?php //echo $row5['sale_price']; ?></div>
                                 <div class="myorder-detail-grid-item">size :</div>
-                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item"><?php //echo $row5['size_name']; ?></div>
                                 <div class="myorder-detail-grid-item">color :</div>
-                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item"><?php //echo $row5['color']; ?></div>
                                 <hr>
                             <?php
                                 //     } 
