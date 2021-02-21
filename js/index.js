@@ -8,6 +8,7 @@ $(document).ready(function () {
     items: 1,
     singleItem: true,
     autoplay: true,
+    loop: true,
     autoplayTimeout: 3000
   });
 
@@ -94,12 +95,14 @@ function input_qty() {
     $('#qty').val(qty);
   } else {
     if (parseInt(qty) <= parseInt(stock)) {
-        $(".number-of-item").val(qty);
+      $(".number-of-item").val(qty);
+    } else if (qty == "") {
+      $(".number-of-item").val('');
     } else {
-        alert("在庫が足りません！");
-        $(".number-of-item").val('');
+      alert("在庫が足りません！");
+      $(".number-of-item").val('');
     }
-}
+  }
 }
 
 $("#detailModal").on("hidden.bs.modal", function () {

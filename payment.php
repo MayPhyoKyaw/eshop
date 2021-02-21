@@ -396,15 +396,15 @@
                             <div class="logo">
                                 <a href="index.php"><img class="main-logo" src="images/charmclo_logo2.png" alt="#"></a>
                             </div>
-                            <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
-                            <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
+                            <p class="text">charmcloではトップス・パンツ・ワンピースなど最新トレンドアイテムをオンラインでご購入いただけます。charmcloは多くのブランドの人気アイテムを公式に取扱うファッション通販サイトです！</p>
+                            <p class="call">Got Question? Call us 24/7<span><a href="tel:800280115822">+070 (8002) 8011-5822</a></span></p>
                         </div>
                         <!-- End Single Widget -->
                     </div>
                     <div class="col-lg-2 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer links">
-                            <h4>Information</h4>
+                            <h4>会社情報</h4>
                             <ul>
                                 <li><a href="about.php">About Us</a></li>
                                 <li><a href="contact.php">Contact Us</a></li>
@@ -415,13 +415,13 @@
                     <div class="col-lg-2 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer links">
-                            <h4>Customer Service</h4>
+                            <h4>お客様サービス</h4>
                             <ul>
-                                <li><a href="about.php">Payment Methods</a></li>
-                                <li><a href="about.php">Money-back</a></li>
-                                <li><a href="about.php">Returns</a></li>
-                                <li><a href="about.php">Shipping</a></li>
-                                <li><a href="about.php">Privacy Policy</a></li>
+                                <li><a href="about.php">会社概要</a></li>
+                                <li><a href="about.php">お支払いについて</a></li>
+                                <li><a href="about.php">表示価格について</a></li>
+                                <li><a href="about.php">配送・送料について</a></li>
+                                <li><a href="about.php">プライバシーポリシーについて</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -429,14 +429,14 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer social">
-                            <h4>Contact us</h4>
+                            <h4>お問い合わせ</h4>
                             <!-- Single Widget -->
                             <div class="contact">
                                 <ul>
-                                    <li>NO. 342 - London Oxford Street.</li>
-                                    <li>012 United Kingdom.</li>
-                                    <li>info@eshop.com</li>
-                                    <li>+032 3456 7890</li>
+                                    <li>〒169-0073 東京都新宿区百人町　　1-25-4</li>
+                                    <li>日本、東京</li>
+                                    <li>info@charmclo.com</li>
+                                    <li> +070 (8001) 8011-5822</li>
                                 </ul>
                             </div>
                             <!-- End Single Widget -->
@@ -459,7 +459,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-12">
                             <div class="left">
-                                <p>Copyright © 2020 - All Rights Reserved.</p>
+                                <p>Copyright © 2021 - All Rights Reserved.</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-12">

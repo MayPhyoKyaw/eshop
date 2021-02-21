@@ -97,6 +97,8 @@ function input_qty() {
     } else {
         if (parseInt(qty) <= parseInt(stock)) {
             $(".number-of-item").val(qty);
+        } else if (qty == "") {
+            $(".number-of-item").val('');
         } else {
             alert("在庫が足りません！");
             $(".number-of-item").val('');

@@ -27,9 +27,9 @@ $('#search-product-pagination-container').pagination({
 var get_url = new URL(location);
 var brandName = get_url.searchParams.get('search');
 console.log(brandName)
-if (brandName === "春用で探す" ) {
+if (brandName === "春用で探す") {
     $(".brand-name").append(`季節 : ${brandName}`);
-} 
+}
 else if (brandName === "夏用で探す") {
     $(".brand-name").append(`季節 : ${brandName}`);
 }
@@ -103,6 +103,8 @@ function input_qty() {
     } else {
         if (parseInt(qty) <= parseInt(stock)) {
             $(".number-of-item").val(qty);
+        } else if (qty == "") {
+            $(".number-of-item").val('');
         } else {
             alert("在庫が足りません！");
             $(".number-of-item").val('');
