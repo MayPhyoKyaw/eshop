@@ -79,10 +79,6 @@ $(document).ready(function () {
     $('#cart_itemId').val(itemId);
   })
 
-  $('.detail').click(function() {
-    console.log($(this).text());
-  })
-
 });
 
 function input_qty() {
@@ -108,6 +104,13 @@ function input_qty() {
 $("#detailModal").on("hidden.bs.modal", function () {
   $(".number-of-item").val('1');
 })
+
+function orderNoForDetails(orderNo) {
+  console.log(orderNo.getAttribute("data-order-no"));
+  var thisOrderNo = orderNo.getAttribute("data-order-no");
+  console.log(parseInt(thisOrderNo));
+  $(".orderNo").innerHTML = thisOrderNo;
+}
 
 function goBack() {
   window.history.back();

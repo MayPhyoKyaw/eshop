@@ -318,11 +318,12 @@
                                                     foreach ($st4->fetchAll() as $row4) {
                                                         // array_push($itemID_arr, $row4['item_id']);
                                                         // array_push($qty_arr, $row4['quantity']);
+                                                        // $_SESSION['orderNo'] = ;
                                             ?>
                                                 <div class="grid-item"><?php echo $row4['order_date']; ?></div>
                                                 <div class="grid-item"><?php echo $row4['order_no']; ?></div>
                                                 <div class="grid-item"><?php echo $row4['total_amount']; ?></div>
-                                                <div class="grid-item"><button type="submit" class="btn btn-primary delete-btn detail" name="quantity_confirm" data-toggle="modal" data-target="#myorder_detail">詳細</button></div>
+                                                <div class="grid-item"><button type="submit" class="btn btn-primary delete-btn detail" name="quantity_confirm" data-toggle="modal" data-target="#myorder_detail" onclick="orderNoForDetails(this)" data-order-no="<?php echo $row4['order_no']; ?>">詳細</button></div>
                                             <?php
                                                     } 
                                                 }catch (PDOException $e) {
@@ -361,24 +362,39 @@
                     </div>
                     <div class="card bg-light card-form">
                         <div class="myorder-detail-grid-container">
-                            <div class="hide orderNo"></div>
-                            <div class="myorder-detail-grid-item">itemName :</div>
-                            <div class="myorder-detail-grid-item">TEST</div>
-                            <div class="myorder-detail-grid-item">subCategory :</div>
-                            <div class="myorder-detail-grid-item">TEST</div>
-                            <div class="myorder-detail-grid-item">quantity :</div>
-                            <div class="myorder-detail-grid-item">TEST</div>
-                            <div class="myorder-detail-grid-item">Country :</div>
-                            <div class="myorder-detail-grid-item">TEST</div>
-                            <div class="myorder-detail-grid-item">Price :</div>
-                            <div class="myorder-detail-grid-item">TEST</div>
-                            <div class="myorder-detail-grid-item">Sale Price :</div>
-                            <div class="myorder-detail-grid-item">TEST</div>
-                            <div class="myorder-detail-grid-item">size :</div>
-                            <div class="myorder-detail-grid-item">TEST</div>
-                            <div class="myorder-detail-grid-item">color :</div>
-                            <div class="myorder-detail-grid-item">TEST</div>
-                            <hr>
+                            <div class="hide orderNo" id="orderNo"></div>
+                            <?php
+                                $orderNo = "<script> document.write(document.getElementById('orderNo').innerHTML </script>";
+                                echo $orderNo;
+                                // try {
+                                //     $order_detail_sql = "SELECT item_name, s_catName, quantity, country, price, sale_price, size_name, color FROM item i INNER JOIN size s ON i.size_id = s.size_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN order_details od ON i.item_id = od.item_id WHERE od.order_no = ?";
+                                //     $st5 = $dbConn->prepare($order_detail_sql);
+                                //     $st5->execute([$orderNo]);
+                                //     foreach ($st5->fetchAll() as $row5) {
+                            ?>
+                                <div class="myorder-detail-grid-item">itemName : </div>
+                                <div class="myorder-detail-grid-item"><?php //echo $row5['item_name']; ?></div>
+                                <div class="myorder-detail-grid-item">subCategory :</div>
+                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item">quantity :</div>
+                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item">Country :</div>
+                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item">Price :</div>
+                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item">Sale Price :</div>
+                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item">size :</div>
+                                <div class="myorder-detail-grid-item">TEST</div>
+                                <div class="myorder-detail-grid-item">color :</div>
+                                <div class="myorder-detail-grid-item">TEST</div>
+                                <hr>
+                            <?php
+                                //     } 
+                                // }catch (PDOException $e) {
+                                //     echo "There is some problem in connection: " . $e->getMessage();
+                                // }
+                            ?>
                         </div>
                     </div>
                     <!-- card.// -->
