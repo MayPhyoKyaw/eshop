@@ -336,9 +336,9 @@
                 </div>
             </div>
         </div>
-        <div class="item"><img src="./images/Mandalay-Banner1-1400x670.webp" alt=""></div>
-        <div class="item"><img src="./images/Mandalay-Banner1-1400x670.webp" alt=""></div>
-        <div class="item"><img src="./images/Mandalay-Banner1-1400x670.webp" alt=""></div>
+        <div class="item"><img src="./images/Ecommerce-Customer.jpg" alt=""></div>
+        <div class="item"><img src="./images/deleiverysoftware.jpeg" alt=""></div>
+        <div class="item"><img src="./images/The-eCommerce-Website-4-ways-to-do-it.jpg" alt=""></div>
         <!--/ End Slider Area -->
     </section>
 
