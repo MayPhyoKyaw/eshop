@@ -493,7 +493,7 @@
                         <div class="single-footer links">
                             <h4>会社情報</h4>
                             <ul>
-                                <li><a href="index.php">About Us</a></li>
+                                <li><a href="about.php">About Us</a></li>
                                 <li><a href="contact.php">Contact Us</a></li>
                             </ul>
                         </div>
@@ -540,6 +540,26 @@
             </div>
         </div>
         <!-- End Footer Top -->
+        <div class="copyright">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="left">
+                                <p>Copyright © 2021 - All Rights Reserved.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="right">
+                                <img src="images/payments.png" alt="#">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /End Footer Area -->
         <div class="copyright">
             <div class="container">
                 <div class="inner">
