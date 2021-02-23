@@ -7,8 +7,24 @@
 .main-logo {
     max-height: 129px !important;
 }
-
-
+/* search btn */
+.select-search-btn {
+    height: 50px;
+    line-height: 34px;
+    width: 100px;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    background: #333333;
+    position: absolute;
+    border: none;
+    right: 438px;
+    top: -1px;
+    border-radius: 0 5px 5px 0;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
 /* button */
 
 button {

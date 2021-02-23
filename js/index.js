@@ -28,7 +28,7 @@ $(document).ready(function () {
   //   location.href = `./shop-grid.html?large_category=${get_largeCategoryName}&small_category=${get_smallCategoryName}`;
   // })
 
-  $(".search-btn").click(function () {
+  $(".select-search-btn").click(function () {
     const get_searchName = $(".nice-select").find('span').html();
     console.log(get_searchName);
     if (get_searchName === "ブランドから探す") {
