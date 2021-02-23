@@ -1,6 +1,3 @@
-<?php 
-    session_start();
-?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -30,6 +27,8 @@
     <link rel="stylesheet" href="css/jquery.fancybox.min.css">
     <!-- Themify Icons -->
     <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- Jquery Ui -->
+    <link rel="stylesheet" href="css/jquery-ui.css">
     <!-- Nice Select CSS -->
     <link rel="stylesheet" href="css/niceselect.css">
     <!-- Animate CSS -->
@@ -63,8 +62,6 @@
         </div>
     </div>
     <!-- End Preloader -->
-
-
 
     <!-- Header -->
     <header class="header shop">
@@ -244,7 +241,7 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="index.php">Home</a></li>
+                                                <li><a href="index.php">Home</a></li>
                                                 <li><a href="about.php">About Us</a></li>
                                                 <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
@@ -279,8 +276,9 @@
                 <div class="col-12">
                     <div class="bread-inner">
                         <ul class="bread-list">
-                        <li><a href="index.php">Home</a></li>
-                            <!-- <li class="active"><a href="payment.php">Payment</a></li> -->
+                            <!-- <li><a href="index.php">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="shop-grid.php">Search Shop Grid</a></li> -->
+                            <a href="#" class="back"  onclick="goBack()"> <<戻る</a>
                         </ul>
                     </div>
                 </div>
@@ -289,193 +287,237 @@
     </div>
     <!-- End Breadcrumbs -->
 
-    <!-- Start Contact -->
-    <section id="contact-us" class="contact-us section">
+    <!-- Product Style -->
+    <section class="product-area shop-sidebar shop section product-shop">
+        <!-- <div class="nav-main product-shop-nav">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#man" role="tab">All</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#man" role="tab">Men</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#women" role="tab">Women</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#kids" role="tab">Kids</a></li>
+            </ul>
+        </div> -->
         <div class="container">
-            <div class="contact-head">
-                <div class="row">
-                    <div class="col-lg-16 col-12">
-                        <div class="form-main">
-                            <div class="title">
-                                <h4>ご注文内容の確認</h4>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">                   
+                        <div class="col-12">
+                        <!-- <h3 class="brand-name"></h3> -->
+                            <!-- Shop Top -->
+                            <div class="shop-top">
+                                <div class="shop-shorter">
+                                    <span class="search-count-item"></span>
+                                </div>
+                                <div id="search-product-pagination-container"></div>
                             </div>
-                            <div class="card bg-light payment-form">
-                                <article class="card-body payment-article">
-                                    <p class="important-note">　※　ご注文内容を確認してください</p><br/>
-                                    <div class="convini-type">
-                                        <div class="convini-head"><label><h3> オーダー <span class="important-note">(コンビニ)</span></h3></label></div>
-                                        <!-- <div class="grid-container">
-                                            <div class="grid-item">お客様名前</div>
-                                            <div class="grid-item convini-conf-name"></div>
-                                            <div class="grid-item">お支払い金額</div>
-                                            <div class="grid-item convini-conf-amount"></div>
-                                            <div class="grid-item">お支払い期間</div>
-                                            <div class="grid-item convini-conf-date"></div>
-                                            <div class="grid-item">お支払い方法</div>
-                                            <div class="grid-item convini-conf-method"></div>
-                                            <div class="grid-item">お支払い内容</div>
-                                            <div class="grid-item convini-conf-description"></div>
-                                        </div> -->
-                                        <div class="convini-conf-grid-container">
-                                            <div class="grid-item">書名</div>
-                                            <div class="grid-item">単価</div>
-                                            <div class="grid-item">個数</div>
-                                            <div class="grid-item">金額</div>
-                                            <div class="grid-item"></div>
-                                            <?php
-                                                $c_code = $_SESSION['cusCode'];
-                                                $total_amount = $_SESSION['final_amount'];
-                                                $deliTime = $_SESSION['deliTime'];
-                                                $deliDate = $_SESSION['deliDate'];
-                                                $itemID_arr = array();
-                                                $qty_arr = array();
-                                                try {
-                                                    $order_item_sql = "SELECT c.item_id, item_name, price, quantity, (price*quantity) as amount FROM item i INNER JOIN cart c ON i.item_id = c.item_id WHERE c.c_code = ?";
-                                                    $st4 = $dbConn->prepare($order_item_sql);
-                                                    // $st4->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
-                                                    $st4->execute([$c_code]);
-                                                    foreach ($st4->fetchAll() as $row4) {
-                                                        array_push($itemID_arr, $row4['item_id']);
-                                                        array_push($qty_arr, $row4['quantity']);
-                                            ?>
-                                                <div class="grid-item"><?php echo $row4['item_name']; ?></div>
-                                                <div class="grid-item"><?php echo "￥" . number_format($row4['price']); ?></div>
-                                                <div class="grid-item"><?php echo $row4['quantity']; ?></div>
-                                                <div class="grid-item"><?php echo "￥" . number_format($row4['amount']); ?></div>
-                                                <div class="grid-item">
-                                                <form action="deleteFromCart_forConbiniPayment.php" method="post">
-                                                    <input type="hidden" name="item_id" value="<?php echo $row4['item_id'] ?>" />
-                                                    <input type="hidden" name="convini" value="<?php echo $_GET['convini'] ?>" />
-                                                    <button type="submit" class="btn btn-primary delete-btn" name="delete">削除</button>
+                            <!--/ End Shop Top -->
+                        </div>
+                    </div>
+                    <div class="row search-product-wrapper">
+                        <?php
+                            if(isset($_POST['search-btn'])){
+                                $search_value = $_POST['search'];
+                                // echo $search_value;
+                                try {
+                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, stock, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id where item_name = ?" ;
+                                    $st3 = $dbConn->prepare($search_item_sql);
+                                    $st3->execute(array($search_value));
+
+                                    foreach ($st3->fetchAll() as $row) {
+                        ?>
+                            <div class="col-lg-4 col-md-6 col-12 search-product-item">
+                                <div class="single-product">
+                                    <div class="product-img">
+                                        <!-- <a href="#"> -->
+                                            <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
+                                            <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
+                                        <!-- </a> -->
+                                        <div class="button-head">
+                                            <div class="product-action">
+                                                <a data-toggle="modal" data-target="#detailModal" title="Quick View" href="#" class="view-detail"><i class=" ti-eye"></i><span>Quick Shop</span></a>
+                                                <!-- <a title="Wishlist" href="#"><i class=" ti-heart "></i><span>Add to Wishlist</span></a>
+                                                <a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a> -->
+                                            </div>
+                                            <div class="product-action-2">
+                                                <?php //$url= $_SERVER['REQUEST_URI']; ?>
+                                                <form action="add_to_cart.php" method="post">
+                                                    <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
+                                                    <a title="Add to cart" href="#">
+                                                        <input type="submit" name="add_to_cart" value="Add to Cart" />
+                                                    </a>
                                                 </form>
-                                                </div>
-                                            <?php
-                                                    } 
-                                                }catch (PDOException $e) {
-                                                    echo "There is some problem in connection: " . $e->getMessage();
-                                                }
-                                            ?>
-                                            <span class="credit-conf-description">合計金額 : <?php echo "￥" . number_format($total_amount, 2); ?></span>
-                                        </div>
-                                        
-                                        <?php 
-                                            $cName = null; 
-                                            $cPhone = null;
-                                            $cAddress1 = null;
-                                            $cAddress2 = null;
-                                            $postalCode = null;
-                                            $cusEmail = null;
-                                            $total_qty = 0;
-                                            try {
-                                                $customer_sql = "SELECT c_name, c_address1, c_address2, c_phone, c_zip, c_email, Sum(quantity) as totalQty FROM customers cus INNER JOIN cart c ON cus.c_code = c.c_code INNER JOIN item i ON c.item_id = i.item_id WHERE c.c_code = ?";
-                                                $st3 = $dbConn->prepare($customer_sql);
-                                                // $st3->bindParam( ":c_code", , PDO::PARAM_INT);
-                                                $st3->execute(array($c_code));
-                                                foreach ($st3->fetchAll() as $row3) {
-                                                    $cName = $row3['c_name']; 
-                                                    $cPhone = $row3['c_phone'];
-                                                    $cAddress1 = $row3['c_address1'];
-                                                    $cAddress2 = $row3['c_address2'];
-                                                    $postalCode = $row3['c_zip'];
-                                                    $cusEmail = $row3['c_email'];
-                                                    $total_qty = $row3['totalQty'];
-                                                } 
-                                            }catch (PDOException $e) {
-                                                echo "There is some problem in connection: " . $e->getMessage();
-                                            }
-                                        ?>
-                                        <div>
-                                            <span class="credit-conf-description-title">．配送先</span> <br/>
-                                            <span class="credit-conf-description">郵便番号 :</span> <?php echo $postalCode; ?> <br/>
-                                            <span class="credit-conf-description">住所 :</span> <?php echo $cAddress1; ?> <br/>
-                                            <span class="credit-conf-description">電話番号 :</span> <?php echo $cPhone; ?> <br/>
-                                            <?php 
-                                                try {
-                                                    $deli_time_query = "SELECT deli_time FROM delivery_times WHERE deli_code = ?";
-                                                    $deli_st = $dbConn->prepare($deli_time_query);
-                                                    $deli_st->execute(array($deliTime));
-                                                    foreach ($deli_st->fetchAll() as $row5) {
-                                            ?>
-                                            <span class="credit-conf-description">配送時間 :</span> <?php echo $row5['deli_time']; ?> <br/>
-                                            <?php  
-                                                    } 
-                                                }catch (PDOException $e) {
-                                                    echo "There is some problem in connection: " . $e->getMessage();
-                                                }
-                                            ?>
-                                            <span class="credit-conf-description">配送日 :</span> <?php echo $deliDate; ?>  <br/>
-                                            <span class="convini-conf-description-title">．支払方法</span> <br/>
-                                            <span class="convini-conf-description convini-conf-method"></span> <br/>
-                                            <span class="convini-conf-description space">支払い期間 : <span class="convini-conf-date"></span></span> <br/>
-                                            <!-- <span class="convini-conf-description space" >&nbsp;&nbsp;<span class="important-note">※　クレジットカード会社によって支払い日が異なりますので、各クレジットカード会社のウェブサイトにてご確認ください</span></span> -->
+                                            </div>
                                         </div>
                                     </div>
-                                </article>
-                                <div class="back-btn convini-payment-btns">
-                                    <form action="add_ordering_forConbiniPayment.php" method="post">
-                                        <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
-                                        <input type="hidden" name="c_code" value="<?php echo $c_code; ?>" />
-                                        <input type="hidden" name="c_phone" value="<?php echo $cPhone; ?>" />
-                                        <input type="hidden" name="c_address1" value="<?php echo $cAddress1; ?>" />
-                                        <input type="hidden" name="c_address2" value="<?php echo $cAddress2; ?>" />
-                                        <input type="hidden" name="c_email" value="<?php echo $cusEmail; ?>" />
-                                        <input type="hidden" name="c_name" value="<?php echo $cName; ?>" />
-                                        <input type="hidden" name="sum_qty" value="<?php echo $total_qty; ?>" />
-                                        <input type="hidden" name="total_amount" value="<?php echo $total_amount; ?>" />
-                                        <input type="hidden" name="deliTime" value="<?php echo $deliTime; ?>" />
-                                        <input type="hidden" name="deliDate" value="<?php echo $deliDate; ?>" />
-                                        <?php foreach($itemID_arr as $id){ ?>
-                                            <input type="hidden" name="itemIDs[]" value="<?php echo $id; ?>" />
-                                        <?php 
-                                              }
-                                            foreach($qty_arr as $qty){ 
-                                        ?>
-                                            <input type="hidden" name="quantities[]" value="<?php echo $qty; ?>" />
-                                        <?php } ?>
-                                        <button type="submit" name="add_ordering" id="credit_payment_conf" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#convini_payment_confirmation">注文する</button>
-                                    </form>
+                                    <div class="product-content">
+                                        <h3><a href="#">
+                                            <?php 
+                                                echo $row['item_name'] . "\t/ "; 
+                                                echo $row['size_name'] . "\t"; 
+                                            ?>
+                                        </a></h3>
+                                        <div class="product-price">
+                                            <span class="hide-price">￥<?php echo number_format($row['price'], 2); ?></span>
+                                        </div>
+                                        <span class="hide hide-itemId"><?php echo $row['item_id'];?></span>
+                                        <span class="hide hide-itemName"><?php echo $row['item_name'];?></span>
+                                        <span class="hide hide-size"><?php echo $row['size_name'];?></span>
+                                        <span class="hide hide-gender"><?php echo $row['gender'];?></span>
+                                        <span class="hide hide-country"><?php echo $row['country'];?></span>
+                                        <span class="hide hide-season"><?php echo $row['season_name'];?></span>
+                                        <span class="hide hide-brand"><?php echo $row['brand_name'];?></span>
+                                        <span class="hide hide-color"><?php echo $row['color'];?></span>
+                                        <span class="hide hide-stock"><?php echo $row['stock'];?></span>
+                                        <span class="hide hide-description"><?php echo $row['description'];?></span>
+                                        <span class="hide hide-largeCat"><?php echo $row['b_catName'];?></span>
+                                        <span class="hide hide-smallCat"><?php echo $row['s_catName'];?></span>
+                                        <span class="hide hide-img1"><?php echo $row['item_img1'];?></span>
+                                        <span class="hide hide-img2"><?php echo $row['item_img2'];?></span>
+                                        <div class="image1">
+                                            <span>
+                                                <?php
+                                                    echo $row['item_img1'];
+                                                ?>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php 
+                                    } 
+                                }catch (PDOException $e) {
+                                    echo "There is some problem in connection: " . $e->getMessage();
+                                }
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--/ End Contact -->
+    <!--/ End Product Style 1  -->
 
-    <!-- start conivini payment confirmation modal -->
-    <div class="modal fade" id="convini_payment_confirmation" tabindex="-1" role="dialog" aria-labelledby="cardConfirmation" aria-hidden="true">
-        <div class="modal-dialog card-confirm-customize-modal-dialog" role="document">
-            <div class="modal-content card-confirm-customize-modal-content">
+    <!-- Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog detail-modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
                 </div>
-                <div class="modal-body card-confirm-customize-modal-body">
-                    <div>
-                        <h3 class="modal-title">ご注文完了</h3>
-                    </div>
-                    <div class="card bg-light card-form">
-                        <h3 class="card-detail">ご注文ありがとうございます</h3>
-                        <p>Test1</p>
-                        <p>Test2</p>
-                        <p>Test3</p>
-                        <div class="thank-gif">
-                            <img src="./images/PDECOPOCHI01003.gif">
+                <div class="modal-body detail-modal-body">
+                    <div class="row no-gutters">
+                        <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 ">
+                            <!-- Product Slider -->
+                            <div class="product-gallery">
+                                <div class="quickview-slider-active">
+                                    <div class="single-slider img1">
+                                        <!-- <img src="https://via.placeholder.com/569x528" alt="#"> -->
+                                    </div>
+                                    <div class="single-slider img2">
+                                        <!-- <img src="https://via.placeholder.com/569x528" alt="#"> -->
+                                    </div>
+                                    <!-- <div class="single-slider">
+                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                    </div>
+                                    <div class="single-slider">
+                                        <img src="https://via.placeholder.com/569x528" alt="#">
+                                    </div> -->
+                                </div>
+                            </div>
+                            <!-- End Product slider -->
+                        </div>
+                        <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="quickview-content">
+                                <h2>Detail</h2>
+                                <!-- <div class="quickview-ratting-review">
+                                    <div class="quickview-stock">
+                                        <span><i class="fa fa-check-circle-o"></i> in stock</span>
+                                    </div>
+                                </div> -->
+                                <div>
+                                    <span class="important-note">※割引詳細</span> </br>
+                                    <span class="important-note">※サイズ交換</span> </br>
+                                    <span class="important-note">※Test</span> </br>
+                                </div>
+                                <!-- detail grid table -->
+                                <div class="detail-grid-container">
+                                    <div class="detail-items">Stock</div>
+                                    <div class="detail-items">
+                                        <div class="quickview-stock">
+                                        <span class="detail-items-stock"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="detail-items">Item Name</div>
+                                    <div class="detail-items detail-itemName"></div>
+
+                                    <div class="detail-items">Collection</div>
+                                    <div class="detail-items detail-main-sub"></div>
+
+                                    <div class="detail-items">Gender</div>
+                                    <div class="detail-items detail-gender"></div>
+
+                                    <div class="detail-items">Season</div>
+                                    <div class="detail-items detail-season"></div>
+
+                                    <div class="detail-items">Brand</div>
+                                    <div class="detail-items detail-brand"></div>
+
+                                    <div class="detail-items">Size</div>
+                                    <div class="detail-items detail-size"></div>
+
+                                    <div class="detail-items">Color</div>
+                                    <div class="detail-items detail-color"></div>
+
+                                    <div class="detail-items">Country</div>
+                                    <div class="detail-items detail-country"></div>
+
+                                    <div class="detail-items">Description</div>
+                                    <div class="detail-items detail-description"></div>
+                                    
+                                    <div class="detail-items">Price</div>
+                                    <div class="detail-items detail-price"></div>
+                                    
+                                    <div class="detail-items">Quantity</div>
+                                    <div class="detail-items">
+                                        <input class="number-of-item" name="numberOfItem" value="1"
+                                            oninput="input_qty()"
+                                            type = "number"
+                                            maxlength = "2"
+                                            min="1"
+                                        />
+                                        <!-- <button type="button" class="btn btn-outline-primary btn-sm number-btn">カートに入れる</button> -->
+                                    </div>
+                                    <div class="detail-items hide detail-stock"></div>
+                                </div>
+
+                                <div class="add-to-cart">
+                                    <!-- <a href="#" class="btn">Add to cart</a> -->
+                                    <form action="detail_add_to_cart.php" method="post">
+                                        <input type="hidden" name="cart_itemId" value="" id="cart_itemId" />
+                                        <input type="hidden" name="cart_qty" value="" id="qty" />
+                                        <button class="btn" href="#" type="submit" name="add_to_cart_detail">
+                                        カートに入れる
+                                        </button>
+                                    </form>
+                                </div>
+                                <!-- <div class="default-social">
+                                    <h4 class="share-now">Share:</h4>
+                                    <ul>
+                                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a class="youtube" href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                        <li><a class="dribbble" href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                </div> -->
+                            </div>
                         </div>
                     </div>
-                    <!-- card.// -->
-
-                </div>
-                <div class="modal-footer">
-                    <a href="mycart.php"><button type="submit" class="btn ">完了</button></a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- end conivini payment confirmation modal -->
+    <!-- Modal end -->
 
     <!-- Start Footer Area -->
     <footer class="footer">
@@ -568,11 +610,11 @@
     <!-- /End Footer Area -->
 
 
-
     <!-- Jquery -->
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.0.js"></script>
     <script src="js/jquery-ui.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js'></script>
     <!-- Popper JS -->
     <script src="js/popper.min.js"></script>
     <!-- Bootstrap JS -->
@@ -589,8 +631,6 @@
     <script src="js/facnybox.min.js"></script>
     <!-- Waypoints JS -->
     <script src="js/waypoints.min.js"></script>
-    <!-- Jquery Counterup JS -->
-    <script src="js/jquery-counterup.min.js"></script>
     <!-- Countdown JS -->
     <script src="js/finalcountdown.min.js"></script>
     <!-- Nice Select JS -->
@@ -605,16 +645,12 @@
     <script src="js/onepage-nav.min.js"></script>
     <!-- Easing JS -->
     <script src="js/easing.js"></script>
-    <!-- Google Map JS -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnhgNBg6jrSuqhTeKKEFDWI0_5fZLx0vM"></script>
-    <script src="js/gmap.min.js"></script>
-    <script src="js/map-script.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
-    <!-- Convini payment Confirm JS -->
-    <script src="js/conviniPaymentConfirm.js"></script>
     <!-- Index JS -->
     <script src="js/index.js"></script>
+    <!-- Search Shop Grid JS -->
+    <script src="js/search-shop-grid.js"></script>
 </body>
 
 </html>

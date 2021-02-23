@@ -840,7 +840,7 @@ Version:1.0
     width: 260px;
 }
 
-.header.shop .search-bar input {
+.header.shop .search-bar form input {
     height: 48px;
     background: transparent;
     color: #666;
@@ -851,6 +851,7 @@ Version:1.0
     padding: 0 25px 0 20px;
     width: 328px;
     outline: none;
+    margin-left: 100px;
 }
 
 .header.shop .search-bar .btnn {

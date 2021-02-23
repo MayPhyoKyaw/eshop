@@ -127,11 +127,13 @@
                                         <option>秋用で探す</option>
                                         <option>冬用で探す</option>
 								</select>
-                                <div>
-                                <button class="btnn search-btn"><i class="ti-search"></i></button>
-                                </div>
-                                <input name="search" placeholder="Search Products Here....." type="search">
                                 <button class="btn select-search-btn">検索</button>
+                                <form action="input-search-shop-grid.php" method="post">
+                                    <input name="search" placeholder="Search Products Here....." type="search">
+                                    <div>
+                                        <button type="submit" name="search-btn" class="btnn search-btn"><i class="ti-search"></i></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -398,7 +400,7 @@
                                 </div>
                             </div>
                             <div class="product-content">
-                                <h3><a href="#"><?php echo $row['color'] . "\t" . $row['item_name'] ?></a></h3>
+                                <h3><a href="#"><?php echo $row['item_name'] . "(" . $row['color'] . ")" ?></a></h3>
                                 <div class="product-price">
                                     <!-- <span class="old"></span> -->
                                     <span class="hide-price"><?php echo "￥" . number_format($row['price'], 2) ?></span>

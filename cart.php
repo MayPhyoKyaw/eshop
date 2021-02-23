@@ -129,10 +129,13 @@
                                         <option>秋用で探す</option>
                                         <option>冬用で探す</option>
 								</select>
-                                <!-- <form> -->
-                                <input name="search" placeholder="Search Products Here....." type="search">
-                                <button class="btnn search-btn"><i class="ti-search"></i></button>
-                                <!-- </form> -->
+                                <button class="btn select-search-btn">検索</button>
+                                <form action="input-search-shop-grid.php" method="post">
+                                    <input name="search" placeholder="Search Products Here....." type="search">
+                                    <div>
+                                        <button type="submit" name="search-btn" class="btnn search-btn"><i class="ti-search"></i></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
