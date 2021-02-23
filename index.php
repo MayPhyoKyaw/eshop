@@ -127,9 +127,10 @@
                                         <option>秋用で探す</option>
                                         <option>冬用で探す</option>
 								</select>
+                                <button class="btnn search-btn"><i class="ti-search"></i></button>
                                 <!-- <form> -->
                                 <input name="search" placeholder="Search Products Here....." type="search">
-                                <button class="btnn search-btn"><i class="ti-search"></i></button>
+                                <!-- <button class="btnn search-btn"><i class="ti-search"></i></button> -->
                                 <!-- </form> -->
                             </div>
                         </div>
