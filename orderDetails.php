@@ -133,7 +133,7 @@
                                 try {
                                     if(isset($_POST['detail'])){
                                         $orderNo = $_POST['orderNo'];
-                                        $order_info_sql = "SELECT sum_quantity, total_amount, deli_code, date, order_date FROM ordering WHERE order_no = ?";
+                                        $order_info_sql = "SELECT sum_quantity, total_amount, deli_code, date, order_date, payment_type FROM ordering WHERE order_no = ?";
                                         $st6 = $dbConn->prepare($order_info_sql);
                                         $st6->execute([$orderNo]);
                                         foreach ($st6->fetchAll() as $row6) {
@@ -144,6 +144,8 @@
                                 <div class="myorder-detail-grid-item"><?php echo "￥" . $row6['total_amount']; ?></div>
                                 <div class="myorder-detail-grid-item">注文日 :</div>
                                 <div class="myorder-detail-grid-item"><?php echo $row6['order_date']; ?></div>
+                                <div class="myorder-detail-grid-item">支払いタイプ : </div>
+                                <div class="myorder-detail-grid-item"><?php echo $row6['payment_type']; ?></div>
                                 <?php 
                                     $deliTime = $row6['deli_code'];
                                     $deli_time_query = "SELECT deli_time FROM delivery_times WHERE deli_code = ?";

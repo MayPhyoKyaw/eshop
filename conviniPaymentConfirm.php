@@ -429,7 +429,7 @@
                                         ?>
                                             <input type="hidden" name="quantities[]" value="<?php echo $qty; ?>" />
                                         <?php } ?>
-                                        <button type="submit" name="add_ordering" id="credit_payment_conf" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#credit_payment_confirmation">注文する</button>
+                                        <button type="submit" name="add_ordering" id="credit_payment_conf" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#convini_payment_confirmation">注文する</button>
                                     </form>
                                 </div>
                             </div>
