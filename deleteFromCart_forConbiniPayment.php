@@ -28,7 +28,7 @@
             $del_st->execute([$id]);
             echo "<meta http-equiv='refresh' content='0'>";
         } 
-        header("Location: conviniPaymentConfirm.php?convini=$convini");
+        header("Location: cart.php");
     } catch (PDOException $e) {
         echo "There is some problem in connection: " . $e->getMessage();
     }

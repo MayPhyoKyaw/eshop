@@ -30,7 +30,7 @@
             $del_st->execute([$id]);
             echo "<meta http-equiv='refresh' content='0'>";
         } 
-        header("Location: creditPaymentConfirm.php?card_type=$card");
+        header("Location: cart.php");
     } catch (PDOException $e) {
         echo "There is some problem in connection: " . $e->getMessage();
     }

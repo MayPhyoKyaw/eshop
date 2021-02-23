@@ -322,8 +322,13 @@
                                             ?>
                                                 <div class="grid-item"><?php echo $row4['order_date']; ?></div>
                                                 <div class="grid-item"><?php echo $row4['order_no']; ?></div>
-                                                <div class="grid-item"><?php echo $row4['total_amount']; ?></div>
-                                                <div class="grid-item"><button type="submit" class="btn btn-primary delete-btn detail" name="quantity_confirm" data-toggle="modal" data-target="#myorder_detail" onclick="orderNoForDetails(this)" data-order-no="<?php echo $row4['order_no']; ?>">詳細</button></div>
+                                                <div class="grid-item"><?php echo "￥" . number_format($row4['total_amount'], 2); ?></div>
+                                                <div class="grid-item">
+                                                    <form action="orderDetails.php" method="post" target="_blank">
+                                                        <input type="hidden" name="orderNo" value="<?php echo $row4['order_no']; ?>" />
+                                                        <button type="submit" class="btn btn-primary delete-btn detail" name="detail">詳細</button>
+                                                    </form>
+                                                </div>
                                             <?php
                                                     } 
                                                 }catch (PDOException $e) {
@@ -347,7 +352,7 @@
     <!--/ End Contact -->
 
     <!-- start conivini payment confirmation modal -->
-    <div class="modal fade" id="myorder_detail" tabindex="-1" role="dialog" aria-labelledby="cardConfirmation" aria-hidden="true">
+    <!-- <div class="modal fade" id="myorder_detail" tabindex="-1" role="dialog" aria-labelledby="cardConfirmation" aria-hidden="true">
         <div class="modal-dialog card-confirm-customize-modal-dialog" role="document">
             <div class="modal-content card-confirm-customize-modal-content">
                 <div class="modal-header">
@@ -358,14 +363,17 @@
                 <div class="modal-body card-confirm-customize-modal-body">
                     <div>
                         <h3 class="modal-title">ご注文の詳細</h3>
-                        <!--<p>ご注文詳細内容についてのメールをご登録していただいたメールアドレスにご送信させていただきます。</p>-->
+                        <!-<p>ご注文詳細内容についてのメールをご登録していただいたメールアドレスにご送信させていただきます。</p>->
                     </div>
                     <div class="card bg-light card-form">
                         <div class="myorder-detail-grid-container">
+                            <?php
+                            // $orderNo = null;
+                            ?>
                             <div class="hide orderNo" id="order_no"></div>
                             <?php
-                                $orderNo = "<script> document.write(document.getElementById('order_no').innerHTML) </script>";
-                                echo $orderNo;
+                                //$orderNo = '<script> document.write(document.getElementById("order_no").innerHTML) </script>';
+                                // echo $orderNo;
                                 // try {
                                 //     $order_detail_sql = "SELECT item_name, s_catName, quantity, country, price, sale_price, size_name, color FROM item i INNER JOIN size s ON i.size_id = s.size_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN order_details od ON i.item_id = od.item_id WHERE od.order_no = ?";
                                 //     $st5 = $dbConn->prepare($order_detail_sql);
@@ -373,7 +381,7 @@
                                 //     foreach ($st5->fetchAll() as $row5) {
                             ?>
                                 <div class="myorder-detail-grid-item">itemName : </div>
-                                <div class="myorder-detail-grid-item"><?php echo $orderNo; //echo $row5['item_name']; ?></div>
+                                <div class="myorder-detail-grid-item"><?php //echo $orderNo; //echo $row5['item_name']; ?></div>
                                 <div class="myorder-detail-grid-item">subCategory :</div>
                                 <div class="myorder-detail-grid-item"><?php //echo $row5['s_catName']; ?></div>
                                 <div class="myorder-detail-grid-item">quantity :</div>
@@ -397,7 +405,7 @@
                             ?>
                         </div>
                     </div>
-                    <!-- card.// -->
+                    <!- card.// ->
 
                 </div>
                 <div class="modal-footer">
@@ -405,7 +413,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- end conivini payment confirmation modal -->
 
     <!-- Start Footer Area -->

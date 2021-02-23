@@ -105,12 +105,12 @@ $("#detailModal").on("hidden.bs.modal", function () {
   $(".number-of-item").val('1');
 })
 
-function orderNoForDetails(orderNo) {
-  console.log(orderNo.getAttribute("data-order-no"));
-  var thisOrderNo = orderNo.getAttribute("data-order-no");
-  console.log(parseInt(thisOrderNo));
-  $(".orderNo").text(thisOrderNo);
-}
+// function orderNoForDetails(orderNo) {
+//   console.log(orderNo.getAttribute("data-order-no"));
+//   var thisOrderNo = orderNo.getAttribute("data-order-no");
+//   console.log(parseInt(thisOrderNo));
+//   document.getElementById('order_no').innerHTML = thisOrderNo;
+// }
 
 function goBack() {
   window.history.back();

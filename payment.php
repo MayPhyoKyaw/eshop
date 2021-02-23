@@ -318,7 +318,7 @@
 
                                     <div class="input-container">
                                         <span class="payment-label">支払う金額</span>
-                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . $_SESSION['final_amount']; ?>" disabled="disabled" required/>
+                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . number_format($_SESSION['final_amount'], 2); ?>" disabled="disabled" required/>
                                     </div>
 
                                     <?php 

@@ -352,7 +352,7 @@
                                                     echo "There is some problem in connection: " . $e->getMessage();
                                                 }
                                             ?>
-                                            <span class="credit-conf-description">合計金額 : <?php echo "￥" . $total_amount; ?></span>
+                                            <span class="credit-conf-description">合計金額 : <?php echo "￥" . number_format($total_amount, 2); ?></span>
                                         </div>
                                         
                                         <?php 
