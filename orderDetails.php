@@ -100,7 +100,7 @@
 
                                     if(isset($_POST['detail'])){
                                         $orderNo = $_POST['orderNo'];
-                                        $order_detail_sql = "SELECT item_name, s_catName, quantity, country, price, sale_price, size_name, color FROM item i INNER JOIN size s ON i.size_id = s.size_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN order_details od ON i.item_id = od.item_id WHERE od.order_no = ?";
+                                        $order_detail_sql = "SELECT item_name, s_catName, quantity, country, price, size_name, color FROM item i INNER JOIN size s ON i.size_id = s.size_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN order_details od ON i.item_id = od.item_id WHERE od.order_no = ?";
                                         $st5 = $dbConn->prepare($order_detail_sql);
                                         $st5->execute([$orderNo]);
                                         foreach ($st5->fetchAll() as $row5) {
@@ -115,8 +115,8 @@
                                 <div class="myorder-detail-grid-item"><?php echo $row5['country']; ?></div>
                                 <div class="myorder-detail-grid-item">Price :</div>
                                 <div class="myorder-detail-grid-item"><?php echo "￥" . $row5['price']; ?></div>
-                                <div class="myorder-detail-grid-item">Sale Price : </div>
-                                <div class="myorder-detail-grid-item"><?php if($row5['sale_price'] != null) echo "￥" . $row5['sale_price']; else echo "-"; ?></div>
+                                <!-- <div class="myorder-detail-grid-item">Sale Price : </div>
+                                <div class="myorder-detail-grid-item"><?php if($row5['sale_price'] != null) echo "￥" . $row5['sale_price']; else echo "-"; ?></div> -->
                                 <div class="myorder-detail-grid-item">size :</div>
                                 <div class="myorder-detail-grid-item"><?php echo $row5['size_name']; ?></div>
                                 <div class="myorder-detail-grid-item">color :</div>
@@ -138,13 +138,13 @@
                                         $st6->execute([$orderNo]);
                                         foreach ($st6->fetchAll() as $row6) {
                             ?>
-                                <div class="myorder-detail-grid-item">合計数量 :</div>
+                                <div class="myorder-detail-grid-item myorder-detail-total-tilte">合計数量 :</div>
                                 <div class="myorder-detail-grid-item"><?php echo $row6['sum_quantity']; ?></div>
-                                <div class="myorder-detail-grid-item">合計金額 : </div>
+                                <div class="myorder-detail-grid-item myorder-detail-total-tilte">合計金額 : </div>
                                 <div class="myorder-detail-grid-item"><?php echo "￥" . $row6['total_amount']; ?></div>
-                                <div class="myorder-detail-grid-item">注文日 :</div>
+                                <div class="myorder-detail-grid-item myorder-detail-total-tilte">注文日 :</div>
                                 <div class="myorder-detail-grid-item"><?php echo $row6['order_date']; ?></div>
-                                <div class="myorder-detail-grid-item">支払いタイプ : </div>
+                                <div class="myorder-detail-grid-item myorder-detail-total-tilte">支払いタイプ : </div>
                                 <div class="myorder-detail-grid-item"><?php echo $row6['payment_type']; ?></div>
                                 <?php 
                                     $deliTime = $row6['deli_code'];
@@ -153,10 +153,10 @@
                                     $deli_st->execute(array($deliTime));
                                     foreach ($deli_st->fetchAll() as $row) {
                                 ?>
-                                    <div class="myorder-detail-grid-item">配送時間 :</div>
+                                    <div class="myorder-detail-grid-item myorder-detail-total-tilte">配送時間 :</div>
                                     <div class="myorder-detail-grid-item"><?php echo $row['deli_time']; ?></div>
                                 <?php } ?>
-                                <div class="myorder-detail-grid-item">配送日 :</div>
+                                <div class="myorder-detail-grid-item myorder-detail-total-tilte">配送日 :</div>
                                 <div class="myorder-detail-grid-item"><?php echo $row6['date']; ?></div>
                             <?php
                                         }

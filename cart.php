@@ -480,25 +480,31 @@
                                                 echo "￥" . number_format($row1['result'], 2);
                                         ?>
                                         </span></li>
-                                        <li class="important2">消費税   :<span class="consumption-tax" id="consumption_tax">10%</span></li>
+                                        <li class="important2">消費税   :<span class="consumption-tax" id="consumption_tax"><?php echo "10%"; $_SESSION['consumption_tax'] = "10%";?></span></li>
                                         <?php 
                                             $tax = "<script> document.write(document.getElementById('consumption_tax').innerHTML.slice(0,2)) </script>"; 
                                         ?>
-                                        <li class="important1">配送料   :<span class="delivery-fee" id="delivery_fee">￥700</span></li>
+                                        <li class="important1">配送料   :<span class="delivery-fee" id="delivery_fee"><?php echo "￥700"; $_SESSION['delivery_fee'] = "700";?></span></li>
                                         <?php 
                                             $deliveryFee = "<script> document.write(document.getElementById('delivery_fee').innerHTML.slice(1)) </script>"; 
                                         ?>
                                         <?php
+                                            $formula = (($row1['result']/100)*10) + $row1['result'] + 700;
                                             $today = date("d");
+                                            $final_amount = 0;
                                             // echo date("d/m/Y h:m:s a");
                                             if($today === "05"){
-                                                echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . $formula * 0.05 . "</span></li>";
+                                                $_SESSION['discount-rate'] = $formula * 0.05;
                                             }elseif($today === "15"){
-                                                echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . $formula * 0.05 . "</span></li>";
+                                                $_SESSION['discount-rate'] = $formula * 0.05;
                                             }elseif($today === "25"){
-                                                echo "<li class='important'>割引率    :<span class='discount-rate'>5%</span></li>";
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . $formula * 0.05 . "</span></li>";
+                                                $_SESSION['discount-rate'] = $formula * 0.05;
                                             }else{
-                                                echo "<li class='important'>割引率    :<span class='discount-rate'>0%</span></li>";
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . $formula * 0 . "</span></li>";
+                                                $_SESSION['discount-rate'] = $formula * 0;
                                             }
                                         ?>
 
@@ -546,7 +552,7 @@
                                     </ul>
                                     <div class="button5">
                                         <!-- <a href="sendRegister.php" class="btn">注文に進む</a> -->
-                                        <a hrdf="sendRegister.php?c_code=<?php echo $row1['c_code']; ?>">
+                                        <a href="sendRegister.php?c_code=<?php echo $row1['c_code']; ?>">
                                             <button class="btn" href="#" type="submit" name="add_ordering">
                                                 注文に進む
                                             </button>

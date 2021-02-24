@@ -314,7 +314,7 @@
                     <div class="row search-product-wrapper">
                         <?php                             
                             try {
-                                $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, sale_price, brand_name, season_name, gender, country, description, color, sale_rate, stock FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN sales ON i.sale_id = sales.sale_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sales.sale_rate <> '0%' AND sales.sale_condition = 1";
+                                $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color, sale_rate, stock FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN sales ON i.sale_id = sales.sale_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sales.sale_rate <> '1' AND sales.sale_condition = 1";
                                 $st = $dbConn->prepare($item_sql);
                                 $st->execute();
                                 foreach ($st->fetchAll() as $row) {
@@ -325,7 +325,7 @@
                                         <!-- <a href="product-details.php"> -->
                                             <img class="default-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
                                             <img class="hover-img" src="<?php echo "./images/items/" . $row['item_img1']; ?>" alt="#">
-                                            <span class="price-dec"><?php echo $row['sale_rate'] . " Off"; ?></span>
+                                            <span class="price-dec"><?php echo number_format($row['sale_rate'], 1)*100 . "% Off"; ?></span>
                                         <!-- </a> -->
                                         <div class="button-head">
                                             <div class="product-action">
@@ -352,7 +352,11 @@
                                         </a></h3>
                                         <div class="product-price">
                                             <span class='old'>￥<?php echo number_format($row['price'], 2); ?></span>
-                                            <span class="hide-price">￥<?php echo number_format($row['sale_price'], 2); ?></span>
+                                            <span class="hide-price">￥<?php 
+                                                $formula = number_format($row['sale_rate'], 1) * $row['price'];
+                                                $totalValue = $row['price'] - $formula;
+                                                echo number_format($totalValue, 2);
+                                            ?></span>
                                         </div>
                                     </div>
                                     <span class="hide hide-itemId"><?php echo $row['item_id'];?></span>

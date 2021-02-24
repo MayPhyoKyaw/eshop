@@ -355,9 +355,11 @@
                                                     echo "There is some problem in connection: " . $e->getMessage();
                                                 }
                                             ?>
-                                            <span class="credit-conf-description">合計金額 : <?php echo "￥" . number_format($total_amount, 2); ?></span>
                                         </div>
-                                        
+                                        <span class="credit-conf-description">消費税 : <?php echo $_SESSION['consumption_tax']; ?></span> <br/>
+                                        <span class="credit-conf-description">配送料 : <?php echo "￥" . $_SESSION['delivery_fee']; ?></span> <br/>
+                                        <span class="credit-conf-description">割引率 : <?php echo "￥-" . $_SESSION['discount-rate']; ?></span> <br/>
+                                        <span class="credit-conf-description">合計金額 : <?php echo "￥" . number_format($total_amount, 2); ?></span>
                                         <?php 
                                             $cName = null; 
                                             $cPhone = null;
