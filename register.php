@@ -127,10 +127,13 @@
                                         <option>秋用で探す</option>
                                         <option>冬用で探す</option>
 								</select>
-                                <!-- <form> -->
-                                <input name="search" placeholder="Search Products Here....." type="search">
-                                <button class="btnn search-btn"><i class="ti-search"></i></button>
-                                <!-- </form> -->
+                                <button class="btn select-search-btn">検索</button>
+                                <form action="input-search-shop-grid.php" method="post">
+                                    <input name="search" placeholder="Search Products Here....." type="search">
+                                    <div>
+                                        <button type="submit" name="search-btn" class="btnn search-btn"><i class="ti-search"></i></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -294,7 +297,8 @@
                                 <h4>購入者情報を入力してください</h4>
                                 <h3>Please Fill Your Information</h3>
                             </div>
-                            <form class="form" method="post" action="mail/mail.php">
+                            <!-- <form class="form" method="post" action="mail/mail.php"> -->
+                            <form class="form" action="reg_payment_bg.php" method="post">
                                 <div class="row">
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
@@ -308,20 +312,19 @@
                                             <label>お名前（カナ）<span class="text_required">必須</span></label>
                                             <input id="lang_First_Name" class="lang-first-name" name="lang-first-name" type="text" pattern="^[ァ-ンヴー]+$" title="全角（カナ）で入力してください！" placeholder="例）　ヤマダ" required/>
                                             <input id="lang_Last_Name" class="lang-last-name" name="lang-last-name" type="text" pattern="^[ァ-ンヴー]+$" title="全角（カナ）で入力してください！" placeholder="例）　タロウ" required/>
-
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <label>郵便番号<span class="text_required">必須</span></label>
-                                            <input class="post" name="post" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="7" placeholder="例）　0001111" required/>
+                                            <input class="post" name="postal-code" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="7" placeholder="例）　0001111" required/>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group wrapper">
                                             <label class="city-label" for="city-select">都道府県<span class="text_required">必須</span></label>
                                             <!-- <label>Choose a pet:</label> -->
-                                            <select class="city" name="" id="city">
+                                            <select class="city" name="city" id="city">
                                                 <option value="" selected="selected" disabled hidden>選んでください</option>
                                                 <option value="北海道">北海道</option>
                                                 <option value="青森県">青森県</option>
@@ -395,18 +398,18 @@
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <label>日付<span class="text_required">必須</span></label>
-                                            <input id="theDate" class="date" type="date" data-date="" data-date-format="YYYY MM DD" value="YYYY-MM-DD">
+                                            <input id="theDate" name="deli-date" class="date" type="date" data-date="" data-date-format="YYYY MM DD" value="YYYY-MM-DD">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <div class="form-group">
                                             <label class="time-label" for="time-select">時間帯指定<span class="text_required">必須</span></label>
                                             <!-- <label>Choose a pet:</label> -->
-                                            <select class="time" name="times" id="time" required>
+                                            <select class="time" name="deli-time" id="time" required>
                                             <option value="">指定なし</option>
-                                            <option value="option1">9:00 ~ 12:00</option>
-                                            <option value="option2">13:00 ~ 17:00</option>
-                                            <option value="option3">18:00 ~ 21:00</option>
+                                            <option value="1">9:00 ~ 12:00</option>
+                                            <option value="2">13:00 ~ 17:00</option>
+                                            <option value="3">18:00 ~ 21:00</option>
                                             </select>
                                         </div>
                                     </div>
@@ -438,7 +441,7 @@
                                     <div class="col-12">
                                         <div class="form-group button">
                                             <button type="submit" id="reset" class="btn ">戻る</button>
-                                            <button type="submit" id="register" class="btn " 　data-toggle="modal" data-target="#register_confirmation">配送</button>
+                                            <button type="submit" id="register" class="btn" name="register"　data-toggle="modal" data-target="#register_confirmation">配送</button>
                                         </div>
                                     </div>
                                 </div>
@@ -500,7 +503,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">キャンセル</button>
-                    <a href="payment.php"><button type="submit" class="btn ">OK</button></a>
+                    <a href="reg_payment.php"><button type="submit" class="btn ">OK</button></a>
                 </div>
             </div>
         </div>

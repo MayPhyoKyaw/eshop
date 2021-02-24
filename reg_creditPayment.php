@@ -1,7 +1,3 @@
-<?php
-    session_start();
-    $_SESSION['cus_code'] = $_GET['c_code'];
-?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -245,7 +241,7 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li><a href="index.php">Home</a></li>
+                                                <li class="active"><a href="index.php">Home</a></li>
                                                 <li><a href="about.php">About Us</a></li>
                                                 <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
@@ -281,7 +277,7 @@
                     <div class="bread-inner">
                         <ul class="bread-list">
                         <li><a href="index.php">Home</a></li>
-                            <!-- <li class="active"><a href="about.php">About</a></li> -->
+                            <!-- <li class="active"><a href="payment.php">Payment</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -298,71 +294,85 @@
                     <div class="col-lg-16 col-12">
                         <div class="form-main">
                             <div class="title">
-                                <h4>ご希望の配送先をご確認して下さい。</h4>
-                                <p>別のお届け先に送る場合は【別の住所へ送る】を選択してください！</p>
+                                <h4>クレジットカード決済</h4>
                             </div>
-                            <form action="payment.php" method="">
-                            <div class="card bg-light register-form">
-                                <article class="card-body checkout-register-article">
-                                <?php 
-                                    $c_code = $_GET['c_code'];
-                                    $cName = null; 
-                                    $cPhone = null;
-                                    $cAddress1 = null;
-                                    $cAddress2 = null;
-                                    try {
-                                        $customer_sql = "SELECT c_name, c_address1, c_address2, c_phone FROM customers cus INNER JOIN cart c ON cus.c_code = c.c_code WHERE c.c_code = :c_code";
-                                        $st3 = $dbConn->prepare($customer_sql);
-                                        $st3->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
-                                        $st3->execute();
-                                        foreach ($st3->fetchAll() as $row3) {
-                                            $cName = $row3['c_name']; 
-                                            $cPhone = $row3['c_phone'];
-                                            $cAddress1 = $row3['c_address1'];
-                                            $cAddress2 = $row3['c_address2'];
-                                        } 
-                                    }catch (PDOException $e) {
-                                        echo "There is some problem in connection: " . $e->getMessage();
-                                    }
-                                ?>
-                                    <div class="input-container">
-                                        <i class="fa fa-user icon"></i>
-                                        <input class="username" type="text" placeholder="名前" name="username" value="<?php echo $cName; ?>" disabled="disabled">
-                                    </div>
+                            <div class="card bg-light payment-form">
+                                <h3 class="payment-detail">クレジットカード情報を入力</h3>
+                                <article class="card-body payment-article">
 
-                                    <div class="input-container">
-                                        <i class="fa fa-address-book icon"></i>
-                                        <input class="address" type="text" placeholder="住所" name="address" value="<?php echo $cAddress1 . ', ' . $cAddress2; ?>" disabled="disabled">
-                                    </div>
-
-                                    <div class="input-container">
-                                        <i class="fa fa-key icon"></i>
-                                        <input class="phone-no" type="text" placeholder="電話番号" name="phone" value="<?php echo $cPhone; ?>" disabled="disabled">
-                                    </div>
-                                    <div class="input-container">
-                                        <select class="delivery-time" name="delivery-times" required>
-                                            <option value="">指定なし</option>
-                                            <option value="1">9:00 ~ 12:00</option>
-                                            <option value="2">13:00 ~ 17:00</option>
-                                            <option value="3">18:00 ~ 21:00</option>
-                                        </select>
-                                        <label class="important-note">※　時間帯を選んでください</label>
+                                    <div class="input-container del-mg-bot">
+                                        <span class="card-label">カード会社</span>
+                                        <select class="cards" name="cards" id="card" required>
+                                          <option value="">選択して下さい</option>
+                                          <option value="VISA">VISA</option>
+                                          <option value="MASTER">MASTER</option>
+                                          <option value="JCB">JCB</option>
+                                          <option value="JCB">Diners</option>
+                                          <option value="JCB">AMEX</option>
+                                          </select>
+                                        <span class="important-note">※　カード会社を選んでください</span>
                                     </div>
                                     <div class="input-container">
-                                        <input class="delivery-date" type="date" data-date="" name="delivery-date" data-date-format="YYYY MM DD" value="">
-                                        <label class="important-note">※　日付を選んでください</label>
+                                        <span class="card-label">カード番号</span>
+                                        <input class="card-no" type="text" placeholder="例（1234-5678-1234-5678)" name="card-no" pattern="/^([0-9]{4}( |\-)){3}[0-4]{4}$/" required/>
+                                        <span class="important-note">※　カードの表記どおりにご入力ください</span>
+                                    </div>
+                                    <div class="input-container del-mg-bot">
+                                        <span class="card-label">有効期限</span>
+                                        <select class="card-expired-month" name="選択してください" required>
+                                            <option value="month">月</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="04">04</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="08">08</option>
+                                            <option value="09">09</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select><span class="card-month">月</span><select class="card-expired-year" name="選択してください" required>
+                                            <option value="year">年</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026">2026</option>
+                                            <option value="2027">2027</option>
+                                            <option value="2028">2028</option>
+                                            <option value="2029">2029</option>
+                                            <option value="2030">2030</option>
+                                            <option value="2031">2031</option>
+                                            <option value="2032">2032</option>
+                                            <option value="2033">2033</option>
+                                            <option value="2034">2034</option>
+                                            <option value="2035">2035</option>
+                                            <option value="2036">2036</option>
+                                            <option value="2037">2037</option>
+                                            <option value="2038">2038</option>
+                                            <option value="2039">2039</option>
+                                            <option value="2040">2040</option>
+                                        </select><span class="card-year">年</span>
+                                        <span class="important-note">※　カードの表記のとろりご指定ください</span>
                                     </div>
                                     <div class="input-container">
-                                        <a class="link-name" target="_blank" href="./register.php"><i class="fa fa-share-square-o"></i>  別の住所へ送る</a>
+                                        <span class="card-label">名義人</span>
+                                        <input class="card-username" type="text" placeholder="例（example）" name="card-user-name" required/>
+                                        <span class="important-note">※　カードの表示どろりに入力してください</span>
                                     </div>
-                                    <input type="hidden" name="c_code" value="<?php echo $_GET['c_code']; ?>" >
+                                    <div class="input-container">
+                                        <input type="checkbox" class="card-checkbox" name="" value="">
+                                        <label for="">入力したクレジットカードをCharmCloの情報として登録する</label>
+                                    </div>
                                 </article>
+                                <div class="back-btn">
+                                    <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
+                                    <button type="button" class="btn btn-secondary card-submit reg-credit-payment-submit">確認</button>
+                                </div>
                             </div>
-                            <div class="send-register-btns">
-                                <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
-                                <button type="submit" id="order_confirm" class="btn btn-primary">確定</button>
-                            </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -370,7 +380,43 @@
         </div>
     </section>
     <!--/ End Contact -->
-
+    <!-- start card confirmation modal -->
+    <!-- <div class="modal fade" id="card_confirmation" tabindex="-1" role="dialog" aria-labelledby="cardConfirmation" aria-hidden="true">
+        <div class="modal-dialog card-confirm-customize-modal-dialog" role="document">
+            <div class="modal-content card-confirm-customize-modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body card-confirm-customize-modal-body">
+                    <div>
+                        <h3 class="modal-title">確認。。。。</h3>
+                    </div>
+                    <div class="card bg-light card-form">
+                        <h3 class="card-detail">「↓」の情報をご確認ください</h3>
+                        <article class="card-body card-article">
+                            <div class="grid-container">
+                                <div class="grid-item">カード会社</div>
+                                <div class="grid-item card-name"></div>
+                                <div class="grid-item">カード番号</div>
+                                <div class="grid-item card-number"></div>
+                                <div class="grid-item">有効期限</div>
+                                <div class="grid-item card-expired-date"></div>
+                                <div class="grid-item">名義人</div>
+                                <div class="grid-item card-user-name"></div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary cancel" data-dismiss="modal">キャンセル</button>
+                    <button type="submit" class="btn credit-payment-submit">確認</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- end card confirmation modal -->
     <!-- Start Footer Area -->
     <footer class="footer">
         <!-- Footer Top -->
@@ -461,6 +507,8 @@
     </footer>
     <!-- /End Footer Area -->
 
+
+
     <!-- Jquery -->
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.0.js"></script>
@@ -503,6 +551,8 @@
     <script src="js/map-script.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
+    <!-- about JS -->
+    <script src="js/creditPayment.js"></script>
     <!-- Index JS -->
     <script src="js/index.js"></script>
 </body>

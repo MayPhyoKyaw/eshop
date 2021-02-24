@@ -1,6 +1,5 @@
-<?php
+<?php 
     session_start();
-    $_SESSION['cus_code'] = $_GET['c_code'];
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -245,7 +244,7 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li><a href="index.php">Home</a></li>
+                                                <li class="active"><a href="index.php">Home</a></li>
                                                 <li><a href="about.php">About Us</a></li>
                                                 <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
@@ -281,7 +280,7 @@
                     <div class="bread-inner">
                         <ul class="bread-list">
                         <li><a href="index.php">Home</a></li>
-                            <!-- <li class="active"><a href="about.php">About</a></li> -->
+                            <!-- <li class="active"><a href="payment.php">Payment</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -298,71 +297,145 @@
                     <div class="col-lg-16 col-12">
                         <div class="form-main">
                             <div class="title">
-                                <h4>ご希望の配送先をご確認して下さい。</h4>
-                                <p>別のお届け先に送る場合は【別の住所へ送る】を選択してください！</p>
+                                <h4>ご注文内容の確認</h4>
                             </div>
-                            <form action="payment.php" method="">
-                            <div class="card bg-light register-form">
-                                <article class="card-body checkout-register-article">
-                                <?php 
-                                    $c_code = $_GET['c_code'];
-                                    $cName = null; 
-                                    $cPhone = null;
-                                    $cAddress1 = null;
-                                    $cAddress2 = null;
-                                    try {
-                                        $customer_sql = "SELECT c_name, c_address1, c_address2, c_phone FROM customers cus INNER JOIN cart c ON cus.c_code = c.c_code WHERE c.c_code = :c_code";
-                                        $st3 = $dbConn->prepare($customer_sql);
-                                        $st3->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
-                                        $st3->execute();
-                                        foreach ($st3->fetchAll() as $row3) {
-                                            $cName = $row3['c_name']; 
-                                            $cPhone = $row3['c_phone'];
-                                            $cAddress1 = $row3['c_address1'];
-                                            $cAddress2 = $row3['c_address2'];
-                                        } 
-                                    }catch (PDOException $e) {
-                                        echo "There is some problem in connection: " . $e->getMessage();
-                                    }
-                                ?>
-                                    <div class="input-container">
-                                        <i class="fa fa-user icon"></i>
-                                        <input class="username" type="text" placeholder="名前" name="username" value="<?php echo $cName; ?>" disabled="disabled">
+                            <div class="card bg-light payment-form">
+                                <article class="card-body payment-article">
+                                    <p class="important-note">　※　ご注文内容を確認してください</p><br/>
+                                    <div class="convini-type">
+                                        <div class="convini-head"><label><h3> オーダー <span class="important-note">(コンビニ)</span></h3></label></div>
+                                        <!-- <div class="grid-container">
+                                            <div class="grid-item">お客様名前</div>
+                                            <div class="grid-item convini-conf-name"></div>
+                                            <div class="grid-item">お支払い金額</div>
+                                            <div class="grid-item convini-conf-amount"></div>
+                                            <div class="grid-item">お支払い期間</div>
+                                            <div class="grid-item convini-conf-date"></div>
+                                            <div class="grid-item">お支払い方法</div>
+                                            <div class="grid-item convini-conf-method"></div>
+                                            <div class="grid-item">お支払い内容</div>
+                                            <div class="grid-item convini-conf-description"></div>
+                                        </div> -->
+                                        <div class="convini-conf-grid-container">
+                                            <div class="grid-item">書名</div>
+                                            <div class="grid-item">単価</div>
+                                            <div class="grid-item">個数</div>
+                                            <div class="grid-item">金額</div>
+                                            <div class="grid-item"></div>
+                                            <?php
+                                                $c_code = $_SESSION['cusCode'];
+                                                $total_amount = $_SESSION['final_amount'];
+                                                $deliTime = $_SESSION['deliTime'];
+                                                $deliDate = $_SESSION['deliDate'];
+                                                $itemID_arr = array();
+                                                $qty_arr = array();
+                                                try {
+                                                    $order_item_sql = "SELECT c.item_id, item_name, price, quantity, (price*quantity) as amount FROM item i INNER JOIN cart c ON i.item_id = c.item_id WHERE c.c_code = ?";
+                                                    $st4 = $dbConn->prepare($order_item_sql);
+                                                    // $st4->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
+                                                    $st4->execute([$c_code]);
+                                                    foreach ($st4->fetchAll() as $row4) {
+                                                        array_push($itemID_arr, $row4['item_id']);
+                                                        array_push($qty_arr, $row4['quantity']);
+                                            ?>
+                                                <div class="grid-item"><?php echo $row4['item_name']; ?></div>
+                                                <div class="grid-item"><?php echo "￥" . number_format($row4['price']); ?></div>
+                                                <div class="grid-item"><?php echo $row4['quantity']; ?></div>
+                                                <div class="grid-item"><?php echo "￥" . number_format($row4['amount']); ?></div>
+                                                <div class="grid-item">
+                                                <form action="deleteFromCart_forConbiniPayment.php" method="post">
+                                                    <input type="hidden" name="item_id" value="<?php echo $row4['item_id'] ?>" />
+                                                    <input type="hidden" name="convini" value="<?php echo $_GET['convini'] ?>" />
+                                                    <button type="submit" class="btn btn-primary delete-btn" name="delete">削除</button>
+                                                </form>
+                                                </div>
+                                            <?php
+                                                    } 
+                                                }catch (PDOException $e) {
+                                                    echo "There is some problem in connection: " . $e->getMessage();
+                                                }
+                                            ?>
+                                        </div>
+                                        <span class="credit-conf-description">消費税 : <?php echo $_SESSION['consumption_tax']; ?></span> <br/>
+                                        <span class="credit-conf-description">配送料 : <?php echo "￥" . $_SESSION['delivery_fee']; ?></span> <br/>
+                                        <span class="credit-conf-description">割引率 : <?php echo "￥-" . $_SESSION['discount-rate']; ?></span> <br/>
+                                        <span class="credit-conf-description">合計金額 : <?php echo "￥" . number_format($total_amount, 2); ?></span>
+                                        <?php 
+                                            $cName = $_SESSION['fName'] . " " . $_SESSION['lName']; 
+                                            $cPhone = $_SESSION['phone'];
+                                            $cAddress1 = $_SESSION['building'] . ", " . $_SESSION['location'] . ", " . $_SESSION['town'] . ", " . $_SESSION['city'];
+                                            // $cAddress2 = null;
+                                            $postalCode = $_SESSION['postal-code'];
+                                            // $cusEmail = null;
+                                            $cusFax = $_SESSION['fax'];
+                                            $deliTime = $_SESSION['delivery-time'];
+                                            $deliDate = $_SESSION['delivery-date'];
+                                            $total_qty = 0;
+                                            try {
+                                                $customer_sql = "SELECT Sum(quantity) as totalQty FROM order_details INNER JOIN cart c ON cus.c_code = c.c_code INNER JOIN item i ON c.item_id = i.item_id WHERE c.c_code = ?";
+                                                $st3 = $dbConn->prepare($customer_sql);
+                                                // $st3->bindParam( ":c_code", , PDO::PARAM_INT);
+                                                $st3->execute(array($c_code));
+                                                foreach ($st3->fetchAll() as $row3) {
+                                                    $total_qty = $row3['totalQty'];
+                                                } 
+                                            }catch (PDOException $e) {
+                                                echo "There is some problem in connection: " . $e->getMessage();
+                                            }
+                                        ?>
+                                        <div>
+                                            <span class="credit-conf-description-title">．配送先</span> <br/>
+                                            <span class="credit-conf-description">郵便番号 :</span> <?php echo $postalCode; ?> <br/>
+                                            <span class="credit-conf-description">住所 :</span> <?php echo $cAddress1; ?> <br/>
+                                            <span class="credit-conf-description">電話番号 :</span> <?php echo $cPhone; ?> <br/>
+                                            <?php 
+                                                try {
+                                                    $deli_time_query = "SELECT deli_time FROM delivery_times WHERE deli_code = ?";
+                                                    $deli_st = $dbConn->prepare($deli_time_query);
+                                                    $deli_st->execute(array($deliTime));
+                                                    foreach ($deli_st->fetchAll() as $row5) {
+                                            ?>
+                                            <span class="credit-conf-description">配送時間 :</span> <?php echo $row5['deli_time']; ?> <br/>
+                                            <?php  
+                                                    } 
+                                                }catch (PDOException $e) {
+                                                    echo "There is some problem in connection: " . $e->getMessage();
+                                                }
+                                            ?>
+                                            <span class="credit-conf-description">配送日 :</span> <?php echo $deliDate; ?>  <br/>
+                                            <span class="convini-conf-description-title">．支払方法</span> <br/>
+                                            <span class="convini-conf-description convini-conf-method"></span> <br/>
+                                            <span class="convini-conf-description space">支払い期間 : <span class="convini-conf-date"></span></span> <br/>
+                                            <!-- <span class="convini-conf-description space" >&nbsp;&nbsp;<span class="important-note">※　クレジットカード会社によって支払い日が異なりますので、各クレジットカード会社のウェブサイトにてご確認ください</span></span> -->
+                                        </div>
                                     </div>
-
-                                    <div class="input-container">
-                                        <i class="fa fa-address-book icon"></i>
-                                        <input class="address" type="text" placeholder="住所" name="address" value="<?php echo $cAddress1 . ', ' . $cAddress2; ?>" disabled="disabled">
-                                    </div>
-
-                                    <div class="input-container">
-                                        <i class="fa fa-key icon"></i>
-                                        <input class="phone-no" type="text" placeholder="電話番号" name="phone" value="<?php echo $cPhone; ?>" disabled="disabled">
-                                    </div>
-                                    <div class="input-container">
-                                        <select class="delivery-time" name="delivery-times" required>
-                                            <option value="">指定なし</option>
-                                            <option value="1">9:00 ~ 12:00</option>
-                                            <option value="2">13:00 ~ 17:00</option>
-                                            <option value="3">18:00 ~ 21:00</option>
-                                        </select>
-                                        <label class="important-note">※　時間帯を選んでください</label>
-                                    </div>
-                                    <div class="input-container">
-                                        <input class="delivery-date" type="date" data-date="" name="delivery-date" data-date-format="YYYY MM DD" value="">
-                                        <label class="important-note">※　日付を選んでください</label>
-                                    </div>
-                                    <div class="input-container">
-                                        <a class="link-name" target="_blank" href="./register.php"><i class="fa fa-share-square-o"></i>  別の住所へ送る</a>
-                                    </div>
-                                    <input type="hidden" name="c_code" value="<?php echo $_GET['c_code']; ?>" >
                                 </article>
+                                <div class="back-btn convini-payment-btns">
+                                    <form action="reg_add_ordering_forConbiniPayment.php" method="post">
+                                        <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
+                                        <input type="hidden" name="c_code" value="<?php echo $c_code; ?>" />
+                                        <input type="hidden" name="c_phone" value="<?php echo $cPhone; ?>" />
+                                        <input type="hidden" name="c_address1" value="<?php echo $cAddress1; ?>" />
+                                        <!-- <input type="hidden" name="c_address2" value="<?php //echo $cAddress2; ?>" />
+                                        <input type="hidden" name="c_email" value="<?php //echo $cusEmail; ?>" /> -->
+                                        <input type="hidden" name="c_Fax" value="<?php echo $cusFax; ?>" />
+                                        <input type="hidden" name="c_name" value="<?php echo $cName; ?>" />
+                                        <input type="hidden" name="sum_qty" value="<?php echo $total_qty; ?>" />
+                                        <input type="hidden" name="total_amount" value="<?php echo $total_amount; ?>" />
+                                        <input type="hidden" name="deliTime" value="<?php echo $deliTime; ?>" />
+                                        <input type="hidden" name="deliDate" value="<?php echo $deliDate; ?>" />
+                                        <?php foreach($itemID_arr as $id){ ?>
+                                            <input type="hidden" name="itemIDs[]" value="<?php echo $id; ?>" />
+                                        <?php 
+                                              }
+                                            foreach($qty_arr as $qty){ 
+                                        ?>
+                                            <input type="hidden" name="quantities[]" value="<?php echo $qty; ?>" />
+                                        <?php } ?>
+                                        <button type="submit" name="add_ordering" id="credit_payment_conf" class="btn btn-secondary card-submit" data-toggle="modal" data-target="#convini_payment_confirmation">注文する</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="send-register-btns">
-                                <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
-                                <button type="submit" id="order_confirm" class="btn btn-primary">確定</button>
-                            </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -370,6 +443,39 @@
         </div>
     </section>
     <!--/ End Contact -->
+
+    <!-- start conivini payment confirmation modal -->
+    <div class="modal fade" id="convini_payment_confirmation" tabindex="-1" role="dialog" aria-labelledby="cardConfirmation" aria-hidden="true">
+        <div class="modal-dialog card-confirm-customize-modal-dialog" role="document">
+            <div class="modal-content card-confirm-customize-modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body card-confirm-customize-modal-body">
+                    <div>
+                        <h3 class="modal-title">ご注文完了</h3>
+                    </div>
+                    <div class="card bg-light card-form">
+                        <h3 class="card-detail">ご注文ありがとうございます</h3>
+                        <p>Test1</p>
+                        <p>Test2</p>
+                        <p>Test3</p>
+                        <div class="thank-gif">
+                            <img src="./images/PDECOPOCHI01003.gif">
+                        </div>
+                    </div>
+                    <!-- card.// -->
+
+                </div>
+                <div class="modal-footer">
+                    <a href="mycart.php"><button type="submit" class="btn ">完了</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end conivini payment confirmation modal -->
 
     <!-- Start Footer Area -->
     <footer class="footer">
@@ -461,6 +567,8 @@
     </footer>
     <!-- /End Footer Area -->
 
+
+
     <!-- Jquery -->
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.0.js"></script>
@@ -503,6 +611,8 @@
     <script src="js/map-script.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
+    <!-- Convini payment Confirm JS -->
+    <script src="js/conviniPaymentConfirm.js"></script>
     <!-- Index JS -->
     <script src="js/index.js"></script>
 </body>

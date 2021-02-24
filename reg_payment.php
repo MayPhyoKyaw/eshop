@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION['cus_code'] = $_GET['c_code'];
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -64,8 +63,6 @@
         </div>
     </div>
     <!-- End Preloader -->
-
-
 
     <!-- Header -->
     <header class="header shop">
@@ -245,7 +242,7 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li><a href="index.php">Home</a></li>
+                                                <li class="active"><a href="index.php">Home</a></li>
                                                 <li><a href="about.php">About Us</a></li>
                                                 <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
@@ -281,7 +278,7 @@
                     <div class="bread-inner">
                         <ul class="bread-list">
                         <li><a href="index.php">Home</a></li>
-                            <!-- <li class="active"><a href="about.php">About</a></li> -->
+                            <!-- <li class="active"><a href="payment.php">Payment</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -298,71 +295,88 @@
                     <div class="col-lg-16 col-12">
                         <div class="form-main">
                             <div class="title">
-                                <h4>ご希望の配送先をご確認して下さい。</h4>
-                                <p>別のお届け先に送る場合は【別の住所へ送る】を選択してください！</p>
+                                <h4>♦♦♦ご希望の決済方法↓を選択して下さい。別画面にて決済画面を開きます♦♦♦</h4>
                             </div>
-                            <form action="payment.php" method="">
-                            <div class="card bg-light register-form">
-                                <article class="card-body checkout-register-article">
-                                <?php 
-                                    $c_code = $_GET['c_code'];
-                                    $cName = null; 
-                                    $cPhone = null;
-                                    $cAddress1 = null;
-                                    $cAddress2 = null;
-                                    try {
-                                        $customer_sql = "SELECT c_name, c_address1, c_address2, c_phone FROM customers cus INNER JOIN cart c ON cus.c_code = c.c_code WHERE c.c_code = :c_code";
-                                        $st3 = $dbConn->prepare($customer_sql);
-                                        $st3->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
-                                        $st3->execute();
-                                        foreach ($st3->fetchAll() as $row3) {
-                                            $cName = $row3['c_name']; 
-                                            $cPhone = $row3['c_phone'];
-                                            $cAddress1 = $row3['c_address1'];
-                                            $cAddress2 = $row3['c_address2'];
-                                        } 
-                                    }catch (PDOException $e) {
-                                        echo "There is some problem in connection: " . $e->getMessage();
-                                    }
-                                ?>
+                            <div class="card bg-light payment-form">
+                                <h3 class="payment-detail">お支払い情報</h3>
+                                <article class="card-body payment-article">
+                                    <?php 
+                                        $firstName = $_SESSION['fName'];
+                                        $lastName = $_SESSION['lName'];
+                                        try {
+                                            $cus_code = $_SESSION['cus_code'];
+                                            $info_sql = "SELECT Sum(price*quantity) as totalPrice FROM cart INNER JOIN item on cart.item_id = item.item_id WHERE c_code = ?" ;
+                                            $st3 = $dbConn->prepare($info_sql);
+                                            // $st3->bindParam( ":cus_code", $cus_code, PDO::PARAM_STR);
+                                            $st3->execute(array($cus_code));
+                                            foreach ($st3->fetchAll() as $row3) {
+                                                // $_SESSION['total'] = $row3['totalPrice'];
+                                    ?>
                                     <div class="input-container">
-                                        <i class="fa fa-user icon"></i>
-                                        <input class="username" type="text" placeholder="名前" name="username" value="<?php echo $cName; ?>" disabled="disabled">
+                                        <span class="payment-label">お名前</span>
+                                        <input class="payment-username" type="text" placeholder="Payment Username" name="payment-user" value="<?php echo $firstName . " " . $lastName; ?>" disabled="disabled" required/>
                                     </div>
 
                                     <div class="input-container">
-                                        <i class="fa fa-address-book icon"></i>
-                                        <input class="address" type="text" placeholder="住所" name="address" value="<?php echo $cAddress1 . ', ' . $cAddress2; ?>" disabled="disabled">
+                                        <span class="payment-label">支払う金額</span>
+                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . number_format($_SESSION['final_amount'], 2); ?>" disabled="disabled" required/>
                                     </div>
 
+                                    <?php 
+                                        try {
+                                            $cart_item_sql = "SELECT item_name, quantity, size_name FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN size s ON i.size_id = s.size_id WHERE c.c_code = ?" ;
+                                            $st4 = $dbConn->prepare($cart_item_sql);
+                                            // $st4->bindParam( ":cus_code", $cus_code, PDO::PARAM_STR);
+                                            $st4->execute(array($cus_code));
+                                            $item_name_Arr = array();
+                                            $qty_Arr = array();
+                                            $size_Arr = array();
+                                            foreach ($st4->fetchAll() as $row4) {
+                                                // echo $row4['item_name'] . "<br>";
+                                                array_push($item_name_Arr, $row4['item_name']);
+                                                // var_dump($item_name_Arr);
+                                                array_push($qty_Arr, $row4['quantity']);
+                                                array_push($size_Arr, $row4['size_name']);
+                                            } 
+                                            // var_dump($size_Arr);
+                                        }catch (PDOException $e) {
+                                            echo "There is some problem in connection: " . $e->getMessage();
+                                        }
+                                    ?>
+
                                     <div class="input-container">
-                                        <i class="fa fa-key icon"></i>
-                                        <input class="phone-no" type="text" placeholder="電話番号" name="phone" value="<?php echo $cPhone; ?>" disabled="disabled">
+                                        <span class="payment-label">支払う内容</span>
+                                        <textarea class="description" placeholder="Description" name="description" disabled="disabled" required><?php
+                                                $i = 0;
+                                                while($i < Count($item_name_Arr)){
+                                                    echo  $item_name_Arr[$i]."(" . $size_Arr[$i] .")" ." × ". $qty_Arr[$i] ;
+                                                    $i++;
+                                                    if($i < Count($item_name_Arr)) echo "\n";
+                                                }
+                                        ?></textarea>
                                     </div>
+
+                                    <?php
+                                            } 
+                                        }catch (PDOException $e) {
+                                            echo "There is some problem in connection: " . $e->getMessage();
+                                        }
+                                    ?>
+
                                     <div class="input-container">
-                                        <select class="delivery-time" name="delivery-times" required>
-                                            <option value="">指定なし</option>
-                                            <option value="1">9:00 ~ 12:00</option>
-                                            <option value="2">13:00 ~ 17:00</option>
-                                            <option value="3">18:00 ~ 21:00</option>
-                                        </select>
-                                        <label class="important-note">※　時間帯を選んでください</label>
+                                        <span class="payment-label payment-type">決済方法</span>
+                                        <div class="rdb-payment-type">
+                                            <a class="link-name" href="reg_creditPayment.php"><i class="fa fa-check-circle" aria-hidden="true"></i> クレジットカード払い</a><br>
+                                            <a class="link-name" href="reg_conviniPayment.php"><i class="fa fa-check-circle" aria-hidden="true"></i> コンビニ払い</a><br>
+                                            <a class="link-name" href="bankPayment.php"><i class="fa fa-check-circle" aria-hidden="true"></i> 銀行振り込み</a>
+                                        </div>
                                     </div>
-                                    <div class="input-container">
-                                        <input class="delivery-date" type="date" data-date="" name="delivery-date" data-date-format="YYYY MM DD" value="">
-                                        <label class="important-note">※　日付を選んでください</label>
-                                    </div>
-                                    <div class="input-container">
-                                        <a class="link-name" target="_blank" href="./register.php"><i class="fa fa-share-square-o"></i>  別の住所へ送る</a>
-                                    </div>
-                                    <input type="hidden" name="c_code" value="<?php echo $_GET['c_code']; ?>" >
+
                                 </article>
+                                <div class="back-btn">
+                                    <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
+                                </div>
                             </div>
-                            <div class="send-register-btns">
-                                <button type="button" class="btn btn-secondary" onclick="goBack()">戻る</button>
-                                <button type="submit" id="order_confirm" class="btn btn-primary">確定</button>
-                            </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -461,6 +475,8 @@
     </footer>
     <!-- /End Footer Area -->
 
+
+
     <!-- Jquery -->
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.0.js"></script>
@@ -503,6 +519,8 @@
     <script src="js/map-script.js"></script>
     <!-- Active JS -->
     <script src="js/active.js"></script>
+    <!-- about JS -->
+    <script src="js/payment.js"></script>
     <!-- Index JS -->
     <script src="js/index.js"></script>
 </body>

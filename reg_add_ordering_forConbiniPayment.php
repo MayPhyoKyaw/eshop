@@ -7,11 +7,12 @@
             
         if(isset($_POST["add_ordering"])) {
             $c_code = $_POST['c_code'];
-            // $c_phone = $_POST['c_phone'];
-            // $c_address1 = $_POST['c_address1'];
+            $c_phone = $_POST['c_phone'];
+            $c_address1 = $_POST['c_address1'];
             // $c_address2 = $_POST['c_address2'];
             // $c_email = $_POST['c_email'];
-            // $c_name = $_POST['c_name'];
+            $c_fax = $_POST['c_Fax'];
+            $c_name = $_POST['c_name'];
             $total_amount = $_POST['total_amount'];
             $total_qty = $_POST['sum_qty'];
             $order_date = date("Y-m-d");
@@ -20,12 +21,12 @@
             $itemIDs = $_POST['itemIDs'];
             $quantities = $_POST['quantities'];
 
-            $st1 = $dbConn->prepare("INSERT INTO ordering (c_code, order_date, payment_type, status, sum_quantity, total_amount, delivery_fees, deli_code, date) 
-                            VALUES (?, ?, 'クレジットカード', '代済み', ?, ?, 700, ?, ?)") ;
+            $st1 = $dbConn->prepare("INSERT INTO ordering (c_code, oc_phone, o_address1, fax, o_custname, order_date, payment_type, status, sum_quantity, total_amount, delivery_fees, deli_code, date) 
+                            VALUES (?, ?, ?, ?, ?, ?, 'コンビニ', '未代', ?, ?, 700, ?, ?)") ;
                 // inserting a record
             $st1->execute(
                 array(
-                    $c_code, $order_date, $total_qty, $total_amount, $deliTime,  $deliDate
+                    $c_code, $c_phone, $c_address1, $c_fax, $c_name, $order_date, $total_qty, $total_amount, $deliTime,  $deliDate
                 )
             );
 
