@@ -367,7 +367,7 @@
                                             $deliDate = $_SESSION['delivery-date'];
                                             $total_qty = 0;
                                             try {
-                                                $customer_sql = "SELECT Sum(quantity) as totalQty FROM order_details INNER JOIN cart c ON cus.c_code = c.c_code INNER JOIN item i ON c.item_id = i.item_id WHERE c.c_code = ?";
+                                                $customer_sql = "SELECT Sum(quantity) as totalQty FROM cart c INNER JOIN item i ON c.item_id = i.item_id WHERE c.c_code = ?";
                                                 $st3 = $dbConn->prepare($customer_sql);
                                                 // $st3->bindParam( ":c_code", , PDO::PARAM_INT);
                                                 $st3->execute(array($c_code));

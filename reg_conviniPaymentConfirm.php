@@ -323,10 +323,10 @@
                                             <div class="grid-item">金額</div>
                                             <div class="grid-item"></div>
                                             <?php
-                                                $c_code = $_SESSION['cusCode'];
+                                                $c_code = $_SESSION['cus_code'];
                                                 $total_amount = $_SESSION['final_amount'];
-                                                $deliTime = $_SESSION['deliTime'];
-                                                $deliDate = $_SESSION['deliDate'];
+                                                // $deliTime = $_SESSION['deli'];
+                                                // $deliDate = $_SESSION['deliDate'];
                                                 $itemID_arr = array();
                                                 $qty_arr = array();
                                                 try {
@@ -372,7 +372,7 @@
                                             $deliDate = $_SESSION['delivery-date'];
                                             $total_qty = 0;
                                             try {
-                                                $customer_sql = "SELECT Sum(quantity) as totalQty FROM order_details INNER JOIN cart c ON cus.c_code = c.c_code INNER JOIN item i ON c.item_id = i.item_id WHERE c.c_code = ?";
+                                                $customer_sql = "SELECT Sum(quantity) as totalQty FROM cart c INNER JOIN item i ON c.item_id = i.item_id WHERE c.c_code = ?";
                                                 $st3 = $dbConn->prepare($customer_sql);
                                                 // $st3->bindParam( ":c_code", , PDO::PARAM_INT);
                                                 $st3->execute(array($c_code));
