@@ -246,13 +246,13 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="index.php">Home</a></li>
+                                                <li><a href="index.php">Home</a></li>
                                                 <li><a href="about.php">About Us</a></li>
                                                 <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
                                                         <li><a href="cart.php">My Cart</a></li>
-                                                        <li><a href="checkout.php">Order History</a></li>
+                                                        <li><a href="mycart.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
@@ -321,7 +321,7 @@
 
                                     <div class="input-container">
                                         <span class="payment-label">支払う金額</span>
-                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . number_format($_SESSION['final_amount'], 2); ?>" disabled="disabled" required/>
+                                        <input class="payment-amount" type="text" placeholder="Payment Amount" name="paymnet-amount" value="<?php echo "￥" . number_format($_SESSION['final_amount']); ?>" disabled="disabled" required/>
                                     </div>
 
                                     <?php 

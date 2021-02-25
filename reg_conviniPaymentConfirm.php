@@ -244,13 +244,13 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="index.php">Home</a></li>
+                                                <li><a href="index.php">Home</a></li>
                                                 <li><a href="about.php">About Us</a></li>
                                                 <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
                                                         <li><a href="cart.php">My Cart</a></li>
-                                                        <li><a href="checkout.php">Order History</a></li>
+                                                        <li><a href="mycart.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
@@ -359,7 +359,7 @@
                                         <span class="credit-conf-description">消費税 : <?php echo $_SESSION['consumption_tax']; ?></span> <br/>
                                         <span class="credit-conf-description">配送料 : <?php echo "￥" . $_SESSION['delivery_fee']; ?></span> <br/>
                                         <span class="credit-conf-description">割引率 : <?php echo "￥-" . $_SESSION['discount-rate']; ?></span> <br/>
-                                        <span class="credit-conf-description">合計金額 : <?php echo "￥" . number_format($total_amount, 2); ?></span>
+                                        <span class="credit-conf-description">合計金額 : <?php echo "￥" . number_format($total_amount); ?></span>
                                         <?php 
                                             $cName = $_SESSION['fName'] . " " . $_SESSION['lName']; 
                                             $cPhone = $_SESSION['phone'];

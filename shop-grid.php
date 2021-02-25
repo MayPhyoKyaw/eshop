@@ -247,7 +247,7 @@
                                                 <li class="active"><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
                                                         <li><a href="cart.php">My Cart</a></li>
-                                                        <li><a href="checkout.php">Order History</a></li>
+                                                        <li><a href="mycart.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 

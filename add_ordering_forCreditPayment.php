@@ -20,17 +20,23 @@
             $itemIDs = $_POST['itemIDs'];
             $quantities = $_POST['quantities'];
 
-            $st1 = $dbConn->prepare("INSERT INTO ordering (c_code, order_date, payment_type, status, sum_quantity, total_amount, delivery_fees, deli_code, date) 
-                            VALUES (?, ?, 'クレジットカード', '代済み', ?, ?, 700, ?, ?)") ;
+            $test="SELECT MAX(order_no) as cnt FROM ordering";
+            $stmt=$dbConn->prepare($test);
+            $stmt->execute();
+            $row=$stmt->fetch(PDO::FETCH_ASSOC);
+            $order_no=$row['cnt']+1;
+            
+            $st1 = $dbConn->prepare("INSERT INTO ordering (order_no, c_code, order_date, payment_type, status, sum_quantity, total_amount, delivery_fees, deli_code, date) 
+                            VALUES (?, ?, ?, 'クレジットカード', '代済み', ?, ?, 700, ?, ?)") ;
                 // inserting a record
             $st1->execute(
                 array(
-                    $c_code, $order_date, $total_qty, $total_amount, $deliTime,  $deliDate
+                    $order_no, $c_code, $order_date, $total_qty, $total_amount, $deliTime,  $deliDate
                 )
             );
 
-            $O_no = $dbConn->lastInsertId();
-            // echo $no;
+            // $O_no = $dbConn->lastInsertId();
+            // echo $O_no;
             // $_SESSION['lastInsertedOrderNo'] = $O_no;
 
             $index = 0;
@@ -38,7 +44,7 @@
                 $itemId = $itemIDs[$index];
                 $qty = $quantities[$index];
                 $st2 = $dbConn->prepare("INSERT INTO order_details (item_id, order_no, quantity) VALUES (?, ?, ?)");
-                $st2->execute(array($itemId, $O_no, $qty));
+                $st2->execute(array($itemId, $order_no, $qty));
                 
                 $st3 = $dbConn->prepare("UPDATE item SET stock = stock-?  WHERE `item_id` = ?");
                 // $update_st->bindParam( ":update_id", $update_id, PDO::PARAM_STR);

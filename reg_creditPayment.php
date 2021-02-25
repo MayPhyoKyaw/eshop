@@ -241,13 +241,13 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="index.php">Home</a></li>
+                                                <li><a href="index.php">Home</a></li>
                                                 <li><a href="about.php">About Us</a></li>
                                                 <li><a href="cart.php">My Cart</a></li>
                                                 <li><a href="#">Services<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
                                                         <li><a href="cart.php">My Cart</a></li>
-                                                        <li><a href="checkout.php">Order History</a></li>
+                                                        <li><a href="mycart.php">Order History</a></li>
                                                     </ul>
                                                 </li>
 
