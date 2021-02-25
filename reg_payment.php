@@ -304,11 +304,11 @@
                                         $firstName = $_SESSION['fName'];
                                         $lastName = $_SESSION['lName'];
                                         try {
-                                            $cus_code = $_SESSION['cus_code'];
+                                            $c_code = $_SESSION['c_code'];
                                             $info_sql = "SELECT Sum(price*quantity) as totalPrice FROM cart INNER JOIN item on cart.item_id = item.item_id WHERE c_code = ?" ;
                                             $st3 = $dbConn->prepare($info_sql);
                                             // $st3->bindParam( ":cus_code", $cus_code, PDO::PARAM_STR);
-                                            $st3->execute(array($cus_code));
+                                            $st3->execute(array($c_code));
                                             foreach ($st3->fetchAll() as $row3) {
                                                 // $_SESSION['total'] = $row3['totalPrice'];
                                     ?>
@@ -327,7 +327,7 @@
                                             $cart_item_sql = "SELECT item_name, quantity, size_name FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN size s ON i.size_id = s.size_id WHERE c.c_code = ?" ;
                                             $st4 = $dbConn->prepare($cart_item_sql);
                                             // $st4->bindParam( ":cus_code", $cus_code, PDO::PARAM_STR);
-                                            $st4->execute(array($cus_code));
+                                            $st4->execute(array($c_code));
                                             $item_name_Arr = array();
                                             $qty_Arr = array();
                                             $size_Arr = array();

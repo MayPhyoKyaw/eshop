@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    $c_code = $_SESSION['c_code'];
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -552,7 +553,7 @@
                                     </ul>
                                     <div class="button5">
                                         <!-- <a href="sendRegister.php" class="btn">注文に進む</a> -->
-                                        <a href="sendRegister.php?c_code=<?php echo $row1['c_code']; ?>">
+                                        <a href="sendRegister.php?c_code=<?php echo $c_code; ?>">
                                             <button class="btn" href="#" type="submit" name="add_ordering">
                                                 注文に進む
                                             </button>

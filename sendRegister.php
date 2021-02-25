@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $_SESSION['cus_code'] = $_GET['c_code'];
+    $c_code = $_SESSION['c_code'];
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -305,16 +305,16 @@
                             <div class="card bg-light register-form">
                                 <article class="card-body checkout-register-article">
                                 <?php 
-                                    $c_code = $_GET['c_code'];
+                                    // $c_code = $_GET['c_code'];
                                     $cName = null; 
                                     $cPhone = null;
                                     $cAddress1 = null;
                                     $cAddress2 = null;
                                     try {
-                                        $customer_sql = "SELECT c_name, c_address1, c_address2, c_phone FROM customers cus INNER JOIN cart c ON cus.c_code = c.c_code WHERE c.c_code = :c_code";
+                                        $customer_sql = "SELECT c_name, c_address1, c_address2, c_phone FROM customers cus INNER JOIN cart c ON cus.c_code = c.c_code WHERE c.c_code = ?";
                                         $st3 = $dbConn->prepare($customer_sql);
-                                        $st3->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
-                                        $st3->execute();
+                                        // $st3->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
+                                        $st3->execute(array($c_code));
                                         foreach ($st3->fetchAll() as $row3) {
                                             $cName = $row3['c_name']; 
                                             $cPhone = $row3['c_phone'];
@@ -355,7 +355,7 @@
                                     <div class="input-container">
                                         <a class="link-name" target="_blank" href="./register.php"><i class="fa fa-share-square-o"></i>  別の住所へ送る</a>
                                     </div>
-                                    <input type="hidden" name="c_code" value="<?php echo $_GET['c_code']; ?>" >
+                                    <input type="hidden" name="c_code" value="<?php echo $c_code; ?>" >
                                 </article>
                             </div>
                             <div class="send-register-btns">

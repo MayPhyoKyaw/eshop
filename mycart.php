@@ -304,10 +304,10 @@
                                             <div class="grid-item">会計</div>
                                             <div class="grid-item"></div>
                                             <?php
-                                                $c_code = $_SESSION['cusCode'];
-                                                $total_amount = $_SESSION['final_amount'];
-                                                $deliTime = $_SESSION['deliTime'];
-                                                $deliDate = $_SESSION['deliDate'];
+                                                $c_code = $_SESSION['c_code'];
+                                                // $total_amount = $_SESSION['final_amount'];
+                                                // $deliTime = $_SESSION['deliTime'];
+                                                // $deliDate = $_SESSION['deliDate'];
                                                 $itemID_arr = array();
                                                 $qty_arr = array();
                                                 try {

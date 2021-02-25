@@ -829,6 +829,14 @@ Version:1.0
     font-weight: 400;
 }
 
+.city{
+    padding-top: 8px !important;
+}
+
+.time{
+    padding-top: 7px !important;
+}
+
 .header.shop .nice-select .list li:hover {
     background: #F7941D;
     color: #fff;
