@@ -1,3 +1,24 @@
+<?php
+    //セッションの開始
+	session_start();
+
+	// DB設定ファイル
+	if(!defined("CONST_INC"))		include("./inc/db_connect.php");
+	if (isset($_SESSION['c_code'])){
+		$c_code = $_SESSION['c_code'];
+	}else{
+		header("Location: Login.php");
+		exit;
+	}
+	$sql = "select c_name from customers where c_code = ?";
+	
+	$prepare = $dbh->prepare ( $sql );
+	$prepare->execute ( array($c_code));
+	$result = $prepare->fetch ( PDO::FETCH_ASSOC );
+	
+	$c_name = (isset($result["c_name"])?$result["c_name"]:"ゲスト");
+	$dbh = null;
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -127,10 +148,13 @@
                                         <option>秋用で探す</option>
                                         <option>冬用で探す</option>
 								</select>
-                                <!-- <form> -->
-                                <input name="search" placeholder="Search Products Here....." type="search">
-                                <button class="btnn search-btn"><i class="ti-search"></i></button>
-                                <!-- </form> -->
+                                <button class="btn select-search-btn">検索</button>
+                                <form action="input-search-shop-grid.php" method="post">
+                                    <input name="search" placeholder="Search Products Here....." type="search">
+                                    <div>
+                                        <button type="submit" name="search-btn" class="btnn search-btn"><i class="ti-search"></i></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -252,6 +276,10 @@
                                                 </li>
                                                 <li class="active"><a href="contact.php">Contact Us</a></li>
                                             </ul>
+                                        </div>
+                                        <div class="user-info">
+                                            <span class="fa fa-user-circle-o user-icon"></span>
+                                            <strong class="user-name"><?php echo $c_name; ?> 様</strong>
                                         </div>
                                     </div>
                                 </nav>
