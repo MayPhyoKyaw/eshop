@@ -437,7 +437,7 @@
                                         <input type="hidden" name="c_code" value="<?php echo $c_code; ?>" />
                                         <input type="hidden" name="c_phone" value="<?php echo $cPhone; ?>" />
                                         <input type="hidden" name="c_address1" value="<?php echo $cAddress1; ?>" />
-                                        <!-- <input type="hidden" name="c_address2" value="<?php //echo $cAddress2; ?>" /> -->
+                                        <input type="hidden" name="c_address2" value="<?php echo $cAddress2; ?>" />
                                         <!-- <input type="hidden" name="c_email" value="<?php //echo $cusEmail; ?>" /> -->
                                         <input type="hidden" name="c_Fax" value="<?php echo $cusFax; ?>" />
                                         <input type="hidden" name="c_name" value="<?php echo $cName; ?>" />
