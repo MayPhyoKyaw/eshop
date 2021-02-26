@@ -332,10 +332,9 @@
                             <?php
                                 $c_code = $_SESSION['c_code'];
                                 $total_amount = $_SESSION['final_amount'];
-                                $deliTime = $_SESSION['deliTime'];
-                                $deliDate = $_SESSION['deliDate'];
                                 $itemID_arr = array();
                                 $qty_arr = array();
+                                $total_qty = 0;
                                 try {
                                     $order_item_sql = "SELECT c.item_id, item_name, price, quantity, (price*quantity) as amount FROM item i INNER JOIN cart c ON i.item_id = c.item_id WHERE c.c_code = ?";
                                     $st4 = $dbConn->prepare($order_item_sql);
@@ -345,26 +344,38 @@
                                         array_push($itemID_arr, $row4['item_id']);
                                         array_push($qty_arr, $row4['quantity']);
                                     } 
+                                    $customer_sql = "SELECT Sum(quantity) as totalQty FROM cart c INNER JOIN item i ON c.item_id = i.item_id WHERE c.c_code = ?";
+                                    $st3 = $dbConn->prepare($customer_sql);
+                                    // $st3->bindParam( ":c_code", , PDO::PARAM_INT);
+                                    $st3->execute(array($c_code));
+                                    foreach ($st3->fetchAll() as $row3) {
+                                        $total_qty = $row3['totalQty'];
+                                    } 
                                 }catch (PDOException $e) {
                                     echo "There is some problem in connection: " . $e->getMessage();
                                 }
-                                $sql = "SELECT c_name, c_address1, c_address2, c_phone, c_zip, c_email, Sum(quantity) as totalQty FROM customers cus INNER JOIN cart c ON cus.c_code = c.c_code INNER JOIN item i ON c.item_id = i.item_id WHERE c.c_code = ?";
-	
-                                $prepare = $dbConn->prepare ( $sql );
-                                $prepare->execute ( array($c_code));
-                                $row = $prepare->fetch ( PDO::FETCH_ASSOC );
+                                $cName = $_SESSION['fName'] . " " . $_SESSION['lName']; 
+                                $cPhone = $_SESSION['phone'];
+                                $cAddress1 = $_SESSION['city'] . " " . $_SESSION['town'] ;
+                                $cAddress2 = $_SESSION['location'] . " " . $_SESSION['building'];
+                                $postalCode = $_SESSION['postal-code'];
+                                // $cusEmail = null;
+                                $cusFax = $_SESSION['fax'];
+                                $deliTime = $_SESSION['delivery-time'];
+                                $deliDate = $_SESSION['delivery-date'];
                                 // echo $row['c_name'];
                                 // echo $row['c_email'];
                             ?>
                             <div class="bank-payment-btns">
                                 <form action="add_ordering_forBankPayment.php" method="post">
                                     <input type="hidden" name="c_code" value="<?php echo $c_code; ?>" />
-                                    <input type="hidden" name="c_phone" value="<?php echo $row['c_phone']; ?>" />
-                                    <input type="hidden" name="c_address1" value="<?php echo $row['c_address1']; ?>" />
-                                    <input type="hidden" name="c_address2" value="<?php echo $row['c_address2']; ?>" />
-                                    <input type="hidden" name="c_name" value="<?php echo $row['c_name']; ?>" />
-                                    <input type="hidden" name="c_email" value="<?php echo $row['c_email']; ?>" />
-                                    <input type="hidden" name="sum_qty" value="<?php echo $row['totalQty']; ?>" />
+                                    <input type="hidden" name="c_phone" value="<?php echo $cPhone; ?>" />
+                                    <input type="hidden" name="c_address1" value="<?php echo $cAddress1; ?>" />
+                                    <input type="hidden" name="c_address2" value="<?php echo $cAddress2; ?>" />
+                                    <!-- <input type="hidden" name="c_email" value="<?php //echo $cusEmail; ?>" /> -->
+                                    <input type="hidden" name="c_Fax" value="<?php echo $cusFax; ?>" />
+                                    <input type="hidden" name="c_name" value="<?php echo $cName; ?>" />
+                                    <input type="hidden" name="sum_qty" value="<?php echo $total_qty; ?>" />
                                     <input type="hidden" name="total_amount" value="<?php echo $total_amount; ?>" />
                                     <input type="hidden" name="deliTime" value="<?php echo $deliTime; ?>" />
                                     <input type="hidden" name="deliDate" value="<?php echo $deliDate; ?>" />

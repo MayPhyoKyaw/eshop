@@ -390,7 +390,7 @@
                                         <div class="rdb-payment-type">
                                             <a class="link-name" href="reg_creditPayment.php"><i class="fa fa-check-circle" aria-hidden="true"></i> クレジットカード払い</a><br>
                                             <a class="link-name" href="reg_conviniPayment.php"><i class="fa fa-check-circle" aria-hidden="true"></i> コンビニ払い</a><br>
-                                            <a class="link-name" href="bankPayment.php"><i class="fa fa-check-circle" aria-hidden="true"></i> 銀行振り込み</a>
+                                            <a class="link-name" href="reg_bankPayment.php"><i class="fa fa-check-circle" aria-hidden="true"></i> 銀行振り込み</a>
                                         </div>
                                     </div>
 
