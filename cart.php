@@ -278,8 +278,8 @@
                                             </ul>
                                         </div>
                                         <div class="user-info">
-                                            <span class="fa fa-user-circle-o user-icon"></span>
-                                            <strong class="user-name"><?php echo $c_name; ?> 様</strong>
+                                            <img src="./images/img_avatar.png" alt="Avatar" class="avatar">
+                                            <span class="user-name"><?php echo $c_name; ?> 様</span>
                                         </div>
                                     </div>
                                 </nav>
@@ -484,9 +484,17 @@
                         <div class="row">
                             <div class="col-lg-7 col-md-5 col-12">
                                 <div class="left">
-                                    <li class="last discount-important">　※　<span class="discount-percentage">5%</span> 割引詳細</li>
-                                    <li class="important1">　※　<span class="delivery">配送料：</span> 全国７００円</li>
-                                    <li class="important2">　※　<span class="tax">消費税：</span> 10％</li>
+                                    <li class="last discount-important">
+                                    <?php 
+                                        $today = date("d");
+                                        if ($today === "05") { echo "※　5% 割引があります。"; }
+                                        elseif ($today === "15") { echo "※　5% 割引があります。"; }
+                                        elseif ($today === "25") { echo "※　5% 割引があります。"; }
+                                        else { echo "※　5% 割引がないです。";}
+                                    ?>
+                                    </li>
+                                    <li class="important1">※　全国７００円</li>
+                                    <li class="important2">※　消費税： 10％</li>
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-7 col-12">

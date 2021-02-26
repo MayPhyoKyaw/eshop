@@ -278,8 +278,8 @@
                                             </ul>
                                         </div>
                                         <div class="user-info">
-                                            <span class="fa fa-user-circle-o user-icon"></span>
-                                            <strong class="user-name"><?php echo $c_name; ?> 様</strong>
+                                            <img src="./images/img_avatar.png" alt="Avatar" class="avatar">
+                                            <span class="user-name"><?php echo $c_name; ?> 様</span>
                                         </div>
                                     </div>
                                 </nav>
@@ -410,7 +410,8 @@
                                         <div>
                                             <span class="credit-conf-description-title">．配送先</span> <br/>
                                             <span class="credit-conf-description">郵便番号 :</span> <?php echo $postalCode; ?> <br/>
-                                            <span class="credit-conf-description">住所 :</span> <?php echo $cAddress1 .$cAddress2; ?> <br/>
+                                            <span class="credit-conf-description">住所1 :</span> <?php echo $cAddress1; ?> <br/>
+                                            <span class="credit-conf-description">住所2:</span> <?php echo $cAddress2; ?> <br/>
                                             <span class="credit-conf-description">電話番号 :</span> <?php echo $cPhone; ?> <br/>
                                             <?php 
                                                 try {

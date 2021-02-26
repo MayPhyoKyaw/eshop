@@ -276,8 +276,8 @@
                                             </ul>
                                         </div>
                                         <div class="user-info">
-                                            <span class="fa fa-user-circle-o user-icon"></span>
-                                            <strong class="user-name"><?php echo $c_name; ?> 様</strong>
+                                            <img src="./images/img_avatar.png" alt="Avatar" class="avatar">
+                                            <span class="user-name"><?php echo $c_name; ?> 様</span>
                                         </div>
                                     </div>
                                 </nav>
@@ -434,12 +434,7 @@
                                     <p>プライバシーポリシーについて、詳しくは<span class="privacy" data-toggle="modal" data-target="#privacy_paragraph">こちら</span>をご覧ください。</p>
                                 </div>
                             </div>
-                            <!-- <form class="form" method="post" action="mail/mail.php">
-                                <div class="row">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d728.7956263280897!2d141.34743348813586!3d43.058628978575804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDAzJzMxLjEiTiAxNDHCsDIwJzUyLjciRQ!5e0!3m2!1sen!2sjp!4v1597623282683!5m2!1sen!2sjp"
-                                        width="1000" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                                </div>
-                            </form> -->
+
                         </div>
                     </div>
                 </div>

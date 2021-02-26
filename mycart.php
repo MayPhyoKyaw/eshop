@@ -275,8 +275,8 @@
                                             </ul>
                                         </div>
                                         <div class="user-info">
-                                            <span class="fa fa-user-circle-o user-icon"></span>
-                                            <strong class="user-name"><?php echo $c_name; ?> 様</strong>
+                                            <img src="./images/img_avatar.png" alt="Avatar" class="avatar">
+                                            <span class="user-name"><?php echo $c_name; ?> 様</span>
                                         </div>
                                     </div>
                                 </nav>

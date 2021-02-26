@@ -278,8 +278,8 @@
                                             </ul>
                                         </div>
                                         <div class="user-info">
-                                            <span class="fa fa-user-circle-o user-icon"></span>
-                                            <strong class="user-name"><?php echo $c_name; ?> 様</strong>
+                                            <img src="./images/img_avatar.png" alt="Avatar" class="avatar">
+                                            <span class="user-name"><?php echo $c_name; ?> 様</span>
                                         </div>
                                     </div>
                                 </nav>
@@ -364,8 +364,8 @@
                                                 <div class="grid-item"><?php echo "￥" . number_format($row4['price']); ?></div>
                                                 <div class="grid-item"><?php echo $row4['quantity']; ?></div>
                                                 <div class="grid-item"><?php echo "￥" . number_format($row4['amount']); ?></div>
-                                                <div class="grid-item">
-                                                <!-- <form action="deleteFromCart_forConbiniPayment.php" method="post">
+                                                <!--<div class="grid-item">
+                                                <form action="deleteFromCart_forConbiniPayment.php" method="post">
                                                     <input type="hidden" name="item_id" value="<?php //echo $row4['item_id'] ?>" />
                                                     <input type="hidden" name="convini" value="<?php //echo $_GET['convini'] ?>" />
                                                     <button type="submit" class="btn btn-primary delete-btn" name="delete">削除</button>
