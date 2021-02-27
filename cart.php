@@ -496,7 +496,7 @@
 
                                         if($today === "05" && $count > 0){
                                             echo "※　5% 割引があります。";
-                                        }elseif($today === "10" && $count > 0){
+                                        }elseif($today === "15" && $count > 0){
                                             echo "※　5% 割引があります。";
                                         }elseif($today === "25" && $count > 0){
                                             echo "※　5% 割引があります。";
@@ -552,7 +552,7 @@
                                             if($today === "05" && $count > 0){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . number_format($formula * 0.05) . "</span></li>";
                                                 $_SESSION['discount-rate'] = number_format($formula * 0.05);
-                                            }elseif($today === "10" && $count > 0){
+                                            }elseif($today === "15" && $count > 0){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . number_format($formula * 0.05) . "</span></li>";
                                                 $_SESSION['discount-rate'] = number_format($formula * 0.05);
                                             }elseif($today === "25" && $count > 0){
