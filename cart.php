@@ -342,9 +342,9 @@
                         <tbody>
                             <?php 
                                 try{
-                                    $cart_sql = "SELECT item_img1, item_name, s_catName, b_catName, price, size_name, color, c.item_id, description, stock, quantity FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category bc ON sc.b_categoryID = bc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id";
+                                    $cart_sql = "SELECT item_img1, item_name, s_catName, b_catName, price, size_name, color, c.item_id, description, stock, quantity FROM item i INNER JOIN cart c ON i.item_id = c.item_id INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category bc ON sc.b_categoryID = bc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id WHERE c.c_code = ?";
                                     $st = $dbConn->prepare($cart_sql);
-                                    $st->execute();
+                                    $st->execute(array($c_code));
                                     foreach ($st->fetchAll() as $row) {
                             ?>
                                 <tr>
@@ -504,9 +504,9 @@
                                         <?php
                                             $database = new Connection();
                                             $dbConn = $database->openConnection();
-                                            $mainCat_sql = "SELECT Sum(price*quantity) as result, cart.c_code, Sum(quantity) as total_qty FROM cart INNER JOIN item on cart.item_id = item.item_id" ;
+                                            $mainCat_sql = "SELECT Sum(price*quantity) as result, cart.c_code, Sum(quantity) as total_qty FROM cart INNER JOIN item on cart.item_id = item.item_id WHERE c_code = ?" ;
                                             $st1 = $dbConn->prepare($mainCat_sql);
-                                            $st1->execute();
+                                            $st1->execute(array($c_code));
                                             foreach ($st1->fetchAll() as $row1) {
                                                 echo "￥" . number_format($row1['result']);
                                         ?>
@@ -520,19 +520,44 @@
                                             $deliveryFee = "<script> document.write(document.getElementById('delivery_fee').innerHTML.slice(1)) </script>"; 
                                         ?>
                                         <?php
+
+                                            $count_sql = "SELECT COUNT(order_no) as count_order FROM ordering WHERE c_code = ? ";
+                                            $count_st = $dbConn->prepare($count_sql);
+                                            $count_st->execute(array($c_code));
+                                            $count_result = $count_st->fetch( PDO::FETCH_ASSOC );
+                                            $count = $count_result['count_order'];
+                                            
                                             $formula = (($row1['result']/100)*10) + $row1['result'] + 700;
                                             $today = date("d");
                                             $final_amount = 0;
                                             // echo date("d/m/Y h:m:s a");
-                                            if($today === "05"){
+                                            if($today === "05" && $count > 0){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . number_format($formula * 0.05) . "</span></li>";
                                                 $_SESSION['discount-rate'] = number_format($formula * 0.05);
-                                            }elseif($today === "15"){
+                                            }elseif($today === "10" && $count > 0){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . number_format($formula * 0.05) . "</span></li>";
                                                 $_SESSION['discount-rate'] = number_format($formula * 0.05);
-                                            }elseif($today === "25"){
+                                            }elseif($today === "25" && $count > 0){
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . number_format($formula * 0.05) . "</span></li>";
                                                 $_SESSION['discount-rate'] = number_format($formula * 0.05);
+                                            }elseif($today === "05" && $count == 0){
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . number_format($formula * 0.1) . "</span></li>";
+                                                $_SESSION['discount-rate'] = number_format($formula * 0.1);
+                                            }elseif($today === "15" && $count == 0){
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . number_format($formula * 0.1) . "</span></li>";
+                                                $_SESSION['discount-rate'] = number_format($formula * 0.1);
+                                            }elseif($today === "25" && $count == 0){
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . number_format($formula * 0.1) . "</span></li>";
+                                                $_SESSION['discount-rate'] = number_format($formula * 0.1);
+                                            }elseif($today !== "05" && $count == 0){
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . number_format($formula * 0.1) . "</span></li>";
+                                                $_SESSION['discount-rate'] = number_format($formula * 0.1);   
+                                            }elseif($today !== "15" && $count == 0){
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . number_format($formula * 0.1) . "</span></li>";
+                                                $_SESSION['discount-rate'] = number_format($formula * 0.1);     
+                                            }elseif($today !== "25" && $count == 0){
+                                                echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . number_format($formula * 0.1) . "</span></li>";
+                                                $_SESSION['discount-rate'] = number_format($formula * 0.1);   
                                             }else{
                                                 echo "<li class='important'>割引率    :<span class='discount-rate'>" . "￥-" . $formula * 0 . "</span></li>";
                                                 $_SESSION['discount-rate'] = $formula * 0;
@@ -545,37 +570,77 @@
                                                 $formula = (($row1['result']/100)*10) + $row1['result'] + 700;
                                                 $today = date("d");
                                                 $final_amount = 0;
-                                                if($today === "05") { 
+                                                if($today === "05" && $count > 0){
                                                     $final_amount = ($formula - ($formula/100)*5);
-                                                    if($final_amount == 700)
+                                                    if($final_amount <= 700)
+                                                        $_SESSION['final_amount'] = 0;
+                                                    else
+                                                        $_SESSION['final_amount'] = $final_amount;
+                                                    echo "￥" . number_format($_SESSION['final_amount']);
+                                                }elseif($today === "10" && $count > 0){
+                                                    $final_amount = ($formula - ($formula/100)*5);
+                                                    if($final_amount <= 700)
+                                                        $_SESSION['final_amount'] = 0;
+                                                    else
+                                                        $_SESSION['final_amount'] = $final_amount;
+                                                    echo "￥" . number_format($_SESSION['final_amount']);
+                                                }elseif($today === "25" && $count > 0){
+                                                    $final_amount = ($formula - ($formula/100)*5);
+                                                    if($final_amount <= 700)
+                                                        $_SESSION['final_amount'] = 0;
+                                                    else
+                                                        $_SESSION['final_amount'] = $final_amount;
+                                                    echo "￥" . number_format($_SESSION['final_amount']);
+                                                }elseif($today === "05" && $count == 0){
+                                                    $final_amount = ($formula - ($formula/100)*10);
+                                                    if($final_amount <= 700)
+                                                        $_SESSION['final_amount'] = 0;
+                                                    else
+                                                        $_SESSION['final_amount'] = $final_amount;
+                                                    echo "￥" . number_format($_SESSION['final_amount']);
+                                                }elseif($today === "15" && $count == 0){
+                                                    $final_amount = ($formula - ($formula/100)*10);
+                                                    if($final_amount <= 700)
+                                                        $_SESSION['final_amount'] = 0;
+                                                    else
+                                                        $_SESSION['final_amount'] = $final_amount;
+                                                    echo "￥" . number_format($_SESSION['final_amount']);
+                                                }elseif($today === "25" && $count == 0){
+                                                    $final_amount = ($formula - ($formula/100)*10);
+                                                    if($final_amount <= 700)
+                                                        $_SESSION['final_amount'] = 0;
+                                                    else
+                                                        $_SESSION['final_amount'] = $final_amount;
+                                                    echo "￥" . number_format($_SESSION['final_amount']);
+                                                }elseif($today !== "05" && $count == 0){
+                                                    $final_amount = ($formula - ($formula/100)*10);
+                                                    if($final_amount <= 700)
+                                                        $_SESSION['final_amount'] = 0;
+                                                    else
+                                                        $_SESSION['final_amount'] = $final_amount;
+                                                    echo "￥" . number_format($_SESSION['final_amount']);
+                                                }elseif($today !== "15" && $count == 0){
+                                                    $final_amount = ($formula - ($formula/100)*10);
+                                                    if($final_amount <= 700)
                                                         $_SESSION['final_amount'] = 0;
                                                     else
                                                         $_SESSION['final_amount'] = $final_amount;
                                                     echo "￥" . number_format($_SESSION['final_amount']); 
-                                                }elseif($today === "15") { 
-                                                    $final_amount = ($formula - ($formula/100)*5);
-                                                    if($final_amount == 700)
+                                                }elseif($today !== "25" && $count == 0){
+                                                    $final_amount = ($formula - ($formula/100)*10);
+                                                    if($final_amount <= 700)
                                                         $_SESSION['final_amount'] = 0;
                                                     else
                                                         $_SESSION['final_amount'] = $final_amount;
-                                                    echo "￥" . number_format($_SESSION['final_amount']); 
-                                                }elseif($today === "25") { 
-                                                    $final_amount = ($formula - ($formula/100)*5);
-                                                    if($final_amount == 700)
-                                                        $_SESSION['final_amount'] = 0;
-                                                    else
-                                                        $_SESSION['final_amount'] = $final_amount;
-                                                    echo "￥" . number_format($_SESSION['final_amount']);  
-                                                }
-                                                else { 
+                                                    echo "￥" . number_format($_SESSION['final_amount']);   
+                                                }else{
                                                     $final_amount = ($formula - ($formula/100)*0);
-                                                    if($final_amount == 700)
+                                                    if($final_amount <= 700)
                                                         $_SESSION['final_amount'] = 0;
                                                     else
                                                         $_SESSION['final_amount'] = $final_amount;
-                                                    echo "￥" . number_format($_SESSION['final_amount']) ; 
-
-                                                }  
+                                                    echo "￥" . number_format($_SESSION['final_amount']) ;
+                                                }
                                             ?> 
                                             </span>
                                         </li>
