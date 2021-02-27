@@ -7,9 +7,10 @@
             
         if(isset($_POST["add_order"])) {
             $c_code = $_POST['c_code'];
-            // $c_phone = $_POST['c_phone'];
-            // $c_address1 = $_POST['c_address1'];
-            // $c_address2 = $_POST['c_address2'];
+            $c_phone = $_POST['c_phone'];
+            $c_address1 = $_POST['c_address1'];
+            $c_address2 = $_POST['c_address2'];
+            $c_zip = $_POST['c_zip']
             $c_email = $_POST['c_email'];
             $c_name = $_POST['c_name'];
             $total_amount = $_POST['total_amount'];
@@ -57,6 +58,91 @@
 
                 $index++;
             }
+
+            // $cnt=0;
+            // if($cnt==0){
+				mb_language("Japanese"); 
+				mb_internal_encoding("UTF-8"); 
+				ini_set( "SMTP", "10.64.144.9" );
+				
+				$to = '19jy0216@jynet.jec.ac.jp'; 
+				$header = "MIME-Version: 1.0\n";
+				$header .= "Content-Transfer-Encoding: 7bit\n";
+				$header .= "Content-Type: text/plain; charset=ISO-2022-JP\n";
+				$header .= "From:19jy0100@jynet.jec.ac.jp"; 
+				$subject = "【株式会社Charmclo】ご注文お礼（銀行振り込み）";
+				
+				$body = $c_name . "様\n"; 
+				$body .= "このたびはご注文いただき誠にありがとうございます。\n";
+				$body .= "数ある店舗の中から当店をお選びいただき、\n";
+				$body .= "誠にありがとうございます。\n";
+				$body .= "以下の内容でご注文をお受けいたしましたので \n";
+				$body .= "ご確認をお願いいたします。\n";
+				$body .= "＜注文情報＞\n";
+				$body .= "------------------------------------------\n";
+				$body .= "[注文番号]". $order_no."\n";
+				$body .= "[お支払方法]". $c_name."\n";
+				$body .= "[配送方法] 宅配便\n";
+				$body .= "[お届け先] ご本人様宛 \n";
+				$body .= "〒".$c_zip."\n";
+				$body .= $c_address1.$c_address2."\n";
+				$body .= "――――――――――――――――――――――\n";
+					
+				// $totalamount = $total_amount;
+			// 	$cnt++;
+			// }
+            try {
+                $i=0;
+                while($i < Count($itemIDs)){
+                    $itemID = $itemIDs[$i];
+                    $order_item_sql = "SELECT item_name, quantity FROM item i WHERE item_id = ?";
+                    $st4 = $dbConn->prepare($order_item_sql);
+                    // $st4->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
+                    $st4->execute([$itemID]);
+                    foreach ($st4->fetchAll() as $row4) {
+                        $body .= "購入品:{$data['item_name']} \n";
+			            $body .= "------------------------------------------ \n";
+                    } 
+                    $i++;
+                }
+            }catch (PDOException $e) {
+                echo "There is some problem in connection: " . $e->getMessage();
+            }
+			$body .= "個数：{$total_qty}個 \n";
+			$body .= "------------------------------------------ \n";
+		
+            $body .= "注文合計：".$totalamount."(円)(送料込み、税込み) \n";
+            $body .= "------------------------------------------ \n";
+            $body .= "＜振込口座＞ \n";
+            $body .= "電子銀行または日専銀行　CharmClo支店 \n";
+            $body .= "普通口座　2645123 \n";
+            $body .= "口座名　　チャームクロ \n";
+            $body .= "-------------------------------\n";
+            $body .= "別途振込み手数料は、恐れ入りますがご負担くださいませ。\n";
+            $body .= "入金確認後、商品を発送いたします。\n";
+            $body .= "（平日15時までのご入金確認となります）\n";
+            $body .= "※ご注文を頂いてから一週間以内にお支払いください。\n";
+            $body .= "お買い求めいただきました商品を無事にお届けできるよう \n";
+            $body .= "細心の注意を払ってまいります。 \n";
+            $body .= "商品到着まで、どうぞよろしくお願いいたします。 \n";
+            $body .= "----------------------------------------------------\n";
+            $body .= "Charmcloショップ \n";
+            $body .= "URL：http://www.***.co.jp \n";
+            $body .= "営業日：月～金08：00～23：30 \n";
+            $body .= "定休日：土日祝 \n";
+            $body .= "定休日にいただいたご連絡に関しましては \n";
+            $body .= "翌営業日にご回答させていただきます。 \n";
+            $body .= "株式会社CharmClo \n";
+            $body .= "住所：〒169-0073 東京都新宿区百人町　　1-25-4 \n";
+            $body .= "TEL：+070 (8001) 8011-5822　／　FAX：03-****-**** \n";
+            $body .= "店舗連絡先:info@charmclo.com \n";
+            $body .= "---------------------------------------------------- \n";
+
+            // if(mb_send_mail($to, $subject, $body,$header)){
+            //     header("location:javascript:history.back(-1)");
+            // }else{
+            //     header('location:bankPayment.php');
+            // }
             
             header("Location: javascript:history.back(-1)");
         }

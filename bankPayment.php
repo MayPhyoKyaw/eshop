@@ -362,6 +362,7 @@
                                     <input type="hidden" name="c_phone" value="<?php echo $row['c_phone']; ?>" />
                                     <input type="hidden" name="c_address1" value="<?php echo $row['c_address1']; ?>" />
                                     <input type="hidden" name="c_address2" value="<?php echo $row['c_address2']; ?>" />
+                                    <input type="hidden" name="c_zip" value="<?php echo $row['c_zip']; ?>" />
                                     <input type="hidden" name="c_name" value="<?php echo $row['c_name']; ?>" />
                                     <input type="hidden" name="c_email" value="<?php echo $row['c_email']; ?>" />
                                     <input type="hidden" name="sum_qty" value="<?php echo $row['totalQty']; ?>" />
