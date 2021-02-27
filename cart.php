@@ -452,12 +452,12 @@
                         $stock = $_POST['stock'];
                         // echo $del_id;
                         if($quantity <= $stock){
-                            $update_sql = "UPDATE cart SET quantity = :quantity  WHERE `item_id` = :update_id" ;
+                            $update_sql = "UPDATE cart SET quantity = ?  WHERE `item_id` = ?" ;
                             // $affectedrows  = $db->exec($del_sql);
                             $update_st = $dbConn->prepare($update_sql);
-                            $update_st->bindParam( ":update_id", $update_id, PDO::PARAM_STR);
-                            $update_st->bindParam( ":quantity", $quantity, PDO::PARAM_INT);
-                            $update_st->execute();
+                            // $update_st->bindParam( ":update_id", $update_id, PDO::PARAM_STR);
+                            // $update_st->bindParam( ":quantity", $quantity, PDO::PARAM_INT);
+                            $update_st->execute(array($quantity, $update_id));
                             echo "<meta http-equiv='refresh' content='0'>";
                         }else{
                             echo "<script>$('#quantity_warning').modal('show');</script>";
@@ -486,11 +486,35 @@
                                 <div class="left">
                                     <li class="last discount-important">
                                     <?php 
+                                        $count_sql = "SELECT COUNT(order_no) as count_order FROM ordering WHERE c_code = ? ";
+                                        $count_st = $dbConn->prepare($count_sql);
+                                        $count_st->execute(array($c_code));
+                                        $count_result = $count_st->fetch( PDO::FETCH_ASSOC );
+                                        $count = $count_result['count_order'];
                                         $today = date("d");
-                                        if ($today === "05") { echo "※　5% 割引があります。"; }
-                                        elseif ($today === "15") { echo "※　5% 割引があります。"; }
-                                        elseif ($today === "25") { echo "※　5% 割引があります。"; }
-                                        else { echo "※　5% 割引がないです。";}
+                                        // echo $c_code;
+
+                                        if($today === "05" && $count > 0){
+                                            echo "※　5% 割引があります。";
+                                        }elseif($today === "10" && $count > 0){
+                                            echo "※　5% 割引があります。";
+                                        }elseif($today === "25" && $count > 0){
+                                            echo "※　5% 割引があります。";
+                                        }elseif($today === "05" && $count == 0){
+                                            echo "※　10% 割引があります。";
+                                        }elseif($today === "15" && $count == 0){
+                                            echo "※　10% 割引があります。";
+                                        }elseif($today === "25" && $count == 0){
+                                            echo "※　10% 割引があります。";
+                                        }elseif($today !== "05" && $count == 0){
+                                            echo "※　10% 割引があります。";  
+                                        }elseif($today !== "15" && $count == 0){
+                                            echo "※　10% 割引があります。";     
+                                        }elseif($today !== "25" && $count == 0){
+                                            echo "※　10% 割引があります。";
+                                        }else{
+                                            echo "※　割引がないです。";
+                                        }
                                     ?>
                                     </li>
                                     <li class="important1">※　全国７００円</li>
@@ -520,12 +544,6 @@
                                             $deliveryFee = "<script> document.write(document.getElementById('delivery_fee').innerHTML.slice(1)) </script>"; 
                                         ?>
                                         <?php
-
-                                            $count_sql = "SELECT COUNT(order_no) as count_order FROM ordering WHERE c_code = ? ";
-                                            $count_st = $dbConn->prepare($count_sql);
-                                            $count_st->execute(array($c_code));
-                                            $count_result = $count_st->fetch( PDO::FETCH_ASSOC );
-                                            $count = $count_result['count_order'];
                                             
                                             $formula = (($row1['result']/100)*10) + $row1['result'] + 700;
                                             $today = date("d");
@@ -577,7 +595,7 @@
                                                     else
                                                         $_SESSION['final_amount'] = $final_amount;
                                                     echo "￥" . number_format($_SESSION['final_amount']);
-                                                }elseif($today === "10" && $count > 0){
+                                                }elseif($today === "15" && $count > 0){
                                                     $final_amount = ($formula - ($formula/100)*5);
                                                     if($final_amount <= 700)
                                                         $_SESSION['final_amount'] = 0;
