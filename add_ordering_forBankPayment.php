@@ -10,7 +10,7 @@
             $c_phone = $_POST['c_phone'];
             $c_address1 = $_POST['c_address1'];
             $c_address2 = $_POST['c_address2'];
-            $c_zip = $_POST['c_zip']
+            $c_zip = $_POST['c_zip'];
             $c_email = $_POST['c_email'];
             $c_name = $_POST['c_name'];
             $total_amount = $_POST['total_amount'];
