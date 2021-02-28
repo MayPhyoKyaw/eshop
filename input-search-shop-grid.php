@@ -341,12 +341,13 @@
                     <div class="row search-product-wrapper">
                         <?php
                             if(isset($_POST['search-btn'])){
-                                $search_value = $_POST['search'];
+                                $search_input = $_POST['search'];
                                 // echo $search_value;
                                 try {
-                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, stock, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id where item_name = ?" ;
+                                    $search_item_sql = "SELECT stock, item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, stock, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE item_name LIKE ?" ;
                                     $st3 = $dbConn->prepare($search_item_sql);
-                                    $st3->execute(array($search_value));
+                                    $search_values = '%'.$search_input.'%';
+                                    $st3->execute(array($search_values));
 
                                     foreach ($st3->fetchAll() as $row) {
                         ?>
