@@ -533,6 +533,7 @@
                                             $st1->execute(array($c_code));
                                             foreach ($st1->fetchAll() as $row1) {
                                                 echo "￥" . number_format($row1['result']);
+                                                $_SESSION['subtotal'] = $row1['result'];
                                         ?>
                                         </span></li>
                                         <li class="important2">消費税   :<span class="consumption-tax" id="consumption_tax"><?php echo "10%"; $_SESSION['consumption_tax'] = "10%";?></span></li>
