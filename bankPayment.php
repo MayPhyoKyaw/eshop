@@ -351,7 +351,7 @@
                                 $sql = "SELECT c_name, c_address1, c_address2, c_phone, c_zip, c_email, Sum(quantity) as totalQty FROM customers cus INNER JOIN cart c ON cus.c_code = c.c_code INNER JOIN item i ON c.item_id = i.item_id WHERE c.c_code = ?";
 	
                                 $prepare = $dbConn->prepare ( $sql );
-                                $prepare->execute ( array($c_code));
+                                $prepare->execute (array($c_code));
                                 $row = $prepare->fetch ( PDO::FETCH_ASSOC );
                                 // echo $row['c_name'];
                                 // echo $row['c_email'];

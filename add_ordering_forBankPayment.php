@@ -88,23 +88,27 @@
 				$body .= $c_address1.$c_address2."\n";
 				$body .= "――――――――――――――――――――――\n";
 					
-				// $totalamount = $total_amount;
+				$totalamount = $total_amount;
 			// 	$cnt++;
 			// }
             try {
-                $i=0;
-                while($i < Count($itemIDs)){
-                    $itemID = $itemIDs[$i];
-                    $order_item_sql = "SELECT item_name, quantity FROM item i WHERE item_id = ?";
-                    $st4 = $dbConn->prepare($order_item_sql);
+                // $i=0;
+                // while($i < Count($itemIDs)){
+                //     $itemID = $itemIDs[$i];
+                //     echo $itemID . "\n";
+                    $order_sql = "SELECT i.item_name, od.quantity FROM item i INNER JOIN order_details od ON od.item_id = i.item_id INNER JOIN ordering o ON o.order_no = od.order_no WHERE od.order_no = ? AND o.c_code = ?";
+                    $st4 = $dbConn->prepare($order_sql);
                     // $st4->bindParam( ":c_code", $c_code, PDO::PARAM_INT);
-                    $st4->execute([$itemID]);
+                    $st4->execute([$order_no, $c_code]);
                     foreach ($st4->fetchAll() as $row4) {
-                        $body .= "購入品:{$data['item_name']} \n";
+                        $body .= "購入品:{$row4['item_name']} \n";
+                        $body .= "購入品:{$row4['quantity']} \n";
 			            $body .= "------------------------------------------ \n";
+                        // echo "購入品:{$row4['item_name']} \n";
+                        // echo "購入品:{$row4['quantity']} \n";
                     } 
-                    $i++;
-                }
+                //     $i++;
+                // }
             }catch (PDOException $e) {
                 echo "There is some problem in connection: " . $e->getMessage();
             }
