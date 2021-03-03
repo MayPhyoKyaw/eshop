@@ -85,7 +85,6 @@ $(document).ready(function () {
         console.log(itemId);
 
         if (stock == 0) {
-            alert("This item's stock is zero");
             $(".submit-add-to-cart").attr("disabled", true);
         }
         else {
