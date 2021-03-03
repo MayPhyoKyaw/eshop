@@ -419,7 +419,7 @@
                                         <form action="add_to_cart.php" method="post">
                                             <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
                                             <a title="Add to cart" href="#">
-                                                <input type="submit" name="add_to_cart" value="Add to Cart" />
+                                                <input type="submit" name="add_to_cart" value="Add to Cart" data-toggle="modal" data-target="#warningModal" />
                                             </a>
                                         </form>
                                     </div>
@@ -662,6 +662,29 @@
         </div>
     </div>
     <!-- Modal end -->
+
+    <!-- Warning Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="quantityWarning" aria-hidden="true">
+        <div class="modal-dialog customize-warning-modal-dialog" role="document">
+            <div class="modal-content customize-warning-modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body customize-warning-modal-body">
+                    <div>
+                        <h3 class="modal-title waring-title">警告：</h3><br>
+                        <h4 style="text-align: center;">商品が在庫切れです！</h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Warning Modal -->
 
     <!-- <section class="cown-down">
         <div class="section-inner ">
