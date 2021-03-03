@@ -339,7 +339,7 @@
                     <div class="row search-product-wrapper">
                         <?php                             
                             try {
-                                $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color, sale_rate, stock FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN sales ON i.sale_id = sales.sale_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sales.sale_rate <> '1' AND sales.sale_condition = 1";
+                                $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, season_name, gender, country, description, color, sale_rate, stock FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN sales ON i.sale_id = sales.sale_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sales.sale_rate <> '1' AND sales.sale_condition = 1 AND i.stock >= 0 ";
                                 $st = $dbConn->prepare($item_sql);
                                 $st->execute();
                                 foreach ($st->fetchAll() as $row) {
@@ -515,7 +515,7 @@
                                     <form action="detail_add_to_cart.php" method="post">
                                         <input type="hidden" name="cart_itemId" value="" id="cart_itemId" />
                                         <input type="hidden" name="cart_qty" value="" id="qty" />
-                                        <button class="btn" href="#" type="submit" name="add_to_cart_detail">
+                                        <button class="btn submit-add-to-cart" href="#" type="submit" name="add_to_cart_detail">
                                         カートに入れる
                                         </button>
                                     </form>

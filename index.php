@@ -640,7 +640,7 @@
                                     <form action="detail_add_to_cart.php" method="post">
                                         <input type="hidden" name="cart_itemId" value="" id="cart_itemId" />
                                         <input type="hidden" name="cart_qty" value="" id="qty" />
-                                        <button class="btn" href="#" type="submit" name="add_to_cart_detail">
+                                        <button class="btn submit-add-to-cart" href="#" type="submit" name="add_to_cart_detail">
                                             カートに入れる
                                         </button>
                                     </form>

@@ -805,3 +805,12 @@ p {
     font-weight: 600;
     font-size: 16px;
 }
+
+/* add-to-order button disabled */
+.submit-add-to-cart:disabled,
+.submit-add-to-cart[disabled] {
+    cursor: not-allowed !important;
+}
+.submit-add-to-cart:disabled:hover {
+    background-color: #868e96 !important;
+}

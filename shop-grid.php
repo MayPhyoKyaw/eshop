@@ -379,7 +379,7 @@
                             <?php
                                 try{
                                     $smallCat = $_GET['small_category'];
-                                    $sub_category_sql = "SELECT COUNT(s.size_id), size_name, s_catName  FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN size s ON i.size_id = s.size_id WHERE s_catName = :smallCat GROUP BY size_name" ;
+                                    $sub_category_sql = "SELECT COUNT(s.size_id), size_name, s_catName  FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN size s ON i.size_id = s.size_id WHERE s_catName = :smallCat  AND i.stock >= 0 GROUP BY size_name" ;
                                     $st5 = $dbConn->prepare($sub_category_sql);
                                     $st5->bindParam( ":smallCat", $smallCat, PDO::PARAM_STR);
                                     $st5->execute();
@@ -473,7 +473,7 @@
                                 try {
                                     $subCat = $_GET['small_category'];
 
-                                    $filter_item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, stock, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sc.s_catName = :subCat AND s.size_name = :size" ;
+                                    $filter_item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, stock, brand_name, season_name, gender, country, description, color FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id WHERE sc.s_catName = :subCat AND s.size_name = :size  AND i.stock >= 0" ;
                                     $st4 = $dbConn->prepare($filter_item_sql);
                                     $st4->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
                                     $st4->bindParam( ":size", $size, PDO::PARAM_STR);
@@ -553,7 +553,7 @@
                                 try {
                                     $subCat = $_GET['small_category'];
 
-                                    $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, stock, season_name, gender, country, description, color, stock FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id  WHERE sc.s_catName = :subCat" ;
+                                    $item_sql = "SELECT item_id, item_name, size_name, b_catName, s_catName, item_img1, item_img2, price, brand_name, stock, season_name, gender, country, description, color, stock FROM item i INNER JOIN s_category sc ON i.s_categoryID = sc.s_categoryID INNER JOIN b_category mc ON sc.b_categoryID = mc.b_categoryID INNER JOIN size s ON i.size_id = s.size_id INNER JOIN brand b ON i.brand_id = b.brand_id INNER JOIN season ss ON i.season_id = ss.season_id  WHERE sc.s_catName = :subCat AND i.stock >= 0" ;
                                     $st3 = $dbConn->prepare($item_sql);
                                     $st3->bindParam( ":subCat", $subCat, PDO::PARAM_STR);
                                     $st3->execute();
@@ -732,7 +732,7 @@
                                     <form action="detail_add_to_cart.php" method="post">
                                         <input type="hidden" name="cart_itemId" value="" id="cart_itemId" />
                                         <input type="hidden" name="cart_qty" value="" id="qty" />
-                                        <button class="btn" href="#" type="submit" name="add_to_cart_detail">
+                                        <button class="btn submit-add-to-cart" href="#" type="submit" name="add_to_cart_detail">
                                         カートに入れる
                                         </button>
                                     </form>

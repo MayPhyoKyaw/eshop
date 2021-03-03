@@ -77,6 +77,15 @@ $(document).ready(function () {
     $('.img1').html(`<img src="./images/items/${img1}" alt="#">`);
     $('.img2').html(`<img src="./images/items/${img2}" alt="#">`);
     $('#cart_itemId').val(itemId);
+
+    if (stock == 0) {
+      alert("This item's stock is zero");
+      $(".submit-add-to-cart").attr("disabled", true);
+
+    }
+    else {
+      $(".submit-add-to-cart").removeAttr("disabled");;
+    }
   })
 
 });
