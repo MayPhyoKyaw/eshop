@@ -32,6 +32,8 @@
             
         }
     }catch (PDOException $e) {
-        echo "There is some problem in connection: " . $e->getMessage();
+        $message = "You have ordered this item !!";
+        echo "<script type='text/javascript'>alert('$message');history.go(-1);</script>";
+        // echo "There is some problem in connection: " . $e->getMessage();
     }
 ?>
