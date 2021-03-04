@@ -578,7 +578,7 @@
                                                 <form action="add_to_cart.php" method="post">
                                                     <input type="hidden" name="cart_itemId" value="<?php echo $row['item_id']; ?>" />
                                                     <a title="Add to cart" href="#">
-                                                        <input type="submit" name="add_to_cart" value="Add to Cart" />
+                                                        <input type="submit" name="add_to_cart" value="Add to Cart" data-toggle="modal" data-target="#warningModal"  />
                                                     </a>
                                                 </form>
                                             </div>
